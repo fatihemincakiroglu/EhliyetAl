@@ -40,6 +40,7 @@ export default async function OpengraphImage() {
         </div>
         <div
           style={{
+            display: "flex",
             fontSize: 88,
             fontWeight: 700,
             color: "#f3f4f7",
