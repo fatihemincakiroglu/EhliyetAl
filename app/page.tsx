@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Ehliyet Sınavı Soruları 2026 | Çıkmış Ehliyet Sınavları",
   description:
     "2026 ehliyet sınavı sorularını ve çıkmış ehliyet sınavlarını ücretsiz çöz! Trafik, ilk yardım, motor bilgisi soruları ve deneme sınavlarıyla hazırlan.",
+  alternates: {
+    canonical: "https://ehliyet-al.vercel.app/",
+  },
 };
 
 const icons: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {

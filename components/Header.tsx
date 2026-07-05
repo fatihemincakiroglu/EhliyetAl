@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import ThemeToggle from "@/components/ThemeToggle";
 import { navItems } from "@/components/navItems";
@@ -11,8 +12,15 @@ export default function Header() {
   return (
     <header className="border-b border-line bg-surface/60 backdrop-blur sticky top-0 z-30">
       <div className="max-w-3xl mx-auto px-5 sm:px-6 h-14 flex items-center justify-between">
-        <Link href="/" className="font-display italic text-lg text-ink">
-          Ehliyet<span className="text-gold">Al</span>
+        <Link href="/" className="flex items-center" aria-label="EhliyetAl ana sayfa">
+          <Image
+            src="/logo.png"
+            alt="EhliyetAl"
+            width={300}
+            height={92}
+            className="h-7 sm:h-8 w-auto object-contain object-left"
+            priority
+          />
         </Link>
         <div className="flex items-center gap-2">
           <nav className="hidden sm:flex items-center gap-1.5">

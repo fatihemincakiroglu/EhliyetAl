@@ -73,6 +73,25 @@ const faqSchema = {
   })),
 };
 
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "EhliyetAl",
+  url: "https://ehliyet-al.vercel.app/",
+  description:
+    "2026 ehliyet sınavı sorularını ve çıkmış ehliyet sınavlarını ücretsiz çöz.",
+  author: {
+    "@type": "Person",
+    name: "Fatih Emin Çakıroğlu",
+    url: "https://fatihemincakiroglu.com/",
+  },
+  publisher: {
+    "@type": "Person",
+    name: "Fatih Emin Çakıroğlu",
+    url: "https://fatihemincakiroglu.com/",
+  },
+};
+
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -98,6 +117,10 @@ export default function SeoContent() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
       />
       <script
         type="application/ld+json"

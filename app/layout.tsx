@@ -23,10 +23,16 @@ const plexMono = IBM_Plex_Mono({
   weight: ["500", "600"],
 });
 
+const SITE_URL = "https://ehliyet-al.vercel.app";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "EhliyetAl — Ehliyet Sınavı Hazırlık",
   description:
     "Trafik, motor, ilkyardım ve çevre konularında gerçek sınav formatında sorularla ehliyet sınavına hazırlan.",
+  authors: [{ name: "Fatih Emin Çakıroğlu", url: "https://fatihemincakiroglu.com/" }],
+  creator: "Fatih Emin Çakıroğlu",
+  publisher: "Fatih Emin Çakıroğlu",
 };
 
 const themeInitScript = `
