@@ -65,7 +65,7 @@ export default function IletisimPage() {
                   onClick={() => setTopic(t.value)}
                   className={`px-4 py-2 rounded-full text-sm border transition-colors ${
                     topic === t.value
-                      ? "bg-gold text-ink border-gold"
+                      ? "gold-gradient text-ink border-gold"
                       : "border-line text-ink-soft hover:border-gold-soft hover:text-ink"
                   }`}
                 >
@@ -112,7 +112,7 @@ export default function IletisimPage() {
 
           <button
             type="submit"
-            className="self-start flex items-center gap-2 font-display text-sm tracking-wide uppercase rounded-full bg-gold text-ink px-6 py-3 hover:bg-gold-soft transition-colors"
+            className="self-start flex items-center gap-2 font-display text-sm tracking-wide uppercase rounded-full gold-gradient text-ink px-6 py-3 hover:bg-gold-soft transition-colors"
           >
             <Send size={16} />
             Gönder

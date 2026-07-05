@@ -90,7 +90,7 @@ export default function SinavPage() {
             <button
               type="button"
               onClick={() => setStarted(true)}
-              className="w-full sm:w-auto font-display text-sm tracking-wide uppercase rounded-full bg-gold text-ink px-8 py-3.5 hover:bg-gold-soft transition-colors"
+              className="w-full sm:w-auto font-display text-sm tracking-wide uppercase rounded-full gold-gradient text-ink px-8 py-3.5 hover:bg-gold-soft transition-colors"
             >
               Sınavı Başlat
             </button>

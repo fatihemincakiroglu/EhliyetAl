@@ -126,7 +126,7 @@ export default function CategoryQuizStart({ category }: { category: Category }) 
                   disabled={count === 0}
                   className={`px-4 py-2 rounded-full text-sm font-body border transition-colors disabled:opacity-30 disabled:cursor-not-allowed ${
                     active
-                      ? "bg-gold text-ink border-gold"
+                      ? "gold-gradient text-ink border-gold"
                       : "border-line text-ink-soft hover:border-gold-soft hover:text-ink"
                   }`}
                 >
@@ -153,7 +153,7 @@ export default function CategoryQuizStart({ category }: { category: Category }) 
               type="button"
               onClick={() => setStarted(true)}
               disabled={filteredQuestions.length === 0}
-              className="font-display text-sm tracking-wide uppercase rounded-full bg-gold text-ink px-8 py-3.5 hover:bg-gold-soft transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+              className="font-display text-sm tracking-wide uppercase rounded-full gold-gradient text-ink px-8 py-3.5 hover:bg-gold-soft transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
             >
               Çözmeye Başla
             </button>

@@ -179,7 +179,7 @@ export default function QuizRunner({
                 <button
                   type="button"
                   onClick={() => setStep((s) => s + 1)}
-                  className="w-full sm:w-auto font-display text-sm tracking-wide uppercase rounded-full bg-gold text-ink px-6 py-3.5 sm:py-3 hover:bg-gold-soft transition-colors"
+                  className="w-full sm:w-auto font-display text-sm tracking-wide uppercase rounded-full gold-gradient text-ink px-6 py-3.5 sm:py-3 hover:bg-gold-soft transition-colors"
                 >
                   Sonuçları Gör
                 </button>

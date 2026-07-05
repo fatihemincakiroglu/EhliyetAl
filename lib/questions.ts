@@ -29,12 +29,12 @@ export const categories: Category[] = [
         id: "trafik-1",
         text: "Kırmızı ışıkta bekleyen bir sürücü, ışık sarıya döndüğünde ne yapmalıdır?",
         options: [
-          "Hemen hızlanıp geçmelidir",
           "Yeşile dönene kadar beklemeye devam etmelidir",
+          "Hemen hızlanıp geçmelidir",
           "Kavşağı kontrol ederek yavaşça ilerlemelidir",
           "Korna çalarak diğer sürücüleri uyarmalıdır",
         ],
-        correctIndex: 1,
+        correctIndex: 0,
         explanation:
           "Sarı ışık, kırmızıdan yeşile geçişin hazırlığıdır; araç hâlâ durmuş durumdayken sürücü yeşil yanana kadar beklemelidir.",
         difficulty: "kolay",
@@ -59,11 +59,11 @@ export const categories: Category[] = [
         text: "Karşı yönden araç geliyorsa sürücünün sollama yapması hakkında ne söylenebilir?",
         options: [
           "Hız yeterince yüksekse sollama yapılabilir",
-          "Karşıdan araç geliyorsa sollama yapılmamalıdır",
           "Sadece gündüz saatlerinde sollama yasaktır",
+          "Karşıdan araç geliyorsa sollama yapılmamalıdır",
           "Karşı araç uzaktaysa sorun oluşturmaz",
         ],
-        correctIndex: 1,
+        correctIndex: 2,
         explanation:
           "Karşı yönden gelen trafiğin güvenliğini tehlikeye atacak şekilde sollama yapmak yasaktır ve kazalara yol açabilir.",
         difficulty: "kolay",
@@ -73,11 +73,11 @@ export const categories: Category[] = [
         text: "Emniyet şeridi (banket dışı acil şerit) hangi durumda kullanılabilir?",
         options: [
           "Trafik yoğunluğunda zaman kazanmak için",
-          "Sadece arıza veya acil durumlarda",
           "Sürekli olarak hızlı gitmek isteyenler için",
           "Otoyollarda her zaman serbestçe kullanılabilir",
+          "Sadece arıza veya acil durumlarda",
         ],
-        correctIndex: 1,
+        correctIndex: 3,
         explanation:
           "Emniyet şeridi yalnızca arıza, kaza veya acil bir durumda kullanılabilir; trafik sıkışıklığını aşmak için kullanılamaz.",
         difficulty: "kolay",
@@ -86,12 +86,12 @@ export const categories: Category[] = [
         id: "trafik-5",
         text: "Dönel (göbekli) kavşaklarda geçiş önceliği genellikle kime aittir?",
         options: [
-          "Kavşağa yeni giren araca",
           "Kavşak içinde dönmekte olan araca",
+          "Kavşağa yeni giren araca",
           "Sağdan gelen araca",
           "Büyük araçlara",
         ],
-        correctIndex: 1,
+        correctIndex: 0,
         explanation:
           "Dönel kavşaklarda öncelik, kavşak içinde hâlihazırda dönmekte olan araçlara aittir; dışarıdan girecek araçlar onlara yol vermelidir.",
         difficulty: "orta",
@@ -113,7 +113,12 @@ export const categories: Category[] = [
       {
         id: "trafik-7",
         text: "Şehirler arası bölünmüş kara yolunda, aksine işaret yoksa otomobiller için azami hız sınırı saatte kaç kilometredir?",
-        options: ["70", "90", "110", "130"],
+        options: [
+          "70",
+          "90",
+          "110",
+          "130",
+        ],
         correctIndex: 2,
         explanation:
           "Bölünmüş şehirler arası kara yollarında otomobiller için azami hız sınırı, aksi işaretlenmedikçe saatte 110 kilometredir.",
@@ -124,11 +129,11 @@ export const categories: Category[] = [
         text: "Bir sürücü şerit değiştirmeden önce ne yapmalıdır?",
         options: [
           "Doğrudan şerit değiştirip sonra sinyal vermelidir",
-          "Sinyal vererek gireceği şeritteki araçların güvenle geçişini beklemelidir",
           "Sadece korna çalması yeterlidir",
           "Hız kesmeden hızlıca geçmelidir",
+          "Sinyal vererek gireceği şeritteki araçların güvenle geçişini beklemelidir",
         ],
-        correctIndex: 1,
+        correctIndex: 3,
         explanation:
           "Şerit değiştirmeden önce sinyal verilir ve gireceği şeritte seyreden araçların güvenle geçmesi beklenir.",
         difficulty: "kolay",
@@ -137,12 +142,12 @@ export const categories: Category[] = [
         id: "trafik-9",
         text: "Takip mesafesi neye göre ayarlanmalıdır?",
         options: [
-          "Sadece aracın modeline göre",
           "Hız, hava koşulları ve yol durumuna göre",
+          "Sadece aracın modeline göre",
           "Öndeki aracın rengine göre",
           "Sadece gündüz-gece ayrımına göre",
         ],
-        correctIndex: 1,
+        correctIndex: 0,
         explanation:
           "Güvenli takip mesafesi; aracın hızı, yolun durumu ve hava koşulları dikkate alınarak ayarlanmalıdır.",
         difficulty: "kolay",
@@ -166,11 +171,11 @@ export const categories: Category[] = [
         text: "Okul geçidi levhasını gören bir sürücü nasıl davranmalıdır?",
         options: [
           "Hızını artırarak bölgeden hızla uzaklaşmalıdır",
-          "Hızını azaltıp dikkatli sürmelidir",
           "Sadece ders saatlerinde dikkat etmesi yeterlidir",
+          "Hızını azaltıp dikkatli sürmelidir",
           "Levhayı görmezden gelebilir",
         ],
-        correctIndex: 1,
+        correctIndex: 2,
         explanation:
           "Okul geçidi levhası görüldüğünde çocukların ani hareketlerine karşı hız azaltılmalı ve dikkatli sürülmelidir.",
         difficulty: "kolay",
@@ -181,10 +186,10 @@ export const categories: Category[] = [
         options: [
           "Hemen olay yerinden hızla uzaklaşmak",
           "Fotoğraf çekmek için durmak",
-          "Kendi güvenliğini sağlayarak uyarı işareti koymak ve gerekirse yardım çağırmak",
           "Kaza yapanları uyarmadan geçmek",
+          "Kendi güvenliğini sağlayarak uyarı işareti koymak ve gerekirse yardım çağırmak",
         ],
-        correctIndex: 2,
+        correctIndex: 3,
         explanation:
           "Kaza yerine yaklaşan sürücü önce kendi güvenliğini sağlamalı, gerekiyorsa uyarı reflektörü koymalı ve yardım çağırmalıdır.",
         difficulty: "orta",
@@ -193,12 +198,12 @@ export const categories: Category[] = [
         id: "trafik-13",
         text: "Sürücülerin dönüş yapmadan önce sinyal vermesinin temel amacı nedir?",
         options: [
-          "Yasal bir zorunluluk olduğu için, başka amacı yoktur",
           "Diğer sürücüleri ve yayaları niyeti hakkında bilgilendirmek",
+          "Yasal bir zorunluluk olduğu için, başka amacı yoktur",
           "Aracın elektrik sistemini test etmek",
           "Trafik polislerine saygı göstermek",
         ],
-        correctIndex: 1,
+        correctIndex: 0,
         explanation:
           "Sinyal vermek, diğer yol kullanıcılarını sürücünün manevra niyeti konusunda önceden bilgilendirerek kazaları önler.",
         difficulty: "kolay",
@@ -222,11 +227,11 @@ export const categories: Category[] = [
         text: "Bir kavşakta trafik ışıkları arızalı ve hiçbir görevli yoksa sürücüler nasıl davranmalıdır?",
         options: [
           "Kavşağı olduğu gibi geçebilirler",
-          "Kavşağa bir 'dur' işareti varmış gibi yaklaşıp dikkatli geçmelidir",
           "Kavşağa girmemeleri gerekir",
+          "Kavşağa bir 'dur' işareti varmış gibi yaklaşıp dikkatli geçmelidir",
           "Sadece büyük araçlar öncelik kazanır",
         ],
-        correctIndex: 1,
+        correctIndex: 2,
         explanation:
           "Işıklar çalışmıyorsa sürücüler kavşağa dur işareti varmış gibi yaklaşmalı, diğer araçları kontrol ederek dikkatli geçmelidir.",
         difficulty: "zor",
@@ -237,11 +242,11 @@ export const categories: Category[] = [
         text: "Aşağıdaki işaret hangi anlama gelir?",
         options: [
           "Yavaşla, yol ver",
-          "Tamamen dur, geçiş hakkı olanları kontrol et",
           "Hız sınırı bitti",
           "Park yapılabilir",
+          "Tamamen dur, geçiş hakkı olanları kontrol et",
         ],
-        correctIndex: 1,
+        correctIndex: 3,
         explanation:
           "Kırmızı sekizgen 'Dur' işaretidir; sürücü aracı tamamen durdurmalı, öncelikli yolu kontrol ettikten sonra güvenliyse hareket etmelidir.",
         difficulty: "kolay",
@@ -251,12 +256,12 @@ export const categories: Category[] = [
         id: "trafik-17",
         text: "Aşağıdaki işaret neyi bildirir?",
         options: [
+          "Taşıt trafiğine kapalı yol / girişi olmayan yol",
           "Bisiklet yolu",
           "Girişi olan yol",
-          "Taşıt trafiğine kapalı yol / girişi olmayan yol",
           "Otopark",
         ],
-        correctIndex: 2,
+        correctIndex: 0,
         explanation:
           "Kırmızı daire içinde beyaz yatay çizgi, o yola araç girişinin yasak olduğunu bildirir.",
         difficulty: "orta",
@@ -282,11 +287,11 @@ export const categories: Category[] = [
         text: "Otoyolda aracı arızalanan bir sürücü ne yapmalıdır?",
         options: [
           "Aracı olduğu şeritte bırakıp yürüyerek yardım aramalıdır",
-          "Aracı mümkünse emniyet şeridine çekip dörtlü ikaz ışıklarını yakmalı ve reflektör koymalıdır",
           "Aracı ortada bırakıp diğer sürücüleri elle yönlendirmelidir",
+          "Aracı mümkünse emniyet şeridine çekip dörtlü ikaz ışıklarını yakmalı ve reflektör koymalıdır",
           "Sadece korna çalarak beklemelidir",
         ],
-        correctIndex: 1,
+        correctIndex: 2,
         explanation:
           "Arızalanan araç mümkünse emniyet şeridine alınmalı, dörtlü ikaz ışıkları yakılmalı ve arkadan gelen araçları uyarmak için reflektör konulmalıdır.",
         difficulty: "orta",
@@ -295,12 +300,12 @@ export const categories: Category[] = [
         id: "trafik-20",
         text: "Aksine bir düzenleme yoksa, kavşaklarda öncelikli yoldan gelmeyen bir sürücü nasıl davranmalıdır?",
         options: [
-          "Öncelikli yoldaki araçlara yol vermelidir",
           "Hızını artırıp önce geçmeye çalışmalıdır",
           "Öncelik her zaman büyük araçtadır, ona göre davranmalıdır",
           "Kavşakta bulunan ilk araç geçer",
+          "Öncelikli yoldaki araçlara yol vermelidir",
         ],
-        correctIndex: 0,
+        correctIndex: 3,
         explanation:
           "Tali yoldan gelen sürücü, ana/öncelikli yoldan gelen araçlara geçiş hakkı vermek zorundadır.",
         difficulty: "kolay",
@@ -309,12 +314,12 @@ export const categories: Category[] = [
         id: "trafik-21",
         text: "Sis, yoğun yağmur gibi görüşü azaltan hava koşullarında sürücü nasıl davranmalıdır?",
         options: [
-          "Hızını artırıp bölgeden çabuk çıkmalıdır",
           "Hızını azaltmalı, farları uygun şekilde kullanmalı ve takip mesafesini artırmalıdır",
+          "Hızını artırıp bölgeden çabuk çıkmalıdır",
           "Dörtlü ikaz ışıklarını sürekli yakarak normal hızda gitmelidir",
           "Uzun farları sürekli açık tutmalıdır",
         ],
-        correctIndex: 1,
+        correctIndex: 0,
         explanation:
           "Görüşün azaldığı hava koşullarında hız azaltılmalı, sis ışıkları uygun şekilde kullanılmalı ve takip mesafesi normalden fazla tutulmalıdır.",
         difficulty: "kolay",
@@ -338,11 +343,11 @@ export const categories: Category[] = [
         text: "Bir kavşakta ışıklar yeşil olsa da kavşak içi araç yoğunluğundan dolayı karşıya geçilemeyecekse sürücü ne yapmalıdır?",
         options: [
           "Yeşil ışık yandığı için kavşağa girip beklemelidir",
-          "Kavşağın tıkanmasına neden olmamak için kavşağa girmemeli, dışarıda beklemelidir",
           "Korna çalarak önündeki araçların ilerlemesini sağlamaya çalışmalıdır",
+          "Kavşağın tıkanmasına neden olmamak için kavşağa girmemeli, dışarıda beklemelidir",
           "Karşı şeride geçerek ilerlemelidir",
         ],
-        correctIndex: 1,
+        correctIndex: 2,
         explanation:
           "Işık yeşil olsa da kavşak içinde tıkanıklık oluşturacaksa sürücü kavşağa girmemeli, önündeki alanın açılmasını dışarıda beklemelidir.",
         difficulty: "zor",
@@ -351,9 +356,12 @@ export const categories: Category[] = [
         id: "trafik-24",
         text: "Bir aracın öndeki araçla aralarında bırakması gereken güvenli takip mesafesi neyle doğru orantılıdır?",
         options: [
-          "Aracın rengiyle", "Sürücünün yaşıyla", "Aracın hızıyla", "Gün içindeki saatle"
+          "Aracın rengiyle",
+          "Sürücünün yaşıyla",
+          "Gün içindeki saatle",
+          "Aracın hızıyla",
         ],
-        correctIndex: 2,
+        correctIndex: 3,
         explanation:
           "Hız arttıkça fren mesafesi de arttığından, güvenli takip mesafesi aracın hızıyla doğru orantılı şekilde artırılmalıdır.",
         difficulty: "kolay",
@@ -362,12 +370,12 @@ export const categories: Category[] = [
         id: "trafik-25",
         text: "Yaya ve bisiklet yolu bulunan bir yolda motorlu taşıt sürücüsünün davranışı nasıl olmalıdır?",
         options: [
-          "Bu yolları kısa süreliğine kullanabilir",
           "Yaya ve bisiklet yollarına girmemeli, bu alanları ihlal etmemelidir",
+          "Bu yolları kısa süreliğine kullanabilir",
           "Sadece gece bu yolları kullanabilir",
           "Trafik sıkışıksa bu yolları kullanabilir",
         ],
-        correctIndex: 1,
+        correctIndex: 0,
         explanation:
           "Yaya ve bisiklet yolları motorlu taşıtların kullanımına kapalıdır; bu alanlara girmek yayaların ve bisikletlilerin güvenliğini tehlikeye atar.",
         difficulty: "kolay",
@@ -383,7 +391,12 @@ export const categories: Category[] = [
       {
         id: "motor-1",
         text: "Lastiklerin güvenli kullanım için sahip olması gereken asgari diş derinliği ne kadardır?",
-        options: ["0,5 mm", "1,6 mm", "3 mm", "5 mm"],
+        options: [
+          "0,5 mm",
+          "1,6 mm",
+          "3 mm",
+          "5 mm",
+        ],
         correctIndex: 1,
         explanation:
           "Türkiye'de lastikler için kabul edilen asgari diş derinliği 1,6 milimetredir; bunun altına inen lastikler yol tutuşunu ciddi biçimde azaltır.",
@@ -408,11 +421,11 @@ export const categories: Category[] = [
         text: "Triger (zamanlama) kayışının görevi nedir?",
         options: [
           "Motor yağını soğutmak",
-          "Krank milinin hareketini eksantrik mile aktararak supapların doğru zamanda açılmasını sağlamak",
           "Aküyü şarj etmek",
           "Yakıt basıncını ayarlamak",
+          "Krank milinin hareketini eksantrik mile aktararak supapların doğru zamanda açılmasını sağlamak",
         ],
-        correctIndex: 1,
+        correctIndex: 3,
         explanation:
           "Triger kayışı, krank milinden aldığı hareketi eksantrik miline ileterek supapların doğru zamanlamada çalışmasını sağlar.",
         difficulty: "zor",
@@ -421,12 +434,12 @@ export const categories: Category[] = [
         id: "motor-4",
         text: "Motor yağının düzenli aralıklarla değiştirilmemesi neye yol açabilir?",
         options: [
+          "Motor parçalarının aşırı aşınmasına ve arızalanmasına",
           "Motorun daha sessiz çalışmasına",
           "Yakıt tüketiminin azalmasına",
-          "Motor parçalarının aşırı aşınmasına ve arızalanmasına",
           "Aracın hızının artmasına",
         ],
-        correctIndex: 2,
+        correctIndex: 0,
         explanation:
           "Eskiyen motor yağı, sürtünmeyi azaltma görevini yerine getiremez ve bu da motor parçalarının erken aşınmasına neden olur.",
         difficulty: "kolay",
@@ -450,11 +463,11 @@ export const categories: Category[] = [
         text: "Şanzıman (vites kutusu) aracın hangi ihtiyacını karşılar?",
         options: [
           "Aracı soğutma ihtiyacını",
-          "Motor gücünü farklı hız ve tork oranlarında tekerleklere iletme ihtiyacını",
           "Farların çalışması ihtiyacını",
+          "Motor gücünü farklı hız ve tork oranlarında tekerleklere iletme ihtiyacını",
           "Yakıtın temizlenmesi ihtiyacını",
         ],
-        correctIndex: 1,
+        correctIndex: 2,
         explanation:
           "Şanzıman, motorun ürettiği gücü farklı vites oranlarıyla tekerleklere aktararak aracın değişen hız ve yük ihtiyaçlarını karşılar.",
         difficulty: "orta",
@@ -464,11 +477,11 @@ export const categories: Category[] = [
         text: "Debriyaj (kavrama) sisteminin temel görevi nedir?",
         options: [
           "Motoru tamamen durdurmak",
-          "Vites değiştirilirken motor gücünü geçici olarak kesmek",
           "Frenleme gücünü artırmak",
           "Yakıt tüketimini ölçmek",
+          "Vites değiştirilirken motor gücünü geçici olarak kesmek",
         ],
-        correctIndex: 1,
+        correctIndex: 3,
         explanation:
           "Debriyaj, vites değiştirme anında motorun gücünü geçici olarak şanzımandan ayırarak yumuşak bir geçiş sağlar.",
         difficulty: "kolay",
@@ -477,12 +490,12 @@ export const categories: Category[] = [
         id: "motor-8",
         text: "Radyatörün araçtaki temel işlevi nedir?",
         options: [
-          "Motor yağını temizlemek",
           "Motorun ürettiği ısıyı dış ortama vererek soğutma suyunu soğutmak",
+          "Motor yağını temizlemek",
           "Egzoz gazlarını filtrelemek",
           "Aracın elektrik ihtiyacını karşılamak",
         ],
-        correctIndex: 1,
+        correctIndex: 0,
         explanation:
           "Radyatör, motoru dolaşan soğutma suyunun taşıdığı ısıyı dış ortama aktararak motorun aşırı ısınmasını önler.",
         difficulty: "kolay",
@@ -506,11 +519,11 @@ export const categories: Category[] = [
         text: "Far ayarının doğru yapılmamış olması hangi soruna yol açabilir?",
         options: [
           "Yakıt tüketiminin azalmasına",
-          "Karşı yönden gelen sürücülerin gözünü kamaştırmasına veya yetersiz aydınlatmaya",
           "Motor performansının artmasına",
+          "Karşı yönden gelen sürücülerin gözünü kamaştırmasına veya yetersiz aydınlatmaya",
           "Lastik aşınmasının azalmasına",
         ],
-        correctIndex: 1,
+        correctIndex: 2,
         explanation:
           "Yanlış ayarlanmış farlar, karşı yönden gelen sürücüleri kamaştırabilir veya sürücünün kendi görüş mesafesini kısaltabilir.",
         difficulty: "kolay",
@@ -519,12 +532,12 @@ export const categories: Category[] = [
         id: "motor-11",
         text: "Silecek lastiklerinin değiştirilmesi gerektiğini gösteren belirti hangisidir?",
         options: [
-          "Camda çizik bırakması veya iz yapmadan temizlememesi",
           "Sesinin çok sessiz olması",
           "Yeni araçlarda daha hızlı hareket etmesi",
           "Kışın daha yavaş çalışması",
+          "Camda çizik bırakması veya iz yapmadan temizlememesi",
         ],
-        correctIndex: 0,
+        correctIndex: 3,
         explanation:
           "Silecek lastiği sertleştiğinde veya yıprandığında camı iz bırakmadan temizleyemez ya da çizik oluşturabilir; bu değişim zamanı gelmiş demektir.",
         difficulty: "kolay",
@@ -533,12 +546,12 @@ export const categories: Category[] = [
         id: "motor-12",
         text: "Yakıt filtresinin görevi nedir?",
         options: [
-          "Motor yağını soğutmak",
           "Yakıt içindeki kir ve yabancı maddeleri temizleyerek motoru korumak",
+          "Motor yağını soğutmak",
           "Egzoz gazını temizlemek",
           "Aracın hızını artırmak",
         ],
-        correctIndex: 1,
+        correctIndex: 0,
         explanation:
           "Yakıt filtresi, yakıt içindeki kir ve yabancı parçacıkları tutarak bunların motora ve enjektörlere zarar vermesini engeller.",
         difficulty: "orta",
@@ -561,12 +574,12 @@ export const categories: Category[] = [
         id: "motor-14",
         text: "Egzoz sisteminin araçtaki temel görevlerinden biri nedir?",
         options: [
-          "Yanma sonucu oluşan gazları güvenli şekilde dışarı atmak ve gürültüyü azaltmak",
           "Motor yağını temizlemek",
           "Lastik basıncını ayarlamak",
+          "Yanma sonucu oluşan gazları güvenli şekilde dışarı atmak ve gürültüyü azaltmak",
           "Aküyü şarj etmek",
         ],
-        correctIndex: 0,
+        correctIndex: 2,
         explanation:
           "Egzoz sistemi, yanma sonucu oluşan gazları araçtan güvenli şekilde uzaklaştırır ve motor gürültüsünü azaltır.",
         difficulty: "kolay",
@@ -576,11 +589,11 @@ export const categories: Category[] = [
         text: "Kış aylarında motor soğutma suyuna antifriz eklenmesinin temel sebebi nedir?",
         options: [
           "Motorun daha hızlı çalışmasını sağlamak",
-          "Soğutma suyunun donmasını önleyerek motor bloğunun çatlamasını engellemek",
           "Yakıt tüketimini artırmak",
           "Egzoz dumanını azaltmak",
+          "Soğutma suyunun donmasını önleyerek motor bloğunun çatlamasını engellemek",
         ],
-        correctIndex: 1,
+        correctIndex: 3,
         explanation:
           "Antifriz, düşük sıcaklıklarda soğutma suyunun donmasını önler; donma sırasında oluşan genleşme motor bloğunu çatlatabilir.",
         difficulty: "orta",
@@ -589,12 +602,12 @@ export const categories: Category[] = [
         id: "motor-16",
         text: "Direksiyon simidinde sürüş sırasında hissedilen titreme neyin belirtisi olabilir?",
         options: [
-          "Yakıt seviyesinin düşük olmasının",
           "Lastik balans veya rot ayarının bozuk olmasının",
+          "Yakıt seviyesinin düşük olmasının",
           "Farların iyi çalıştığının",
           "Aracın yeni yıkanmış olduğunun",
         ],
-        correctIndex: 1,
+        correctIndex: 0,
         explanation:
           "Direksiyonda hissedilen titreme genellikle lastik balansının veya rot ayarının bozulduğunu gösterir ve kontrol ettirilmesi gerekir.",
         difficulty: "orta",
@@ -618,11 +631,11 @@ export const categories: Category[] = [
         text: "Klimanın araç motoruna ekstra yük bindirmesi hangi durumda daha belirgin hissedilir?",
         options: [
           "Araç dururken",
-          "Düşük devirde giderken ani hızlanma istendiğinde",
           "Aracın farları kapalıyken",
+          "Düşük devirde giderken ani hızlanma istendiğinde",
           "Aracın camları açıkken",
         ],
-        correctIndex: 1,
+        correctIndex: 2,
         explanation:
           "Klima kompresörü motora ek yük bindirir; bu yük özellikle düşük devirde ani hızlanma istenildiğinde daha fark edilir olur.",
         difficulty: "zor",
@@ -632,11 +645,11 @@ export const categories: Category[] = [
         text: "Bir aracın periyodik bakımlarının düzenli yapılmasının en önemli faydası nedir?",
         options: [
           "Aracın rengini korumak",
-          "Beklenmedik arızaları önceden tespit edip önlemek",
           "Sigorta maliyetini düşürmek",
           "Sadece yakıt deposunu büyütmek",
+          "Beklenmedik arızaları önceden tespit edip önlemek",
         ],
-        correctIndex: 1,
+        correctIndex: 3,
         explanation:
           "Düzenli periyodik bakım, küçük sorunların büyük ve maliyetli arızalara dönüşmeden tespit edilip giderilmesini sağlar.",
         difficulty: "kolay",
@@ -645,12 +658,12 @@ export const categories: Category[] = [
         id: "motor-20",
         text: "Aracın camlarında buğulanma olduğunda en etkili çözüm genellikle hangisidir?",
         options: [
-          "Camları tamamen kapatıp beklemek",
           "Klima veya havalandırmayı kullanarak iç-dış sıcaklık farkını azaltmak",
+          "Camları tamamen kapatıp beklemek",
           "Cam sileceklerini çalıştırmak",
           "Farları söndürmek",
         ],
-        correctIndex: 1,
+        correctIndex: 0,
         explanation:
           "Buğulanma iç ve dış sıcaklık/nem farkından kaynaklanır; klima veya havalandırma bu farkı azaltarak camı hızla açar.",
         difficulty: "orta",
@@ -658,7 +671,12 @@ export const categories: Category[] = [
       {
         id: "motor-21",
         text: "Motor devrini gösteren göstergeye ne ad verilir?",
-        options: ["Hız göstergesi", "Takometre (devir göstergesi)", "Yakıt göstergesi", "Kilometre sayacı"],
+        options: [
+          "Hız göstergesi",
+          "Takometre (devir göstergesi)",
+          "Yakıt göstergesi",
+          "Kilometre sayacı",
+        ],
         correctIndex: 1,
         explanation:
           "Takometre, motorun dakikadaki devir sayısını (RPM) gösteren göstergedir ve vites değiştirme zamanlamasında yol gösterir.",
@@ -669,11 +687,11 @@ export const categories: Category[] = [
         text: "Aracın uzun süre güneş altında kapalı kalması sonrası lastik hava basıncı nasıl değişir?",
         options: [
           "Değişmez",
-          "Sıcaklık artışıyla lastik içindeki hava basıncı artar",
           "Sıcaklık artışıyla lastik içindeki hava basıncı azalır",
+          "Sıcaklık artışıyla lastik içindeki hava basıncı artar",
           "Sadece ön lastiklerde değişir",
         ],
-        correctIndex: 1,
+        correctIndex: 2,
         explanation:
           "Sıcaklık arttıkça lastik içindeki hava genişler ve basınç artar; bu yüzden basınç kontrolleri hava soğukken yapılmalıdır.",
         difficulty: "zor",
@@ -683,11 +701,11 @@ export const categories: Category[] = [
         text: "Aracın periyodik muayenesinin (istasyon muayenesi) temel amacı nedir?",
         options: [
           "Aracın rengini kontrol etmek",
-          "Araçların trafik güvenliği açısından teknik olarak uygun durumda olup olmadığını denetlemek",
           "Sadece vergi tahsil etmek",
           "Aracın hızını artırmak",
+          "Araçların trafik güvenliği açısından teknik olarak uygun durumda olup olmadığını denetlemek",
         ],
-        correctIndex: 1,
+        correctIndex: 3,
         explanation:
           "Periyodik muayene, araçların fren, egzoz, lastik ve emniyet sistemleri gibi unsurlarının trafiğe uygun olup olmadığını denetler.",
         difficulty: "orta",
@@ -695,8 +713,13 @@ export const categories: Category[] = [
       {
         id: "motor-24",
         text: "Bir aracın viraja hızlı girmesi sırasında lastiklerin yol tutuşunu kaybetmesi durumuna ne denir?",
-        options: ["Aquaplaning", "Savrulma / kayma (patinaj)", "Rejeneratif frenleme", "Turbo lag"],
-        correctIndex: 1,
+        options: [
+          "Savrulma / kayma (patinaj)",
+          "Aquaplaning",
+          "Rejeneratif frenleme",
+          "Turbo lag",
+        ],
+        correctIndex: 0,
         explanation:
           "Aracın virajda tutunma sınırını aşması sonucu lastiklerin kayması, sürücünün araç üzerindeki kontrolünü kaybetmesine yol açabilir.",
         difficulty: "orta",
@@ -704,8 +727,13 @@ export const categories: Category[] = [
       {
         id: "motor-25",
         text: "Yağmurlu havada yüksek hızda su birikintisi üzerinden geçen bir aracın lastiklerinin yolla teması kaybedip su üzerinde kaymasına ne ad verilir?",
-        options: ["Aquaplaning (su kayması)", "Debriyaj kayması", "Turbo gecikmesi", "Fren sertleşmesi"],
-        correctIndex: 0,
+        options: [
+          "Debriyaj kayması",
+          "Aquaplaning (su kayması)",
+          "Turbo gecikmesi",
+          "Fren sertleşmesi",
+        ],
+        correctIndex: 1,
         explanation:
           "Aquaplaning, lastiklerin su tabakasını yeterince atamayıp yol yüzeyiyle temasını kaybetmesi sonucu oluşan tehlikeli bir kaymadır; yağışlı havalarda hız kesmek bu riski azaltır.",
         difficulty: "zor",
@@ -723,11 +751,11 @@ export const categories: Category[] = [
         text: "Bir trafik kazası sonrası ilk yardımcının izlemesi gereken en doğru sıralama hangisidir?",
         options: [
           "Doğrudan yaralıyı kaldırmak, sonra çevreyi kontrol etmek",
-          "Önce olay yerinin güvenliğini sağlamak, sonra yaralıyı değerlendirmek",
           "Önce fotoğraf çekmek, sonra yardım çağırmak",
+          "Önce olay yerinin güvenliğini sağlamak, sonra yaralıyı değerlendirmek",
           "Sadece yardım çağırıp beklemek",
         ],
-        correctIndex: 1,
+        correctIndex: 2,
         explanation:
           "İlk yardımda öncelik her zaman olay yerinin güvenliğini sağlamaktır; ardından yaralı değerlendirilir ve gerekirse yardım çağrılır.",
         difficulty: "kolay",
@@ -737,11 +765,11 @@ export const categories: Category[] = [
         text: "Bir kazazedenin bilincinin açık olup olmadığını anlamak için ilk adım nedir?",
         options: [
           "Doğrudan suni solunum yapmak",
-          "Sesli seslenmek ve hafifçe omzuna dokunarak tepki almaya çalışmak",
           "Yaralıyı sarsarak uyandırmaya çalışmak",
           "Hemen kalp masajına başlamak",
+          "Sesli seslenmek ve hafifçe omzuna dokunarak tepki almaya çalışmak",
         ],
-        correctIndex: 1,
+        correctIndex: 3,
         explanation:
           "Bilinç kontrolü, kazazedeye sesli seslenerek ve hafifçe dokunarak tepki alınıp alınmadığının değerlendirilmesiyle yapılır.",
         difficulty: "kolay",
@@ -750,12 +778,12 @@ export const categories: Category[] = [
         id: "ilkyardim-3",
         text: "Atardamar (arter) kanamasının ayırt edici özelliği nedir?",
         options: [
-          "Koyu renkli ve sızıntı şeklinde akması",
           "Açık renkli kanın kalp atımlarıyla uyumlu şekilde fışkırarak akması",
+          "Koyu renkli ve sızıntı şeklinde akması",
           "Hiç kanamaması",
           "Sadece yüzeysel olması",
         ],
-        correctIndex: 1,
+        correctIndex: 0,
         explanation:
           "Atardamar kanamalarında kan açık kırmızı renklidir ve kalp atımlarıyla eş zamanlı olarak fışkırarak akar.",
         difficulty: "orta",
@@ -779,11 +807,11 @@ export const categories: Category[] = [
         text: "Birinci derece (hafif) bir yanıkta ilk yardım olarak ne yapılmalıdır?",
         options: [
           "Yanık bölgesine buz doğrudan uygulanmalıdır",
-          "Bölge serin (soğuk olmayan) akan suyla soğutulmalıdır",
           "Bölgeye hemen diş macunu sürülmelidir",
+          "Bölge serin (soğuk olmayan) akan suyla soğutulmalıdır",
           "Bölge sıkıca sarılıp hava almaması sağlanmalıdır",
         ],
-        correctIndex: 1,
+        correctIndex: 2,
         explanation:
           "Hafif yanıklarda bölge, doku hasarını azaltmak için birkaç dakika serin akan suyla soğutulmalıdır; buz doğrudan uygulanmamalıdır.",
         difficulty: "orta",
@@ -792,12 +820,12 @@ export const categories: Category[] = [
         id: "ilkyardim-6",
         text: "Solunum yolu tamamen tıkanmış, konuşamayan bir yetişkine hangi ilk yardım uygulaması yapılır?",
         options: [
-          "Heimlich manevrası (karına baskı uygulama)",
           "Sırtına hafifçe vurmak yeterlidir",
           "Su içirmeye çalışmak",
           "Bekleyip kendiliğinden geçmesini beklemek",
+          "Heimlich manevrası (karına baskı uygulama)",
         ],
-        correctIndex: 0,
+        correctIndex: 3,
         explanation:
           "Tam solunum yolu tıkanıklığında Heimlich manevrası uygulanarak karına ani baskılarla yabancı cismin çıkarılması hedeflenir.",
         difficulty: "orta",
@@ -806,12 +834,12 @@ export const categories: Category[] = [
         id: "ilkyardim-7",
         text: "Şokun belirtilerinden biri aşağıdakilerden hangisidir?",
         options: [
-          "Cildin sıcak ve kuru olması",
           "Nabzın hızlı ve zayıf olması, ciltin soluk ve soğuk olması",
+          "Cildin sıcak ve kuru olması",
           "Vücut sıcaklığının belirgin şekilde artması",
           "Solunumun yavaşlayıp derinleşmesi",
         ],
-        correctIndex: 1,
+        correctIndex: 0,
         explanation:
           "Şok durumunda nabız hızlı ve zayıflar, cilt soğuk, soluk ve nemli hâle gelir; bu belirtiler acil müdahale gerektirir.",
         difficulty: "zor",
@@ -835,11 +863,11 @@ export const categories: Category[] = [
         text: "Yetişkinlerde uygulanan temel yaşam desteğinde kalp masajı ile suni solunum oranı nasıldır?",
         options: [
           "15 masaj, 1 solunum",
-          "30 masaj, 2 solunum",
           "10 masaj, 5 solunum",
+          "30 masaj, 2 solunum",
           "5 masaj, 5 solunum",
         ],
-        correctIndex: 1,
+        correctIndex: 2,
         explanation:
           "Yetişkinlerde temel yaşam desteği, 30 kalp masajı ve ardından 2 yapay solunum şeklinde döngüsel olarak uygulanır.",
         difficulty: "orta",
@@ -849,11 +877,11 @@ export const categories: Category[] = [
         text: "Omurga yaralanması şüphesi olan bir kazazedeye yaklaşımda en önemli kural nedir?",
         options: [
           "Hızlıca oturtulmalıdır",
-          "Kesinlikle gerekmedikçe hareket ettirilmemelidir",
           "Ayağa kaldırılıp yürütülmelidir",
           "Bacakları çekilerek düzeltilmelidir",
+          "Kesinlikle gerekmedikçe hareket ettirilmemelidir",
         ],
-        correctIndex: 1,
+        correctIndex: 3,
         explanation:
           "Omurga yaralanması şüphesinde kazazede, ek zarar oluşmaması için gerekmedikçe kesinlikle hareket ettirilmemelidir.",
         difficulty: "kolay",
@@ -862,12 +890,12 @@ export const categories: Category[] = [
         id: "ilkyardim-11",
         text: "Sara nöbeti geçiren bir kişiye ilk yardım sırasında yapılmaması gereken nedir?",
         options: [
-          "Çevredeki tehlikeli eşyaları uzaklaştırmak",
           "Kişiyi zorla tutup hareketlerini durdurmaya çalışmak",
+          "Çevredeki tehlikeli eşyaları uzaklaştırmak",
           "Nöbet bitene kadar yanında beklemek",
           "Başının altına yumuşak bir şey koymak",
         ],
-        correctIndex: 1,
+        correctIndex: 0,
         explanation:
           "Sara nöbeti sırasında kişi zorla tutulmamalı veya hareketleri durdurulmaya çalışılmamalıdır; bu yaralanmaya yol açabilir.",
         difficulty: "orta",
@@ -891,11 +919,11 @@ export const categories: Category[] = [
         text: "112'yi arayan bir kişinin vermesi gereken en öncelikli bilgi nedir?",
         options: [
           "Kendi adı ve soyadı",
-          "Olayın yeri ve durumun kısa özeti",
           "Aracın plakası",
+          "Olayın yeri ve durumun kısa özeti",
           "Hava durumu",
         ],
-        correctIndex: 1,
+        correctIndex: 2,
         explanation:
           "Acil çağrıda en önemli bilgi, ekiplerin doğru yere yönlendirilebilmesi için olayın yeri ve kısa bir durum özetidir.",
         difficulty: "kolay",
@@ -905,11 +933,11 @@ export const categories: Category[] = [
         text: "Burun kanaması olan bir kişiye ilk yardım nasıl yapılmalıdır?",
         options: [
           "Baş geriye doğru itilmelidir",
-          "Baş hafifçe öne eğilip burun kanatları birkaç dakika sıkılmalıdır",
           "Kişi sırtüstü yatırılmalıdır",
           "Burna doğrudan sıcak su uygulanmalıdır",
+          "Baş hafifçe öne eğilip burun kanatları birkaç dakika sıkılmalıdır",
         ],
-        correctIndex: 1,
+        correctIndex: 3,
         explanation:
           "Burun kanamasında baş hafifçe öne eğilir ve burun kanatları birkaç dakika sıkılarak kanamanın durması beklenir; baş geriye itilirse kan boğaza kaçabilir.",
         difficulty: "orta",
@@ -918,12 +946,12 @@ export const categories: Category[] = [
         id: "ilkyardim-15",
         text: "Bir kazazedede iç kanama şüphesi olduğunda gözlenebilecek genel belirtilerden biri hangisidir?",
         options: [
-          "Cildin sıcak ve kızarık olması",
           "Aşırı susuzluk hissi ile birlikte soluk ve nemli cilt",
+          "Cildin sıcak ve kızarık olması",
           "Nabzın yavaş ve güçlü olması",
           "Solunumun yavaşça derinleşmesi",
         ],
-        correctIndex: 1,
+        correctIndex: 0,
         explanation:
           "İç kanamada kan kaybına bağlı olarak aşırı susuzluk hissi, soluk ve nemli cilt, hızlı ve zayıf nabız gibi belirtiler görülür.",
         difficulty: "zor",
@@ -947,11 +975,11 @@ export const categories: Category[] = [
         text: "Zehirlenme şüphesi olan bilinci açık bir kişiye ilk yardım olarak ne yapılmalıdır?",
         options: [
           "Hemen kusturulmaya çalışılmalıdır",
-          "Ne yuttuğu belirlenmeye çalışılmalı ve tıbbi yardım çağrılmalıdır",
           "Bol miktarda süt içirilmelidir",
+          "Ne yuttuğu belirlenmeye çalışılmalı ve tıbbi yardım çağrılmalıdır",
           "Kendiliğinden geçmesi beklenmelidir",
         ],
-        correctIndex: 1,
+        correctIndex: 2,
         explanation:
           "Zehirlenme şüphesinde kişiyi kusturmaya çalışmak zararlı olabilir; ne yutulduğu belirlenmeli ve vakit kaybetmeden tıbbi yardım çağrılmalıdır.",
         difficulty: "orta",
@@ -961,11 +989,11 @@ export const categories: Category[] = [
         text: "Sıcak çarpması (güneş çarpması) belirtisi gösteren bir kişiye ilk yardım olarak ne yapılmalıdır?",
         options: [
           "Güneşte bırakılıp dinlenmesi sağlanmalıdır",
-          "Serin bir yere alınmalı, giysileri gevşetilmeli ve vücudu serinletilmelidir",
           "Sıcak bir şeyler içirilmelidir",
           "Hemen ayağa kaldırılıp yürütülmelidir",
+          "Serin bir yere alınmalı, giysileri gevşetilmeli ve vücudu serinletilmelidir",
         ],
-        correctIndex: 1,
+        correctIndex: 3,
         explanation:
           "Sıcak çarpmasında kişi serin bir ortama alınmalı, giysileri gevşetilmeli ve vücut sıcaklığını düşürmek için serinletilmelidir.",
         difficulty: "kolay",
@@ -974,12 +1002,12 @@ export const categories: Category[] = [
         id: "ilkyardim-19",
         text: "Diş kırılması veya düşmesi durumunda ilk yardım olarak ne yapılabilir?",
         options: [
-          "Diş tamamen atılmalıdır, önemi yoktur",
           "Diş bulunabiliyorsa süt veya tükürükte saklanarak en yakın sağlık kuruluşuna gidilmelidir",
+          "Diş tamamen atılmalıdır, önemi yoktur",
           "Diş ovularak temizlenmelidir",
           "Diş güneşte kurutulmalıdır",
         ],
-        correctIndex: 1,
+        correctIndex: 0,
         explanation:
           "Düşen diş, kökü tutmadan süt gibi bir sıvı içinde saklanarak mümkün olan en kısa sürede diş hekimine ya da sağlık kuruluşuna götürülmelidir.",
         difficulty: "zor",
@@ -1003,11 +1031,11 @@ export const categories: Category[] = [
         text: "Bir kazazedenin boğuluyor gibi öksürdüğü ama hâlâ konuşabildiği durumda ilk yardımcı ne yapmalıdır?",
         options: [
           "Hemen Heimlich manevrası uygulamalıdır",
-          "Öksürerek kendi çıkarmasına izin vermeli ve yakından gözlemlemelidir",
           "Sırtına sert vurmalıdır",
+          "Öksürerek kendi çıkarmasına izin vermeli ve yakından gözlemlemelidir",
           "Ağzına elini sokup cismi çıkarmaya çalışmalıdır",
         ],
-        correctIndex: 1,
+        correctIndex: 2,
         explanation:
           "Kazazede hâlâ öksürebiliyor ve konuşabiliyorsa hava yolu tam tıkanmamıştır; kendi öksürerek çıkarmasına izin verilip yakından gözlemlenmelidir.",
         difficulty: "orta",
@@ -1017,11 +1045,11 @@ export const categories: Category[] = [
         text: "Donma (soğuk ısırması) şüphesi olan bir bölgeye ilk yardım olarak ne yapılmalıdır?",
         options: [
           "Bölge sert şekilde ovuşturulmalıdır",
-          "Bölge kademeli olarak ve ovmadan ılık suyla ısıtılmalıdır",
           "Bölgeye doğrudan sıcak su dökülmelidir",
           "Bölge hareket ettirilerek kan dolaşımı zorlanmalıdır",
+          "Bölge kademeli olarak ve ovmadan ılık suyla ısıtılmalıdır",
         ],
-        correctIndex: 1,
+        correctIndex: 3,
         explanation:
           "Donmuş bölge ovuşturulmadan, kademeli olarak ılık suyla (sıcak değil) ısıtılmalı ve tıbbi yardım aranmalıdır.",
         difficulty: "zor",
@@ -1030,12 +1058,12 @@ export const categories: Category[] = [
         id: "ilkyardim-23",
         text: "Bilinci kapalı ama solunumu ve nabzı olan bir kazazedeye neden koma pozisyonu verilir?",
         options: [
-          "Daha rahat uyuması için",
           "Hava yolunun açık kalmasını ve kusmuk gibi sıvıların solunum yoluna kaçmasını önlemek için",
+          "Daha rahat uyuması için",
           "Vücut ısısını artırmak için",
           "Kan basıncını düşürmek için",
         ],
-        correctIndex: 1,
+        correctIndex: 0,
         explanation:
           "Koma pozisyonu, dilin veya kusmuğun hava yolunu tıkamasını önleyerek solunumun güvenli şekilde sürmesini sağlar.",
         difficulty: "orta",
@@ -1059,11 +1087,11 @@ export const categories: Category[] = [
         text: "Araç içinde sıkışmış ve hareket ettirilmesi riskli olan bir kazazedeyle ilgili ilk yardımcının önceliği ne olmalıdır?",
         options: [
           "Zorla dışarı çekmek",
-          "Hayati tehlike yoksa profesyonel ekip gelene kadar kazazedeyi olduğu gibi bırakıp güvenliğini sağlamak",
           "Kazazedeyi oturur pozisyona geçirmek",
+          "Hayati tehlike yoksa profesyonel ekip gelene kadar kazazedeyi olduğu gibi bırakıp güvenliğini sağlamak",
           "Kazazedeye su içirmek",
         ],
-        correctIndex: 1,
+        correctIndex: 2,
         explanation:
           "Hayati tehlike (yangın, patlama vb.) yoksa, sıkışmış bir kazazedeyi zorla çıkarmak ek yaralanmalara yol açabilir; profesyonel ekip beklenmelidir.",
         difficulty: "zor",
@@ -1081,11 +1109,11 @@ export const categories: Category[] = [
         text: "Trafikte boşta (rölantide) uzun süre çalıştırılan bir motor çevreye nasıl bir etki yapar?",
         options: [
           "Herhangi bir olumsuz etkisi yoktur",
-          "Gereksiz yakıt tüketimine ve hava kirliliğine katkıda bulunur",
           "Motorun ömrünü uzatır",
           "Yakıt tasarrufu sağlar",
+          "Gereksiz yakıt tüketimine ve hava kirliliğine katkıda bulunur",
         ],
-        correctIndex: 1,
+        correctIndex: 3,
         explanation:
           "Gereksiz yere rölantide çalıştırılan motor, hem yakıtı boşa harcar hem de gereksiz emisyon salınımına neden olur.",
         difficulty: "kolay",
@@ -1094,12 +1122,12 @@ export const categories: Category[] = [
         id: "cevre-2",
         text: "Katalitik konvertörün araçtaki görevi nedir?",
         options: [
-          "Motor yağını temizlemek",
           "Egzoz gazındaki zararlı bileşenleri daha az zararlı hâle dönüştürmek",
+          "Motor yağını temizlemek",
           "Aracın hızını artırmak",
           "Lastik ömrünü uzatmak",
         ],
-        correctIndex: 1,
+        correctIndex: 0,
         explanation:
           "Katalitik konvertör, egzoz gazındaki zararlı kimyasalları kimyasal reaksiyonlarla daha az zararlı bileşenlere dönüştürerek çevre kirliliğini azaltır.",
         difficulty: "orta",
@@ -1122,12 +1150,12 @@ export const categories: Category[] = [
         id: "cevre-4",
         text: "Toplu taşıma araçlarını tercih etmenin çevresel açıdan faydası nedir?",
         options: [
-          "Kişi başına düşen egzoz emisyonunu ve trafik yoğunluğunu azaltır",
           "Yakıt tüketimini artırır",
           "Hiçbir çevresel faydası yoktur",
+          "Kişi başına düşen egzoz emisyonunu ve trafik yoğunluğunu azaltır",
           "Sadece maliyeti düşürür, çevreyle ilgisi yoktur",
         ],
-        correctIndex: 0,
+        correctIndex: 2,
         explanation:
           "Toplu taşıma, aynı yolculuğu daha az araçla yaparak kişi başına düşen emisyonu ve trafik yoğunluğunu azaltır.",
         difficulty: "kolay",
@@ -1137,11 +1165,11 @@ export const categories: Category[] = [
         text: "Şerit değiştirirken sinyal vermek trafikte hangi değere örnektir?",
         options: [
           "Bencillik",
-          "Diğer sürücülere karşı saygı ve öngörülebilirlik",
           "Rekabetçilik",
           "Hız tutkusu",
+          "Diğer sürücülere karşı saygı ve öngörülebilirlik",
         ],
-        correctIndex: 1,
+        correctIndex: 3,
         explanation:
           "Sinyal vermek, diğer sürücülere niyetinizi önceden bildirerek trafikte saygılı ve öngörülebilir bir davranış sergilemektir.",
         difficulty: "kolay",
@@ -1150,12 +1178,12 @@ export const categories: Category[] = [
         id: "cevre-6",
         text: "Korna kullanımıyla ilgili trafik adabına uygun davranış hangisidir?",
         options: [
-          "Sürekli ve gereksiz yere korna çalmak",
           "Sadece tehlikeyi önlemek gibi gerekli durumlarda korna kullanmak",
+          "Sürekli ve gereksiz yere korna çalmak",
           "Öfke anlarında korna çalmak",
           "Trafik sıkışıklığında sürekli korna çalmak",
         ],
-        correctIndex: 1,
+        correctIndex: 0,
         explanation:
           "Korna, yalnızca bir tehlikeyi önlemek veya uyarmak gibi gerçekten gerekli durumlarda kullanılmalı, gereksiz gürültü kirliliğine yol açılmamalıdır.",
         difficulty: "kolay",
@@ -1164,12 +1192,12 @@ export const categories: Category[] = [
         id: "cevre-7",
         text: "Bir sürücünün aracını park ederken diğer yol kullanıcılarına saygılı davranışı nasıl olmalıdır?",
         options: [
-          "Görüşü kapatacak veya manevra engeli oluşturacak yerlere park etmemelidir",
           "Sadece kendi işine bakması yeterlidir",
+          "Görüşü kapatacak veya manevra engeli oluşturacak yerlere park etmemelidir",
           "Engelli park yerlerine gerektiğinde park edebilir",
           "Yaya geçidine yakın park etmesi sorun değildir",
         ],
-        correctIndex: 0,
+        correctIndex: 1,
         explanation:
           "Sorumlu bir sürücü, park ederken diğer araçların ve yayaların görüşünü kapatmayacak ve manevra yapmasını zorlaştırmayacak şekilde davranır.",
         difficulty: "orta",
@@ -1177,8 +1205,13 @@ export const categories: Category[] = [
       {
         id: "cevre-8",
         text: "Yayaya öncelik vermek trafikte hangi değerin bir göstergesidir?",
-        options: ["Bencillik", "Empati ve karşılıklı saygı", "Aceleci davranış", "Kural ihlali"],
-        correctIndex: 1,
+        options: [
+          "Bencillik",
+          "Aceleci davranış",
+          "Empati ve karşılıklı saygı",
+          "Kural ihlali",
+        ],
+        correctIndex: 2,
         explanation:
           "Yayaya öncelik vermek, sürücünün kendisini yayanın yerine koyarak gösterdiği empati ve saygının bir yansımasıdır.",
         difficulty: "kolay",
@@ -1188,11 +1221,11 @@ export const categories: Category[] = [
         text: "Motorlu taşıt egzozundan çıkan zararlı gazların insan sağlığına etkisi nedir?",
         options: [
           "Hiçbir sağlık etkisi yoktur",
-          "Solunum yolu rahatsızlıklarına ve hava kirliliğine katkıda bulunabilir",
           "Sadece bitkileri etkiler",
           "Sadece gece saatlerinde etkilidir",
+          "Solunum yolu rahatsızlıklarına ve hava kirliliğine katkıda bulunabilir",
         ],
-        correctIndex: 1,
+        correctIndex: 3,
         explanation:
           "Egzoz gazlarındaki zararlı bileşenler hava kirliliğine katkıda bulunur ve uzun vadede solunum yolu rahatsızlıklarına yol açabilir.",
         difficulty: "orta",
@@ -1201,12 +1234,12 @@ export const categories: Category[] = [
         id: "cevre-10",
         text: "Trafikte 'road rage' olarak bilinen sürücü öfkesiyle karşılaşan bir sürücünün en doğru tepkisi nedir?",
         options: [
-          "Aynı şekilde agresif tepki vermek",
           "Sakin kalıp tartışmadan uzaklaşmak",
+          "Aynı şekilde agresif tepki vermek",
           "Aracını durdurup tartışmaya girmek",
           "Diğer sürücüyü takip etmek",
         ],
-        correctIndex: 1,
+        correctIndex: 0,
         explanation:
           "Agresif bir sürücüyle karşılaşıldığında sakin kalmak ve tartışmadan uzaklaşmak, olası bir kazayı veya çatışmayı önler.",
         difficulty: "orta",
@@ -1230,11 +1263,11 @@ export const categories: Category[] = [
         text: "Elektrikli araçların içten yanmalı araçlara göre başlıca çevresel avantajı nedir?",
         options: [
           "Daha hızlı olmaları",
-          "Kullanım sırasında egzoz emisyonu üretmemeleri",
           "Daha ucuz olmaları",
+          "Kullanım sırasında egzoz emisyonu üretmemeleri",
           "Daha az bakım gerektirmeleri",
         ],
-        correctIndex: 1,
+        correctIndex: 2,
         explanation:
           "Elektrikli araçlar kullanım sırasında egzoz gazı salmadıkları için yerel hava kirliliğine katkıları içten yanmalı araçlara göre daha azdır.",
         difficulty: "orta",
@@ -1243,12 +1276,12 @@ export const categories: Category[] = [
         id: "cevre-13",
         text: "Trafikte diğer sürücülerin hatalarına karşı hoşgörülü davranmanın faydası nedir?",
         options: [
-          "Trafik güvenliğini ve genel atmosferi olumlu etkiler",
           "Sürücüyü zayıf gösterir",
           "Hiçbir faydası yoktur",
           "Sadece zaman kaybettirir",
+          "Trafik güvenliğini ve genel atmosferi olumlu etkiler",
         ],
-        correctIndex: 0,
+        correctIndex: 3,
         explanation:
           "Küçük hatalara karşı hoşgörülü olmak, gerginliği azaltarak trafik ortamının genel güvenliğine ve huzuruna katkı sağlar.",
         difficulty: "kolay",
@@ -1257,12 +1290,12 @@ export const categories: Category[] = [
         id: "cevre-14",
         text: "Aracını uzun süre kullanmayacak bir sürücünün çevre bilincine uygun davranışı hangisidir?",
         options: [
-          "Motoru sürekli rölantide çalıştırmak",
           "Aracı gereksiz yere çalıştırmamak",
+          "Motoru sürekli rölantide çalıştırmak",
           "Farları sürekli açık bırakmak",
           "Klimayı sürekli çalışır durumda bırakmak",
         ],
-        correctIndex: 1,
+        correctIndex: 0,
         explanation:
           "Kullanılmayacak bir aracı gereksiz yere çalıştırmamak, hem yakıt israfını hem de gereksiz emisyonu önler.",
         difficulty: "kolay",
@@ -1271,12 +1304,12 @@ export const categories: Category[] = [
         id: "cevre-15",
         text: "Sürücülerin kurallara sadece ceza almamak için değil, gerçekten benimseyerek uyması neyi gösterir?",
         options: [
-          "Trafik adabının içselleştirildiğini",
           "Sadece korkuyla hareket edildiğini",
+          "Trafik adabının içselleştirildiğini",
           "Kuralların gereksiz olduğunu",
           "Kişisel bir tercih olmadığını",
         ],
-        correctIndex: 0,
+        correctIndex: 1,
         explanation:
           "Kuralların ceza kaygısıyla değil güvenlik bilinciyle benimsenmesi, sürücünün trafik adabını gerçek anlamda içselleştirdiğini gösterir.",
         difficulty: "zor",
@@ -1284,8 +1317,13 @@ export const categories: Category[] = [
       {
         id: "cevre-16",
         text: "Sürücünün trafikte başka bir sürücünün hatasına karşı sabırlı olması hangi değerle ilişkilidir?",
-        options: ["Hoşgörü", "Bencillik", "İnatlaşma", "Kayıtsızlık"],
-        correctIndex: 0,
+        options: [
+          "Bencillik",
+          "İnatlaşma",
+          "Hoşgörü",
+          "Kayıtsızlık",
+        ],
+        correctIndex: 2,
         explanation:
           "Başkalarının hatalarına karşı sabırlı ve anlayışlı olmak, trafik adabının temel değerlerinden biri olan hoşgörüyle ilişkilidir.",
         difficulty: "kolay",
@@ -1295,11 +1333,11 @@ export const categories: Category[] = [
         text: "Bir sürücünün aracını her zaman kurallara uygun şekilde park etmesi, engelli veya yaşlı bireyler için neden önemlidir?",
         options: [
           "Hiçbir önemi yoktur",
-          "Onların güvenli ve engelsiz hareket edebilmesini sağlar",
           "Sadece estetik bir kaygıdır",
           "Sadece park cezası almamak içindir",
+          "Onların güvenli ve engelsiz hareket edebilmesini sağlar",
         ],
-        correctIndex: 1,
+        correctIndex: 3,
         explanation:
           "Kurallara uygun park etmek, özellikle engelli ve yaşlı bireylerin kaldırım ve geçitlerde güvenle hareket edebilmesini sağlar.",
         difficulty: "kolay",
@@ -1308,12 +1346,12 @@ export const categories: Category[] = [
         id: "cevre-18",
         text: "Trafikte 'defansif sürüş' kavramı neyi ifade eder?",
         options: [
-          "Sürekli agresif ve hızlı sürüş yapmak",
           "Olası riskleri önceden tahmin ederek dikkatli ve hazırlıklı sürüş yapmak",
+          "Sürekli agresif ve hızlı sürüş yapmak",
           "Sadece kurallara uymadan sürüş yapmak",
           "Sadece gece sürüş yapmak",
         ],
-        correctIndex: 1,
+        correctIndex: 0,
         explanation:
           "Defansif sürüş, diğer sürücülerin olası hatalarını ve yol risklerini önceden tahmin ederek buna göre hazırlıklı ve temkinli sürmektir.",
         difficulty: "orta",
@@ -1337,11 +1375,11 @@ export const categories: Category[] = [
         text: "Trafikte 'empati' kurmak ne anlama gelir?",
         options: [
           "Sadece kendi çıkarını düşünmek",
-          "Kendini diğer yol kullanıcılarının yerine koyup onların durumunu anlamaya çalışmak",
           "Diğer sürücüleri görmezden gelmek",
+          "Kendini diğer yol kullanıcılarının yerine koyup onların durumunu anlamaya çalışmak",
           "Sadece hız yapmak",
         ],
-        correctIndex: 1,
+        correctIndex: 2,
         explanation:
           "Trafikte empati, kendini yaya, bisikletli veya diğer sürücülerin yerine koyarak onların ihtiyaç ve risklerini anlamaya çalışmaktır.",
         difficulty: "kolay",
@@ -1351,11 +1389,11 @@ export const categories: Category[] = [
         text: "Aracını yıkarken kullanılan suyun ve kimyasalların doğrudan toprağa veya dereye karışması neye yol açabilir?",
         options: [
           "Hiçbir etkisi olmaz",
-          "Su kaynaklarının ve toprağın kirlenmesine yol açabilir",
           "Bitkilerin daha hızlı büyümesini sağlar",
           "Sadece kötü koku oluşturur",
+          "Su kaynaklarının ve toprağın kirlenmesine yol açabilir",
         ],
-        correctIndex: 1,
+        correctIndex: 3,
         explanation:
           "Araç yıkama kimyasalları ve yağ kalıntıları, kontrolsüz şekilde doğaya karıştığında su kaynaklarını ve toprağı kirletebilir.",
         difficulty: "orta",
@@ -1364,12 +1402,12 @@ export const categories: Category[] = [
         id: "cevre-22",
         text: "Sürücülerin trafikte birbirlerine karşı gösterdiği nezaketin toplumsal faydası nedir?",
         options: [
-          "Hiçbir faydası yoktur",
           "Trafik kültürünün gelişmesine ve kaza riskinin azalmasına katkı sağlar",
+          "Hiçbir faydası yoktur",
           "Sadece bireysel bir tercihtir, toplumu etkilemez",
           "Yalnızca zaman kaybettirir",
         ],
-        correctIndex: 1,
+        correctIndex: 0,
         explanation:
           "Sürücüler arasındaki nezaket ve saygı, genel trafik kültürünün gelişmesine ve kaza riskinin azalmasına toplumsal düzeyde katkı sağlar.",
         difficulty: "kolay",
@@ -1393,11 +1431,11 @@ export const categories: Category[] = [
         text: "Trafikte 'öngörülü sürücü' olmak neyi gerektirir?",
         options: [
           "Sadece kendi şeridine bakmak",
-          "Yol, hava ve diğer araçların olası hareketlerini önceden değerlendirip ona göre davranmak",
           "Sadece hızlı tepki vermek",
+          "Yol, hava ve diğer araçların olası hareketlerini önceden değerlendirip ona göre davranmak",
           "Diğer sürücülerin ne yapacağını hiç düşünmemek",
         ],
-        correctIndex: 1,
+        correctIndex: 2,
         explanation:
           "Öngörülü bir sürücü, yol koşullarını ve diğer araçların olası hareketlerini önceden değerlendirerek ani durumlara hazırlıklı olur.",
         difficulty: "zor",
@@ -1407,11 +1445,11 @@ export const categories: Category[] = [
         text: "Sürücülerin trafikte çevreye ve topluma duyarlı davranışlar sergilemesinin uzun vadeli faydası nedir?",
         options: [
           "Sadece kişisel imaj kazanmak",
-          "Daha güvenli, sürdürülebilir ve yaşanabilir bir trafik ortamı oluşmasına katkı sağlamak",
           "Hiçbir uzun vadeli faydası yoktur",
           "Sadece yakıt tasarrufu sağlamak",
+          "Daha güvenli, sürdürülebilir ve yaşanabilir bir trafik ortamı oluşmasına katkı sağlamak",
         ],
-        correctIndex: 1,
+        correctIndex: 3,
         explanation:
           "Çevreye ve topluma duyarlı sürücü davranışları, uzun vadede daha güvenli ve sürdürülebilir bir trafik ortamının oluşmasına katkı sağlar.",
         difficulty: "orta",
@@ -1428,12 +1466,12 @@ export const categories: Category[] = [
         id: "isaretler-1",
         text: "Gösterilen işaret hangi anlama gelir?",
         options: [
-          "Yavaşla, dikkatli geç",
           "Aracı tamamen durdur, öncelikli yolu kontrol et",
+          "Yavaşla, dikkatli geç",
           "Park yapılabilir",
           "Hız sınırı bitti",
         ],
-        correctIndex: 1,
+        correctIndex: 0,
         explanation:
           "Kırmızı sekizgen şeklindeki bu işaret 'Dur' işaretidir; araç tamamen durdurulmalı ve öncelikli yol kontrol edilmelidir.",
         difficulty: "kolay",
@@ -1442,7 +1480,12 @@ export const categories: Category[] = [
       {
         id: "isaretler-2",
         text: "Gösterilen üçgen uyarı işareti neyi bildirir?",
-        options: ["Okul geçidi", "Yaya geçidi", "Bisiklet geçebilir", "Hayvan geçebilir"],
+        options: [
+          "Okul geçidi",
+          "Yaya geçidi",
+          "Bisiklet geçebilir",
+          "Hayvan geçebilir",
+        ],
         correctIndex: 1,
         explanation:
           "Kırmızı kenarlı üçgen içinde yaya figürü bulunan bu işaret, yaklaşılan bölgede yaya geçidi olduğunu bildirir.",
@@ -1452,8 +1495,13 @@ export const categories: Category[] = [
       {
         id: "isaretler-3",
         text: "İçinde iki figür bulunan bu üçgen uyarı işareti neyi bildirir?",
-        options: ["Yaya geçidi", "Okul geçidi", "Gençlik kampı", "Yürüyüş başlangıcı"],
-        correctIndex: 1,
+        options: [
+          "Yaya geçidi",
+          "Gençlik kampı",
+          "Okul geçidi",
+          "Yürüyüş başlangıcı",
+        ],
+        correctIndex: 2,
         explanation:
           "Bu işaret okul geçidini bildirir; sürücüler bu bölgede çocukların ani hareketlerine karşı dikkatli olmalıdır.",
         difficulty: "kolay",
@@ -1464,11 +1512,11 @@ export const categories: Category[] = [
         text: "Üzerinde çarpı (X) bulunan üçgen uyarı işareti neyi bildirir?",
         options: [
           "Kontrollü demiryolu geçidi",
-          "Kontrolsüz kavşak",
           "Dönel kavşak",
           "Trafik sıkışıklığı",
+          "Kontrolsüz kavşak",
         ],
-        correctIndex: 1,
+        correctIndex: 3,
         explanation:
           "Bu işaret, öncelik levhası veya ışık bulunmayan bir kontrolsüz kavşağa yaklaşıldığını bildirir; sürücü hızını azaltıp dikkatli olmalıdır.",
         difficulty: "orta",
@@ -1478,12 +1526,12 @@ export const categories: Category[] = [
         id: "isaretler-5",
         text: "İçinde dönen ok bulunan üçgen uyarı işareti neyi bildirir?",
         options: [
-          "Kontrollü demiryolu geçidi",
           "Dönel kavşağa yaklaşıldığı",
+          "Kontrollü demiryolu geçidi",
           "U dönüşü yasağı",
           "Trafik sıkışıklığı",
         ],
-        correctIndex: 1,
+        correctIndex: 0,
         explanation:
           "Bu işaret, ileride bir dönel (göbekli) kavşak bulunduğunu ve sürücünün buna göre hazırlıklı olması gerektiğini bildirir.",
         difficulty: "orta",
@@ -1492,8 +1540,13 @@ export const categories: Category[] = [
       {
         id: "isaretler-6",
         text: "İçinde kıvrımlı bir çizgi bulunan üçgen uyarı işareti neyi bildirir?",
-        options: ["Kaygan yol", "Gevşek malzemeli zemin", "Düşük banket", "Gizli buzlanma"],
-        correctIndex: 0,
+        options: [
+          "Gevşek malzemeli zemin",
+          "Kaygan yol",
+          "Düşük banket",
+          "Gizli buzlanma",
+        ],
+        correctIndex: 1,
         explanation:
           "Bu işaret, yol yüzeyinin kaygan olabileceğini bildirir; sürücü hızını azaltmalı ve ani manevralardan kaçınmalıdır.",
         difficulty: "orta",
@@ -1503,12 +1556,12 @@ export const categories: Category[] = [
         id: "isaretler-7",
         text: "İçinde sağa kıvrılan bir ok bulunan üçgen uyarı işareti neyi bildirir?",
         options: [
-          "Sağa tehlikeli viraj",
           "Sağdan ana yola giriş",
           "Sağa mecburi yön",
+          "Sağa tehlikeli viraj",
           "Sağa dönülmez",
         ],
-        correctIndex: 0,
+        correctIndex: 2,
         explanation:
           "Bu üçgen uyarı işareti, ileride sağa doğru tehlikeli bir viraj bulunduğunu bildirir; hız önceden azaltılmalıdır.",
         difficulty: "orta",
@@ -1519,11 +1572,11 @@ export const categories: Category[] = [
         text: "Ters üçgen şeklindeki bu işaret hangi anlama gelir?",
         options: [
           "Dur, tamamen durmak zorunludur",
-          "Yol ver, öncelikli yoldaki araçlara geçiş hakkı ver",
           "Girişi olmayan yol",
           "Sollama yasağı",
+          "Yol ver, öncelikli yoldaki araçlara geçiş hakkı ver",
         ],
-        correctIndex: 1,
+        correctIndex: 3,
         explanation:
           "Kırmızı kenarlı, beyaz zeminli ters üçgen 'Yol Ver' işaretidir; sürücü öncelikli yoldaki araçlara geçiş hakkı vermelidir.",
         difficulty: "kolay",
@@ -1533,12 +1586,12 @@ export const categories: Category[] = [
         id: "isaretler-9",
         text: "Kırmızı daire içinde beyaz yatay çizgi bulunan işaret neyi bildirir?",
         options: [
-          "Taşıt trafiğine kapalı yol",
           "Girişi olmayan yol / taşıtla girilmesi yasak yön",
+          "Taşıt trafiğine kapalı yol",
           "Park etmek yasaktır",
           "Azami hız sınırlaması",
         ],
-        correctIndex: 1,
+        correctIndex: 0,
         explanation:
           "Bu işaret, o yöne araçla girişin yasak olduğunu bildirir; genellikle tek yönlü yolların ters istikametinde görülür.",
         difficulty: "kolay",
@@ -1562,8 +1615,13 @@ export const categories: Category[] = [
       {
         id: "isaretler-11",
         text: "Üzerinde sağa dönen ok ve çapraz kırmızı çizgi bulunan bu işaret neyi bildirir?",
-        options: ["Sağa mecburi yön", "Sağa dönülmez", "Sağdan gidiniz", "Sağa tehlikeli viraj"],
-        correctIndex: 1,
+        options: [
+          "Sağa mecburi yön",
+          "Sağdan gidiniz",
+          "Sağa dönülmez",
+          "Sağa tehlikeli viraj",
+        ],
+        correctIndex: 2,
         explanation:
           "Kırmızı çapraz çizgi, o kavşakta sağa dönüşün yasak olduğunu bildirir.",
         difficulty: "orta",
@@ -1573,12 +1631,12 @@ export const categories: Category[] = [
         id: "isaretler-12",
         text: "İçinde iki araç figürü bulunan kırmızı kenarlı daire işareti neyi bildirir?",
         options: [
-          "Öndeki taşıtı geçmek yasaktır",
           "Takip mesafesi kuralı",
           "Trafik sıkışıklığı",
           "İki yönlü trafik",
+          "Öndeki taşıtı geçmek yasaktır",
         ],
-        correctIndex: 0,
+        correctIndex: 3,
         explanation:
           "Bu işaret, o yol kesiminde öndeki taşıtın geçilmesinin (sollamanın) yasak olduğunu bildirir.",
         difficulty: "orta",
@@ -1619,11 +1677,11 @@ export const categories: Category[] = [
         text: "Mavi zemin üzerinde beyaz sağa dönen ok bulunan daire işareti neyi bildirir?",
         options: [
           "Sağa dönülmez",
-          "Sağa mecburi yön",
           "Sağa tehlikeli viraj",
+          "Sağa mecburi yön",
           "Sağdan ana yola giriş",
         ],
-        correctIndex: 1,
+        correctIndex: 2,
         explanation:
           "Mavi zeminli, beyaz ok işaretli bu levha, sürücünün mecburen sağa doğru ilerlemesi gerektiğini bildirir.",
         difficulty: "kolay",
@@ -1634,11 +1692,11 @@ export const categories: Category[] = [
         text: "Mavi zemin üzerinde bisiklet sembolü bulunan daire işareti neyi bildirir?",
         options: [
           "Bisiklet giremez",
-          "Mecburi bisiklet yolu",
           "Bisiklet geçebilir (uyarı)",
           "Bisiklet kiralama noktası",
+          "Mecburi bisiklet yolu",
         ],
-        correctIndex: 1,
+        correctIndex: 3,
         explanation:
           "Bu işaret, o yol kesiminin bisikletliler tarafından mecburen kullanılması gereken bir bisiklet yolu olduğunu bildirir.",
         difficulty: "orta",
@@ -1662,8 +1720,13 @@ export const categories: Category[] = [
       {
         id: "isaretler-18",
         text: "Mavi kare zemin üzerinde beyaz 'H' harfine benzer artı işareti bulunan levha neyi bildirir?",
-        options: ["Hastane", "İlk yardım istasyonu", "Eczane", "Telefon"],
-        correctIndex: 0,
+        options: [
+          "İlk yardım istasyonu",
+          "Hastane",
+          "Eczane",
+          "Telefon",
+        ],
+        correctIndex: 1,
         explanation:
           "Bu bilgi işareti, yakında bir hastane bulunduğunu ve gerektiğinde bu yöne yönlenilebileceğini bildirir.",
         difficulty: "kolay",
@@ -1673,12 +1736,12 @@ export const categories: Category[] = [
         id: "isaretler-19",
         text: "Mavi kare zemin üzerinde yol ve tünel benzeri sembol bulunan levha neyi bildirir?",
         options: [
-          "Otoyol başlangıcı",
           "Tünel",
           "Motorlu taşıt yolu başlangıcı",
+          "Otoyol başlangıcı",
           "Bölünmüş yol öncesi",
         ],
-        correctIndex: 0,
+        correctIndex: 2,
         explanation:
           "Bu bilgi işareti, aracın bir otoyola girmek üzere olduğunu bildirir; otoyollarda farklı hız ve kullanım kuralları geçerlidir.",
         difficulty: "orta",
@@ -1687,8 +1750,13 @@ export const categories: Category[] = [
       {
         id: "isaretler-20",
         text: "Mavi kare zemin üzerinde beyaz bir dikdörtgen ve iki daire (tekerlek benzeri) bulunan levha neyi bildirir?",
-        options: ["Durak", "Otogar", "Park yeri", "Servis alanı"],
-        correctIndex: 0,
+        options: [
+          "Otogar",
+          "Park yeri",
+          "Servis alanı",
+          "Durak",
+        ],
+        correctIndex: 3,
         explanation:
           "Bu bilgi işareti, toplu taşıma araçlarının yolcu bindirip indirdiği durak noktasını bildirir.",
         difficulty: "kolay",
@@ -1697,7 +1765,12 @@ export const categories: Category[] = [
       {
         id: "isaretler-21",
         text: "Mavi dikdörtgen zemin üzerinde tek yönü gösteren ok bulunan levha neyi bildirir?",
-        options: ["Tek yönlü yol", "Mecburi yön", "Şerit sayısı", "Otoyol çıkışı"],
+        options: [
+          "Tek yönlü yol",
+          "Mecburi yön",
+          "Şerit sayısı",
+          "Otoyol çıkışı",
+        ],
         correctIndex: 0,
         explanation:
           "Bu bilgi işareti, bulunulan yolun sadece ok yönünde tek yönlü olarak kullanılabildiğini bildirir.",
@@ -1707,8 +1780,13 @@ export const categories: Category[] = [
       {
         id: "isaretler-22",
         text: "Mavi kare zemin üzerinde beyaz 'P' harfi bulunan işaret neyi bildirir?",
-        options: ["Park yeri", "Park etmek yasaktır", "Duraklamak yasaktır", "Polis noktası"],
-        correctIndex: 0,
+        options: [
+          "Park etmek yasaktır",
+          "Park yeri",
+          "Duraklamak yasaktır",
+          "Polis noktası",
+        ],
+        correctIndex: 1,
         explanation:
           "Mavi zeminli 'P' harfi, o bölgede araç park edilebilecek bir park yeri olduğunu bildiren bilgi işaretidir.",
         difficulty: "kolay",
@@ -1718,12 +1796,12 @@ export const categories: Category[] = [
         id: "isaretler-23",
         text: "Üzerinde 'P' harfi ve çapraz kırmızı çizgi bulunan mavi daire işareti neyi bildirir?",
         options: [
-          "Park etmek yasaktır",
           "Park yeri (bilgi)",
           "Duraklamak ve park etmek yasaktır",
+          "Park etmek yasaktır",
           "Sadece duraklama serbest",
         ],
-        correctIndex: 0,
+        correctIndex: 2,
         explanation:
           "Mavi zemin üzerinde 'P' harfi ve tek çapraz kırmızı çizgi, o bölgede park etmenin yasak olduğunu, ancak kısa süreli duraklamanın serbest olduğunu bildirir.",
         difficulty: "zor",
@@ -1735,10 +1813,10 @@ export const categories: Category[] = [
         options: [
           "Sadece park etmek yasaktır",
           "Sadece duraklamak yasaktır",
-          "Duraklamak ve park etmek her ikisi de yasaktır",
           "Park yeri bilgi işareti",
+          "Duraklamak ve park etmek her ikisi de yasaktır",
         ],
-        correctIndex: 2,
+        correctIndex: 3,
         explanation:
           "Çift çapraz çizgi, o bölgede hem duraklamanın hem de park etmenin tamamen yasak olduğunu bildirir.",
         difficulty: "zor",

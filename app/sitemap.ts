@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/rehber/ehliyet-sinavi-basvurusu-nasil-yapilir",
     "/ara",
     "/iletisim",
+    "/menu",
   ].map((path) => ({
     url: `${SITE_URL}${path}`,
     lastModified: new Date(),

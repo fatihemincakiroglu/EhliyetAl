@@ -22,7 +22,7 @@ export default function NotFound() {
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link
             href="/"
-            className="flex items-center justify-center gap-2 font-display text-sm tracking-wide uppercase rounded-full bg-gold text-ink px-6 py-3 hover:bg-gold-soft transition-colors"
+            className="flex items-center justify-center gap-2 font-display text-sm tracking-wide uppercase rounded-full gold-gradient text-ink px-6 py-3 hover:bg-gold-soft transition-colors"
           >
             <Home size={16} />
             Ana Sayfaya Dön

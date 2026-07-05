@@ -1,15 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --color-paper: #f3f4f7;
+  --color-paper: #f7f3ea;
   --color-surface: #ffffff;
-  --color-surface-alt: #eaecf1;
-  --color-ink: #12182b;
-  --color-ink-soft: #565f75;
-  --color-line: rgba(18, 24, 43, 0.08);
-  --color-gold: #a9832f;
-  --color-gold-soft: #d9b45c;
-  --color-gold-wash: rgba(169, 131, 47, 0.1);
+  --color-surface-alt: #efe6d3;
+  --color-ink: #1a2338;
+  --color-ink-soft: #5b6472;
+  --color-line: rgba(26, 35, 56, 0.11);
+  --color-gold: #a1782e;
+  --color-gold-soft: #cda545;
+  --color-gold-deep: #7c5b20;
+  --color-gold-wash: rgba(161, 120, 46, 0.12);
   --color-success: #1f7a52;
   --color-success-wash: rgba(31, 122, 82, 0.1);
   --color-danger: #b8402c;
@@ -17,15 +18,16 @@
 }
 
 [data-theme="dark"] {
-  --color-paper: #14161b;
-  --color-surface: #1e222a;
-  --color-surface-alt: #2a2f3a;
-  --color-ink: #edede6;
-  --color-ink-soft: #9aa0ae;
-  --color-line: rgba(237, 237, 230, 0.1);
+  --color-paper: #12151f;
+  --color-surface: #1c2130;
+  --color-surface-alt: #262c3f;
+  --color-ink: #f1ece0;
+  --color-ink-soft: #a3aabb;
+  --color-line: rgba(241, 236, 224, 0.11);
   --color-gold: #d9b45c;
   --color-gold-soft: #e8c877;
-  --color-gold-wash: rgba(217, 180, 92, 0.14);
+  --color-gold-deep: #b48f3d;
+  --color-gold-wash: rgba(217, 180, 92, 0.16);
   --color-success: #4caf7d;
   --color-success-wash: rgba(76, 175, 125, 0.14);
   --color-danger: #e5533d;
@@ -41,6 +43,7 @@
   --color-line: var(--color-line);
   --color-gold: var(--color-gold);
   --color-gold-soft: var(--color-gold-soft);
+  --color-gold-deep: var(--color-gold-deep);
   --color-gold-wash: var(--color-gold-wash);
   --color-success: var(--color-success);
   --color-success-wash: var(--color-success-wash);
@@ -55,6 +58,36 @@ body {
   background: var(--color-paper);
   color: var(--color-ink);
   transition: background-color 0.2s ease, color 0.2s ease;
+  background-image: radial-gradient(
+    circle at 0% 0%,
+    var(--color-gold-wash),
+    transparent 45%
+  );
+  background-attachment: fixed;
+}
+
+.gold-gradient {
+  background: linear-gradient(135deg, var(--color-gold-soft), var(--color-gold-deep));
+  box-shadow: 0 2px 10px rgba(124, 91, 32, 0.28);
+}
+
+.gold-gradient:hover {
+  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-deep));
+}
+
+.premium-card {
+  position: relative;
+}
+
+.premium-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 14px;
+  right: 14px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-gold-soft), transparent);
+  opacity: 0.7;
 }
 
 @media (max-width: 639px) {

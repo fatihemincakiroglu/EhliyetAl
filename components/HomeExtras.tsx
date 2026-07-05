@@ -42,7 +42,7 @@ export function QuickLinks() {
       {dueCount > 0 && (
         <Link
           href="/tekrar"
-          className="flex-1 flex items-center justify-center gap-2 rounded-full bg-gold text-ink px-5 py-3 text-sm font-display tracking-wide uppercase hover:bg-gold-soft transition-colors"
+          className="flex-1 flex items-center justify-center gap-2 rounded-full gold-gradient text-ink px-5 py-3 text-sm font-display tracking-wide uppercase hover:bg-gold-soft transition-colors"
         >
           <RefreshCcw size={16} />
           Tekrar Zamanı ({dueCount})

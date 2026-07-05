@@ -283,7 +283,7 @@ export default function IsaretlerPage() {
 
         <Link
           href="/quiz/isaretler"
-          className="inline-flex items-center gap-2 font-display text-sm tracking-wide uppercase rounded-full bg-gold text-ink px-6 py-3 hover:bg-gold-soft transition-colors"
+          className="inline-flex items-center gap-2 font-display text-sm tracking-wide uppercase rounded-full gold-gradient text-ink px-6 py-3 hover:bg-gold-soft transition-colors"
         >
           İşaret sorularını çöz
           <ArrowRight size={16} />

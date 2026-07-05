@@ -34,8 +34,15 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-paper">
       <main className="max-w-3xl mx-auto px-5 sm:px-6 py-12 sm:py-20">
-        <div className="mb-3 font-data text-[11px] sm:text-xs uppercase tracking-[0.2em] text-gold">
-          Sınav Hazırlık
+        <div className="flex items-center gap-2 mb-3">
+          <svg width="18" height="18" viewBox="0 0 24 24" className="text-gold shrink-0" aria-hidden="true">
+            <circle cx="12" cy="9" r="6" fill="none" stroke="currentColor" strokeWidth="1.6" />
+            <path d="M9 8.5 L11 10.5 L15 6.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M8.5 14 L6.5 21 L12 18 L17.5 21 L15.5 14" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
+          </svg>
+          <div className="font-data text-[11px] sm:text-xs uppercase tracking-[0.2em] text-gold">
+            Sınav Hazırlık
+          </div>
         </div>
         <p className="font-display italic text-2xl sm:text-3xl text-gold mb-2">
           EhliyetAl
@@ -43,6 +50,7 @@ export default function Home() {
         <h1 className="font-display text-3xl sm:text-5xl font-semibold text-ink leading-[1.1] mb-4">
           Ehliyet Sınavı Soruları (2026)
         </h1>
+        <div className="h-px w-24 bg-gradient-to-r from-gold-soft to-transparent mb-5" />
         <p className="text-ink-soft text-base sm:text-lg max-w-lg mb-4 leading-relaxed">
           Gerçek sınav formatında {totalQuestions} soruyla trafik, motor,
           ilkyardım ve çevre konularını çalış. Her sorudan hemen sonra doğru
@@ -65,7 +73,7 @@ export default function Home() {
               <Link
                 key={category.slug}
                 href={`/quiz/${category.slug}`}
-                className="group flex items-center gap-3 sm:gap-4 rounded-2xl border border-line bg-surface px-4 py-4 sm:px-6 sm:py-5 shadow-[0_1px_2px_rgba(18,24,43,0.04)] transition-colors hover:border-gold-soft hover:bg-gold-wash"
+                className="premium-card group flex items-center gap-3 sm:gap-4 rounded-2xl border border-line bg-surface px-4 py-4 sm:px-6 sm:py-5 shadow-[0_1px_2px_rgba(18,24,43,0.04)] transition-colors hover:border-gold-soft hover:bg-gold-wash"
               >
                 <span className="font-data text-xs text-ink-soft w-5 sm:w-6 shrink-0 hidden sm:block">
                   {String(i + 1).padStart(2, "0")}
