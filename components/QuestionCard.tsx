@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Check, X, Volume2, VolumeX } from "lucide-react";
+import { Check, X, Volume2, VolumeX, Flag } from "lucide-react";
 import type { Question } from "@/lib/questions";
 import { signRegistry } from "@/components/TrafficSigns";
 
@@ -80,15 +80,28 @@ export default function QuestionCard({
         >
           {difficultyLabel[question.difficulty]}
         </span>
-        <button
-          type="button"
-          onClick={toggleSpeak}
-          aria-label={speaking ? "Okumayı durdur" : "Soruyu sesli oku"}
-          className="flex items-center gap-1.5 text-xs text-ink-soft hover:text-gold transition-colors"
-        >
-          {speaking ? <VolumeX size={15} /> : <Volume2 size={15} />}
-          <span className="hidden sm:inline">{speaking ? "Durdur" : "Dinle"}</span>
-        </button>
+        <div className="flex items-center gap-3">
+          <a
+            href={`mailto:iletisim@ehliyetal.net?subject=${encodeURIComponent(
+              `Soru hatası bildirimi (${question.id})`
+            )}&body=${encodeURIComponent(
+              `Soru: ${question.text}\n\nBu soruda gördüğüm hata/öneri:\n`
+            )}`}
+            className="hidden sm:flex items-center gap-1.5 text-xs text-ink-soft hover:text-danger transition-colors"
+          >
+            <Flag size={13} />
+            <span>Hata bildir</span>
+          </a>
+          <button
+            type="button"
+            onClick={toggleSpeak}
+            aria-label={speaking ? "Okumayı durdur" : "Soruyu sesli oku"}
+            className="flex items-center gap-1.5 text-xs text-ink-soft hover:text-gold transition-colors"
+          >
+            {speaking ? <VolumeX size={15} /> : <Volume2 size={15} />}
+            <span className="hidden sm:inline">{speaking ? "Durdur" : "Dinle"}</span>
+          </button>
+        </div>
       </div>
 
       {SignComponent && (
