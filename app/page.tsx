@@ -1,0 +1,74 @@
+import Link from "next/link";
+import { ArrowRight, Gauge, Wrench, HeartPulse, Leaf } from "lucide-react";
+import { categories } from "@/lib/questions";
+
+const icons: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+  trafik: Gauge,
+  motor: Wrench,
+  ilkyardim: HeartPulse,
+  cevre: Leaf,
+};
+
+export default function Home() {
+  const totalQuestions = categories.reduce(
+    (sum, c) => sum + c.questions.length,
+    0
+  );
+
+  return (
+    <div className="min-h-screen bg-paper">
+      <main className="max-w-3xl mx-auto px-5 sm:px-6 py-12 sm:py-24">
+        <div className="mb-3 font-data text-[11px] sm:text-xs uppercase tracking-[0.2em] text-gold">
+          Sınav Hazırlık
+        </div>
+        <h1 className="font-display italic text-4xl sm:text-6xl font-semibold text-ink leading-[1.05] mb-4">
+          Ehliyet<span className="text-gold">Al</span>
+        </h1>
+        <p className="text-ink-soft text-base sm:text-lg max-w-lg mb-10 sm:mb-12 leading-relaxed">
+          Gerçek sınav formatında {totalQuestions} soruyla trafik, motor,
+          ilkyardım ve çevre konularını çalış. Her sorudan hemen sonra doğru
+          cevabın açıklamasını gör.
+        </p>
+
+        <div className="flex flex-col gap-3">
+          {categories.map((category, i) => {
+            const Icon = icons[category.slug] ?? Gauge;
+            return (
+              <Link
+                key={category.slug}
+                href={`/quiz/${category.slug}`}
+                className="group flex items-center gap-3 sm:gap-4 rounded-2xl border border-line bg-surface px-4 py-4 sm:px-6 sm:py-5 shadow-[0_1px_2px_rgba(18,24,43,0.04)] transition-colors hover:border-gold-soft hover:bg-gold-wash"
+              >
+                <span className="font-data text-xs text-ink-soft w-5 sm:w-6 shrink-0 hidden sm:block">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="rounded-lg bg-gold-wash p-2.5 text-gold shrink-0">
+                  <Icon size={20} />
+                </span>
+                <span className="flex-1 min-w-0">
+                  <span className="block font-display text-base sm:text-lg text-ink truncate">
+                    {category.name}
+                  </span>
+                  <span className="block text-xs sm:text-sm text-ink-soft truncate">
+                    {category.description}
+                  </span>
+                </span>
+                <span className="font-data text-xs text-ink-soft shrink-0 hidden sm:block">
+                  {category.questions.length} soru
+                </span>
+                <ArrowRight
+                  size={18}
+                  className="shrink-0 text-ink-soft transition-transform group-hover:translate-x-1 group-hover:text-gold"
+                />
+              </Link>
+            );
+          })}
+        </div>
+
+        <p className="mt-12 sm:mt-14 text-xs text-ink-soft/70 font-data">
+          100 üzerinden 70 puan sınavı geçmek için gereken puandır.
+        </p>
+      </main>
+    </div>
+  );
+}
