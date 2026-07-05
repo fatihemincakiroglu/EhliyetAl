@@ -277,6 +277,101 @@ export const categories: Category[] = [
         difficulty: "zor",
         visualId: "kavsakSenaryo",
       },
+      {
+        id: "trafik-19",
+        text: "Otoyolda aracı arızalanan bir sürücü ne yapmalıdır?",
+        options: [
+          "Aracı olduğu şeritte bırakıp yürüyerek yardım aramalıdır",
+          "Aracı mümkünse emniyet şeridine çekip dörtlü ikaz ışıklarını yakmalı ve reflektör koymalıdır",
+          "Aracı ortada bırakıp diğer sürücüleri elle yönlendirmelidir",
+          "Sadece korna çalarak beklemelidir",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Arızalanan araç mümkünse emniyet şeridine alınmalı, dörtlü ikaz ışıkları yakılmalı ve arkadan gelen araçları uyarmak için reflektör konulmalıdır.",
+        difficulty: "orta",
+      },
+      {
+        id: "trafik-20",
+        text: "Aksine bir düzenleme yoksa, kavşaklarda öncelikli yoldan gelmeyen bir sürücü nasıl davranmalıdır?",
+        options: [
+          "Öncelikli yoldaki araçlara yol vermelidir",
+          "Hızını artırıp önce geçmeye çalışmalıdır",
+          "Öncelik her zaman büyük araçtadır, ona göre davranmalıdır",
+          "Kavşakta bulunan ilk araç geçer",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Tali yoldan gelen sürücü, ana/öncelikli yoldan gelen araçlara geçiş hakkı vermek zorundadır.",
+        difficulty: "kolay",
+      },
+      {
+        id: "trafik-21",
+        text: "Sis, yoğun yağmur gibi görüşü azaltan hava koşullarında sürücü nasıl davranmalıdır?",
+        options: [
+          "Hızını artırıp bölgeden çabuk çıkmalıdır",
+          "Hızını azaltmalı, farları uygun şekilde kullanmalı ve takip mesafesini artırmalıdır",
+          "Dörtlü ikaz ışıklarını sürekli yakarak normal hızda gitmelidir",
+          "Uzun farları sürekli açık tutmalıdır",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Görüşün azaldığı hava koşullarında hız azaltılmalı, sis ışıkları uygun şekilde kullanılmalı ve takip mesafesi normalden fazla tutulmalıdır.",
+        difficulty: "kolay",
+      },
+      {
+        id: "trafik-22",
+        text: "Bir sürücünün araç kullanırken cep telefonuyla mesajlaşması hakkında ne söylenebilir?",
+        options: [
+          "Kısa mesajlar için sorun oluşturmaz",
+          "Dikkati dağıtır ve tepki süresini uzatarak kaza riskini artırır",
+          "Sadece kırmızı ışıkta yasaktır",
+          "Sadece otoyolda yasaktır",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Sürüş sırasında telefonla ilgilenmek dikkati yoldan ayırır, tepki süresini uzatır ve kaza riskini önemli ölçüde artırır.",
+        difficulty: "kolay",
+      },
+      {
+        id: "trafik-23",
+        text: "Bir kavşakta ışıklar yeşil olsa da kavşak içi araç yoğunluğundan dolayı karşıya geçilemeyecekse sürücü ne yapmalıdır?",
+        options: [
+          "Yeşil ışık yandığı için kavşağa girip beklemelidir",
+          "Kavşağın tıkanmasına neden olmamak için kavşağa girmemeli, dışarıda beklemelidir",
+          "Korna çalarak önündeki araçların ilerlemesini sağlamaya çalışmalıdır",
+          "Karşı şeride geçerek ilerlemelidir",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Işık yeşil olsa da kavşak içinde tıkanıklık oluşturacaksa sürücü kavşağa girmemeli, önündeki alanın açılmasını dışarıda beklemelidir.",
+        difficulty: "zor",
+      },
+      {
+        id: "trafik-24",
+        text: "Bir aracın öndeki araçla aralarında bırakması gereken güvenli takip mesafesi neyle doğru orantılıdır?",
+        options: [
+          "Aracın rengiyle", "Sürücünün yaşıyla", "Aracın hızıyla", "Gün içindeki saatle"
+        ],
+        correctIndex: 2,
+        explanation:
+          "Hız arttıkça fren mesafesi de arttığından, güvenli takip mesafesi aracın hızıyla doğru orantılı şekilde artırılmalıdır.",
+        difficulty: "kolay",
+      },
+      {
+        id: "trafik-25",
+        text: "Yaya ve bisiklet yolu bulunan bir yolda motorlu taşıt sürücüsünün davranışı nasıl olmalıdır?",
+        options: [
+          "Bu yolları kısa süreliğine kullanabilir",
+          "Yaya ve bisiklet yollarına girmemeli, bu alanları ihlal etmemelidir",
+          "Sadece gece bu yolları kullanabilir",
+          "Trafik sıkışıksa bu yolları kullanabilir",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Yaya ve bisiklet yolları motorlu taşıtların kullanımına kapalıdır; bu alanlara girmek yayaların ve bisikletlilerin güvenliğini tehlikeye atar.",
+        difficulty: "kolay",
+      },
     ],
   },
   {
@@ -489,6 +584,131 @@ export const categories: Category[] = [
         explanation:
           "Antifriz, düşük sıcaklıklarda soğutma suyunun donmasını önler; donma sırasında oluşan genleşme motor bloğunu çatlatabilir.",
         difficulty: "orta",
+      },
+      {
+        id: "motor-16",
+        text: "Direksiyon simidinde sürüş sırasında hissedilen titreme neyin belirtisi olabilir?",
+        options: [
+          "Yakıt seviyesinin düşük olmasının",
+          "Lastik balans veya rot ayarının bozuk olmasının",
+          "Farların iyi çalıştığının",
+          "Aracın yeni yıkanmış olduğunun",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Direksiyonda hissedilen titreme genellikle lastik balansının veya rot ayarının bozulduğunu gösterir ve kontrol ettirilmesi gerekir.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-17",
+        text: "Aracın gösterge panelinde yağ basıncı ikaz lambası yanarsa ne yapılmalıdır?",
+        options: [
+          "Önemsemeden yola devam edilmelidir",
+          "Araç güvenli bir şekilde durdurulmalı ve kontrol ettirilmelidir",
+          "Sadece hız azaltılıp devam edilmelidir",
+          "Klima kapatılıp devam edilmelidir",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Yağ basıncı ikazı ciddi bir motor arızasına işaret edebilir; araç güvenli bir yerde durdurulup kontrol ettirilmelidir.",
+        difficulty: "kolay",
+      },
+      {
+        id: "motor-18",
+        text: "Klimanın araç motoruna ekstra yük bindirmesi hangi durumda daha belirgin hissedilir?",
+        options: [
+          "Araç dururken",
+          "Düşük devirde giderken ani hızlanma istendiğinde",
+          "Aracın farları kapalıyken",
+          "Aracın camları açıkken",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Klima kompresörü motora ek yük bindirir; bu yük özellikle düşük devirde ani hızlanma istenildiğinde daha fark edilir olur.",
+        difficulty: "zor",
+      },
+      {
+        id: "motor-19",
+        text: "Bir aracın periyodik bakımlarının düzenli yapılmasının en önemli faydası nedir?",
+        options: [
+          "Aracın rengini korumak",
+          "Beklenmedik arızaları önceden tespit edip önlemek",
+          "Sigorta maliyetini düşürmek",
+          "Sadece yakıt deposunu büyütmek",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Düzenli periyodik bakım, küçük sorunların büyük ve maliyetli arızalara dönüşmeden tespit edilip giderilmesini sağlar.",
+        difficulty: "kolay",
+      },
+      {
+        id: "motor-20",
+        text: "Aracın camlarında buğulanma olduğunda en etkili çözüm genellikle hangisidir?",
+        options: [
+          "Camları tamamen kapatıp beklemek",
+          "Klima veya havalandırmayı kullanarak iç-dış sıcaklık farkını azaltmak",
+          "Cam sileceklerini çalıştırmak",
+          "Farları söndürmek",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Buğulanma iç ve dış sıcaklık/nem farkından kaynaklanır; klima veya havalandırma bu farkı azaltarak camı hızla açar.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-21",
+        text: "Motor devrini gösteren göstergeye ne ad verilir?",
+        options: ["Hız göstergesi", "Takometre (devir göstergesi)", "Yakıt göstergesi", "Kilometre sayacı"],
+        correctIndex: 1,
+        explanation:
+          "Takometre, motorun dakikadaki devir sayısını (RPM) gösteren göstergedir ve vites değiştirme zamanlamasında yol gösterir.",
+        difficulty: "kolay",
+      },
+      {
+        id: "motor-22",
+        text: "Aracın uzun süre güneş altında kapalı kalması sonrası lastik hava basıncı nasıl değişir?",
+        options: [
+          "Değişmez",
+          "Sıcaklık artışıyla lastik içindeki hava basıncı artar",
+          "Sıcaklık artışıyla lastik içindeki hava basıncı azalır",
+          "Sadece ön lastiklerde değişir",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Sıcaklık arttıkça lastik içindeki hava genişler ve basınç artar; bu yüzden basınç kontrolleri hava soğukken yapılmalıdır.",
+        difficulty: "zor",
+      },
+      {
+        id: "motor-23",
+        text: "Aracın periyodik muayenesinin (istasyon muayenesi) temel amacı nedir?",
+        options: [
+          "Aracın rengini kontrol etmek",
+          "Araçların trafik güvenliği açısından teknik olarak uygun durumda olup olmadığını denetlemek",
+          "Sadece vergi tahsil etmek",
+          "Aracın hızını artırmak",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Periyodik muayene, araçların fren, egzoz, lastik ve emniyet sistemleri gibi unsurlarının trafiğe uygun olup olmadığını denetler.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-24",
+        text: "Bir aracın viraja hızlı girmesi sırasında lastiklerin yol tutuşunu kaybetmesi durumuna ne denir?",
+        options: ["Aquaplaning", "Savrulma / kayma (patinaj)", "Rejeneratif frenleme", "Turbo lag"],
+        correctIndex: 1,
+        explanation:
+          "Aracın virajda tutunma sınırını aşması sonucu lastiklerin kayması, sürücünün araç üzerindeki kontrolünü kaybetmesine yol açabilir.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-25",
+        text: "Yağmurlu havada yüksek hızda su birikintisi üzerinden geçen bir aracın lastiklerinin yolla teması kaybedip su üzerinde kaymasına ne ad verilir?",
+        options: ["Aquaplaning (su kayması)", "Debriyaj kayması", "Turbo gecikmesi", "Fren sertleşmesi"],
+        correctIndex: 0,
+        explanation:
+          "Aquaplaning, lastiklerin su tabakasını yeterince atamayıp yol yüzeyiyle temasını kaybetmesi sonucu oluşan tehlikeli bir kaymadır; yağışlı havalarda hız kesmek bu riski azaltır.",
+        difficulty: "zor",
       },
     ],
   },
@@ -708,6 +928,146 @@ export const categories: Category[] = [
           "İç kanamada kan kaybına bağlı olarak aşırı susuzluk hissi, soluk ve nemli cilt, hızlı ve zayıf nabız gibi belirtiler görülür.",
         difficulty: "zor",
       },
+      {
+        id: "ilkyardim-16",
+        text: "Elektrik çarpması geçiren bir kişiye yaklaşırken ilk yardımcının önceliği ne olmalıdır?",
+        options: [
+          "Hemen kişiye dokunup çekmek",
+          "Akım kaynağını kesmek veya kişiyle akım arasındaki bağlantıyı güvenli şekilde kesmek",
+          "Kişiye su dökmek",
+          "Kişiyi sarsarak uyandırmaya çalışmak",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Elektrik çarpmasında önce akım kaynağı kesilmeli veya kişiyle temas güvenli bir yöntemle kesilmelidir; aksi hâlde ilk yardımcı da çarpılabilir.",
+        difficulty: "orta",
+      },
+      {
+        id: "ilkyardim-17",
+        text: "Zehirlenme şüphesi olan bilinci açık bir kişiye ilk yardım olarak ne yapılmalıdır?",
+        options: [
+          "Hemen kusturulmaya çalışılmalıdır",
+          "Ne yuttuğu belirlenmeye çalışılmalı ve tıbbi yardım çağrılmalıdır",
+          "Bol miktarda süt içirilmelidir",
+          "Kendiliğinden geçmesi beklenmelidir",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Zehirlenme şüphesinde kişiyi kusturmaya çalışmak zararlı olabilir; ne yutulduğu belirlenmeli ve vakit kaybetmeden tıbbi yardım çağrılmalıdır.",
+        difficulty: "orta",
+      },
+      {
+        id: "ilkyardim-18",
+        text: "Sıcak çarpması (güneş çarpması) belirtisi gösteren bir kişiye ilk yardım olarak ne yapılmalıdır?",
+        options: [
+          "Güneşte bırakılıp dinlenmesi sağlanmalıdır",
+          "Serin bir yere alınmalı, giysileri gevşetilmeli ve vücudu serinletilmelidir",
+          "Sıcak bir şeyler içirilmelidir",
+          "Hemen ayağa kaldırılıp yürütülmelidir",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Sıcak çarpmasında kişi serin bir ortama alınmalı, giysileri gevşetilmeli ve vücut sıcaklığını düşürmek için serinletilmelidir.",
+        difficulty: "kolay",
+      },
+      {
+        id: "ilkyardim-19",
+        text: "Diş kırılması veya düşmesi durumunda ilk yardım olarak ne yapılabilir?",
+        options: [
+          "Diş tamamen atılmalıdır, önemi yoktur",
+          "Diş bulunabiliyorsa süt veya tükürükte saklanarak en yakın sağlık kuruluşuna gidilmelidir",
+          "Diş ovularak temizlenmelidir",
+          "Diş güneşte kurutulmalıdır",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Düşen diş, kökü tutmadan süt gibi bir sıvı içinde saklanarak mümkün olan en kısa sürede diş hekimine ya da sağlık kuruluşuna götürülmelidir.",
+        difficulty: "zor",
+      },
+      {
+        id: "ilkyardim-20",
+        text: "Kazazedenin bilinç durumu değerlendirilirken hangi basit yöntem kullanılır?",
+        options: [
+          "Sadece nabız sayılır",
+          "Sesli seslenme ve hafif dokunmaya verilen tepkiye bakılır",
+          "Sadece göz rengine bakılır",
+          "Sadece vücut sıcaklığı ölçülür",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Bilinç değerlendirmesinde kazazedeye sesli seslenilir ve hafifçe dokunularak tepki verip vermediği gözlemlenir.",
+        difficulty: "kolay",
+      },
+      {
+        id: "ilkyardim-21",
+        text: "Bir kazazedenin boğuluyor gibi öksürdüğü ama hâlâ konuşabildiği durumda ilk yardımcı ne yapmalıdır?",
+        options: [
+          "Hemen Heimlich manevrası uygulamalıdır",
+          "Öksürerek kendi çıkarmasına izin vermeli ve yakından gözlemlemelidir",
+          "Sırtına sert vurmalıdır",
+          "Ağzına elini sokup cismi çıkarmaya çalışmalıdır",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Kazazede hâlâ öksürebiliyor ve konuşabiliyorsa hava yolu tam tıkanmamıştır; kendi öksürerek çıkarmasına izin verilip yakından gözlemlenmelidir.",
+        difficulty: "orta",
+      },
+      {
+        id: "ilkyardim-22",
+        text: "Donma (soğuk ısırması) şüphesi olan bir bölgeye ilk yardım olarak ne yapılmalıdır?",
+        options: [
+          "Bölge sert şekilde ovuşturulmalıdır",
+          "Bölge kademeli olarak ve ovmadan ılık suyla ısıtılmalıdır",
+          "Bölgeye doğrudan sıcak su dökülmelidir",
+          "Bölge hareket ettirilerek kan dolaşımı zorlanmalıdır",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Donmuş bölge ovuşturulmadan, kademeli olarak ılık suyla (sıcak değil) ısıtılmalı ve tıbbi yardım aranmalıdır.",
+        difficulty: "zor",
+      },
+      {
+        id: "ilkyardim-23",
+        text: "Bilinci kapalı ama solunumu ve nabzı olan bir kazazedeye neden koma pozisyonu verilir?",
+        options: [
+          "Daha rahat uyuması için",
+          "Hava yolunun açık kalmasını ve kusmuk gibi sıvıların solunum yoluna kaçmasını önlemek için",
+          "Vücut ısısını artırmak için",
+          "Kan basıncını düşürmek için",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Koma pozisyonu, dilin veya kusmuğun hava yolunu tıkamasını önleyerek solunumun güvenli şekilde sürmesini sağlar.",
+        difficulty: "orta",
+      },
+      {
+        id: "ilkyardim-24",
+        text: "Bir kaza sonrası kazazedenin yanında bulunan ilk yardımcının sakin kalması neden önemlidir?",
+        options: [
+          "Yalnızca görüntü açısından önemlidir",
+          "Doğru kararlar verebilmek ve kazazedeyi de sakinleştirebilmek için önemlidir",
+          "Hiçbir önemi yoktur",
+          "Sadece kameraya iyi görünmek içindir",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Sakin kalan bir ilk yardımcı daha doğru kararlar alabilir, uygulamaları düzgün yapabilir ve kazazedenin de paniğini azaltabilir.",
+        difficulty: "kolay",
+      },
+      {
+        id: "ilkyardim-25",
+        text: "Araç içinde sıkışmış ve hareket ettirilmesi riskli olan bir kazazedeyle ilgili ilk yardımcının önceliği ne olmalıdır?",
+        options: [
+          "Zorla dışarı çekmek",
+          "Hayati tehlike yoksa profesyonel ekip gelene kadar kazazedeyi olduğu gibi bırakıp güvenliğini sağlamak",
+          "Kazazedeyi oturur pozisyona geçirmek",
+          "Kazazedeye su içirmek",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Hayati tehlike (yangın, patlama vb.) yoksa, sıkışmış bir kazazedeyi zorla çıkarmak ek yaralanmalara yol açabilir; profesyonel ekip beklenmelidir.",
+        difficulty: "zor",
+      },
     ],
   },
   {
@@ -920,6 +1280,141 @@ export const categories: Category[] = [
         explanation:
           "Kuralların ceza kaygısıyla değil güvenlik bilinciyle benimsenmesi, sürücünün trafik adabını gerçek anlamda içselleştirdiğini gösterir.",
         difficulty: "zor",
+      },
+      {
+        id: "cevre-16",
+        text: "Sürücünün trafikte başka bir sürücünün hatasına karşı sabırlı olması hangi değerle ilişkilidir?",
+        options: ["Hoşgörü", "Bencillik", "İnatlaşma", "Kayıtsızlık"],
+        correctIndex: 0,
+        explanation:
+          "Başkalarının hatalarına karşı sabırlı ve anlayışlı olmak, trafik adabının temel değerlerinden biri olan hoşgörüyle ilişkilidir.",
+        difficulty: "kolay",
+      },
+      {
+        id: "cevre-17",
+        text: "Bir sürücünün aracını her zaman kurallara uygun şekilde park etmesi, engelli veya yaşlı bireyler için neden önemlidir?",
+        options: [
+          "Hiçbir önemi yoktur",
+          "Onların güvenli ve engelsiz hareket edebilmesini sağlar",
+          "Sadece estetik bir kaygıdır",
+          "Sadece park cezası almamak içindir",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Kurallara uygun park etmek, özellikle engelli ve yaşlı bireylerin kaldırım ve geçitlerde güvenle hareket edebilmesini sağlar.",
+        difficulty: "kolay",
+      },
+      {
+        id: "cevre-18",
+        text: "Trafikte 'defansif sürüş' kavramı neyi ifade eder?",
+        options: [
+          "Sürekli agresif ve hızlı sürüş yapmak",
+          "Olası riskleri önceden tahmin ederek dikkatli ve hazırlıklı sürüş yapmak",
+          "Sadece kurallara uymadan sürüş yapmak",
+          "Sadece gece sürüş yapmak",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Defansif sürüş, diğer sürücülerin olası hatalarını ve yol risklerini önceden tahmin ederek buna göre hazırlıklı ve temkinli sürmektir.",
+        difficulty: "orta",
+      },
+      {
+        id: "cevre-19",
+        text: "Bir sürücünün aracını düzenli yıkatması dışında, çevreye duyarlı araç bakımı için önerilen davranış nedir?",
+        options: [
+          "Aracı sokakta suyla serbestçe yıkamak",
+          "Yağ ve kimyasal değişimlerini yetkili servislerde yaptırmak",
+          "Yıkama suyunu doğrudan kanalizasyona akıtmak",
+          "Hiçbir bakım yapmamak",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Yağ ve kimyasal değişimlerinin yetkili servislerde yapılması, bu maddelerin çevreye kontrolsüz şekilde yayılmasını önler.",
+        difficulty: "orta",
+      },
+      {
+        id: "cevre-20",
+        text: "Trafikte 'empati' kurmak ne anlama gelir?",
+        options: [
+          "Sadece kendi çıkarını düşünmek",
+          "Kendini diğer yol kullanıcılarının yerine koyup onların durumunu anlamaya çalışmak",
+          "Diğer sürücüleri görmezden gelmek",
+          "Sadece hız yapmak",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Trafikte empati, kendini yaya, bisikletli veya diğer sürücülerin yerine koyarak onların ihtiyaç ve risklerini anlamaya çalışmaktır.",
+        difficulty: "kolay",
+      },
+      {
+        id: "cevre-21",
+        text: "Aracını yıkarken kullanılan suyun ve kimyasalların doğrudan toprağa veya dereye karışması neye yol açabilir?",
+        options: [
+          "Hiçbir etkisi olmaz",
+          "Su kaynaklarının ve toprağın kirlenmesine yol açabilir",
+          "Bitkilerin daha hızlı büyümesini sağlar",
+          "Sadece kötü koku oluşturur",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Araç yıkama kimyasalları ve yağ kalıntıları, kontrolsüz şekilde doğaya karıştığında su kaynaklarını ve toprağı kirletebilir.",
+        difficulty: "orta",
+      },
+      {
+        id: "cevre-22",
+        text: "Sürücülerin trafikte birbirlerine karşı gösterdiği nezaketin toplumsal faydası nedir?",
+        options: [
+          "Hiçbir faydası yoktur",
+          "Trafik kültürünün gelişmesine ve kaza riskinin azalmasına katkı sağlar",
+          "Sadece bireysel bir tercihtir, toplumu etkilemez",
+          "Yalnızca zaman kaybettirir",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Sürücüler arasındaki nezaket ve saygı, genel trafik kültürünün gelişmesine ve kaza riskinin azalmasına toplumsal düzeyde katkı sağlar.",
+        difficulty: "kolay",
+      },
+      {
+        id: "cevre-23",
+        text: "Bir sürücünün trafikte 'sorumluluk sahibi' olması ne anlama gelir?",
+        options: [
+          "Sadece kendi aracının bakımını yapması",
+          "Davranışlarının başkalarına olan etkisini düşünerek hareket etmesi",
+          "Trafik kurallarını gerektiğinde görmezden gelmesi",
+          "Sadece hız sınırına uyması",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Sorumluluk sahibi bir sürücü, kendi davranışlarının diğer yol kullanıcılarına olan etkisini düşünerek hareket eder.",
+        difficulty: "orta",
+      },
+      {
+        id: "cevre-24",
+        text: "Trafikte 'öngörülü sürücü' olmak neyi gerektirir?",
+        options: [
+          "Sadece kendi şeridine bakmak",
+          "Yol, hava ve diğer araçların olası hareketlerini önceden değerlendirip ona göre davranmak",
+          "Sadece hızlı tepki vermek",
+          "Diğer sürücülerin ne yapacağını hiç düşünmemek",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Öngörülü bir sürücü, yol koşullarını ve diğer araçların olası hareketlerini önceden değerlendirerek ani durumlara hazırlıklı olur.",
+        difficulty: "zor",
+      },
+      {
+        id: "cevre-25",
+        text: "Sürücülerin trafikte çevreye ve topluma duyarlı davranışlar sergilemesinin uzun vadeli faydası nedir?",
+        options: [
+          "Sadece kişisel imaj kazanmak",
+          "Daha güvenli, sürdürülebilir ve yaşanabilir bir trafik ortamı oluşmasına katkı sağlamak",
+          "Hiçbir uzun vadeli faydası yoktur",
+          "Sadece yakıt tasarrufu sağlamak",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Çevreye ve topluma duyarlı sürücü davranışları, uzun vadede daha güvenli ve sürdürülebilir bir trafik ortamının oluşmasına katkı sağlar.",
+        difficulty: "orta",
       },
     ],
   },

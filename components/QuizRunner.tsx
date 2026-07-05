@@ -9,6 +9,7 @@ import {
   AlertTriangle,
   Share2,
   Timer,
+  Download,
 } from "lucide-react";
 import type { Question } from "@/lib/questions";
 import ProgressTrack from "@/components/ProgressTrack";
@@ -246,6 +247,47 @@ function ResultScreen({
     }
   }
 
+  async function handleDownloadPdf() {
+    const { jsPDF } = await import("jspdf");
+    const doc = new jsPDF();
+    const dateStr = new Date().toLocaleDateString("tr-TR");
+
+    doc.setFontSize(18);
+    doc.text("EhliyetAl - Sinav Sonucu", 20, 20);
+
+    doc.setFontSize(11);
+    doc.text(`Test: ${title}`, 20, 32);
+    doc.text(`Tarih: ${dateStr}`, 20, 39);
+    doc.text(`Puan: %${scorePercent}`, 20, 46);
+    doc.text(`Dogru: ${correctCount} / ${answers.length}`, 20, 53);
+    doc.text(`Sonuc: ${passed ? "Gectin" : "Gecemedin, tekrar dene"}`, 20, 60);
+
+    let y = 74;
+    if (wrongQuestions.length > 0) {
+      doc.setFontSize(13);
+      doc.text("Tekrar gozden gecirilecek sorular:", 20, y);
+      y += 8;
+      doc.setFontSize(10);
+      for (const q of wrongQuestions) {
+        const lines: string[] = doc.splitTextToSize(`- ${q.text}`, 170);
+        for (const line of lines) {
+          if (y > 280) {
+            doc.addPage();
+            y = 20;
+          }
+          doc.text(line, 20, y);
+          y += 6;
+        }
+        y += 2;
+      }
+    }
+
+    doc.setFontSize(9);
+    doc.text("ehliyetal.net", 20, 290);
+
+    doc.save(`ehliyetal-sonuc-${dateStr.replace(/\./g, "-")}.pdf`);
+  }
+
   return (
     <div className="bg-surface border border-line rounded-2xl p-6 sm:p-8 text-center shadow-[0_1px_2px_rgba(18,24,43,0.04),0_8px_24px_rgba(18,24,43,0.05)]">
       <div
@@ -302,6 +344,14 @@ function ResultScreen({
         >
           <Share2 size={16} />
           {shareStatus === "copied" ? "Kopyalandı!" : "Paylaş"}
+        </button>
+        <button
+          type="button"
+          onClick={handleDownloadPdf}
+          className="flex items-center justify-center gap-2 font-display text-sm tracking-wide uppercase rounded-full border border-line text-ink px-6 py-3.5 sm:py-3 hover:bg-gold-wash hover:border-gold-soft transition-colors"
+        >
+          <Download size={16} />
+          PDF İndir
         </button>
         <Link
           href={backHref}

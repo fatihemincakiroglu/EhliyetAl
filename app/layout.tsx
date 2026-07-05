@@ -37,6 +37,24 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  verification: {
+    google: "8wJHMYdLAcP8X2sRmVnSH5R5WNvFxVbPp7NdIcVe1t8",
+  },
+  openGraph: {
+    type: "website",
+    locale: "tr_TR",
+    url: SITE_URL,
+    siteName: "EhliyetAl",
+    title: "Ehliyet Sınavı Soruları 2026 | Çıkmış Ehliyet Sınavları",
+    description:
+      "2026 ehliyet sınavı sorularını ve çıkmış ehliyet sınavlarını ücretsiz çöz! Trafik, ilk yardım, motor bilgisi soruları ve deneme sınavlarıyla hazırlan.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ehliyet Sınavı Soruları 2026 | Çıkmış Ehliyet Sınavları",
+    description:
+      "2026 ehliyet sınavı sorularını ve çıkmış ehliyet sınavlarını ücretsiz çöz!",
+  },
 };
 
 const themeInitScript = `

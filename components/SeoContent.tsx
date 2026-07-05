@@ -461,12 +461,27 @@ export default function SeoContent() {
         <Timer size={16} className="text-gold" />
         <h3 className="font-display text-lg text-ink">Çalışma Programı Önerileri</h3>
       </div>
-      <ul className="text-sm text-ink-soft space-y-2 mb-12 list-disc list-inside">
+      <ul className="text-sm text-ink-soft space-y-2 mb-6 list-disc list-inside">
         <li>1. hafta: Trafik ve Çevre Bilgisi konularına odaklan</li>
         <li>2. hafta: İlk Yardım ve Motor bilgisi konularını çalış</li>
         <li>3. hafta: Trafik adabı konularını tamamla, tüm kategorilerde tekrar yap</li>
         <li>Sınavdan önceki hafta: Düzenli olarak sınav simülasyonu çöz ve yanlışlarını tekrar et</li>
       </ul>
+
+      <div className="flex flex-wrap gap-4 mb-12">
+        <Link
+          href="/sozluk"
+          className="inline-flex items-center gap-2 text-sm font-display uppercase tracking-wide text-gold hover:text-gold-soft transition-colors"
+        >
+          Trafik Terimleri Sözlüğü →
+        </Link>
+        <Link
+          href="/rehber"
+          className="inline-flex items-center gap-2 text-sm font-display uppercase tracking-wide text-gold hover:text-gold-soft transition-colors"
+        >
+          Başvuru ve ücretler rehberi →
+        </Link>
+      </div>
 
       <div className="flex items-center gap-3 mb-6">
         <SectionIcon icon={CheckCircle2} />
