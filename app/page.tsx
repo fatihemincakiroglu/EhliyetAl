@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, Gauge, Wrench, HeartPulse, Leaf } from "lucide-react";
+import { ArrowRight, Gauge, Wrench, HeartPulse, Leaf, Signpost } from "lucide-react";
 import { categories } from "@/lib/questions";
 import { CategoryBadge, QuickLinks } from "@/components/HomeExtras";
 import DailyQuestion from "@/components/DailyQuestion";
@@ -22,6 +22,7 @@ const icons: Record<string, React.ComponentType<{ size?: number; className?: str
   motor: Wrench,
   ilkyardim: HeartPulse,
   cevre: Leaf,
+  isaretler: Signpost,
 };
 
 export default function Home() {

@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/sinav",
     "/istatistik",
     "/sozluk",
+    "/isaretler",
     "/rehber",
     "/rehber/ehliyet-sinavi-ucretleri-2026",
     "/rehber/ehliyet-sinavi-basvurusu-nasil-yapilir",
