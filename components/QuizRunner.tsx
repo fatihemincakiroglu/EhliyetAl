@@ -1,11 +1,20 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, RotateCcw, PartyPopper, AlertTriangle } from "lucide-react";
-import type { Category } from "@/lib/questions";
+import {
+  ArrowLeft,
+  RotateCcw,
+  PartyPopper,
+  AlertTriangle,
+  Share2,
+  Timer,
+} from "lucide-react";
+import type { Question } from "@/lib/questions";
 import ProgressTrack from "@/components/ProgressTrack";
 import QuestionCard from "@/components/QuestionCard";
+import { addAttempt } from "@/lib/storage";
+import type { AttemptMode } from "@/lib/storage";
 
 type Answer = {
   questionIndex: number;
@@ -13,20 +22,68 @@ type Answer = {
   correct: boolean;
 };
 
-export default function QuizRunner({ category }: { category: Category }) {
+type QuizRunnerProps = {
+  questions: Question[];
+  title: string;
+  subtitle: string;
+  mode: AttemptMode;
+  categorySlug?: string;
+  timeLimitSeconds?: number;
+  backHref?: string;
+};
+
+export default function QuizRunner({
+  questions,
+  title,
+  subtitle,
+  mode,
+  categorySlug,
+  timeLimitSeconds,
+  backHref = "/",
+}: QuizRunnerProps) {
   const [step, setStep] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
   const [answers, setAnswers] = useState<Answer[]>([]);
+  const [secondsLeft, setSecondsLeft] = useState(timeLimitSeconds ?? 0);
+  const [timedOut, setTimedOut] = useState(false);
+  const [saved, setSaved] = useState(false);
 
-  const question = category.questions[step];
-  const isLast = step === category.questions.length - 1;
-  const finished = answers.length === category.questions.length;
+  const question = questions[step];
+  const isLast = step === questions.length - 1;
+  const finished = answers.length === questions.length || timedOut;
+
+  useEffect(() => {
+    if (!timeLimitSeconds || finished) return;
+    if (secondsLeft <= 0) {
+      setTimedOut(true);
+      return;
+    }
+    const interval = setInterval(() => {
+      setSecondsLeft((s) => s - 1);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [timeLimitSeconds, secondsLeft, finished]);
 
   const scorePercent = useMemo(() => {
     if (answers.length === 0) return 0;
     const correctCount = answers.filter((a) => a.correct).length;
     return Math.round((correctCount / answers.length) * 100);
   }, [answers]);
+
+  useEffect(() => {
+    if (finished && !saved && answers.length > 0) {
+      addAttempt({
+        mode,
+        categorySlug,
+        total: answers.length,
+        correct: answers.filter((a) => a.correct).length,
+        wrongQuestionIds: answers
+          .filter((a) => !a.correct)
+          .map((a) => questions[a.questionIndex].id),
+      });
+      setSaved(true);
+    }
+  }, [finished, saved, answers, mode, categorySlug, questions]);
 
   function handleSelect(index: number) {
     if (selected !== null) return;
@@ -51,28 +108,48 @@ export default function QuizRunner({ category }: { category: Category }) {
     setStep(0);
     setSelected(null);
     setAnswers([]);
+    setSecondsLeft(timeLimitSeconds ?? 0);
+    setTimedOut(false);
+    setSaved(false);
   }
+
+  const minutes = Math.floor(secondsLeft / 60);
+  const seconds = secondsLeft % 60;
 
   return (
     <div className="min-h-screen bg-paper">
       <main className="max-w-2xl mx-auto px-5 sm:px-6 py-8 sm:py-14">
-        <div className="flex items-center justify-between mb-6 sm:mb-8">
+        <div className="flex items-center justify-between mb-2">
           <Link
-            href="/"
+            href={backHref}
             className="flex items-center gap-1.5 text-sm text-ink-soft hover:text-ink transition-colors"
           >
             <ArrowLeft size={16} />
-            Kategoriler
+            Geri
           </Link>
           <span className="font-data text-xs uppercase tracking-wider text-gold">
-            {category.shortName}
+            {subtitle}
           </span>
         </div>
+        <h1 className="font-display text-lg sm:text-xl text-ink mb-6">{title}</h1>
 
-        {!finished && (
+        {timeLimitSeconds !== undefined && !finished && (
+          <div
+            className={`flex items-center gap-2 mb-6 font-data text-sm ${
+              secondsLeft < 60 ? "text-danger" : "text-ink-soft"
+            }`}
+          >
+            <Timer size={16} />
+            <span>
+              {String(minutes).padStart(2, "0")}:{String(seconds).padStart(2, "0")} kaldı
+            </span>
+          </div>
+        )}
+
+        {!finished && question && (
           <>
             <div className="mb-6 sm:mb-8">
-              <ProgressTrack current={step} total={category.questions.length} />
+              <ProgressTrack current={step} total={questions.length} />
             </div>
             <QuestionCard
               key={question.id}
@@ -108,10 +185,16 @@ export default function QuizRunner({ category }: { category: Category }) {
 
         {finished && (
           <ResultScreen
-            category={category}
+            title={title}
             answers={answers}
+            totalQuestions={questions.length}
             scorePercent={scorePercent}
+            timedOut={timedOut && answers.length < questions.length}
+            wrongQuestions={answers
+              .filter((a) => !a.correct)
+              .map((a) => questions[a.questionIndex])}
             onRestart={handleRestart}
+            backHref={backHref}
           />
         )}
       </main>
@@ -120,19 +203,48 @@ export default function QuizRunner({ category }: { category: Category }) {
 }
 
 function ResultScreen({
-  category,
+  title,
   answers,
+  totalQuestions,
   scorePercent,
+  timedOut,
+  wrongQuestions,
   onRestart,
+  backHref,
 }: {
-  category: Category;
+  title: string;
   answers: Answer[];
+  totalQuestions: number;
   scorePercent: number;
+  timedOut: boolean;
+  wrongQuestions: Question[];
   onRestart: () => void;
+  backHref: string;
 }) {
   const passed = scorePercent >= 70;
   const correctCount = answers.filter((a) => a.correct).length;
-  const wrongAnswers = answers.filter((a) => !a.correct);
+  const [shareStatus, setShareStatus] = useState<"idle" | "copied">("idle");
+
+  async function handleShare() {
+    const text = `EhliyetAl'da "${title}" testinde %${scorePercent} aldım! (${correctCount}/${answers.length} doğru)`;
+    if (typeof navigator !== "undefined" && navigator.share) {
+      try {
+        await navigator.share({ text });
+        return;
+      } catch {
+        // user cancelled or share failed, fall back to clipboard
+      }
+    }
+    if (typeof navigator !== "undefined" && navigator.clipboard) {
+      try {
+        await navigator.clipboard.writeText(text);
+        setShareStatus("copied");
+        setTimeout(() => setShareStatus("idle"), 2000);
+      } catch {
+        // ignore
+      }
+    }
+  }
 
   return (
     <div className="bg-surface border border-line rounded-2xl p-6 sm:p-8 text-center shadow-[0_1px_2px_rgba(18,24,43,0.04),0_8px_24px_rgba(18,24,43,0.05)]">
@@ -145,26 +257,29 @@ function ResultScreen({
       </div>
 
       <p className="font-data text-xs uppercase tracking-wider text-ink-soft mb-1">
-        {category.name}
+        {title}
       </p>
       <h2 className="font-display text-4xl text-ink mb-1">%{scorePercent}</h2>
+      <p className="text-ink-soft text-sm mb-1">
+        {correctCount} / {answers.length} doğru cevap
+        {timedOut ? ` (süre doldu, ${totalQuestions - answers.length} soru cevapsız kaldı)` : ""}
+      </p>
       <p className="text-ink-soft text-sm mb-6">
-        {correctCount} / {category.questions.length} doğru cevap ·{" "}
         {passed ? "Geçtin, tebrikler!" : "Geçme puanı %70, tekrar dene."}
       </p>
 
-      {wrongAnswers.length > 0 && (
+      {wrongQuestions.length > 0 && (
         <div className="text-left mb-8">
           <p className="font-data text-[11px] uppercase tracking-wider text-gold mb-3">
             Tekrar gözden geçir
           </p>
           <ul className="flex flex-col gap-2">
-            {wrongAnswers.map((a) => (
+            {wrongQuestions.map((q) => (
               <li
-                key={a.questionIndex}
+                key={q.id}
                 className="text-sm text-ink-soft border border-line rounded-xl px-4 py-3 bg-paper"
               >
-                {category.questions[a.questionIndex].text}
+                {q.text}
               </li>
             ))}
           </ul>
@@ -180,11 +295,19 @@ function ResultScreen({
           <RotateCcw size={16} />
           Tekrar Çöz
         </button>
-        <Link
-          href="/"
+        <button
+          type="button"
+          onClick={handleShare}
           className="flex items-center justify-center gap-2 font-display text-sm tracking-wide uppercase rounded-full border border-line text-ink px-6 py-3.5 sm:py-3 hover:bg-gold-wash hover:border-gold-soft transition-colors"
         >
-          Kategorilere Dön
+          <Share2 size={16} />
+          {shareStatus === "copied" ? "Kopyalandı!" : "Paylaş"}
+        </button>
+        <Link
+          href={backHref}
+          className="flex items-center justify-center gap-2 font-display text-sm tracking-wide uppercase rounded-full border border-line text-ink px-6 py-3.5 sm:py-3 hover:bg-gold-wash hover:border-gold-soft transition-colors"
+        >
+          Geri Dön
         </Link>
       </div>
     </div>

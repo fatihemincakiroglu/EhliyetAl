@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Gauge, Wrench, HeartPulse, Leaf } from "lucide-react";
 import { categories } from "@/lib/questions";
+import { CategoryBadge, QuickLinks } from "@/components/HomeExtras";
 
 const icons: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
   trafik: Gauge,
@@ -17,18 +18,20 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-paper">
-      <main className="max-w-3xl mx-auto px-5 sm:px-6 py-12 sm:py-24">
+      <main className="max-w-3xl mx-auto px-5 sm:px-6 py-12 sm:py-20">
         <div className="mb-3 font-data text-[11px] sm:text-xs uppercase tracking-[0.2em] text-gold">
           Sınav Hazırlık
         </div>
         <h1 className="font-display italic text-4xl sm:text-6xl font-semibold text-ink leading-[1.05] mb-4">
           Ehliyet<span className="text-gold">Al</span>
         </h1>
-        <p className="text-ink-soft text-base sm:text-lg max-w-lg mb-10 sm:mb-12 leading-relaxed">
+        <p className="text-ink-soft text-base sm:text-lg max-w-lg mb-8 leading-relaxed">
           Gerçek sınav formatında {totalQuestions} soruyla trafik, motor,
           ilkyardım ve çevre konularını çalış. Her sorudan hemen sonra doğru
           cevabın açıklamasını gör.
         </p>
+
+        <QuickLinks />
 
         <div className="flex flex-col gap-3">
           {categories.map((category, i) => {
@@ -53,6 +56,7 @@ export default function Home() {
                     {category.description}
                   </span>
                 </span>
+                <CategoryBadge slug={category.slug} />
                 <span className="font-data text-xs text-ink-soft shrink-0 hidden sm:block">
                   {category.questions.length} soru
                 </span>

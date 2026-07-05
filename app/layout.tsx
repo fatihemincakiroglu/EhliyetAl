@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -27,6 +28,15 @@ export const metadata: Metadata = {
     "Trafik, motor, ilkyardım ve çevre konularında gerçek sınav formatında sorularla ehliyet sınavına hazırlan.",
 };
 
+const themeInitScript = `
+try {
+  var theme = localStorage.getItem('ehliyetal:theme:v1');
+  if (theme === 'dark' || theme === 'light') {
+    document.documentElement.setAttribute('data-theme', theme);
+  }
+} catch (e) {}
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -34,9 +44,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body
         className={`${fraunces.variable} ${inter.variable} ${plexMono.variable} font-body antialiased`}
       >
+        <Header />
         {children}
       </body>
     </html>

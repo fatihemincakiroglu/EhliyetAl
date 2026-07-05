@@ -18,5 +18,14 @@ export default async function QuizPage({
     notFound();
   }
 
-  return <QuizRunner category={category} />;
+  return (
+    <QuizRunner
+      questions={category.questions}
+      title={category.name}
+      subtitle={category.shortName}
+      mode="category"
+      categorySlug={category.slug}
+      backHref="/"
+    />
+  );
 }

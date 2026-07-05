@@ -16,6 +16,22 @@
   --color-danger-wash: rgba(184, 64, 44, 0.1);
 }
 
+[data-theme="dark"] {
+  --color-paper: #14161b;
+  --color-surface: #1e222a;
+  --color-surface-alt: #2a2f3a;
+  --color-ink: #edede6;
+  --color-ink-soft: #9aa0ae;
+  --color-line: rgba(237, 237, 230, 0.1);
+  --color-gold: #d9b45c;
+  --color-gold-soft: #e8c877;
+  --color-gold-wash: rgba(217, 180, 92, 0.14);
+  --color-success: #4caf7d;
+  --color-success-wash: rgba(76, 175, 125, 0.14);
+  --color-danger: #e5533d;
+  --color-danger-wash: rgba(229, 83, 61, 0.14);
+}
+
 @theme inline {
   --color-paper: var(--color-paper);
   --color-surface: var(--color-surface);
@@ -38,6 +54,7 @@
 body {
   background: var(--color-paper);
   color: var(--color-ink);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 @media (prefers-reduced-motion: reduce) {

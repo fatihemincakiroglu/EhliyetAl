@@ -1,9 +1,13 @@
+export type Difficulty = "kolay" | "orta" | "zor";
+
 export type Question = {
   id: string;
   text: string;
   options: string[];
   correctIndex: number;
   explanation: string;
+  difficulty: Difficulty;
+  visualId?: string;
 };
 
 export type Category = {
@@ -33,6 +37,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Sarı ışık, kırmızıdan yeşile geçişin hazırlığıdır; araç hâlâ durmuş durumdayken sürücü yeşil yanana kadar beklemelidir.",
+        difficulty: "kolay",
       },
       {
         id: "trafik-2",
@@ -46,6 +51,8 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Yaya geçitlerine yaklaşırken her zaman yavaşlanır ve geçiş yapmak isteyen yayalara öncelik verilir.",
+        difficulty: "kolay",
+        visualId: "yayaGecidi",
       },
       {
         id: "trafik-3",
@@ -59,6 +66,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Karşı yönden gelen trafiğin güvenliğini tehlikeye atacak şekilde sollama yapmak yasaktır ve kazalara yol açabilir.",
+        difficulty: "kolay",
       },
       {
         id: "trafik-4",
@@ -72,6 +80,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Emniyet şeridi yalnızca arıza, kaza veya acil bir durumda kullanılabilir; trafik sıkışıklığını aşmak için kullanılamaz.",
+        difficulty: "kolay",
       },
       {
         id: "trafik-5",
@@ -85,6 +94,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Dönel kavşaklarda öncelik, kavşak içinde hâlihazırda dönmekte olan araçlara aittir; dışarıdan girecek araçlar onlara yol vermelidir.",
+        difficulty: "orta",
       },
       {
         id: "trafik-6",
@@ -98,6 +108,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Sağa dönüşlerde dar bir kavis izlenerek sağ şeride yakın şekilde dönülmesi, karşı şeride taşmayı önler.",
+        difficulty: "orta",
       },
       {
         id: "trafik-7",
@@ -106,6 +117,7 @@ export const categories: Category[] = [
         correctIndex: 2,
         explanation:
           "Bölünmüş şehirler arası kara yollarında otomobiller için azami hız sınırı, aksi işaretlenmedikçe saatte 110 kilometredir.",
+        difficulty: "orta",
       },
       {
         id: "trafik-8",
@@ -119,6 +131,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Şerit değiştirmeden önce sinyal verilir ve gireceği şeritte seyreden araçların güvenle geçmesi beklenir.",
+        difficulty: "kolay",
       },
       {
         id: "trafik-9",
@@ -132,6 +145,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Güvenli takip mesafesi; aracın hızı, yolun durumu ve hava koşulları dikkate alınarak ayarlanmalıdır.",
+        difficulty: "kolay",
       },
       {
         id: "trafik-10",
@@ -145,6 +159,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Duraklama, kısa süreli ve sürücünün araç başında kaldığı bir mola iken; durma, trafik zorunluluğu olmadan aracın bırakılmasıdır.",
+        difficulty: "zor",
       },
       {
         id: "trafik-11",
@@ -158,6 +173,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Okul geçidi levhası görüldüğünde çocukların ani hareketlerine karşı hız azaltılmalı ve dikkatli sürülmelidir.",
+        difficulty: "kolay",
       },
       {
         id: "trafik-12",
@@ -171,6 +187,7 @@ export const categories: Category[] = [
         correctIndex: 2,
         explanation:
           "Kaza yerine yaklaşan sürücü önce kendi güvenliğini sağlamalı, gerekiyorsa uyarı reflektörü koymalı ve yardım çağırmalıdır.",
+        difficulty: "orta",
       },
       {
         id: "trafik-13",
@@ -184,6 +201,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Sinyal vermek, diğer yol kullanıcılarını sürücünün manevra niyeti konusunda önceden bilgilendirerek kazaları önler.",
+        difficulty: "kolay",
       },
       {
         id: "trafik-14",
@@ -197,6 +215,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Sollama yapılmadan önce karşı yöndeki trafiğin net görülebilmesi ve güvenli bir mesafenin bulunması gerekir.",
+        difficulty: "orta",
       },
       {
         id: "trafik-15",
@@ -210,6 +229,53 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Işıklar çalışmıyorsa sürücüler kavşağa dur işareti varmış gibi yaklaşmalı, diğer araçları kontrol ederek dikkatli geçmelidir.",
+        difficulty: "zor",
+        visualId: "dur",
+      },
+      {
+        id: "trafik-16",
+        text: "Aşağıdaki işaret hangi anlama gelir?",
+        options: [
+          "Yavaşla, yol ver",
+          "Tamamen dur, geçiş hakkı olanları kontrol et",
+          "Hız sınırı bitti",
+          "Park yapılabilir",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Kırmızı sekizgen 'Dur' işaretidir; sürücü aracı tamamen durdurmalı, öncelikli yolu kontrol ettikten sonra güvenliyse hareket etmelidir.",
+        difficulty: "kolay",
+        visualId: "dur",
+      },
+      {
+        id: "trafik-17",
+        text: "Aşağıdaki işaret neyi bildirir?",
+        options: [
+          "Bisiklet yolu",
+          "Girişi olan yol",
+          "Taşıt trafiğine kapalı yol / girişi olmayan yol",
+          "Otopark",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Kırmızı daire içinde beyaz yatay çizgi, o yola araç girişinin yasak olduğunu bildirir.",
+        difficulty: "orta",
+        visualId: "girisYok",
+      },
+      {
+        id: "trafik-18",
+        text: "Şekildeki kavşak senaryosunda, dönel kavşağa aynı anda üç yönden araç yaklaşıyor. Geçiş önceliği nasıl belirlenir?",
+        options: [
+          "En hızlı giden araç geçer",
+          "Kavşak içinde zaten dönmekte olan araçlara öncelik verilir, dışarıdakiler bekler",
+          "Sağdan gelen araç her zaman öncelik kazanır",
+          "Kim önce korna çalarsa o geçer",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Dönel kavşaklarda, kavşağa yeni giren araçlar, kavşak içinde hâlihazırda dönmekte olan araçlara yol vermek zorundadır.",
+        difficulty: "zor",
+        visualId: "kavsakSenaryo",
       },
     ],
   },
@@ -226,6 +292,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Türkiye'de lastikler için kabul edilen asgari diş derinliği 1,6 milimetredir; bunun altına inen lastikler yol tutuşunu ciddi biçimde azaltır.",
+        difficulty: "orta",
       },
       {
         id: "motor-2",
@@ -239,6 +306,7 @@ export const categories: Category[] = [
         correctIndex: 2,
         explanation:
           "Fren hidroliği azaldığında sistemdeki basınç düşer, pedal boşa basar ve fren mesafesi güvensiz şekilde uzar.",
+        difficulty: "kolay",
       },
       {
         id: "motor-3",
@@ -252,6 +320,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Triger kayışı, krank milinden aldığı hareketi eksantrik miline ileterek supapların doğru zamanlamada çalışmasını sağlar.",
+        difficulty: "zor",
       },
       {
         id: "motor-4",
@@ -265,6 +334,7 @@ export const categories: Category[] = [
         correctIndex: 2,
         explanation:
           "Eskiyen motor yağı, sürtünmeyi azaltma görevini yerine getiremez ve bu da motor parçalarının erken aşınmasına neden olur.",
+        difficulty: "kolay",
       },
       {
         id: "motor-5",
@@ -278,6 +348,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Kutup başlarındaki birikinti genellikle sülfatlaşma veya korozyondur; bu, akünün şarj olma ve güç verme kapasitesini azaltır.",
+        difficulty: "orta",
       },
       {
         id: "motor-6",
@@ -291,6 +362,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Şanzıman, motorun ürettiği gücü farklı vites oranlarıyla tekerleklere aktararak aracın değişen hız ve yük ihtiyaçlarını karşılar.",
+        difficulty: "orta",
       },
       {
         id: "motor-7",
@@ -304,6 +376,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Debriyaj, vites değiştirme anında motorun gücünü geçici olarak şanzımandan ayırarak yumuşak bir geçiş sağlar.",
+        difficulty: "kolay",
       },
       {
         id: "motor-8",
@@ -317,6 +390,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Radyatör, motoru dolaşan soğutma suyunun taşıdığı ısıyı dış ortama aktararak motorun aşırı ısınmasını önler.",
+        difficulty: "kolay",
       },
       {
         id: "motor-9",
@@ -330,6 +404,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "ABS, ani ve sert frenlemelerde tekerleklerin kilitlenmesini önler; bu sayede sürücü direksiyon hâkimiyetini kaybetmez.",
+        difficulty: "orta",
       },
       {
         id: "motor-10",
@@ -343,6 +418,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Yanlış ayarlanmış farlar, karşı yönden gelen sürücüleri kamaştırabilir veya sürücünün kendi görüş mesafesini kısaltabilir.",
+        difficulty: "kolay",
       },
       {
         id: "motor-11",
@@ -356,6 +432,7 @@ export const categories: Category[] = [
         correctIndex: 0,
         explanation:
           "Silecek lastiği sertleştiğinde veya yıprandığında camı iz bırakmadan temizleyemez ya da çizik oluşturabilir; bu değişim zamanı gelmiş demektir.",
+        difficulty: "kolay",
       },
       {
         id: "motor-12",
@@ -369,6 +446,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Yakıt filtresi, yakıt içindeki kir ve yabancı parçacıkları tutarak bunların motora ve enjektörlere zarar vermesini engeller.",
+        difficulty: "orta",
       },
       {
         id: "motor-13",
@@ -382,6 +460,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Turbo, egzozdan çıkan gazın enerjisini kullanarak motora normalden fazla hava basar; bu da yanmayı ve gücü artırır.",
+        difficulty: "zor",
       },
       {
         id: "motor-14",
@@ -395,6 +474,7 @@ export const categories: Category[] = [
         correctIndex: 0,
         explanation:
           "Egzoz sistemi, yanma sonucu oluşan gazları araçtan güvenli şekilde uzaklaştırır ve motor gürültüsünü azaltır.",
+        difficulty: "kolay",
       },
       {
         id: "motor-15",
@@ -408,6 +488,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Antifriz, düşük sıcaklıklarda soğutma suyunun donmasını önler; donma sırasında oluşan genleşme motor bloğunu çatlatabilir.",
+        difficulty: "orta",
       },
     ],
   },
@@ -429,6 +510,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "İlk yardımda öncelik her zaman olay yerinin güvenliğini sağlamaktır; ardından yaralı değerlendirilir ve gerekirse yardım çağrılır.",
+        difficulty: "kolay",
       },
       {
         id: "ilkyardim-2",
@@ -442,6 +524,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Bilinç kontrolü, kazazedeye sesli seslenerek ve hafifçe dokunarak tepki alınıp alınmadığının değerlendirilmesiyle yapılır.",
+        difficulty: "kolay",
       },
       {
         id: "ilkyardim-3",
@@ -455,6 +538,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Atardamar kanamalarında kan açık kırmızı renklidir ve kalp atımlarıyla eş zamanlı olarak fışkırarak akar.",
+        difficulty: "orta",
       },
       {
         id: "ilkyardim-4",
@@ -468,6 +552,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Kırık şüphesinde bölge oynatılmadan, bulunduğu pozisyonda uygun bir malzemeyle sabitlenmelidir.",
+        difficulty: "kolay",
       },
       {
         id: "ilkyardim-5",
@@ -481,6 +566,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Hafif yanıklarda bölge, doku hasarını azaltmak için birkaç dakika serin akan suyla soğutulmalıdır; buz doğrudan uygulanmamalıdır.",
+        difficulty: "orta",
       },
       {
         id: "ilkyardim-6",
@@ -494,6 +580,7 @@ export const categories: Category[] = [
         correctIndex: 0,
         explanation:
           "Tam solunum yolu tıkanıklığında Heimlich manevrası uygulanarak karına ani baskılarla yabancı cismin çıkarılması hedeflenir.",
+        difficulty: "orta",
       },
       {
         id: "ilkyardim-7",
@@ -507,6 +594,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Şok durumunda nabız hızlı ve zayıflar, cilt soğuk, soluk ve nemli hâle gelir; bu belirtiler acil müdahale gerektirir.",
+        difficulty: "zor",
       },
       {
         id: "ilkyardim-8",
@@ -520,6 +608,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Bayılan kişi sırtüstü yatırılıp bacakları hafifçe yükseltilerek beyne kan akışının artması sağlanır.",
+        difficulty: "kolay",
       },
       {
         id: "ilkyardim-9",
@@ -533,6 +622,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Yetişkinlerde temel yaşam desteği, 30 kalp masajı ve ardından 2 yapay solunum şeklinde döngüsel olarak uygulanır.",
+        difficulty: "orta",
       },
       {
         id: "ilkyardim-10",
@@ -546,6 +636,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Omurga yaralanması şüphesinde kazazede, ek zarar oluşmaması için gerekmedikçe kesinlikle hareket ettirilmemelidir.",
+        difficulty: "kolay",
       },
       {
         id: "ilkyardim-11",
@@ -559,6 +650,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Sara nöbeti sırasında kişi zorla tutulmamalı veya hareketleri durdurulmaya çalışılmamalıdır; bu yaralanmaya yol açabilir.",
+        difficulty: "orta",
       },
       {
         id: "ilkyardim-12",
@@ -572,6 +664,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Göze kaçan yabancı cisimlerde göz asla ovuşturulmamalı; bol temiz suyla nazikçe yıkanarak cismin çıkması sağlanmalıdır.",
+        difficulty: "kolay",
       },
       {
         id: "ilkyardim-13",
@@ -585,6 +678,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Acil çağrıda en önemli bilgi, ekiplerin doğru yere yönlendirilebilmesi için olayın yeri ve kısa bir durum özetidir.",
+        difficulty: "kolay",
       },
       {
         id: "ilkyardim-14",
@@ -598,6 +692,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Burun kanamasında baş hafifçe öne eğilir ve burun kanatları birkaç dakika sıkılarak kanamanın durması beklenir; baş geriye itilirse kan boğaza kaçabilir.",
+        difficulty: "orta",
       },
       {
         id: "ilkyardim-15",
@@ -611,6 +706,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "İç kanamada kan kaybına bağlı olarak aşırı susuzluk hissi, soluk ve nemli cilt, hızlı ve zayıf nabız gibi belirtiler görülür.",
+        difficulty: "zor",
       },
     ],
   },
@@ -632,6 +728,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Gereksiz yere rölantide çalıştırılan motor, hem yakıtı boşa harcar hem de gereksiz emisyon salınımına neden olur.",
+        difficulty: "kolay",
       },
       {
         id: "cevre-2",
@@ -645,6 +742,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Katalitik konvertör, egzoz gazındaki zararlı kimyasalları kimyasal reaksiyonlarla daha az zararlı bileşenlere dönüştürerek çevre kirliliğini azaltır.",
+        difficulty: "orta",
       },
       {
         id: "cevre-3",
@@ -658,6 +756,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Egzoz emisyon muayenesi, araçların çevreye saldığı zararlı gazların kabul edilebilir sınırlar içinde kalmasını denetler.",
+        difficulty: "kolay",
       },
       {
         id: "cevre-4",
@@ -671,6 +770,7 @@ export const categories: Category[] = [
         correctIndex: 0,
         explanation:
           "Toplu taşıma, aynı yolculuğu daha az araçla yaparak kişi başına düşen emisyonu ve trafik yoğunluğunu azaltır.",
+        difficulty: "kolay",
       },
       {
         id: "cevre-5",
@@ -684,6 +784,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Sinyal vermek, diğer sürücülere niyetinizi önceden bildirerek trafikte saygılı ve öngörülebilir bir davranış sergilemektir.",
+        difficulty: "kolay",
       },
       {
         id: "cevre-6",
@@ -697,6 +798,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Korna, yalnızca bir tehlikeyi önlemek veya uyarmak gibi gerçekten gerekli durumlarda kullanılmalı, gereksiz gürültü kirliliğine yol açılmamalıdır.",
+        difficulty: "kolay",
       },
       {
         id: "cevre-7",
@@ -710,16 +812,16 @@ export const categories: Category[] = [
         correctIndex: 0,
         explanation:
           "Sorumlu bir sürücü, park ederken diğer araçların ve yayaların görüşünü kapatmayacak ve manevra yapmasını zorlaştırmayacak şekilde davranır.",
+        difficulty: "orta",
       },
       {
         id: "cevre-8",
         text: "Yayaya öncelik vermek trafikte hangi değerin bir göstergesidir?",
-        options: [
-          "Bencillik", "Empati ve karşılıklı saygı", "Aceleci davranış", "Kural ihlali"
-        ],
+        options: ["Bencillik", "Empati ve karşılıklı saygı", "Aceleci davranış", "Kural ihlali"],
         correctIndex: 1,
         explanation:
           "Yayaya öncelik vermek, sürücünün kendisini yayanın yerine koyarak gösterdiği empati ve saygının bir yansımasıdır.",
+        difficulty: "kolay",
       },
       {
         id: "cevre-9",
@@ -733,6 +835,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Egzoz gazlarındaki zararlı bileşenler hava kirliliğine katkıda bulunur ve uzun vadede solunum yolu rahatsızlıklarına yol açabilir.",
+        difficulty: "orta",
       },
       {
         id: "cevre-10",
@@ -746,6 +849,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Agresif bir sürücüyle karşılaşıldığında sakin kalmak ve tartışmadan uzaklaşmak, olası bir kazayı veya çatışmayı önler.",
+        difficulty: "orta",
       },
       {
         id: "cevre-11",
@@ -759,6 +863,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Atık motor yağı gibi zararlı maddeler, çevreye zarar vermemesi için mutlaka yetkili toplama merkezlerine teslim edilmelidir.",
+        difficulty: "kolay",
       },
       {
         id: "cevre-12",
@@ -772,6 +877,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Elektrikli araçlar kullanım sırasında egzoz gazı salmadıkları için yerel hava kirliliğine katkıları içten yanmalı araçlara göre daha azdır.",
+        difficulty: "orta",
       },
       {
         id: "cevre-13",
@@ -785,6 +891,7 @@ export const categories: Category[] = [
         correctIndex: 0,
         explanation:
           "Küçük hatalara karşı hoşgörülü olmak, gerginliği azaltarak trafik ortamının genel güvenliğine ve huzuruna katkı sağlar.",
+        difficulty: "kolay",
       },
       {
         id: "cevre-14",
@@ -798,6 +905,7 @@ export const categories: Category[] = [
         correctIndex: 1,
         explanation:
           "Kullanılmayacak bir aracı gereksiz yere çalıştırmamak, hem yakıt israfını hem de gereksiz emisyonu önler.",
+        difficulty: "kolay",
       },
       {
         id: "cevre-15",
@@ -811,6 +919,7 @@ export const categories: Category[] = [
         correctIndex: 0,
         explanation:
           "Kuralların ceza kaygısıyla değil güvenlik bilinciyle benimsenmesi, sürücünün trafik adabını gerçek anlamda içselleştirdiğini gösterir.",
+        difficulty: "zor",
       },
     ],
   },
@@ -818,4 +927,12 @@ export const categories: Category[] = [
 
 export function getCategory(slug: string) {
   return categories.find((c) => c.slug === slug);
+}
+
+export function getAllQuestions(): Question[] {
+  return categories.flatMap((c) => c.questions);
+}
+
+export function getQuestionCategorySlug(questionId: string): string | undefined {
+  return categories.find((c) => c.questions.some((q) => q.id === questionId))?.slug;
 }
