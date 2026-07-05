@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
+import BottomNav from "@/components/BottomNav";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -52,6 +53,7 @@ export default function RootLayout({
       >
         <Header />
         {children}
+        <BottomNav />
       </body>
     </html>
   );

@@ -1,7 +1,15 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { ArrowRight, Gauge, Wrench, HeartPulse, Leaf } from "lucide-react";
 import { categories } from "@/lib/questions";
 import { CategoryBadge, QuickLinks } from "@/components/HomeExtras";
+import SeoContent from "@/components/SeoContent";
+
+export const metadata: Metadata = {
+  title: "Ehliyet Sınavı Soruları 2026 | Çıkmış Ehliyet Sınavları",
+  description:
+    "2026 ehliyet sınavı sorularını ve çıkmış ehliyet sınavlarını ücretsiz çöz! Trafik, ilk yardım, motor bilgisi soruları ve deneme sınavlarıyla hazırlan.",
+};
 
 const icons: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
   trafik: Gauge,
@@ -22,8 +30,11 @@ export default function Home() {
         <div className="mb-3 font-data text-[11px] sm:text-xs uppercase tracking-[0.2em] text-gold">
           Sınav Hazırlık
         </div>
-        <h1 className="font-display italic text-4xl sm:text-6xl font-semibold text-ink leading-[1.05] mb-4">
-          Ehliyet<span className="text-gold">Al</span>
+        <p className="font-display italic text-2xl sm:text-3xl text-gold mb-2">
+          EhliyetAl
+        </p>
+        <h1 className="font-display text-3xl sm:text-5xl font-semibold text-ink leading-[1.1] mb-4">
+          Ehliyet Sınavı Soruları (2026)
         </h1>
         <p className="text-ink-soft text-base sm:text-lg max-w-lg mb-8 leading-relaxed">
           Gerçek sınav formatında {totalQuestions} soruyla trafik, motor,
@@ -73,6 +84,8 @@ export default function Home() {
           100 üzerinden 70 puan sınavı geçmek için gereken puandır.
         </p>
       </main>
+
+      <SeoContent />
     </div>
   );
 }

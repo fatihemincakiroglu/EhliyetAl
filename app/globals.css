@@ -57,6 +57,12 @@ body {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
+@media (max-width: 639px) {
+  body {
+    padding-bottom: 4.25rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     transition-duration: 0.01ms !important;
