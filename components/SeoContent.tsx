@@ -77,7 +77,7 @@ const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "EhliyetAl",
-  url: "https://ehliyet-al.vercel.app/",
+  url: "https://ehliyetal.net/",
   description:
     "2026 ehliyet sınavı sorularını ve çıkmış ehliyet sınavlarını ücretsiz çöz.",
   author: {
@@ -100,13 +100,13 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       position: 1,
       name: "Ana Sayfa",
-      item: "https://ehliyet-al.vercel.app/",
+      item: "https://ehliyetal.net/",
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Ehliyet Sınavı Soruları (2026)",
-      item: "https://ehliyet-al.vercel.app/",
+      item: "https://ehliyetal.net/",
     },
   ],
 };

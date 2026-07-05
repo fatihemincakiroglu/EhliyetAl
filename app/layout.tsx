@@ -23,7 +23,7 @@ const plexMono = IBM_Plex_Mono({
   weight: ["500", "600"],
 });
 
-const SITE_URL = "https://ehliyet-al.vercel.app";
+const SITE_URL = "https://ehliyetal.net";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -33,6 +33,10 @@ export const metadata: Metadata = {
   authors: [{ name: "Fatih Emin Çakıroğlu", url: "https://fatihemincakiroglu.com/" }],
   creator: "Fatih Emin Çakıroğlu",
   publisher: "Fatih Emin Çakıroğlu",
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 const themeInitScript = `
