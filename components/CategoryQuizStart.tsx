@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ListChecks } from "lucide-react";
+import { ArrowLeft, ListChecks, FileDown } from "lucide-react";
 import type { Category, Difficulty } from "@/lib/questions";
 import QuizRunner from "@/components/QuizRunner";
 
@@ -21,6 +21,55 @@ export default function CategoryQuizStart({ category }: { category: Category }) 
     if (difficulty === "hepsi") return category.questions;
     return category.questions.filter((q) => q.difficulty === difficulty);
   }, [category.questions, difficulty]);
+
+  async function handleDownloadSheet() {
+    const { jsPDF } = await import("jspdf");
+    const doc = new jsPDF();
+    const marginX = 20;
+    let y = 20;
+
+    doc.setFontSize(16);
+    doc.text(`EhliyetAl - ${category.name}`, marginX, y);
+    y += 8;
+    doc.setFontSize(10);
+    doc.text(`Calisma Foyu (${filteredQuestions.length} soru)`, marginX, y);
+    y += 12;
+
+    filteredQuestions.forEach((q, i) => {
+      if (y > 265) {
+        doc.addPage();
+        y = 20;
+      }
+      doc.setFontSize(11);
+      const qLines: string[] = doc.splitTextToSize(`${i + 1}. ${q.text}`, 170);
+      qLines.forEach((line) => {
+        if (y > 275) {
+          doc.addPage();
+          y = 20;
+        }
+        doc.text(line, marginX, y);
+        y += 6;
+      });
+
+      doc.setFontSize(9);
+      q.options.forEach((opt, oi) => {
+        const prefix = oi === q.correctIndex ? "✓ " : "  ";
+        const label = `${String.fromCharCode(65 + oi)}) `;
+        const lines: string[] = doc.splitTextToSize(`${prefix}${label}${opt}`, 165);
+        lines.forEach((line) => {
+          if (y > 278) {
+            doc.addPage();
+            y = 20;
+          }
+          doc.text(line, marginX + 4, y);
+          y += 5;
+        });
+      });
+      y += 4;
+    });
+
+    doc.save(`ehliyetal-${category.slug}-calisma-foyu.pdf`);
+  }
 
   if (started) {
     return (
@@ -99,14 +148,25 @@ export default function CategoryQuizStart({ category }: { category: Category }) 
             </div>
           </div>
 
-          <button
-            type="button"
-            onClick={() => setStarted(true)}
-            disabled={filteredQuestions.length === 0}
-            className="w-full sm:w-auto font-display text-sm tracking-wide uppercase rounded-full bg-gold text-ink px-8 py-3.5 hover:bg-gold-soft transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-          >
-            Çözmeye Başla
-          </button>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <button
+              type="button"
+              onClick={() => setStarted(true)}
+              disabled={filteredQuestions.length === 0}
+              className="font-display text-sm tracking-wide uppercase rounded-full bg-gold text-ink px-8 py-3.5 hover:bg-gold-soft transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              Çözmeye Başla
+            </button>
+            <button
+              type="button"
+              onClick={handleDownloadSheet}
+              disabled={filteredQuestions.length === 0}
+              className="flex items-center justify-center gap-2 font-display text-sm tracking-wide uppercase rounded-full border border-line text-ink px-6 py-3.5 hover:bg-gold-wash hover:border-gold-soft transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              <FileDown size={16} />
+              Yazdırılabilir Föy İndir
+            </button>
+          </div>
         </div>
       </main>
     </div>

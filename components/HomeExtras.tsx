@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { RefreshCcw, ListChecks } from "lucide-react";
-import { getCategoryStats, getWrongQuestionIds, type CategoryStat } from "@/lib/storage";
+import { getCategoryStats, type CategoryStat } from "@/lib/storage";
+import { getDueQuestionIds } from "@/lib/spacedRepetition";
 
 export function CategoryBadge({ slug }: { slug: string }) {
   const [stat, setStat] = useState<CategoryStat | null>(null);
@@ -23,10 +24,10 @@ export function CategoryBadge({ slug }: { slug: string }) {
 }
 
 export function QuickLinks() {
-  const [wrongCount, setWrongCount] = useState(0);
+  const [dueCount, setDueCount] = useState(0);
 
   useEffect(() => {
-    setWrongCount(getWrongQuestionIds().length);
+    setDueCount(getDueQuestionIds().length);
   }, []);
 
   return (
@@ -38,13 +39,13 @@ export function QuickLinks() {
         <ListChecks size={16} />
         Sınav Simülasyonu
       </Link>
-      {wrongCount > 0 && (
+      {dueCount > 0 && (
         <Link
           href="/tekrar"
           className="flex-1 flex items-center justify-center gap-2 rounded-full bg-gold text-ink px-5 py-3 text-sm font-display tracking-wide uppercase hover:bg-gold-soft transition-colors"
         >
           <RefreshCcw size={16} />
-          Yanlışları Tekrar Çöz ({wrongCount})
+          Tekrar Zamanı ({dueCount})
         </Link>
       )}
     </div>

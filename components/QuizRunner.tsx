@@ -16,6 +16,7 @@ import ProgressTrack from "@/components/ProgressTrack";
 import QuestionCard from "@/components/QuestionCard";
 import { addAttempt } from "@/lib/storage";
 import type { AttemptMode } from "@/lib/storage";
+import { recordOutcome } from "@/lib/spacedRepetition";
 
 type Answer = {
   questionIndex: number;
@@ -88,15 +89,18 @@ export default function QuizRunner({
 
   function handleSelect(index: number) {
     if (selected !== null) return;
+    const isCorrect = index === question.correctIndex;
     setSelected(index);
     setAnswers((prev) => [
       ...prev,
       {
         questionIndex: step,
         selectedIndex: index,
-        correct: index === question.correctIndex,
+        correct: isCorrect,
       },
     ]);
+    recordOutcome(question.id, isCorrect);
+    fetch("/api/counter", { method: "POST" }).catch(() => {});
   }
 
   function handleNext() {

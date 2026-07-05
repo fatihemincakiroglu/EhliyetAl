@@ -2,21 +2,29 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, RefreshCcw } from "lucide-react";
+import { ArrowLeft, RefreshCcw, Clock } from "lucide-react";
 import { getAllQuestions, type Question } from "@/lib/questions";
-import { getWrongQuestionIds } from "@/lib/storage";
+import {
+  getDueQuestionIds,
+  getUpcomingReviewCount,
+  getNextUpcomingDate,
+} from "@/lib/spacedRepetition";
 import QuizRunner from "@/components/QuizRunner";
 
 export default function TekrarPage() {
   const [ready, setReady] = useState(false);
   const [reviewQuestions, setReviewQuestions] = useState<Question[]>([]);
+  const [upcomingCount, setUpcomingCount] = useState(0);
+  const [nextDate, setNextDate] = useState<Date | null>(null);
 
   useEffect(() => {
-    const ids = getWrongQuestionIds();
+    const ids = getDueQuestionIds();
     const all = getAllQuestions();
     const map = new Map(all.map((q) => [q.id, q]));
     const list = ids.map((id) => map.get(id)).filter((q): q is Question => Boolean(q));
     setReviewQuestions(list);
+    setUpcomingCount(getUpcomingReviewCount());
+    setNextDate(getNextUpcomingDate());
     setReady(true);
   }, []);
 
@@ -42,12 +50,20 @@ export default function TekrarPage() {
           <div className="bg-surface border border-line rounded-2xl p-8">
             <RefreshCcw size={28} className="mx-auto mb-4 text-gold" />
             <h1 className="font-display text-xl text-ink mb-2">
-              Henüz tekrar edilecek soru yok
+              Şu an tekrar edilecek soru yok
             </h1>
-            <p className="text-ink-soft text-sm">
-              Bir kategoriyi veya sınav simülasyonunu çözdüğünde yanlış yaptığın sorular
-              burada birikir ve tekrar çalışabilirsin.
+            <p className="text-ink-soft text-sm mb-4">
+              Yanlış yaptığın sorular, aralıklı tekrar sistemiyle birkaç gün
+              sonra otomatik olarak burada karşına çıkar — böylece unutmadan
+              önce tekrar edersin.
             </p>
+            {upcomingCount > 0 && nextDate && (
+              <div className="inline-flex items-center gap-2 text-xs text-ink-soft bg-paper border border-line rounded-full px-4 py-2">
+                <Clock size={14} className="text-gold" />
+                {upcomingCount} soru sırada — sıradaki tekrar{" "}
+                {nextDate.toLocaleDateString("tr-TR")} tarihinde
+              </div>
+            )}
           </div>
         </main>
       </div>
@@ -57,8 +73,8 @@ export default function TekrarPage() {
   return (
     <QuizRunner
       questions={reviewQuestions}
-      title="Yanlışlarını Tekrar Çöz"
-      subtitle="Tekrar Modu"
+      title="Aralıklı Tekrar"
+      subtitle={`${reviewQuestions.length} soru hazır`}
       mode="review"
       backHref="/"
     />

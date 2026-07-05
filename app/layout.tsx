@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import BottomNav from "@/components/BottomNav";
 import Footer from "@/components/Footer";
+import PwaRegister from "@/components/PwaRegister";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -56,6 +57,12 @@ export const metadata: Metadata = {
     description:
       "2026 ehliyet sınavı sorularını ve çıkmış ehliyet sınavlarını ücretsiz çöz!",
   },
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "EhliyetAl",
+  },
 };
 
 const themeInitScript = `
@@ -84,6 +91,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <BottomNav />
+        <PwaRegister />
       </body>
     </html>
   );

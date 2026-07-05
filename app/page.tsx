@@ -3,6 +3,9 @@ import type { Metadata } from "next";
 import { ArrowRight, Gauge, Wrench, HeartPulse, Leaf } from "lucide-react";
 import { categories } from "@/lib/questions";
 import { CategoryBadge, QuickLinks } from "@/components/HomeExtras";
+import DailyQuestion from "@/components/DailyQuestion";
+import StudyReminder from "@/components/StudyReminder";
+import GlobalCounter from "@/components/GlobalCounter";
 import SeoContent from "@/components/SeoContent";
 
 export const metadata: Metadata = {
@@ -39,13 +42,20 @@ export default function Home() {
         <h1 className="font-display text-3xl sm:text-5xl font-semibold text-ink leading-[1.1] mb-4">
           Ehliyet Sınavı Soruları (2026)
         </h1>
-        <p className="text-ink-soft text-base sm:text-lg max-w-lg mb-8 leading-relaxed">
+        <p className="text-ink-soft text-base sm:text-lg max-w-lg mb-4 leading-relaxed">
           Gerçek sınav formatında {totalQuestions} soruyla trafik, motor,
           ilkyardım ve çevre konularını çalış. Her sorudan hemen sonra doğru
           cevabın açıklamasını gör.
         </p>
 
+        <div className="mb-8 flex flex-wrap items-center gap-4">
+          <StudyReminder />
+          <GlobalCounter />
+        </div>
+
         <QuickLinks />
+
+        <DailyQuestion />
 
         <div className="flex flex-col gap-3">
           {categories.map((category, i) => {
