@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter, IBM_Plex_Mono } from "next/font/google";
+import { Manrope, Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import BottomNav from "@/components/BottomNav";
 import Footer from "@/components/Footer";
 import PwaRegister from "@/components/PwaRegister";
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  style: ["normal", "italic"],
+  weight: ["600", "700", "800"],
 });
 
 const inter = Inter({
@@ -68,9 +67,10 @@ export const metadata: Metadata = {
 const themeInitScript = `
 try {
   var theme = localStorage.getItem('ehliyetal:theme:v1');
-  if (theme === 'dark' || theme === 'light') {
-    document.documentElement.setAttribute('data-theme', theme);
+  if (theme !== 'dark' && theme !== 'light') {
+    theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
+  document.documentElement.setAttribute('data-theme', theme);
 } catch (e) {}
 `;
 
@@ -85,7 +85,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body
-        className={`${fraunces.variable} ${inter.variable} ${plexMono.variable} font-body antialiased`}
+        className={`${manrope.variable} ${inter.variable} ${plexMono.variable} font-body antialiased`}
       >
         <Header />
         {children}

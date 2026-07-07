@@ -1,37 +1,47 @@
 @import "tailwindcss";
 
 :root {
-  --color-paper: #f7f3ea;
+  --color-paper: #f6f8fb;
   --color-surface: #ffffff;
-  --color-surface-alt: #efe6d3;
-  --color-ink: #1a2338;
-  --color-ink-soft: #5b6472;
-  --color-line: rgba(26, 35, 56, 0.11);
-  --color-gold: #a1782e;
-  --color-gold-soft: #cda545;
-  --color-gold-deep: #7c5b20;
-  --color-gold-wash: rgba(161, 120, 46, 0.12);
-  --color-success: #1f7a52;
-  --color-success-wash: rgba(31, 122, 82, 0.1);
-  --color-danger: #b8402c;
-  --color-danger-wash: rgba(184, 64, 44, 0.1);
+  --color-surface-alt: #eef1f6;
+  --color-ink: #101828;
+  --color-ink-soft: #667085;
+  --color-line: #e4e7ec;
+  --color-gold: #2952e3;
+  --color-gold-soft: #4c74f0;
+  --color-gold-deep: #1d3ba6;
+  --color-gold-wash: rgba(41, 82, 227, 0.08);
+  --color-success: #17b26a;
+  --color-success-wash: rgba(23, 178, 106, 0.1);
+  --color-danger: #f04438;
+  --color-danger-wash: rgba(240, 68, 56, 0.1);
+  --color-tangerine: #f79009;
+  --color-tangerine-wash: rgba(247, 144, 9, 0.12);
+  --color-sun: #fdb022;
+  --color-sun-wash: rgba(253, 176, 34, 0.14);
+  --shadow-color: 16, 24, 40;
 }
 
 [data-theme="dark"] {
-  --color-paper: #12151f;
-  --color-surface: #1c2130;
-  --color-surface-alt: #262c3f;
-  --color-ink: #f1ece0;
-  --color-ink-soft: #a3aabb;
-  --color-line: rgba(241, 236, 224, 0.11);
-  --color-gold: #d9b45c;
-  --color-gold-soft: #e8c877;
-  --color-gold-deep: #b48f3d;
-  --color-gold-wash: rgba(217, 180, 92, 0.16);
-  --color-success: #4caf7d;
-  --color-success-wash: rgba(76, 175, 125, 0.14);
-  --color-danger: #e5533d;
-  --color-danger-wash: rgba(229, 83, 61, 0.14);
+  --color-paper: #0c111d;
+  --color-surface: #161b26;
+  --color-surface-alt: #1e2534;
+  --color-ink: #f2f4f7;
+  --color-ink-soft: #94a3b8;
+  --color-line: #2a3140;
+  --color-gold: #6690ff;
+  --color-gold-soft: #85a3ff;
+  --color-gold-deep: #4c74f0;
+  --color-gold-wash: rgba(102, 144, 255, 0.14);
+  --color-success: #47cd89;
+  --color-success-wash: rgba(71, 205, 137, 0.14);
+  --color-danger: #f97066;
+  --color-danger-wash: rgba(249, 112, 102, 0.14);
+  --color-tangerine: #fdb022;
+  --color-tangerine-wash: rgba(253, 176, 34, 0.16);
+  --color-sun: #fec84b;
+  --color-sun-wash: rgba(254, 200, 75, 0.18);
+  --shadow-color: 0, 0, 0;
 }
 
 @theme inline {
@@ -49,45 +59,76 @@
   --color-success-wash: var(--color-success-wash);
   --color-danger: var(--color-danger);
   --color-danger-wash: var(--color-danger-wash);
-  --font-display: var(--font-fraunces);
+  --color-tangerine: var(--color-tangerine);
+  --color-tangerine-wash: var(--color-tangerine-wash);
+  --color-sun: var(--color-sun);
+  --color-sun-wash: var(--color-sun-wash);
+  --font-display: var(--font-manrope);
   --font-body: var(--font-inter);
   --font-data: var(--font-plexmono);
+
+  --radius-lg: 0.625rem;
+  --radius-xl: 0.875rem;
+  --radius-2xl: 1.25rem;
 }
 
 body {
   background: var(--color-paper);
   color: var(--color-ink);
   transition: background-color 0.2s ease, color 0.2s ease;
-  background-image: radial-gradient(
-    circle at 0% 0%,
-    var(--color-gold-wash),
-    transparent 45%
-  );
-  background-attachment: fixed;
 }
 
 .gold-gradient {
-  background: linear-gradient(135deg, var(--color-gold-soft), var(--color-gold-deep));
-  box-shadow: 0 2px 10px rgba(124, 91, 32, 0.28);
+  background: var(--color-gold);
+  box-shadow: 0 1px 2px rgba(var(--shadow-color), 0.06), 0 4px 10px rgba(41, 82, 227, 0.24);
+  transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
 }
 
 .gold-gradient:hover {
-  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-deep));
+  background: var(--color-gold-deep);
+  box-shadow: 0 2px 4px rgba(var(--shadow-color), 0.08), 0 6px 16px rgba(41, 82, 227, 0.3);
+}
+
+.gold-gradient:active {
+  transform: scale(0.98);
 }
 
 .premium-card {
   position: relative;
+  box-shadow: 0 1px 2px rgba(var(--shadow-color), 0.04), 0 2px 8px rgba(var(--shadow-color), 0.04);
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
 }
 
-.premium-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 14px;
-  right: 14px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--color-gold-soft), transparent);
-  opacity: 0.7;
+.premium-card:hover {
+  box-shadow: 0 2px 4px rgba(var(--shadow-color), 0.05), 0 8px 20px rgba(var(--shadow-color), 0.07);
+}
+
+.sticker-card {
+  box-shadow: 0 1px 2px rgba(var(--shadow-color), 0.04), 0 4px 16px rgba(var(--shadow-color), 0.06);
+}
+
+.btn-hard,
+.btn-hard-outline {
+  transition: background-color 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease, transform 0.1s ease;
+}
+
+.btn-hard {
+  box-shadow: 0 1px 2px rgba(var(--shadow-color), 0.06);
+}
+
+.btn-hard:hover {
+  box-shadow: 0 2px 8px rgba(var(--shadow-color), 0.1);
+}
+
+.btn-hard:active,
+.btn-hard-outline:active {
+  transform: scale(0.98);
+}
+
+.btn-hard:disabled,
+.btn-hard-outline:disabled {
+  box-shadow: none;
+  transform: none;
 }
 
 @media (max-width: 639px) {

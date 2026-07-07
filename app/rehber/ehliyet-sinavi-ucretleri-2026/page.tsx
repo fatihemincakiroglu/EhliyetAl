@@ -96,7 +96,7 @@ export default function UcretlerRehberi() {
           rel="noopener noreferrer nofollow"
           className="inline-flex items-center gap-2 text-sm font-display uppercase tracking-wide text-gold hover:text-gold-soft transition-colors mb-10"
         >
-          e-Devlet'i ziyaret et <ExternalLink size={14} />
+          e-Devlet&apos;i ziyaret et <ExternalLink size={14} />
         </a>
 
         <p className="text-sm text-ink-soft leading-relaxed">

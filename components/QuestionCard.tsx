@@ -73,7 +73,7 @@ export default function QuestionCard({
   }
 
   return (
-    <div className="bg-surface border border-line rounded-2xl p-5 sm:p-8 shadow-[0_1px_2px_rgba(18,24,43,0.04),0_8px_24px_rgba(18,24,43,0.05)]">
+    <div className="premium-card bg-surface border border-line rounded-2xl p-5 sm:p-8">
       <div className="flex items-center justify-between gap-3 mb-4">
         <span
           className={`font-data text-[10px] uppercase tracking-wider px-2 py-1 rounded-full ${difficultyClass[question.difficulty]}`}
@@ -118,17 +118,21 @@ export default function QuestionCard({
         {question.options.map((option, index) => {
           const isCorrect = index === question.correctIndex;
           const isSelected = index === selectedIndex;
+          const letter = String.fromCharCode(65 + index);
 
           let stateClasses =
             "border-line bg-surface hover:border-gold-soft hover:bg-gold-wash";
+          let badgeClasses = "bg-surface-alt text-ink-soft";
 
           if (answered) {
             if (isCorrect) {
               stateClasses = "border-success bg-success-wash";
+              badgeClasses = "bg-success text-white";
             } else if (isSelected && !isCorrect) {
               stateClasses = "border-danger bg-danger-wash";
+              badgeClasses = "bg-danger text-white";
             } else {
-              stateClasses = "border-line bg-surface opacity-45";
+              stateClasses = "border-line bg-surface opacity-50";
             }
           }
 
@@ -141,8 +145,10 @@ export default function QuestionCard({
               className={`group flex items-center justify-between gap-3 text-left rounded-xl border px-4 py-3.5 sm:py-4 font-body text-sm sm:text-base transition-colors ${stateClasses} disabled:cursor-default`}
             >
               <span className="flex items-center gap-3 min-w-0">
-                <span className="font-data text-xs text-ink-soft shrink-0">
-                  {String.fromCharCode(65 + index)}
+                <span
+                  className={`flex items-center justify-center w-7 h-7 rounded-full font-data text-xs font-semibold shrink-0 transition-colors ${badgeClasses}`}
+                >
+                  {letter}
                 </span>
                 <span className="text-ink">{option}</span>
               </span>
@@ -162,11 +168,14 @@ export default function QuestionCard({
       </p>
 
       {answered && (
-        <div className="mt-6 pt-5 border-t border-line">
+        <div className="mt-6 pt-5 border-t border-line" aria-live="polite">
           <p className="font-data text-[11px] uppercase tracking-wider text-gold mb-1.5">
             Açıklama
           </p>
           <p className="text-sm text-ink-soft leading-relaxed">
+            <span className="sr-only">
+              {selectedIndex === question.correctIndex ? "Doğru cevap. " : "Yanlış cevap. "}
+            </span>
             {question.explanation}
           </p>
         </div>
