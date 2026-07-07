@@ -168,7 +168,7 @@ export default function QuizRunner({
                   type="button"
                   onClick={handleNext}
                   disabled={isLast}
-                  className="w-full sm:w-auto font-display text-sm tracking-wide uppercase rounded-full bg-ink text-paper px-6 py-3.5 sm:py-3 hover:bg-gold hover:text-ink transition-colors disabled:opacity-0 disabled:pointer-events-none"
+                  className="w-full sm:w-auto font-display text-sm tracking-wide uppercase btn-hard rounded-full bg-ink text-paper px-6 py-3.5 sm:py-3 hover:bg-gold hover:text-ink transition-colors disabled:opacity-0 disabled:pointer-events-none"
                 >
                   Sonraki Soru
                 </button>
@@ -293,7 +293,7 @@ function ResultScreen({
   }
 
   return (
-    <div className="bg-surface border border-line rounded-2xl p-6 sm:p-8 text-center shadow-[0_1px_2px_rgba(18,24,43,0.04),0_8px_24px_rgba(18,24,43,0.05)]">
+    <div className="sticker-card bg-surface border-2 rounded-2xl p-6 sm:p-8 text-center">
       <div
         className={`inline-flex items-center justify-center rounded-full p-3 mb-4 ${
           passed ? "bg-success-wash text-success" : "bg-danger-wash text-danger"
@@ -336,7 +336,7 @@ function ResultScreen({
         <button
           type="button"
           onClick={onRestart}
-          className="flex items-center justify-center gap-2 font-display text-sm tracking-wide uppercase rounded-full bg-ink text-paper px-6 py-3.5 sm:py-3 hover:bg-gold hover:text-ink transition-colors"
+          className="flex items-center justify-center gap-2 font-display text-sm tracking-wide uppercase btn-hard rounded-full bg-ink text-paper px-6 py-3.5 sm:py-3 hover:bg-gold hover:text-ink transition-colors"
         >
           <RotateCcw size={16} />
           Tekrar Çöz
@@ -344,7 +344,7 @@ function ResultScreen({
         <button
           type="button"
           onClick={handleShare}
-          className="flex items-center justify-center gap-2 font-display text-sm tracking-wide uppercase rounded-full border border-line text-ink px-6 py-3.5 sm:py-3 hover:bg-gold-wash hover:border-gold-soft transition-colors"
+          className="flex items-center justify-center gap-2 font-display text-sm tracking-wide uppercase btn-hard-outline rounded-full border-2 border-ink text-ink bg-surface px-6 py-3.5 sm:py-3 hover:bg-gold-wash hover:border-gold-soft transition-colors"
         >
           <Share2 size={16} />
           {shareStatus === "copied" ? "Kopyalandı!" : "Paylaş"}
@@ -352,14 +352,14 @@ function ResultScreen({
         <button
           type="button"
           onClick={handleDownloadPdf}
-          className="flex items-center justify-center gap-2 font-display text-sm tracking-wide uppercase rounded-full border border-line text-ink px-6 py-3.5 sm:py-3 hover:bg-gold-wash hover:border-gold-soft transition-colors"
+          className="flex items-center justify-center gap-2 font-display text-sm tracking-wide uppercase btn-hard-outline rounded-full border-2 border-ink text-ink bg-surface px-6 py-3.5 sm:py-3 hover:bg-gold-wash hover:border-gold-soft transition-colors"
         >
           <Download size={16} />
           PDF İndir
         </button>
         <Link
           href={backHref}
-          className="flex items-center justify-center gap-2 font-display text-sm tracking-wide uppercase rounded-full border border-line text-ink px-6 py-3.5 sm:py-3 hover:bg-gold-wash hover:border-gold-soft transition-colors"
+          className="flex items-center justify-center gap-2 font-display text-sm tracking-wide uppercase btn-hard-outline rounded-full border-2 border-ink text-ink bg-surface px-6 py-3.5 sm:py-3 hover:bg-gold-wash hover:border-gold-soft transition-colors"
         >
           Geri Dön
         </Link>
