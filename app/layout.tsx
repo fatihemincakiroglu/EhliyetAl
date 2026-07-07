@@ -1,28 +1,27 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter, IBM_Plex_Mono } from "next/font/google";
+import { Baloo_2, Plus_Jakarta_Sans, Space_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import BottomNav from "@/components/BottomNav";
 import Footer from "@/components/Footer";
 import PwaRegister from "@/components/PwaRegister";
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+const baloo = Baloo_2({
+  variable: "--font-baloo",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  style: ["normal", "italic"],
+  weight: ["500", "600", "700", "800"],
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const jakarta = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const plexMono = IBM_Plex_Mono({
-  variable: "--font-plexmono",
+const spaceMono = Space_Mono({
+  variable: "--font-spacemono",
   subsets: ["latin"],
-  weight: ["500", "600"],
+  weight: ["400", "700"],
 });
 
 const SITE_URL = "https://ehliyetal.net";
@@ -68,9 +67,10 @@ export const metadata: Metadata = {
 const themeInitScript = `
 try {
   var theme = localStorage.getItem('ehliyetal:theme:v1');
-  if (theme === 'dark' || theme === 'light') {
-    document.documentElement.setAttribute('data-theme', theme);
+  if (theme !== 'dark' && theme !== 'light') {
+    theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
+  document.documentElement.setAttribute('data-theme', theme);
 } catch (e) {}
 `;
 
@@ -85,7 +85,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body
-        className={`${fraunces.variable} ${inter.variable} ${plexMono.variable} font-body antialiased`}
+        className={`${baloo.variable} ${jakarta.variable} ${spaceMono.variable} font-body antialiased`}
       >
         <Header />
         {children}

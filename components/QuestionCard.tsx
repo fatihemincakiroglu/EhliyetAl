@@ -73,7 +73,7 @@ export default function QuestionCard({
   }
 
   return (
-    <div className="bg-surface border border-line rounded-2xl p-5 sm:p-8 shadow-[0_1px_2px_rgba(18,24,43,0.04),0_8px_24px_rgba(18,24,43,0.05)]">
+    <div className="sticker-card bg-surface border-2 rounded-2xl p-5 sm:p-8">
       <div className="flex items-center justify-between gap-3 mb-4">
         <span
           className={`font-data text-[10px] uppercase tracking-wider px-2 py-1 rounded-full ${difficultyClass[question.difficulty]}`}
@@ -162,11 +162,14 @@ export default function QuestionCard({
       </p>
 
       {answered && (
-        <div className="mt-6 pt-5 border-t border-line">
+        <div className="mt-6 pt-5 border-t border-line" aria-live="polite">
           <p className="font-data text-[11px] uppercase tracking-wider text-gold mb-1.5">
             Açıklama
           </p>
           <p className="text-sm text-ink-soft leading-relaxed">
+            <span className="sr-only">
+              {selectedIndex === question.correctIndex ? "Doğru cevap. " : "Yanlış cevap. "}
+            </span>
             {question.explanation}
           </p>
         </div>

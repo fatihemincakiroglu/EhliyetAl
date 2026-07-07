@@ -1,37 +1,47 @@
 @import "tailwindcss";
 
 :root {
-  --color-paper: #f7f3ea;
+  --color-paper: #faf7ff;
   --color-surface: #ffffff;
-  --color-surface-alt: #efe6d3;
-  --color-ink: #1a2338;
-  --color-ink-soft: #5b6472;
-  --color-line: rgba(26, 35, 56, 0.11);
-  --color-gold: #a1782e;
-  --color-gold-soft: #cda545;
-  --color-gold-deep: #7c5b20;
-  --color-gold-wash: rgba(161, 120, 46, 0.12);
-  --color-success: #1f7a52;
-  --color-success-wash: rgba(31, 122, 82, 0.1);
-  --color-danger: #b8402c;
-  --color-danger-wash: rgba(184, 64, 44, 0.1);
+  --color-surface-alt: #f1ecff;
+  --color-ink: #1b1033;
+  --color-ink-soft: #6b5c8f;
+  --color-line: rgba(27, 16, 51, 0.14);
+  --color-gold: #6c4dff;
+  --color-gold-soft: #8f73ff;
+  --color-gold-deep: #4a2fd9;
+  --color-gold-wash: rgba(108, 77, 255, 0.14);
+  --color-success: #16a34a;
+  --color-success-wash: rgba(34, 197, 94, 0.16);
+  --color-danger: #e11d48;
+  --color-danger-wash: rgba(255, 77, 109, 0.16);
+  --color-tangerine: #ff7a45;
+  --color-tangerine-wash: rgba(255, 122, 69, 0.16);
+  --color-sun: #ffc93c;
+  --color-sun-wash: rgba(255, 201, 60, 0.2);
+  --shadow-hard-color: #1b1033;
 }
 
 [data-theme="dark"] {
-  --color-paper: #12151f;
-  --color-surface: #1c2130;
-  --color-surface-alt: #262c3f;
-  --color-ink: #f1ece0;
-  --color-ink-soft: #a3aabb;
-  --color-line: rgba(241, 236, 224, 0.11);
-  --color-gold: #d9b45c;
-  --color-gold-soft: #e8c877;
-  --color-gold-deep: #b48f3d;
-  --color-gold-wash: rgba(217, 180, 92, 0.16);
-  --color-success: #4caf7d;
-  --color-success-wash: rgba(76, 175, 125, 0.14);
-  --color-danger: #e5533d;
-  --color-danger-wash: rgba(229, 83, 61, 0.14);
+  --color-paper: #150f28;
+  --color-surface: #201640;
+  --color-surface-alt: #2b1f52;
+  --color-ink: #f4f0ff;
+  --color-ink-soft: #b3a4dd;
+  --color-line: rgba(244, 240, 255, 0.16);
+  --color-gold: #9c86ff;
+  --color-gold-soft: #b6a4ff;
+  --color-gold-deep: #7a5cff;
+  --color-gold-wash: rgba(156, 134, 255, 0.22);
+  --color-success: #4ade80;
+  --color-success-wash: rgba(74, 222, 128, 0.2);
+  --color-danger: #fb7185;
+  --color-danger-wash: rgba(251, 113, 133, 0.2);
+  --color-tangerine: #ff9466;
+  --color-tangerine-wash: rgba(255, 148, 102, 0.2);
+  --color-sun: #ffd666;
+  --color-sun-wash: rgba(255, 214, 102, 0.22);
+  --shadow-hard-color: #000000;
 }
 
 @theme inline {
@@ -49,45 +59,93 @@
   --color-success-wash: var(--color-success-wash);
   --color-danger: var(--color-danger);
   --color-danger-wash: var(--color-danger-wash);
-  --font-display: var(--font-fraunces);
-  --font-body: var(--font-inter);
-  --font-data: var(--font-plexmono);
+  --color-tangerine: var(--color-tangerine);
+  --color-tangerine-wash: var(--color-tangerine-wash);
+  --color-sun: var(--color-sun);
+  --color-sun-wash: var(--color-sun-wash);
+  --font-display: var(--font-baloo);
+  --font-body: var(--font-jakarta);
+  --font-data: var(--font-spacemono);
+
+  /* Genel yuvarlaklığı artır: pilli / sticker hissi */
+  --radius-lg: 0.875rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.75rem;
 }
 
 body {
   background: var(--color-paper);
   color: var(--color-ink);
   transition: background-color 0.2s ease, color 0.2s ease;
-  background-image: radial-gradient(
-    circle at 0% 0%,
-    var(--color-gold-wash),
-    transparent 45%
-  );
-  background-attachment: fixed;
 }
 
 .gold-gradient {
-  background: linear-gradient(135deg, var(--color-gold-soft), var(--color-gold-deep));
-  box-shadow: 0 2px 10px rgba(124, 91, 32, 0.28);
+  background: linear-gradient(120deg, var(--color-gold) 0%, var(--color-tangerine) 100%);
+  box-shadow: 3px 3px 0 var(--shadow-hard-color);
 }
 
 .gold-gradient:hover {
-  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-deep));
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--shadow-hard-color);
+}
+
+.gold-gradient:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--shadow-hard-color);
 }
 
 .premium-card {
   position: relative;
+  border-width: 2px !important;
+  box-shadow: 3px 3px 0 var(--shadow-hard-color);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.premium-card:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--shadow-hard-color);
 }
 
 .premium-card::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 14px;
-  right: 14px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--color-gold-soft), transparent);
-  opacity: 0.7;
+  top: -2px;
+  left: 18px;
+  width: 34px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--color-sun);
+  border: 2px solid var(--shadow-hard-color);
+}
+
+.sticker-card {
+  border-width: 2px;
+  border-color: var(--color-ink);
+  box-shadow: 3px 3px 0 var(--shadow-hard-color);
+}
+
+.btn-hard,
+.btn-hard-outline {
+  box-shadow: 3px 3px 0 var(--shadow-hard-color);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease, color 0.12s ease;
+}
+
+.btn-hard:hover,
+.btn-hard-outline:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--shadow-hard-color);
+}
+
+.btn-hard:active,
+.btn-hard-outline:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--shadow-hard-color);
+}
+
+.btn-hard:disabled,
+.btn-hard-outline:disabled {
+  box-shadow: none;
+  transform: none;
 }
 
 @media (max-width: 639px) {

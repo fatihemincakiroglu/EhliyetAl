@@ -10,6 +10,9 @@ import {
   Share2,
   Timer,
   Download,
+  Pause,
+  Play,
+  FlagOff,
 } from "lucide-react";
 import type { Question } from "@/lib/questions";
 import ProgressTrack from "@/components/ProgressTrack";
@@ -23,6 +26,8 @@ type Answer = {
   selectedIndex: number;
   correct: boolean;
 };
+
+type EndReason = "completed" | "timeout" | "manual";
 
 type QuizRunnerProps = {
   questions: Question[];
@@ -48,14 +53,18 @@ export default function QuizRunner({
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [secondsLeft, setSecondsLeft] = useState(timeLimitSeconds ?? 0);
   const [timedOut, setTimedOut] = useState(false);
+  const [endedEarly, setEndedEarly] = useState(false);
+  const [paused, setPaused] = useState(false);
   const [saved, setSaved] = useState(false);
 
   const question = questions[step];
   const isLast = step === questions.length - 1;
-  const finished = answers.length === questions.length || timedOut;
+  const finished = answers.length === questions.length || timedOut || endedEarly;
+
+  const endReason: EndReason = timedOut ? "timeout" : endedEarly ? "manual" : "completed";
 
   useEffect(() => {
-    if (!timeLimitSeconds || finished) return;
+    if (!timeLimitSeconds || finished || paused) return;
     if (secondsLeft <= 0) {
       setTimedOut(true);
       return;
@@ -64,7 +73,7 @@ export default function QuizRunner({
       setSecondsLeft((s) => s - 1);
     }, 1000);
     return () => clearInterval(interval);
-  }, [timeLimitSeconds, secondsLeft, finished]);
+  }, [timeLimitSeconds, secondsLeft, finished, paused]);
 
   const scorePercent = useMemo(() => {
     if (answers.length === 0) return 0;
@@ -115,7 +124,23 @@ export default function QuizRunner({
     setAnswers([]);
     setSecondsLeft(timeLimitSeconds ?? 0);
     setTimedOut(false);
+    setEndedEarly(false);
+    setPaused(false);
     setSaved(false);
+  }
+
+  function handleFinishNow() {
+    if (answers.length === 0) return;
+    const confirmed = window.confirm(
+      `Sınavı şimdi bitirmek istediğine emin misin? ${questions.length - answers.length} soru boş kalacak.`
+    );
+    if (confirmed) {
+      setEndedEarly(true);
+    }
+  }
+
+  function handleTogglePause() {
+    setPaused((p) => !p);
   }
 
   const minutes = Math.floor(secondsLeft / 60);
@@ -138,20 +163,68 @@ export default function QuizRunner({
         </div>
         <h1 className="font-display text-lg sm:text-xl text-ink mb-6">{title}</h1>
 
-        {timeLimitSeconds !== undefined && !finished && (
-          <div
-            className={`flex items-center gap-2 mb-6 font-data text-sm ${
-              secondsLeft < 60 ? "text-danger" : "text-ink-soft"
-            }`}
-          >
-            <Timer size={16} />
-            <span>
-              {String(minutes).padStart(2, "0")}:{String(seconds).padStart(2, "0")} kaldı
-            </span>
+        {!finished && (
+          <div className="flex items-center justify-between gap-3 mb-6 flex-wrap">
+            {timeLimitSeconds !== undefined ? (
+              <div
+                className={`flex items-center gap-2 font-data text-sm ${
+                  secondsLeft < 60 ? "text-danger" : "text-ink-soft"
+                }`}
+              >
+                <Timer size={16} />
+                <span>
+                  {paused
+                    ? "Duraklatıldı"
+                    : `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")} kaldı`}
+                </span>
+              </div>
+            ) : (
+              <span />
+            )}
+            <div className="flex items-center gap-2">
+              {timeLimitSeconds !== undefined && (
+                <button
+                  type="button"
+                  onClick={handleTogglePause}
+                  className="btn-hard-outline flex items-center gap-1.5 font-data text-xs uppercase tracking-wide rounded-full border-2 border-ink text-ink bg-surface px-3.5 py-2 hover:bg-gold-wash transition-colors"
+                >
+                  {paused ? <Play size={14} /> : <Pause size={14} />}
+                  {paused ? "Devam Et" : "Duraklat"}
+                </button>
+              )}
+              {answers.length > 0 && (
+                <button
+                  type="button"
+                  onClick={handleFinishNow}
+                  className="btn-hard-outline flex items-center gap-1.5 font-data text-xs uppercase tracking-wide rounded-full border-2 border-ink text-ink bg-surface px-3.5 py-2 hover:bg-danger-wash hover:border-danger transition-colors"
+                >
+                  <FlagOff size={14} />
+                  Sınavı Bitir
+                </button>
+              )}
+            </div>
           </div>
         )}
 
-        {!finished && question && (
+        {!finished && paused && (
+          <div className="sticker-card bg-surface border-2 rounded-2xl p-10 text-center">
+            <Pause size={28} className="mx-auto mb-4 text-gold" />
+            <h2 className="font-display text-xl text-ink mb-2">Sınav Duraklatıldı</h2>
+            <p className="text-ink-soft text-sm mb-6">
+              Süre durdu. Devam etmeye hazır olduğunda aşağıdaki butona bas.
+            </p>
+            <button
+              type="button"
+              onClick={handleTogglePause}
+              className="btn-hard inline-flex items-center gap-2 font-display text-sm tracking-wide uppercase rounded-full gold-gradient text-ink px-6 py-3.5 hover:bg-gold-soft transition-colors"
+            >
+              <Play size={16} />
+              Devam Et
+            </button>
+          </div>
+        )}
+
+        {!finished && !paused && question && (
           <>
             <div className="mb-6 sm:mb-8">
               <ProgressTrack current={step} total={questions.length} />
@@ -168,7 +241,7 @@ export default function QuizRunner({
                   type="button"
                   onClick={handleNext}
                   disabled={isLast}
-                  className="w-full sm:w-auto font-display text-sm tracking-wide uppercase rounded-full bg-ink text-paper px-6 py-3.5 sm:py-3 hover:bg-gold hover:text-ink transition-colors disabled:opacity-0 disabled:pointer-events-none"
+                  className="w-full sm:w-auto font-display text-sm tracking-wide uppercase btn-hard rounded-full bg-ink text-paper px-6 py-3.5 sm:py-3 hover:bg-gold hover:text-ink transition-colors disabled:opacity-0 disabled:pointer-events-none"
                 >
                   Sonraki Soru
                 </button>
@@ -194,7 +267,7 @@ export default function QuizRunner({
             answers={answers}
             totalQuestions={questions.length}
             scorePercent={scorePercent}
-            timedOut={timedOut && answers.length < questions.length}
+            endReason={endReason}
             wrongQuestions={answers
               .filter((a) => !a.correct)
               .map((a) => questions[a.questionIndex])}
@@ -212,7 +285,7 @@ function ResultScreen({
   answers,
   totalQuestions,
   scorePercent,
-  timedOut,
+  endReason,
   wrongQuestions,
   onRestart,
   backHref,
@@ -221,17 +294,25 @@ function ResultScreen({
   answers: Answer[];
   totalQuestions: number;
   scorePercent: number;
-  timedOut: boolean;
+  endReason: EndReason;
   wrongQuestions: Question[];
   onRestart: () => void;
   backHref: string;
 }) {
   const passed = scorePercent >= 70;
   const correctCount = answers.filter((a) => a.correct).length;
+  const wrongCount = answers.length - correctCount;
+  const blankCount = totalQuestions - answers.length;
   const [shareStatus, setShareStatus] = useState<"idle" | "copied">("idle");
 
+  const endReasonLabel: Record<EndReason, string> = {
+    completed: "Tüm sorular tamamlandı",
+    timeout: "Süre doldu",
+    manual: "Sınav erken bitirildi",
+  };
+
   async function handleShare() {
-    const text = `EhliyetAl'da "${title}" testinde %${scorePercent} aldım! (${correctCount}/${answers.length} doğru)`;
+    const text = `EhliyetAl'da "${title}" testinde %${scorePercent} aldım! (${correctCount}/${totalQuestions} doğru)`;
     if (typeof navigator !== "undefined" && navigator.share) {
       try {
         await navigator.share({ text });
@@ -263,7 +344,7 @@ function ResultScreen({
     doc.text(`Test: ${title}`, 20, 32);
     doc.text(`Tarih: ${dateStr}`, 20, 39);
     doc.text(`Puan: %${scorePercent}`, 20, 46);
-    doc.text(`Dogru: ${correctCount} / ${answers.length}`, 20, 53);
+    doc.text(`Dogru: ${correctCount}  Yanlis: ${wrongCount}  Bos: ${blankCount}`, 20, 53);
     doc.text(`Sonuc: ${passed ? "Gectin" : "Gecemedin, tekrar dene"}`, 20, 60);
 
     let y = 74;
@@ -293,7 +374,7 @@ function ResultScreen({
   }
 
   return (
-    <div className="bg-surface border border-line rounded-2xl p-6 sm:p-8 text-center shadow-[0_1px_2px_rgba(18,24,43,0.04),0_8px_24px_rgba(18,24,43,0.05)]">
+    <div className="sticker-card bg-surface border-2 rounded-2xl p-6 sm:p-8 text-center">
       <div
         className={`inline-flex items-center justify-center rounded-full p-3 mb-4 ${
           passed ? "bg-success-wash text-success" : "bg-danger-wash text-danger"
@@ -306,13 +387,31 @@ function ResultScreen({
         {title}
       </p>
       <h2 className="font-display text-4xl text-ink mb-1">%{scorePercent}</h2>
-      <p className="text-ink-soft text-sm mb-1">
-        {correctCount} / {answers.length} doğru cevap
-        {timedOut ? ` (süre doldu, ${totalQuestions - answers.length} soru cevapsız kaldı)` : ""}
-      </p>
+      <p className="text-ink-soft text-sm mb-1">{endReasonLabel[endReason]}</p>
       <p className="text-ink-soft text-sm mb-6">
         {passed ? "Geçtin, tebrikler!" : "Geçme puanı %70, tekrar dene."}
       </p>
+
+      <div className="grid grid-cols-3 gap-3 mb-6">
+        <div className="rounded-xl border-2 border-ink bg-success-wash p-3">
+          <p className="font-display text-xl text-success">{correctCount}</p>
+          <p className="text-[10px] text-ink-soft font-data uppercase tracking-wide mt-0.5">
+            Doğru
+          </p>
+        </div>
+        <div className="rounded-xl border-2 border-ink bg-danger-wash p-3">
+          <p className="font-display text-xl text-danger">{wrongCount}</p>
+          <p className="text-[10px] text-ink-soft font-data uppercase tracking-wide mt-0.5">
+            Yanlış
+          </p>
+        </div>
+        <div className="rounded-xl border-2 border-ink bg-surface-alt p-3">
+          <p className="font-display text-xl text-ink-soft">{blankCount}</p>
+          <p className="text-[10px] text-ink-soft font-data uppercase tracking-wide mt-0.5">
+            Boş
+          </p>
+        </div>
+      </div>
 
       {wrongQuestions.length > 0 && (
         <div className="text-left mb-8">
@@ -336,7 +435,7 @@ function ResultScreen({
         <button
           type="button"
           onClick={onRestart}
-          className="flex items-center justify-center gap-2 font-display text-sm tracking-wide uppercase rounded-full bg-ink text-paper px-6 py-3.5 sm:py-3 hover:bg-gold hover:text-ink transition-colors"
+          className="flex items-center justify-center gap-2 font-display text-sm tracking-wide uppercase btn-hard rounded-full bg-ink text-paper px-6 py-3.5 sm:py-3 hover:bg-gold hover:text-ink transition-colors"
         >
           <RotateCcw size={16} />
           Tekrar Çöz
@@ -344,7 +443,7 @@ function ResultScreen({
         <button
           type="button"
           onClick={handleShare}
-          className="flex items-center justify-center gap-2 font-display text-sm tracking-wide uppercase rounded-full border border-line text-ink px-6 py-3.5 sm:py-3 hover:bg-gold-wash hover:border-gold-soft transition-colors"
+          className="flex items-center justify-center gap-2 font-display text-sm tracking-wide uppercase btn-hard-outline rounded-full border-2 border-ink text-ink bg-surface px-6 py-3.5 sm:py-3 hover:bg-gold-wash hover:border-gold-soft transition-colors"
         >
           <Share2 size={16} />
           {shareStatus === "copied" ? "Kopyalandı!" : "Paylaş"}
@@ -352,14 +451,14 @@ function ResultScreen({
         <button
           type="button"
           onClick={handleDownloadPdf}
-          className="flex items-center justify-center gap-2 font-display text-sm tracking-wide uppercase rounded-full border border-line text-ink px-6 py-3.5 sm:py-3 hover:bg-gold-wash hover:border-gold-soft transition-colors"
+          className="flex items-center justify-center gap-2 font-display text-sm tracking-wide uppercase btn-hard-outline rounded-full border-2 border-ink text-ink bg-surface px-6 py-3.5 sm:py-3 hover:bg-gold-wash hover:border-gold-soft transition-colors"
         >
           <Download size={16} />
           PDF İndir
         </button>
         <Link
           href={backHref}
-          className="flex items-center justify-center gap-2 font-display text-sm tracking-wide uppercase rounded-full border border-line text-ink px-6 py-3.5 sm:py-3 hover:bg-gold-wash hover:border-gold-soft transition-colors"
+          className="flex items-center justify-center gap-2 font-display text-sm tracking-wide uppercase btn-hard-outline rounded-full border-2 border-ink text-ink bg-surface px-6 py-3.5 sm:py-3 hover:bg-gold-wash hover:border-gold-soft transition-colors"
         >
           Geri Dön
         </Link>
