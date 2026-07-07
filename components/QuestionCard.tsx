@@ -162,11 +162,14 @@ export default function QuestionCard({
       </p>
 
       {answered && (
-        <div className="mt-6 pt-5 border-t border-line">
+        <div className="mt-6 pt-5 border-t border-line" aria-live="polite">
           <p className="font-data text-[11px] uppercase tracking-wider text-gold mb-1.5">
             Açıklama
           </p>
           <p className="text-sm text-ink-soft leading-relaxed">
+            <span className="sr-only">
+              {selectedIndex === question.correctIndex ? "Doğru cevap. " : "Yanlış cevap. "}
+            </span>
             {question.explanation}
           </p>
         </div>

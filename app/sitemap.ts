@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { categories } from "@/lib/questions";
+import { provinces } from "@/lib/provinces";
 
 const SITE_URL = "https://ehliyetal.net";
 
@@ -7,12 +8,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "",
     "/sinav",
-    "/istatistik",
     "/sozluk",
     "/isaretler",
     "/rehber",
     "/rehber/ehliyet-sinavi-ucretleri-2026",
     "/rehber/ehliyet-sinavi-basvurusu-nasil-yapilir",
+    "/rehber/il",
     "/ara",
     "/iletisim",
     "/menu",
@@ -30,5 +31,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...categoryRoutes];
+  const provinceRoutes = provinces.map((province) => ({
+    url: `${SITE_URL}/rehber/il/${province.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  return [...staticRoutes, ...categoryRoutes, ...provinceRoutes];
 }

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, BookOpen, Wallet, ClipboardCheck } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, Wallet, ClipboardCheck, MapPin } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Ehliyet Sınavına Hazırlık Rehberi | EhliyetAl",
@@ -25,6 +25,13 @@ const articles = [
     description:
       "Ehliyet sürecindeki ücret kalemleri ve güncel tutarları nereden öğrenebileceğin.",
     icon: Wallet,
+  },
+  {
+    href: "/rehber/il",
+    title: "İle Göre Ehliyet Sınavı Rehberi",
+    description:
+      "İlini seç; sürücü kursu süreci ve ilgili çalışma testlerine hızlıca ulaş.",
+    icon: MapPin,
   },
 ];
 
