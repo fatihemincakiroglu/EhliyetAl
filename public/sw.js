@@ -1,5 +1,5 @@
 const CACHE_NAME = "ehliyetal-cache-v1";
-const SHELL_URLS = ["/", "/manifest.json", "/icon.png"];
+const SHELL_URLS = ["/", "/manifest.json", "/icon-192.png", "/icon-512.png"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(

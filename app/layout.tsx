@@ -68,9 +68,10 @@ export const metadata: Metadata = {
 const themeInitScript = `
 try {
   var theme = localStorage.getItem('ehliyetal:theme:v1');
-  if (theme === 'dark' || theme === 'light') {
-    document.documentElement.setAttribute('data-theme', theme);
+  if (theme !== 'dark' && theme !== 'light') {
+    theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
+  document.documentElement.setAttribute('data-theme', theme);
 } catch (e) {}
 `;
 

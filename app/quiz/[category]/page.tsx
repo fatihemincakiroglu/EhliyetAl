@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { categories, getCategory } from "@/lib/questions";
 import CategoryQuizStart from "@/components/CategoryQuizStart";
+import CategoryQuestionList from "@/components/CategoryQuestionList";
 
 export function generateStaticParams() {
   return categories.map((c) => ({ category: c.slug }));
@@ -58,13 +59,37 @@ export default async function QuizPage({
     })),
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Ana Sayfa",
+        item: "https://ehliyetal.net/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: category.name,
+        item: `https://ehliyetal.net/quiz/${category.slug}`,
+      },
+    ],
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(quizSchema) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <CategoryQuizStart category={category} />
+      <CategoryQuestionList questions={category.questions} categoryName={category.name} />
     </>
   );
 }

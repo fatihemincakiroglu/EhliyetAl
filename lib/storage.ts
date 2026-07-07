@@ -129,6 +129,9 @@ export function getTheme(): "light" | "dark" {
   if (!isBrowser()) return "light";
   const stored = window.localStorage.getItem(THEME_KEY);
   if (stored === "dark" || stored === "light") return stored;
+  if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    return "dark";
+  }
   return "light";
 }
 
