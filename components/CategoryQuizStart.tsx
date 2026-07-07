@@ -161,7 +161,7 @@ export default function CategoryQuizStart({ category }: { category: Category }) 
               type="button"
               onClick={handleDownloadSheet}
               disabled={filteredQuestions.length === 0}
-              className="flex items-center justify-center gap-2 font-display text-sm tracking-wide uppercase rounded-full border border-line text-ink px-6 py-3.5 hover:bg-gold-wash hover:border-gold-soft transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+              className="flex items-center justify-center gap-2 font-display text-sm tracking-wide uppercase btn-hard-outline rounded-full border-2 border-ink text-ink bg-surface px-6 py-3.5 hover:bg-gold-wash hover:border-gold-soft transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
             >
               <FileDown size={16} />
               Yazdırılabilir Föy İndir

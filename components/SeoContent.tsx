@@ -261,7 +261,7 @@ export default function SeoContent() {
       </div>
       <ul className="text-sm text-ink-soft space-y-2 mb-6 list-disc list-inside">
         <li>Olay yeri güvenliğinin sağlanması</li>
-        <li>112'yi arama ve doğru bilgi verme</li>
+        <li>112&apos;yi arama ve doğru bilgi verme</li>
         <li>Kazazedeyi araçtan çıkarma gereken/gerekmeyen durumlar</li>
       </ul>
       <Link
@@ -380,7 +380,7 @@ export default function SeoContent() {
         <h3 className="font-display text-lg text-ink">2026 Ehliyet Deneme Sınavı</h3>
       </div>
       <p className="text-sm text-ink-soft leading-relaxed mb-6">
-        EhliyetAl'ın sınav simülasyonu; trafik, motor, ilk yardım ve çevre
+        EhliyetAl&apos;ın sınav simülasyonu; trafik, motor, ilk yardım ve çevre
         konularından karışık 50 soru ve 60 dakikalık süreyle gerçek sınav
         temposunu deneyimletir. %70 ve üzeri puan alman geçme sınırıdır.
       </p>
@@ -401,10 +401,10 @@ export default function SeoContent() {
         <h3 className="font-display text-lg text-ink">Çıkmış Sorular</h3>
       </div>
       <p className="text-sm text-ink-soft leading-relaxed mb-12">
-        EhliyetAl'daki tüm sorular, gerçek sınavlarla aynı konuları kapsayan
+        EhliyetAl&apos;daki tüm sorular, gerçek sınavlarla aynı konuları kapsayan
         özgün alıştırma sorularıdır; resmi soru kitapçıklarının birebir
         kopyası değildir. Gerçek çıkmış sınav kitapçıklarına ulaşmak istersen
-        Millî Eğitim Bakanlığı'nın resmi kaynaklarını incelemeni öneririz.
+        Millî Eğitim Bakanlığı&apos;nın resmi kaynaklarını incelemeni öneririz.
       </p>
 
       <div className="flex items-center gap-3 mb-4">
@@ -450,7 +450,7 @@ export default function SeoContent() {
         <h3 className="font-display text-lg text-ink">Sık Yapılan Hatalar</h3>
       </div>
       <ul className="text-sm text-ink-soft space-y-2 mb-6 list-disc list-inside">
-        <li>Soruyu hızlıca okuyup "değildir" gibi olumsuz ifadeleri atlamak</li>
+        <li>Soruyu hızlıca okuyup &quot;değildir&quot; gibi olumsuz ifadeleri atlamak</li>
         <li>İşaretlerin renk ve şekil ayrımını (üçgen/daire, kırmızı/mavi) karıştırmak</li>
         <li>İlk yardım pozisyonlarını mantığını anlamadan ezberlemek</li>
         <li>Motor sorularında günlük hayat tecrübesiyle teorik bilgiyi karıştırmak</li>
