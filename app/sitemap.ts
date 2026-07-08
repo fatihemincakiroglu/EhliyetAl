@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { categories, FIXED_EXAM_COUNT } from "@/lib/questions";
-import { provinces } from "@/lib/provinces";
+import { provinces, provincePath } from "@/lib/provinces";
 
 const SITE_URL = "https://ehliyetal.net";
 
@@ -40,7 +40,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const provinceRoutes = provinces.map((province) => ({
-    url: `${SITE_URL}/rehber/il/${province.slug}`,
+    url: `${SITE_URL}${provincePath(province)}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.6,

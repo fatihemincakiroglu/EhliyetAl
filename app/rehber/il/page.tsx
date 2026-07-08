@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, MapPin } from "lucide-react";
-import { provinces } from "@/lib/provinces";
+import { provinces, provincePath } from "@/lib/provinces";
 
 export const metadata: Metadata = {
   title: "İle Göre Ehliyet Sınavı Rehberi | EhliyetAl",
@@ -40,7 +40,7 @@ export default function ProvinceHubPage() {
           {provinces.map((province) => (
             <Link
               key={province.slug}
-              href={`/rehber/il/${province.slug}`}
+              href={provincePath(province)}
               className="group flex items-center justify-between gap-2 rounded-xl border border-line bg-surface px-4 py-3 hover:border-gold-soft hover:bg-gold-wash transition-colors"
             >
               <span className="text-sm text-ink truncate">{province.name}</span>
