@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Award, Trash2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, Award, Target, RefreshCcw, Trash2 } from "lucide-react";
 import { categories } from "@/lib/questions";
 import {
   getOverallStats,
   getCategoryStats,
+  getWeakCategories,
   clearHistory,
   type OverallStats,
   type CategoryStat,
@@ -22,11 +23,13 @@ export default function IstatistikClient() {
   const [ready, setReady] = useState(false);
   const [overall, setOverall] = useState<OverallStats | null>(null);
   const [catStats, setCatStats] = useState<Record<string, CategoryStat>>({});
+  const [weakCategories, setWeakCategories] = useState<CategoryStat[]>([]);
   const [badges, setBadges] = useState<Badge[]>([]);
 
   function load() {
     setOverall(getOverallStats(categorySlugs));
     setCatStats(getCategoryStats(categorySlugs));
+    setWeakCategories(getWeakCategories(categorySlugs, 2));
     setBadges(computeBadges(categorySlugs));
     setReady(true);
   }
@@ -102,14 +105,44 @@ export default function IstatistikClient() {
               </div>
             </div>
 
-            {overall.weakestCategorySlug && (
-              <div className="bg-gold-wash border border-gold-soft/40 rounded-2xl p-4 mb-8 text-sm text-ink">
-                En çok gelişim alanın:{" "}
-                <span className="font-display text-gold">
-                  {categoryLabel[overall.weakestCategorySlug]}
-                </span>
-                . Bu kategoriden birkaç tur daha çözmeyi dene.
-              </div>
+            {weakCategories.length > 0 && (
+              <>
+                <h2 className="font-display text-lg text-ink mb-3 flex items-center gap-2">
+                  <Target size={18} className="text-gold" />
+                  Sana Özel Öneriler
+                </h2>
+                <div className="flex flex-col gap-3 mb-8">
+                  {weakCategories.map((stat) => (
+                    <div
+                      key={stat.slug}
+                      className="bg-gold-wash border border-gold-soft/40 rounded-2xl p-4"
+                    >
+                      <p className="text-sm text-ink mb-3">
+                        <span className="font-display text-gold">
+                          {categoryLabel[stat.slug]}
+                        </span>{" "}
+                        konusunda en iyi sonucun %{stat.bestPercent}. Bu
+                        konudan birkaç tur daha çözerek ilerleyebilirsin.
+                      </p>
+                      <div className="flex flex-wrap gap-2.5">
+                        <Link
+                          href={`/quiz/${stat.slug}`}
+                          className="inline-flex items-center gap-1.5 text-xs font-display uppercase tracking-wide rounded-full gold-gradient text-white px-4 py-2 hover:bg-gold-soft transition-colors"
+                        >
+                          Konudan Çalış <ArrowRight size={12} />
+                        </Link>
+                        <Link
+                          href="/tekrar"
+                          className="inline-flex items-center gap-1.5 text-xs font-display uppercase tracking-wide rounded-full border border-gold-soft/60 text-ink px-4 py-2 hover:bg-surface transition-colors"
+                        >
+                          <RefreshCcw size={12} />
+                          Yanlışlarını Tekrar Et
+                        </Link>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </>
             )}
 
             <h2 className="font-display text-lg text-ink mb-3">Kategori İlerlemesi</h2>

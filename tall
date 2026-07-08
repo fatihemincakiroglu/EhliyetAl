@@ -1,0 +1,473 @@
+warning: in the working copy of 'app/rehber/il/[il]/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/rehber/il/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/sitemap.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/provinces.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'next.config.ts', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/app/rehber/il/[il]/page.tsx b/app/rehber/il/[il]/page.tsx[m
+[1mindex 64b1354..c197aeb 100644[m
+[1m--- a/app/rehber/il/[il]/page.tsx[m
+[1m+++ b/app/rehber/il/[il]/page.tsx[m
+[36m@@ -1,12 +1,31 @@[m
+ import type { Metadata } from "next";[m
+ import Link from "next/link";[m
+ import { notFound } from "next/navigation";[m
+[31m-import { ArrowLeft, ArrowRight, MapPin, CheckCircle2 } from "lucide-react";[m
+[31m-import { provinces, getProvince } from "@/lib/provinces";[m
+[32m+[m[32mimport {[m
+[32m+[m[32m  ArrowLeft,[m
+[32m+[m[32m  ArrowRight,[m
+[32m+[m[32m  MapPin,[m
+[32m+[m[32m  CheckCircle2,[m
+[32m+[m[32m  IdCard,[m
+[32m+[m[32m  Compass,[m
+[32m+[m[32m  ClipboardList,[m
+[32m+[m[32m  Car,[m
+[32m+[m[32m  Search,[m
+[32m+[m[32m} from "lucide-react";[m
+[32m+[m[32mimport {[m
+[32m+[m[32m  provinces,[m
+[32m+[m[32m  getProvince,[m
+[32m+[m[32m  provincePath,[m
+[32m+[m[32m  provinceUrlSlug,[m
+[32m+[m[32m  relatedProvinces,[m
+[32m+[m[32m  type Province,[m
+[32m+[m[32m} from "@/lib/provinces";[m
+ import { categories } from "@/lib/questions";[m
+ [m
+[32m+[m[32mconst SITE_URL = "https://ehliyetal.net";[m
+[32m+[m
+ export function generateStaticParams() {[m
+[31m-  return provinces.map((p) => ({ il: p.slug }));[m
+[32m+[m[32m  return provinces.map((p) => ({ il: provinceUrlSlug(p) }));[m
+ }[m
+ [m
+ export async function generateMetadata({[m
+[36m@@ -18,18 +37,39 @@[m [mexport async function generateMetadata({[m
+   const province = getProvince(slug);[m
+   if (!province) return {};[m
+ [m
+[31m-  const title = `${province.name} Ehliyet Sınavına Hazırlık Rehberi | EhliyetAl`;[m
+[31m-  const description = `${province.name} ilinde ehliyet sınavına hazırlanan adaylar için başvuru süreci, sürücü kursu adımları ve ücretsiz deneme sınavlarıyla çalışma rehberi.`;[m
+[32m+[m[32m  const title = `${province.name} Ehliyet Sınavı Rehberi (${province.plate}) | EhliyetAl`;[m
+[32m+[m[32m  const description = `${province.name} ilinde ehliyet sınavına hazırlanan adaylar için başvuru süreci, sürücü kursu seçimi, sınav sonucu öğrenme ve ücretsiz deneme sınavlarıyla çalışma rehberi.`;[m
+ [m
+   return {[m
+     title,[m
+     description,[m
+     alternates: {[m
+[31m-      canonical: `https://ehliyetal.net/rehber/il/${province.slug}`,[m
+[32m+[m[32m      canonical: `${SITE_URL}${provincePath(province)}`,[m
+     },[m
+   };[m
+ }[m
+ [m
+[32m+[m[32mfunction faqFor(province: Province) {[m
+[32m+[m[32m  return [[m
+[32m+[m[32m    {[m
+[32m+[m[32m      q: `${province.name} ilinde ehliyet sınavına nereden başvurulur?`,[m
+[32m+[m[32m      a: `${province.name} il/ilçe millî eğitim müdürlüğüne bağlı, resmî izinli bir sürücü kursuna kayıt olarak başvuru sürecin başlar. Kurs, teorik ve direksiyon eğitimini tamamladıktan sonra seni sınav başvurusuna yönlendirir.`,[m
+[32m+[m[32m    },[m
+[32m+[m[32m    {[m
+[32m+[m[32m      q: `${province.name} ilinde teorik sınav sonucu nasıl öğrenilir?`,[m
+[32m+[m[32m      a: `Teorik sınav sonuçları genellikle e-Devlet üzerinden veya kayıtlı olduğun sürücü kursu aracılığıyla öğrenilir. Kesin sonuç açıklama tarihi ${province.name} il/ilçe millî eğitim müdürlüğü tarafından duyurulur.`,[m
+[32m+[m[32m    },[m
+[32m+[m[32m    {[m
+[32m+[m[32m      q: `${province.name} ilindeki sürücü kursları arasında fark var mı?`,[m
+[32m+[m[32m      a: `Müfredat ve sınav standardı Türkiye genelinde aynıdır; ${province.districts[0]}, ${province.districts[1]} gibi ilçelerdeki kurslar arasındaki fark genellikle eğitim kalitesi, sınıf mevcudu ve direksiyon araç/pist imkanlarıyla ilgilidir.`,[m
+[32m+[m[32m    },[m
+[32m+[m[32m    {[m
+[32m+[m[32m      q: `${province.name} için EhliyetAl'da ücretsiz çalışabilir miyim?`,[m
+[32m+[m[32m      a: `Evet. EhliyetAl'daki tüm sorular ve deneme sınavları ücretsizdir; ${province.name} dahil hangi ilde sınava gireceğin fark etmeksizin aynı soru havuzuyla çalışabilirsin.`,[m
+[32m+[m[32m    },[m
+[32m+[m[32m  ];[m
+[32m+[m[32m}[m
+[32m+[m
+ export default async function ProvincePage({[m
+   params,[m
+ }: {[m
+[36m@@ -39,27 +79,46 @@[m [mexport default async function ProvincePage({[m
+   const province = getProvince(slug);[m
+   if (!province) notFound();[m
+ [m
+[32m+[m[32m  const canonicalUrl = `${SITE_URL}${provincePath(province)}`;[m
+[32m+[m[32m  const faqItems = faqFor(province);[m
+[32m+[m[32m  const related = relatedProvinces(province);[m
+[32m+[m
+   const breadcrumbSchema = {[m
+     "@context": "https://schema.org",[m
+     "@type": "BreadcrumbList",[m
+     itemListElement: [[m
+[31m-      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: "https://ehliyetal.net/" },[m
+[31m-      { "@type": "ListItem", position: 2, name: "Rehber", item: "https://ehliyetal.net/rehber" },[m
+[32m+[m[32m      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: `${SITE_URL}/` },[m
+[32m+[m[32m      { "@type": "ListItem", position: 2, name: "Rehber", item: `${SITE_URL}/rehber` },[m
+[32m+[m[32m      { "@type": "ListItem", position: 3, name: "İle Göre Rehber", item: `${SITE_URL}/rehber/il` },[m
+       {[m
+         "@type": "ListItem",[m
+[31m-        position: 3,[m
+[31m-        name: `${province.name} Ehliyet Rehberi`,[m
+[31m-        item: `https://ehliyetal.net/rehber/il/${province.slug}`,[m
+[32m+[m[32m        position: 4,[m
+[32m+[m[32m        name: `${province.name} Ehliyet Sınavı Rehberi`,[m
+[32m+[m[32m        item: canonicalUrl,[m
+       },[m
+     ],[m
+   };[m
+ [m
+[32m+[m[32m  const faqSchema = {[m
+[32m+[m[32m    "@context": "https://schema.org",[m
+[32m+[m[32m    "@type": "FAQPage",[m
+[32m+[m[32m    mainEntity: faqItems.map((item) => ({[m
+[32m+[m[32m      "@type": "Question",[m
+[32m+[m[32m      name: item.q,[m
+[32m+[m[32m      acceptedAnswer: { "@type": "Answer", text: item.a },[m
+[32m+[m[32m    })),[m
+[32m+[m[32m  };[m
+[32m+[m
+   return ([m
+     <div className="min-h-screen bg-paper">[m
+       <script[m
+         type="application/ld+json"[m
+         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}[m
+       />[m
+[32m+[m[32m      <script[m
+[32m+[m[32m        type="application/ld+json"[m
+[32m+[m[32m        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}[m
+[32m+[m[32m      />[m
+       <main className="max-w-2xl mx-auto px-5 sm:px-6 py-8 sm:py-14">[m
+         <Link[m
+           href="/rehber/il"[m
+[36m@@ -78,7 +137,7 @@[m [mexport default async function ProvincePage({[m
+           </h1>[m
+         </div>[m
+ [m
+[31m-        <p className="text-ink-soft text-sm sm:text-base leading-relaxed mb-8">[m
+[32m+[m[32m        <p className="text-ink-soft text-sm sm:text-base leading-relaxed mb-5">[m
+           {province.name} ilinde ehliyet almak isteyen sürücü adayları da[m
+           Türkiye genelindeki standart süreci takip eder: sürücü kursuna[m
+           kayıt, teorik eğitim, teorik sınav ve ardından direksiyon eğitimiyle[m
+[36m@@ -87,6 +146,24 @@[m [mexport default async function ProvincePage({[m
+           hazırlanabilirsin.[m
+         </p>[m
+ [m
+[32m+[m[32m        <div className="grid grid-cols-3 gap-2.5 mb-8">[m
+[32m+[m[32m          <div className="rounded-xl border border-line bg-surface px-3 py-3 text-center">[m
+[32m+[m[32m            <IdCard size={16} className="text-gold mx-auto mb-1.5" />[m
+[32m+[m[32m            <span className="block text-[11px] text-ink-soft uppercase tracking-wide">Plaka</span>[m
+[32m+[m[32m            <span className="block font-display text-sm text-ink">{province.plate}</span>[m
+[32m+[m[32m          </div>[m
+[32m+[m[32m          <div className="rounded-xl border border-line bg-surface px-3 py-3 text-center">[m
+[32m+[m[32m            <Compass size={16} className="text-gold mx-auto mb-1.5" />[m
+[32m+[m[32m            <span className="block text-[11px] text-ink-soft uppercase tracking-wide">Bölge</span>[m
+[32m+[m[32m            <span className="block font-display text-sm text-ink">{province.region}</span>[m
+[32m+[m[32m          </div>[m
+[32m+[m[32m          <div className="rounded-xl border border-line bg-surface px-3 py-3 text-center">[m
+[32m+[m[32m            <ClipboardList size={16} className="text-gold mx-auto mb-1.5" />[m
+[32m+[m[32m            <span className="block text-[11px] text-ink-soft uppercase tracking-wide">Sınav Dersi</span>[m
+[32m+[m[32m            <span className="block font-display text-sm text-ink">3 Ders</span>[m
+[32m+[m[32m          </div>[m
+[32m+[m[32m        </div>[m
+[32m+[m
+         <h2 className="font-display text-lg text-ink mb-3">[m
+           {province.name} İlinde Süreç Nasıl İşler?[m
+         </h2>[m
+[36m@@ -109,13 +186,57 @@[m [mexport default async function ProvincePage({[m
+           </li>[m
+         </ul>[m
+ [m
+[32m+[m[32m        <div className="flex items-center gap-3 mb-3">[m
+[32m+[m[32m          <span className="inline-flex items-center justify-center rounded-lg bg-gold-wash text-gold p-2">[m
+[32m+[m[32m            <Car size={16} />[m
+[32m+[m[32m          </span>[m
+[32m+[m[32m          <h2 className="font-display text-lg text-ink">[m
+[32m+[m[32m            {province.name}&apos;de Sürücü Kursu Seçerken Nelere Dikkat Edilir?[m
+[32m+[m[32m          </h2>[m
+[32m+[m[32m        </div>[m
+[32m+[m[32m        <ul className="text-sm text-ink-soft space-y-2 mb-8 list-disc list-inside">[m
+[32m+[m[32m          <li>[m
+[32m+[m[32m            Kursun Millî Eğitim Bakanlığı&apos;na bağlı resmî bir sürücü[m
+[32m+[m[32m            kursu belgesine sahip olduğunu teyit et.[m
+[32m+[m[32m          </li>[m
+[32m+[m[32m          <li>[m
+[32m+[m[32m            {province.districts[0]}, {province.districts[1]} ve{" "}[m
+[32m+[m[32m            {province.districts[2]} gibi merkezi ilçelerdeki kurslarda genelde[m
+[32m+[m[32m            direksiyon eğitimi için daha fazla araç/pist seçeneği bulunur.[m
+[32m+[m[32m          </li>[m
+[32m+[m[32m          <li>[m
+[32m+[m[32m            Teorik ders saatleri, derslik mevcudu ve direksiyon eğitmeni[m
+[32m+[m[32m            sayısı hakkında önceden bilgi al.[m
+[32m+[m[32m          </li>[m
+[32m+[m[32m          <li>[m
+[32m+[m[32m            Ücret ve taksit seçeneklerini yazılı sözleşmeyle netleştir; sözlü[m
+[32m+[m[32m            anlaşmalara güvenme.[m
+[32m+[m[32m          </li>[m
+[32m+[m[32m        </ul>[m
+[32m+[m
+[32m+[m[32m        <div className="flex items-center gap-3 mb-3">[m
+[32m+[m[32m          <span className="inline-flex items-center justify-center rounded-lg bg-gold-wash text-gold p-2">[m
+[32m+[m[32m            <Search size={16} />[m
+[32m+[m[32m          </span>[m
+[32m+[m[32m          <h2 className="font-display text-lg text-ink">[m
+[32m+[m[32m            Teorik Sınav Sonucu Nasıl Öğrenilir?[m
+[32m+[m[32m          </h2>[m
+[32m+[m[32m        </div>[m
+[32m+[m[32m        <p className="text-sm text-ink-soft leading-relaxed mb-8">[m
+[32m+[m[32m          {province.name} ilinde girdiğin teorik sınavın sonucunu e-Devlet[m
+[32m+[m[32m          üzerinden ilgili başvuru ekranından ya da kayıtlı olduğun sürücü[m
+[32m+[m[32m          kursu üzerinden takip edebilirsin. Sonuç açıklama süresi sınav[m
+[32m+[m[32m          dönemine göre değişebileceğinden, kesin tarih için kursunla iletişimde[m
+[32m+[m[32m          kalman en sağlıklısı.[m
+[32m+[m[32m        </p>[m
+[32m+[m
+         <div className="bg-gold-wash border border-gold-soft/40 rounded-2xl p-5 mb-8 flex gap-3">[m
+           <CheckCircle2 size={20} className="text-gold shrink-0 mt-0.5" />[m
+           <p className="text-sm text-ink leading-relaxed">[m
+             {province.name} ilindeki güncel başvuru tarihleri, belge listesi[m
+             ve ücret kalemleri için kayıtlı olduğun sürücü kursunu veya[m
+             e-Devlet üzerinden il/ilçe millî eğitim müdürlüğünü teyit et —[m
+[31m-            bu bilgiler ile ilden ile değil zamana göre değişir.[m
+[32m+[m[32m            bu bilgiler ilden ile değil zamana göre değişir.[m
+           </p>[m
+         </div>[m
+ [m
+[36m@@ -160,6 +281,66 @@[m [mexport default async function ProvincePage({[m
+           </Link>[m
+         </div>[m
+ [m
+[32m+[m[32m        <div className="flex flex-wrap gap-4 mb-10">[m
+[32m+[m[32m          <Link[m
+[32m+[m[32m            href="/rehber/ehliyet-sinavi-ucretleri-2026"[m
+[32m+[m[32m            className="inline-flex items-center gap-2 text-sm font-display uppercase tracking-wide text-gold hover:text-gold-soft transition-colors"[m
+[32m+[m[32m          >[m
+[32m+[m[32m            Ehliyet Ücretleri Rehberi →[m
+[32m+[m[32m          </Link>[m
+[32m+[m[32m          <Link[m
+[32m+[m[32m            href="/sozluk"[m
+[32m+[m[32m            className="inline-flex items-center gap-2 text-sm font-display uppercase tracking-wide text-gold hover:text-gold-soft transition-colors"[m
+[32m+[m[32m          >[m
+[32m+[m[32m            Trafik Terimleri Sözlüğü →[m
+[32m+[m[32m          </Link>[m
+[32m+[m[32m          <Link[m
+[32m+[m[32m            href="/isaretler"[m
+[32m+[m[32m            className="inline-flex items-center gap-2 text-sm font-display uppercase tracking-wide text-gold hover:text-gold-soft transition-colors"[m
+[32m+[m[32m          >[m
+[32m+[m[32m            Trafik İşaretleri →[m
+[32m+[m[32m          </Link>[m
+[32m+[m[32m        </div>[m
+[32m+[m
+[32m+[m[32m        <h2 className="font-display text-lg text-ink mb-4">[m
+[32m+[m[32m          {province.name} İline Özel Sıkça Sorulan Sorular[m
+[32m+[m[32m        </h2>[m
+[32m+[m[32m        <div className="flex flex-col gap-3 mb-10">[m
+[32m+[m[32m          {faqItems.map((item) => ([m
+[32m+[m[32m            <details[m
+[32m+[m[32m              key={item.q}[m
+[32m+[m[32m              className="group bg-surface border border-line rounded-xl p-4 open:border-gold-soft"[m
+[32m+[m[32m            >[m
+[32m+[m[32m              <summary className="cursor-pointer font-display text-sm text-ink list-none flex items-center justify-between gap-3">[m
+[32m+[m[32m                {item.q}[m
+[32m+[m[32m                <span className="text-gold shrink-0 transition-transform group-open:rotate-45 font-display text-xl">[m
+[32m+[m[32m                  +[m
+[32m+[m[32m                </span>[m
+[32m+[m[32m              </summary>[m
+[32m+[m[32m              <p className="text-sm text-ink-soft leading-relaxed mt-3">{item.a}</p>[m
+[32m+[m[32m            </details>[m
+[32m+[m[32m          ))}[m
+[32m+[m[32m        </div>[m
+[32m+[m
+[32m+[m[32m        {related.length > 0 && ([m
+[32m+[m[32m          <>[m
+[32m+[m[32m            <h2 className="font-display text-lg text-ink mb-3">[m
+[32m+[m[32m              {province.region} Bölgesi&apos;nden Diğer İller[m
+[32m+[m[32m            </h2>[m
+[32m+[m[32m            <div className="flex flex-wrap gap-2 mb-10">[m
+[32m+[m[32m              {related.map((r) => ([m
+[32m+[m[32m                <Link[m
+[32m+[m[32m                  key={r.slug}[m
+[32m+[m[32m                  href={provincePath(r)}[m
+[32m+[m[32m                  className="text-sm rounded-full border border-line bg-surface px-4 py-2 text-ink hover:border-gold-soft hover:bg-gold-wash transition-colors"[m
+[32m+[m[32m                >[m
+[32m+[m[32m                  {r.name}[m
+[32m+[m[32m                </Link>[m
+[32m+[m[32m              ))}[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m          </>[m
+[32m+[m[32m        )}[m
+[32m+[m
+         <p className="text-xs text-ink-soft/70 leading-relaxed">[m
+           Bu sayfadaki bilgiler genel bir yönlendirmedir; {province.name}{" "}[m
+           ilindeki resmi süreç, ücret ve tarih bilgileri için il/ilçe millî[m
+[1mdiff --git a/app/rehber/il/page.tsx b/app/rehber/il/page.tsx[m
+[1mindex 4f569e9..f2d2188 100644[m
+[1m--- a/app/rehber/il/page.tsx[m
+[1m+++ b/app/rehber/il/page.tsx[m
+[36m@@ -1,7 +1,7 @@[m
+ import type { Metadata } from "next";[m
+ import Link from "next/link";[m
+ import { ArrowLeft, ArrowRight, MapPin } from "lucide-react";[m
+[31m-import { provinces } from "@/lib/provinces";[m
+[32m+[m[32mimport { provinces, provincePath } from "@/lib/provinces";[m
+ [m
+ export const metadata: Metadata = {[m
+   title: "İle Göre Ehliyet Sınavı Rehberi | EhliyetAl",[m
+[36m@@ -40,7 +40,7 @@[m [mexport default function ProvinceHubPage() {[m
+           {provinces.map((province) => ([m
+             <Link[m
+               key={province.slug}[m
+[31m-              href={`/rehber/il/${province.slug}`}[m
+[32m+[m[32m              href={provincePath(province)}[m
+               className="group flex items-center justify-between gap-2 rounded-xl border border-line bg-surface px-4 py-3 hover:border-gold-soft hover:bg-gold-wash transition-colors"[m
+             >[m
+               <span className="text-sm text-ink truncate">{province.name}</span>[m
+[1mdiff --git a/app/sitemap.ts b/app/sitemap.ts[m
+[1mindex 9e0d416..51f1459 100644[m
+[1m--- a/app/sitemap.ts[m
+[1m+++ b/app/sitemap.ts[m
+[36m@@ -1,6 +1,6 @@[m
+ import type { MetadataRoute } from "next";[m
+ import { categories, FIXED_EXAM_COUNT } from "@/lib/questions";[m
+[31m-import { provinces } from "@/lib/provinces";[m
+[32m+[m[32mimport { provinces, provincePath } from "@/lib/provinces";[m
+ [m
+ const SITE_URL = "https://ehliyetal.net";[m
+ [m
+[36m@@ -40,7 +40,7 @@[m [mexport default function sitemap(): MetadataRoute.Sitemap {[m
+   }));[m
+ [m
+   const provinceRoutes = provinces.map((province) => ({[m
+[31m-    url: `${SITE_URL}/rehber/il/${province.slug}`,[m
+[32m+[m[32m    url: `${SITE_URL}${provincePath(province)}`,[m
+     lastModified: new Date(),[m
+     changeFrequency: "monthly" as const,[m
+     priority: 0.6,[m
+[1mdiff --git a/lib/provinces.ts b/lib/provinces.ts[m
+[1mindex 2b4e4e0..a57737b 100644[m
+[1m--- a/lib/provinces.ts[m
+[1m+++ b/lib/provinces.ts[m
+[36m@@ -1,43 +1,70 @@[m
+ export type Province = {[m
+   slug: string;[m
+   name: string;[m
+[32m+[m[32m  plate: string;[m
+[32m+[m[32m  region: string;[m
+[32m+[m[32m  districts: string[];[m
+ };[m
+ [m
+ // Nüfus ve arama hacmine göre öne çıkan iller. Yeni il eklemek için[m
+[31m-// listeye slug/name çifti eklemek yeterli — sayfa otomatik oluşur.[m
+[32m+[m[32m// listeye bir kayıt eklemek yeterli — sayfa otomatik oluşur.[m
+ export const provinces: Province[] = [[m
+[31m-  { slug: "istanbul", name: "İstanbul" },[m
+[31m-  { slug: "ankara", name: "Ankara" },[m
+[31m-  { slug: "izmir", name: "İzmir" },[m
+[31m-  { slug: "bursa", name: "Bursa" },[m
+[31m-  { slug: "antalya", name: "Antalya" },[m
+[31m-  { slug: "adana", name: "Adana" },[m
+[31m-  { slug: "konya", name: "Konya" },[m
+[31m-  { slug: "gaziantep", name: "Gaziantep" },[m
+[31m-  { slug: "sanliurfa", name: "Şanlıurfa" },[m
+[31m-  { slug: "kocaeli", name: "Kocaeli" },[m
+[31m-  { slug: "mersin", name: "Mersin" },[m
+[31m-  { slug: "diyarbakir", name: "Diyarbakır" },[m
+[31m-  { slug: "hatay", name: "Hatay" },[m
+[31m-  { slug: "manisa", name: "Manisa" },[m
+[31m-  { slug: "kayseri", name: "Kayseri" },[m
+[31m-  { slug: "samsun", name: "Samsun" },[m
+[31m-  { slug: "balikesir", name: "Balıkesir" },[m
+[31m-  { slug: "kahramanmaras", name: "Kahramanmaraş" },[m
+[31m-  { slug: "van", name: "Van" },[m
+[31m-  { slug: "aydin", name: "Aydın" },[m
+[31m-  { slug: "tekirdag", name: "Tekirdağ" },[m
+[31m-  { slug: "sakarya", name: "Sakarya" },[m
+[31m-  { slug: "denizli", name: "Denizli" },[m
+[31m-  { slug: "mugla", name: "Muğla" },[m
+[31m-  { slug: "eskisehir", name: "Eskişehir" },[m
+[31m-  { slug: "mardin", name: "Mardin" },[m
+[31m-  { slug: "trabzon", name: "Trabzon" },[m
+[31m-  { slug: "malatya", name: "Malatya" },[m
+[31m-  { slug: "erzurum", name: "Erzurum" },[m
+[31m-  { slug: "ordu", name: "Ordu" },[m
+[32m+[m[32m  { slug: "istanbul", name: "İstanbul", plate: "34", region: "Marmara", districts: ["Kadıköy", "Beşiktaş", "Üsküdar"] },[m
+[32m+[m[32m  { slug: "ankara", name: "Ankara", plate: "06", region: "İç Anadolu", districts: ["Çankaya", "Keçiören", "Yenimahalle"] },[m
+[32m+[m[32m  { slug: "izmir", name: "İzmir", plate: "35", region: "Ege", districts: ["Karşıyaka", "Bornova", "Konak"] },[m
+[32m+[m[32m  { slug: "bursa", name: "Bursa", plate: "16", region: "Marmara", districts: ["Nilüfer", "Osmangazi", "Yıldırım"] },[m
+[32m+[m[32m  { slug: "antalya", name: "Antalya", plate: "07", region: "Akdeniz", districts: ["Muratpaşa", "Kepez", "Alanya"] },[m
+[32m+[m[32m  { slug: "adana", name: "Adana", plate: "01", region: "Akdeniz", districts: ["Seyhan", "Çukurova", "Yüreğir"] },[m
+[32m+[m[32m  { slug: "konya", name: "Konya", plate: "42", region: "İç Anadolu", districts: ["Selçuklu", "Meram", "Karatay"] },[m
+[32m+[m[32m  { slug: "gaziantep", name: "Gaziantep", plate: "27", region: "Güneydoğu Anadolu", districts: ["Şahinbey", "Şehitkamil", "Nizip"] },[m
+[32m+[m[32m  { slug: "sanliurfa", name: "Şanlıurfa", plate: "63", region: "Güneydoğu Anadolu", districts: ["Haliliye", "Eyyübiye", "Siverek"] },[m
+[32m+[m[32m  { slug: "kocaeli", name: "Kocaeli", plate: "41", region: "Marmara", districts: ["İzmit", "Gebze", "Darıca"] },[m
+[32m+[m[32m  { slug: "mersin", name: "Mersin", plate: "33", region: "Akdeniz", districts: ["Yenişehir", "Toroslar", "Tarsus"] },[m
+[32m+[m[32m  { slug: "diyarbakir", name: "Diyarbakır", plate: "21", region: "Güneydoğu Anadolu", districts: ["Bağlar", "Kayapınar", "Sur"] },[m
+[32m+[m[32m  { slug: "hatay", name: "Hatay", plate: "31", region: "Akdeniz", districts: ["Antakya", "İskenderun", "Defne"] },[m
+[32m+[m[32m  { slug: "manisa", name: "Manisa", plate: "45", region: "Ege", districts: ["Yunusemre", "Şehzadeler", "Akhisar"] },[m
+[32m+[m[32m  { slug: "kayseri", name: "Kayseri", plate: "38", region: "İç Anadolu", districts: ["Melikgazi", "Kocasinan", "Talas"] },[m
+[32m+[m[32m  { slug: "samsun", name: "Samsun", plate: "55", region: "Karadeniz", districts: ["İlkadım", "Atakum", "Canik"] },[m
+[32m+[m[32m  { slug: "balikesir", name: "Balıkesir", plate: "10", region: "Marmara", districts: ["Altıeylül", "Karesi", "Edremit"] },[m
+[32m+[m[32m  { slug: "kahramanmaras", name: "Kahramanmaraş", plate: "46", region: "Akdeniz", districts: ["Onikişubat", "Dulkadiroğlu", "Elbistan"] },[m
+[32m+[m[32m  { slug: "van", name: "Van", plate: "65", region: "Doğu Anadolu", districts: ["İpekyolu", "Edremit", "Erciş"] },[m
+[32m+[m[32m  { slug: "aydin", name: "Aydın", plate: "09", region: "Ege", districts: ["Efeler", "Nazilli", "Söke"] },[m
+[32m+[m[32m  { slug: "tekirdag", name: "Tekirdağ", plate: "59", region: "Marmara", districts: ["Süleymanpaşa", "Çorlu", "Çerkezköy"] },[m
+[32m+[m[32m  { slug: "sakarya", name: "Sakarya", plate: "54", region: "Marmara", districts: ["Adapazarı", "Serdivan", "Erenler"] },[m
+[32m+[m[32m  { slug: "denizli", name: "Denizli", plate: "20", region: "Ege", districts: ["Pamukkale", "Merkezefendi", "Çivril"] },[m
+[32m+[m[32m  { slug: "mugla", name: "Muğla", plate: "48", region: "Ege", districts: ["Menteşe", "Bodrum", "Fethiye"] },[m
+[32m+[m[32m  { slug: "eskisehir", name: "Eskişehir", plate: "26", region: "İç Anadolu", districts: ["Odunpazarı", "Tepebaşı", "Sivrihisar"] },[m
+[32m+[m[32m  { slug: "mardin", name: "Mardin", plate: "47", region: "Güneydoğu Anadolu", districts: ["Artuklu", "Kızıltepe", "Midyat"] },[m
+[32m+[m[32m  { slug: "trabzon", name: "Trabzon", plate: "61", region: "Karadeniz", districts: ["Ortahisar", "Akçaabat", "Of"] },[m
+[32m+[m[32m  { slug: "malatya", name: "Malatya", plate: "44", region: "Doğu Anadolu", districts: ["Battalgazi", "Yeşilyurt", "Doğanşehir"] },[m
+[32m+[m[32m  { slug: "erzurum", name: "Erzurum", plate: "25", region: "Doğu Anadolu", districts: ["Yakutiye", "Palandöken", "Aziziye"] },[m
+[32m+[m[32m  { slug: "ordu", name: "Ordu", plate: "52", region: "Karadeniz", districts: ["Altınordu", "Ünye", "Fatsa"] },[m
+ ];[m
+ [m
+[31m-export function getProvince(slug: string): Province | undefined {[m
+[31m-  return provinces.find((p) => p.slug === slug);[m
+[32m+[m[32mconst URL_SUFFIX = "-ehliyet-sinavi";[m
+[32m+[m
+[32m+[m[32m/** İl sayfası için tam URL yolu, örn. /rehber/il/gaziantep-ehliyet-sinavi */[m
+[32m+[m[32mexport function provincePath(p: Province): string {[m
+[32m+[m[32m  return `/rehber/il/${p.slug}${URL_SUFFIX}`;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32m/** generateStaticParams için kullanılacak URL slug'ı (örn. "gaziantep-ehliyet-sinavi") */[m
+[32m+[m[32mexport function provinceUrlSlug(p: Province): string {[m
+[32m+[m[32m  return `${p.slug}${URL_SUFFIX}`;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32m/**[m
+[32m+[m[32m * Route parametresinden (yeni "gaziantep-ehliyet-sinavi" ya da eski "gaziantep"[m
+[32m+[m[32m * biçiminde olabilir) ilgili ili bulur.[m
+[32m+[m[32m */[m
+[32m+[m[32mexport function getProvince(routeParam: string): Province | undefined {[m
+[32m+[m[32m  const base = routeParam.endsWith(URL_SUFFIX)[m
+[32m+[m[32m    ? routeParam.slice(0, -URL_SUFFIX.length)[m
+[32m+[m[32m    : routeParam;[m
+[32m+[m[32m  return provinces.find((p) => p.slug === base);[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32m/** Aynı coğrafi bölgeden diğer iller (iç linkleme için) */[m
+[32m+[m[32mexport function relatedProvinces(p: Province, limit = 4): Province[] {[m
+[32m+[m[32m  return provinces.filter((x) => x.region === p.region && x.slug !== p.slug).slice(0, limit);[m
+ }[m
+[1mdiff --git a/next.config.ts b/next.config.ts[m
+[1mindex e9ffa30..3de4b01 100644[m
+[1m--- a/next.config.ts[m
+[1m+++ b/next.config.ts[m
+[36m@@ -1,7 +1,17 @@[m
+ import type { NextConfig } from "next";[m
+[32m+[m[32mimport { provinces, provincePath } from "./lib/provinces";[m
+ [m
+ const nextConfig: NextConfig = {[m
+[31m-  /* config options here */[m
+[32m+[m[32m  async redirects() {[m
+[32m+[m[32m    // Eski /rehber/il/<il> URL'lerini yeni /rehber/il/<il>-ehliyet-sinavi[m
+[32m+[m[32m    // adreslerine kalıcı (301) olarak yönlendirir. Böylece mevcut[m
+[32m+[m[32m    // paylaşımlar, geri linkler ve arama motoru indeksleri korunur.[m
+[32m+[m[32m    return provinces.map((province) => ({[m
+[32m+[m[32m      source: `/rehber/il/${province.slug}`,[m
+[32m+[m[32m      destination: provincePath(province),[m
+[32m+[m[32m      permanent: true,[m
+[32m+[m[32m    }));[m
+[32m+[m[32m  },[m
+ };[m
+ [m
+ export default nextConfig;[m

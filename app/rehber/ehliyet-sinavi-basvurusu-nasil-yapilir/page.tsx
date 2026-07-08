@@ -38,6 +38,21 @@ const steps = [
   },
 ];
 
+const faqItems = [
+  {
+    q: "Ehliyet sınavı başvurusu için hangi belgeler gerekir?",
+    a: "Genel olarak kimlik belgesi, sağlık raporu ve kursun istediği fotoğraf gibi belgeler istenir. Kesin belge listesi kayıt olacağın sürücü kursuna göre küçük farklar gösterebilir.",
+  },
+  {
+    q: "Sürücü kursuna kayıt olmadan sınava girebilir miyim?",
+    a: "Hayır. Ehliyet sınavına girebilmek için önce resmî bir sürücü kursuna kayıt olup teorik eğitimi tamamlamış olman gerekir.",
+  },
+  {
+    q: "Başvuru süreci ne kadar sürer?",
+    a: "Süre; kursun eğitim takvimine, teorik ve direksiyon derslerinin tamamlanma hızına ve il/ilçe millî eğitim müdürlüğünün sınav planlamasına göre değişir.",
+  },
+];
+
 export default function BasvuruRehberi() {
   const schema = {
     "@context": "https://schema.org",
@@ -51,11 +66,25 @@ export default function BasvuruRehberi() {
     })),
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
+
   return (
     <div className="min-h-screen bg-paper">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <main className="max-w-2xl mx-auto px-5 sm:px-6 py-8 sm:py-14">
         <Link
@@ -107,10 +136,28 @@ export default function BasvuruRehberi() {
 
         <Link
           href="/quiz/trafik"
-          className="inline-flex items-center gap-2 text-sm font-display uppercase tracking-wide text-gold hover:text-gold-soft transition-colors"
+          className="inline-flex items-center gap-2 text-sm font-display uppercase tracking-wide text-gold hover:text-gold-soft transition-colors mb-10"
         >
           Teorik sınav sorularını çözmeye başla →
         </Link>
+
+        <h2 className="font-display text-lg text-ink mb-4">Sıkça Sorulan Sorular</h2>
+        <div className="flex flex-col gap-3">
+          {faqItems.map((item) => (
+            <details
+              key={item.q}
+              className="group bg-surface border border-line rounded-xl p-4 open:border-gold-soft"
+            >
+              <summary className="cursor-pointer font-display text-sm text-ink list-none flex items-center justify-between gap-3">
+                {item.q}
+                <span className="text-gold shrink-0 transition-transform group-open:rotate-45 font-display text-xl">
+                  +
+                </span>
+              </summary>
+              <p className="text-sm text-ink-soft leading-relaxed mt-3">{item.a}</p>
+            </details>
+          ))}
+        </div>
       </main>
     </div>
   );

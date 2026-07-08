@@ -1,6 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, BookOpen, Wallet, ClipboardCheck, MapPin } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  BookOpen,
+  Wallet,
+  ClipboardCheck,
+  MapPin,
+  Search,
+  CalendarDays,
+  Signpost,
+  HeartPulse,
+} from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Ehliyet Sınavına Hazırlık Rehberi | EhliyetAl",
@@ -32,6 +43,33 @@ const articles = [
     description:
       "İlini seç; sürücü kursu süreci ve ilgili çalışma testlerine hızlıca ulaş.",
     icon: MapPin,
+  },
+  {
+    href: "/rehber/ehliyet-sinavi-sonuc-sorgulama",
+    title: "Ehliyet Sınavı Sonucu Nasıl Öğrenilir?",
+    description:
+      "e-Devlet ve sürücü kursu üzerinden sınav sonucunu sorgulama yöntemleri.",
+    icon: Search,
+  },
+  {
+    href: "/rehber/ehliyet-sinavi-tarihleri-2026",
+    title: "2026 Ehliyet Sınavı Ne Zaman?",
+    description:
+      "Sınav dönemleri nasıl belirlenir, güncel takvimi nereden takip edersin?",
+    icon: CalendarDays,
+  },
+  {
+    href: "/rehber/trafik-isaretleri-nasil-calisilir",
+    title: "Trafik İşaretlerine Nasıl Çalışılır?",
+    description:
+      "İşaret gruplarını mantığıyla ayırt etme ve sınavda en çok yapılan hatalar.",
+    icon: Signpost,
+  },
+  {
+    href: "/rehber/ilk-yardim-sik-yapilan-hatalar",
+    title: "İlk Yardımda En Çok Yanlış Yapılan Sorular",
+    description: "Adayların en sık karıştırdığı ilk yardım kavramları.",
+    icon: HeartPulse,
   },
 ];
 

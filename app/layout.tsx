@@ -1,28 +1,9 @@
 import type { Metadata } from "next";
-import { Manrope, Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import BottomNav from "@/components/BottomNav";
 import Footer from "@/components/Footer";
 import PwaRegister from "@/components/PwaRegister";
-
-const manrope = Manrope({
-  variable: "--font-manrope",
-  subsets: ["latin"],
-  weight: ["600", "700", "800"],
-});
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-});
-
-const plexMono = IBM_Plex_Mono({
-  variable: "--font-plexmono",
-  subsets: ["latin"],
-  weight: ["500", "600"],
-});
 
 const SITE_URL = "https://ehliyetal.net";
 
@@ -84,9 +65,7 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
-      <body
-        className={`${manrope.variable} ${inter.variable} ${plexMono.variable} font-body antialiased`}
-      >
+      <body className="font-body antialiased">
         <Header />
         {children}
         <Footer />

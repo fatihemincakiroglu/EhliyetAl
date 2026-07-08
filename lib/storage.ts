@@ -125,6 +125,15 @@ export function getOverallStats(categorySlugs: string[]): OverallStats {
   };
 }
 
+export function getWeakCategories(categorySlugs: string[], limit = 2): CategoryStat[] {
+  const catStats = getCategoryStats(categorySlugs);
+  return categorySlugs
+    .map((slug) => catStats[slug])
+    .filter((stat) => stat.attempts > 0)
+    .sort((a, b) => a.bestPercent - b.bestPercent)
+    .slice(0, limit);
+}
+
 export function getTheme(): "light" | "dark" {
   if (!isBrowser()) return "light";
   const stored = window.localStorage.getItem(THEME_KEY);

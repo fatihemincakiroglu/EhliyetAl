@@ -1,7 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, Gauge, Wrench, HeartPulse, Leaf, Signpost } from "lucide-react";
+import { ArrowRight, Gauge, Wrench, HeartPulse, Leaf, Signpost, MapPin } from "lucide-react";
 import { categories } from "@/lib/questions";
+import { provinces, provincePath } from "@/lib/provinces";
 import { CategoryBadge, QuickLinks } from "@/components/HomeExtras";
 import DailyQuestion from "@/components/DailyQuestion";
 import StudyReminder from "@/components/StudyReminder";
@@ -24,6 +25,8 @@ const icons: Record<string, React.ComponentType<{ size?: number; className?: str
   cevre: Leaf,
   isaretler: Signpost,
 };
+
+const popularProvinceSlugs = ["istanbul", "ankara", "izmir", "bursa", "antalya", "gaziantep"];
 
 export default function Home() {
   const totalQuestions = categories.reduce(
@@ -97,7 +100,40 @@ export default function Home() {
           })}
         </div>
 
-        <p className="mt-12 sm:mt-14 text-xs text-ink-soft/70 font-data">
+        <div className="mt-10 sm:mt-12 rounded-2xl border border-line bg-surface p-5 sm:p-6">
+          <div className="flex items-center gap-2 mb-3">
+            <span className="inline-flex items-center justify-center rounded-lg bg-gold-wash text-gold p-1.5">
+              <MapPin size={16} />
+            </span>
+            <h2 className="font-display text-base text-ink">İline Özel Hazırlık Rehberi</h2>
+          </div>
+          <p className="text-sm text-ink-soft leading-relaxed mb-4">
+            Sürücü kursu ve başvuru süreci ilden ile küçük farklılıklar
+            gösterebilir. İlini seç, kısa rehberi ve önerilen çalışma
+            testlerini gör.
+          </p>
+          <div className="flex flex-wrap gap-2 mb-4">
+            {provinces
+              .filter((p) => popularProvinceSlugs.includes(p.slug))
+              .map((p) => (
+                <Link
+                  key={p.slug}
+                  href={provincePath(p)}
+                  className="text-sm rounded-full border border-line bg-paper px-4 py-2 text-ink hover:border-gold-soft hover:bg-gold-wash transition-colors"
+                >
+                  {p.name}
+                </Link>
+              ))}
+          </div>
+          <Link
+            href="/rehber/il"
+            className="inline-flex items-center gap-1.5 text-sm font-display uppercase tracking-wide text-gold hover:text-gold-soft transition-colors"
+          >
+            Tüm illeri gör <ArrowRight size={14} />
+          </Link>
+        </div>
+
+        <p className="mt-8 sm:mt-10 text-xs text-ink-soft/70 font-data">
           100 üzerinden 70 puan sınavı geçmek için gereken puandır.
         </p>
       </main>

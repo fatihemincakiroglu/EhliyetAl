@@ -30,9 +30,38 @@ const feeCategories = [
   },
 ];
 
+const faqCommon = [
+  {
+    q: "Ehliyet ücretleri illere göre farklı mı?",
+    a: "Resmi sınav ve harç ücretleri Türkiye genelinde standarttır. Değişen kısım genellikle sürücü kursunun kendi eğitim ücretidir; bu da kurstan kursa ve bazen ile göre farklılık gösterebilir.",
+  },
+  {
+    q: "Kurs ücretini taksitle ödeyebilir miyim?",
+    a: "Çoğu sürücü kursu taksit seçenekleri sunar. Taksit sayısı ve şartları kurstan kursa değiştiği için kayıt öncesi yazılı olarak netleştirmen önemlidir.",
+  },
+  {
+    q: "Sınavı geçemezsem tekrar ücret öder miyim?",
+    a: "Sınav tekrar ücretleri ve kursun sunduğu ek eğitim ücretleri kurstan kursa değişir. Kayıt sözleşmende bu durumun nasıl ele alındığını kontrol etmen faydalı olur.",
+  },
+];
+
 export default function UcretlerRehberi() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqCommon.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
+
   return (
     <div className="min-h-screen bg-paper">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <main className="max-w-2xl mx-auto px-5 sm:px-6 py-8 sm:py-14">
         <Link
           href="/rehber"
@@ -99,11 +128,29 @@ export default function UcretlerRehberi() {
           e-Devlet&apos;i ziyaret et <ExternalLink size={14} />
         </a>
 
-        <p className="text-sm text-ink-soft leading-relaxed">
+        <p className="text-sm text-ink-soft leading-relaxed mb-10">
           Ücretleri öğrendikten sonra sıradaki adım, teorik sınava iyi
           hazırlanmak. <Link href="/sinav" className="text-gold hover:underline">Sınav simülasyonunu</Link> deneyerek
           ne kadar hazır olduğunu görebilirsin.
         </p>
+
+        <h2 className="font-display text-xl text-ink mb-4">Sıkça Sorulan Sorular</h2>
+        <div className="flex flex-col gap-3">
+          {faqCommon.map((item) => (
+            <details
+              key={item.q}
+              className="group bg-surface border border-line rounded-xl p-4 open:border-gold-soft"
+            >
+              <summary className="cursor-pointer font-display text-sm text-ink list-none flex items-center justify-between gap-3">
+                {item.q}
+                <span className="text-gold shrink-0 transition-transform group-open:rotate-45 font-display text-xl">
+                  +
+                </span>
+              </summary>
+              <p className="text-sm text-ink-soft leading-relaxed mt-3">{item.a}</p>
+            </details>
+          ))}
+        </div>
       </main>
     </div>
   );
