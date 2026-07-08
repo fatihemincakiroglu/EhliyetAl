@@ -9,20 +9,21 @@ const links = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-line mt-8">
+    <footer className="bg-navy mt-8">
+      <div className="h-[3px] hazard-stripe" />
       <div className="max-w-3xl mx-auto px-5 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
         <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-xs text-ink-soft hover:text-gold transition-colors"
+              className="text-xs text-white/70 hover:text-gold transition-colors"
             >
               {link.label}
             </Link>
           ))}
         </nav>
-        <p className="text-[11px] text-ink-soft/70 font-data">
+        <p className="text-[11px] text-white/50 font-data">
           © {new Date().getFullYear()} EhliyetAl —{" "}
           <a
             href="https://fatihemincakiroglu.com/"

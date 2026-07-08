@@ -28,7 +28,7 @@ export default function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={theme === "light" ? "Karanlık temaya geç" : "Açık temaya geç"}
-      className="w-9 h-9 flex items-center justify-center rounded-full border border-line bg-surface text-ink-soft hover:text-gold hover:border-gold-soft transition-colors"
+      className="w-9 h-9 flex items-center justify-center rounded border border-white/20 bg-white/5 text-white/75 hover:text-gold hover:border-gold-soft transition-colors"
     >
       {theme === "light" ? <Moon size={16} /> : <Sun size={16} />}
     </button>

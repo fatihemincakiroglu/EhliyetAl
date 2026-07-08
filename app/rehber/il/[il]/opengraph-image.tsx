@@ -29,7 +29,7 @@ export default async function ProvinceOpengraphImage({
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          background: "#12182b",
+          background: "#0e2340",
           position: "relative",
         }}
       >
@@ -54,8 +54,8 @@ export default async function ProvinceOpengraphImage({
               display: "flex",
               fontSize: 26,
               fontWeight: 700,
-              color: "#12182b",
-              background: "#d9b45c",
+              color: "#0e2340",
+              background: "#ef8324",
               borderRadius: 999,
               padding: "6px 22px",
             }}
@@ -67,7 +67,7 @@ export default async function ProvinceOpengraphImage({
               fontSize: 20,
               letterSpacing: 5,
               textTransform: "uppercase",
-              color: "#d9b45c",
+              color: "#ef8324",
             }}
           >
             Sınav Hazırlık Rehberi
@@ -78,8 +78,7 @@ export default async function ProvinceOpengraphImage({
             display: "flex",
             fontSize: 76,
             fontWeight: 700,
-            color: "#f3f4f7",
-            fontStyle: "italic",
+            color: "#fffdf8",
             marginBottom: 20,
             textAlign: "center",
           }}
@@ -89,7 +88,7 @@ export default async function ProvinceOpengraphImage({
         <div
           style={{
             fontSize: 30,
-            color: "#c7cad4",
+            color: "#b7c1d6",
             textAlign: "center",
             maxWidth: 860,
           }}
@@ -100,13 +99,12 @@ export default async function ProvinceOpengraphImage({
           style={{
             display: "flex",
             fontSize: 26,
-            color: "#d9b45c",
+            color: "#ef8324",
             marginTop: 28,
-            fontStyle: "italic",
             fontWeight: 700,
           }}
         >
-          Ehliyet<span style={{ color: "#f3f4f7" }}>Al</span>
+          Ehliyet<span style={{ color: "#fffdf8" }}>Al</span>
         </div>
       </div>
     ),

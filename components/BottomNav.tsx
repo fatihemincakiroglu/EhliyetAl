@@ -10,7 +10,8 @@ export default function BottomNav() {
   const moreActive = pathname === "/menu";
 
   return (
-    <nav className="sm:hidden fixed bottom-0 inset-x-0 z-30 bg-surface border-t border-line flex items-stretch">
+    <nav className="sm:hidden fixed bottom-0 inset-x-0 z-30 bg-navy flex items-stretch">
+      <div className="absolute top-0 inset-x-0 h-[2px] hazard-stripe" />
       {navItems.map((item) => {
         const active = pathname === item.href;
         const Icon = item.icon;
@@ -19,7 +20,7 @@ export default function BottomNav() {
             key={item.href}
             href={item.href}
             className={`flex-1 flex flex-col items-center justify-center gap-1 py-2.5 text-[11px] font-body transition-colors ${
-              active ? "text-gold" : "text-ink-soft"
+              active ? "text-gold" : "text-white/60"
             }`}
           >
             <Icon size={20} strokeWidth={active ? 2.5 : 2} />
@@ -30,7 +31,7 @@ export default function BottomNav() {
       <Link
         href="/menu"
         className={`flex-1 flex flex-col items-center justify-center gap-1 py-2.5 text-[11px] font-body transition-colors ${
-          moreActive ? "text-gold" : "text-ink-soft"
+          moreActive ? "text-gold" : "text-white/60"
         }`}
       >
         <MoreHorizontal size={20} strokeWidth={moreActive ? 2.5 : 2} />

@@ -15,7 +15,7 @@ export default async function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          background: "#12182b",
+          background: "#0e2340",
           position: "relative",
         }}
       >
@@ -24,7 +24,7 @@ export default async function OpengraphImage() {
             position: "absolute",
             inset: 0,
             background:
-              "radial-gradient(circle at 20% 20%, rgba(169,131,47,0.25), transparent 60%)",
+              "radial-gradient(circle at 20% 20%, rgba(217,102,11,0.22), transparent 60%)",
           }}
         />
         <div
@@ -32,7 +32,7 @@ export default async function OpengraphImage() {
             fontSize: 22,
             letterSpacing: 6,
             textTransform: "uppercase",
-            color: "#d9b45c",
+            color: "#ef8324",
             marginBottom: 24,
           }}
         >
@@ -43,17 +43,16 @@ export default async function OpengraphImage() {
             display: "flex",
             fontSize: 88,
             fontWeight: 700,
-            color: "#f3f4f7",
-            fontStyle: "italic",
+            color: "#fffdf8",
             marginBottom: 16,
           }}
         >
-          Ehliyet<span style={{ color: "#d9b45c" }}>Al</span>
+          Ehliyet<span style={{ color: "#ef8324" }}>Al</span>
         </div>
         <div
           style={{
             fontSize: 32,
-            color: "#c7cad4",
+            color: "#b7c1d6",
             textAlign: "center",
             maxWidth: 820,
           }}

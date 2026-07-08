@@ -37,18 +37,19 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-paper">
       <main className="max-w-3xl mx-auto px-5 sm:px-6 py-12 sm:py-20">
-        <div className="flex items-center gap-2 mb-5">
-          <span className="font-display font-bold text-sm sm:text-base text-gold bg-gold-wash rounded-full px-4 py-1.5 inline-block">
+        <div className="flex items-center gap-2.5 mb-5">
+          <span className="font-display font-semibold text-xs sm:text-sm text-white bg-navy rounded px-3 py-1.5 inline-flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-gold" />
             EhliyetAl
           </span>
           <div className="font-data text-[11px] sm:text-xs uppercase tracking-[0.15em] text-ink-soft">
             Sınav Hazırlık
           </div>
         </div>
-        <h1 className="font-display text-3xl sm:text-5xl font-extrabold text-ink leading-[1.1] mb-4">
+        <h1 className="font-display text-3xl sm:text-5xl font-bold text-ink leading-[1.1] mb-4">
           Ehliyet Sınavı Soruları (2026)
         </h1>
-        <div className="h-1.5 w-24 rounded-full bg-gold mb-5" />
+        <div className="h-1.5 w-24 hazard-stripe mb-5" />
         <p className="text-ink-soft text-base sm:text-lg max-w-lg mb-4 leading-relaxed">
           Gerçek sınav formatında {totalQuestions} soruyla trafik, motor,
           ilkyardım ve çevre konularını çalış. Her sorudan hemen sonra doğru
