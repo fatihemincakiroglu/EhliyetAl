@@ -55,11 +55,11 @@ const MONTH_SLUGS = [
  * için sınav listelenir. Yeni ay eklemek için sadece bu değeri güncelle.
  */
 const LATEST_YEAR = 2026;
-const LATEST_MONTH = 1; // 2026 Ocak
+const LATEST_MONTH = 12; // 2026 Aralık
 
 /** Sınavların başladığı ilk ay. */
-const START_YEAR = 2025;
-const START_MONTH = 1; // 2025 Ocak
+const START_YEAR = 2020;
+const START_MONTH = 1; // 2020 Ocak
 
 function monthSlugToIndex(slug: string): number {
   return MONTH_SLUGS.indexOf(slug.toLowerCase() as (typeof MONTH_SLUGS)[number]);
