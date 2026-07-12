@@ -76,8 +76,9 @@ function humanize(segment: string): string {
   // Bilinen etiket varsa onu kullan
   if (LABELS[segment]) return LABELS[segment];
 
-  // Ay slug'ı ise Türkçe ay adı
-  const monthIdx = MONTH_SLUGS.indexOf(segment.toLowerCase());
+  // Ay slug'ı ise Türkçe ay adı ("temmuz" veya "temmuz-ehliyet-sinavi")
+  const monthCandidate = segment.toLowerCase().replace(/-ehliyet-sinavi$/, "");
+  const monthIdx = MONTH_SLUGS.indexOf(monthCandidate);
   if (monthIdx >= 0) return TR_MONTHS[monthIdx];
 
   // Sadece sayı ise (deneme sınavı no) -> "Deneme Sınavı N"

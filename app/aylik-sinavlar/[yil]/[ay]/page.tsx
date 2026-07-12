@@ -6,7 +6,7 @@ import MonthlyExamClient from "./MonthlyExamClient";
 export function generateStaticParams() {
   return getAllMonthlyExams().map((e) => ({
     yil: String(e.year),
-    ay: e.monthSlug,
+    ay: e.urlSlug,
   }));
 }
 

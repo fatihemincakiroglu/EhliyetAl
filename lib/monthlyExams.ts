@@ -29,10 +29,12 @@ export type MonthlyExam = {
   /** 1-12 */
   month: number;
   monthName: string;
-  /** URL slug'ı, ör. "ocak" */
+  /** Temiz ay slug'ı, ör. "temmuz" */
   monthSlug: string;
-  label: string; // "2026 Ocak Ehliyet Sınavı"
-  href: string; // "/aylik-sinavlar/2026/ocak"
+  /** URL'de kullanılan slug, ör. "temmuz-ehliyet-sinavi" */
+  urlSlug: string;
+  label: string; // "2026 Temmuz Ehliyet Sınavı"
+  href: string; // "/aylik-sinavlar/2026/temmuz-ehliyet-sinavi"
 };
 
 const MONTH_SLUGS = [
@@ -62,20 +64,24 @@ const START_YEAR = 2020;
 const START_MONTH = 1; // 2020 Ocak
 
 function monthSlugToIndex(slug: string): number {
-  return MONTH_SLUGS.indexOf(slug.toLowerCase() as (typeof MONTH_SLUGS)[number]);
+  // Hem "temmuz" hem "temmuz-ehliyet-sinavi" formatını kabul et
+  const clean = slug.toLowerCase().replace(/-ehliyet-sinavi$/, "");
+  return MONTH_SLUGS.indexOf(clean as (typeof MONTH_SLUGS)[number]);
 }
 
 function buildExam(year: number, month: number): MonthlyExam {
   const idx = month - 1;
   const monthName = TR_MONTHS[idx];
   const monthSlug = MONTH_SLUGS[idx];
+  const urlSlug = `${monthSlug}-ehliyet-sinavi`;
   return {
     year,
     month,
     monthName,
     monthSlug,
+    urlSlug,
     label: `${year} ${monthName} Ehliyet Sınavı`,
-    href: `/aylik-sinavlar/${year}/${monthSlug}`,
+    href: `/aylik-sinavlar/${year}/${urlSlug}`,
   };
 }
 
