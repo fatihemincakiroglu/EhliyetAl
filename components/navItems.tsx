@@ -1,4 +1,4 @@
-import { Home, ListChecks, BarChart3, Search, BookOpen, GraduationCap, Mail, CalendarDays } from "lucide-react";
+import { Home, ListChecks, BarChart3, Search, BookOpen, GraduationCap, Mail, CalendarDays, Gamepad2 } from "lucide-react";
 
 export const navItems = [
   { href: "/", label: "Ana Sayfa", icon: Home },
@@ -7,6 +7,7 @@ export const navItems = [
 ];
 
 export const moreItems = [
+  { href: "/pratik-oyunlar", label: "Pratik Oyunlar", icon: Gamepad2 },
   { href: "/aylik-sinavlar", label: "Aylık Sınavlar", icon: CalendarDays },
   { href: "/ara", label: "Soru Ara", icon: Search },
   { href: "/sozluk", label: "Sözlük", icon: BookOpen },

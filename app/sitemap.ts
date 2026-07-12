@@ -24,6 +24,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/iletisim",
     "/menu",
     "/aylik-sinavlar",
+    "/pratik-oyunlar",
+    "/pratik-oyunlar/isaret-tanima",
+    "/pratik-oyunlar/senaryolar",
+    "/pratik-oyunlar/gecis-hakki",
   ].map((path) => ({
     url: `${SITE_URL}${path}`,
     lastModified: new Date(),
