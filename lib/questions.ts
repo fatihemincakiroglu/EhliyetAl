@@ -105,7 +105,7 @@ export function getExamQuestions(totalCount = 50): Question[] {
   );
 }
 
-export const FIXED_EXAM_COUNT = 5;
+export const FIXED_EXAM_COUNT = 18;
 
 /**
  * Numaralı, sabit içerikli deneme sınavları için soru seçer. Aynı examNumber
