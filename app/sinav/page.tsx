@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Shuffle, FileCheck2 } from "lucide-react";
+import { ArrowRight, Shuffle, FileCheck2 } from "lucide-react";
 import { FIXED_EXAM_COUNT } from "@/lib/questions";
 
 export const metadata: Metadata = {
@@ -18,14 +18,6 @@ export default function SinavHubPage() {
   return (
     <div className="min-h-screen bg-paper">
       <main className="max-w-2xl mx-auto px-5 sm:px-6 py-8 sm:py-14">
-        <Link
-          href="/"
-          className="flex items-center gap-1.5 text-sm text-ink-soft hover:text-ink transition-colors mb-8"
-        >
-          <ArrowLeft size={16} />
-          Ana sayfaya dön
-        </Link>
-
         <h1 className="font-display text-3xl text-ink mb-2">
           Ehliyet Deneme Sınavı
         </h1>

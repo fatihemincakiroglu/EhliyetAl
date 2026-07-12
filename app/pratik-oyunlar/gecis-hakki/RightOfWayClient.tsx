@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import { ArrowLeft, ChevronLeft, ChevronRight, Play } from "lucide-react";
+import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 
 /* Animasyonlu tepeden görünüm kavşak şemaları.
  * Her şema, önceliği olan aracı vurgular ve kısa kuralı anlatır. */
@@ -168,14 +167,6 @@ export default function RightOfWayClient() {
   return (
     <div className="min-h-screen bg-paper">
       <main className="max-w-2xl mx-auto px-5 sm:px-6 py-6 sm:py-10">
-        <Link
-          href="/pratik-oyunlar"
-          className="flex items-center gap-1.5 text-sm text-ink-soft hover:text-ink transition-colors mb-6"
-        >
-          <ArrowLeft size={16} />
-          Oyunlara dön
-        </Link>
-
         <span className="inline-flex items-center gap-1.5 rounded-full bg-gold-wash px-3 py-1 text-xs font-medium text-gold mb-3">
           <Play size={13} /> Animasyonlu Şema
         </span>

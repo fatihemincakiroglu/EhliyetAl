@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useMemo } from "react";
 import Link from "next/link";
-import { ArrowLeft, Timer, Flame, Trophy, RotateCcw, Play } from "lucide-react";
+import { Timer, Flame, Trophy, RotateCcw, Play } from "lucide-react";
 import { signs, type SignEntry } from "@/lib/signs";
 import { signRegistry } from "@/components/TrafficSigns";
 
@@ -116,14 +116,6 @@ export default function SignGameClient() {
     return (
       <div className="min-h-screen bg-paper">
         <main className="max-w-2xl mx-auto px-5 sm:px-6 py-8 sm:py-14">
-          <Link
-            href="/pratik-oyunlar"
-            className="flex items-center gap-1.5 text-sm text-ink-soft hover:text-ink transition-colors mb-8"
-          >
-            <ArrowLeft size={16} />
-            Oyunlara dön
-          </Link>
-
           <div className="premium-card rounded-2xl border border-line bg-surface p-6 sm:p-8">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-gold-wash px-3 py-1 text-xs font-medium text-gold mb-4">
               <Timer size={13} /> Hız Oyunu

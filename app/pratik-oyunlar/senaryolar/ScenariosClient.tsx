@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, CheckCircle2, XCircle, Lightbulb, RotateCcw, Trophy } from "lucide-react";
+import { CheckCircle2, XCircle, Lightbulb, RotateCcw, Trophy } from "lucide-react";
 import { scenarios } from "@/lib/scenarios";
 
 export default function ScenariosClient() {
@@ -77,14 +77,6 @@ export default function ScenariosClient() {
   return (
     <div className="min-h-screen bg-paper">
       <main className="max-w-2xl mx-auto px-5 sm:px-6 py-6 sm:py-10">
-        <Link
-          href="/pratik-oyunlar"
-          className="flex items-center gap-1.5 text-sm text-ink-soft hover:text-ink transition-colors mb-6"
-        >
-          <ArrowLeft size={16} />
-          Oyunlara dön
-        </Link>
-
         <div className="flex items-center justify-between mb-3">
           <span className="text-sm font-display text-ink">
             Senaryo {current + 1} / {scenarios.length}

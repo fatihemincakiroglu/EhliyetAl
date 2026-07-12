@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
-import { ArrowLeft, RefreshCcw, Clock } from "lucide-react";
+import { RefreshCcw, Clock } from "lucide-react";
 import { getAllQuestions, type Question } from "@/lib/questions";
 import {
   getDueQuestionIds,
@@ -40,13 +39,6 @@ export default function TekrarClient() {
     return (
       <div className="min-h-screen bg-paper">
         <main className="max-w-2xl mx-auto px-5 sm:px-6 py-14 text-center">
-          <Link
-            href="/"
-            className="flex items-center gap-1.5 text-sm text-ink-soft hover:text-ink transition-colors mb-8 justify-center"
-          >
-            <ArrowLeft size={16} />
-            Ana sayfaya dön
-          </Link>
           <div className="bg-surface border border-line rounded-2xl p-8">
             <RefreshCcw size={28} className="mx-auto mb-4 text-gold" />
             <h1 className="font-display text-xl text-ink mb-2">

@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Search, X } from "lucide-react";
+import { Search, X } from "lucide-react";
 import { categories, getAllQuestions, type Question } from "@/lib/questions";
 
 const categoryLabel: Record<string, string> = Object.fromEntries(
@@ -44,14 +44,6 @@ export default function AraClient() {
   return (
     <div className="min-h-screen bg-paper">
       <main className="max-w-2xl mx-auto px-5 sm:px-6 py-8 sm:py-14">
-        <Link
-          href="/"
-          className="flex items-center gap-1.5 text-sm text-ink-soft hover:text-ink transition-colors mb-8"
-        >
-          <ArrowLeft size={16} />
-          Ana sayfaya dön
-        </Link>
-
         <h1 className="font-display text-3xl text-ink mb-2">Soru Ara</h1>
         <p className="text-ink-soft text-sm sm:text-base leading-relaxed mb-6">
           Aklına takılan bir konuyu veya kelimeyi yaz, ilgili soruları ve

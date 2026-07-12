@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Signpost } from "lucide-react";
+import { ArrowRight, Signpost } from "lucide-react";
 import * as Signs from "@/components/TrafficSigns";
 
 export const metadata: Metadata = {
@@ -215,14 +215,6 @@ export default function IsaretlerPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
       <main className="max-w-2xl mx-auto px-5 sm:px-6 py-8 sm:py-14">
-        <Link
-          href="/"
-          className="flex items-center gap-1.5 text-sm text-ink-soft hover:text-ink transition-colors mb-8"
-        >
-          <ArrowLeft size={16} />
-          Ana sayfaya dön
-        </Link>
-
         <div className="flex items-center gap-3 mb-4">
           <span className="inline-flex items-center justify-center rounded-lg bg-gold-wash text-gold p-2">
             <Signpost size={18} />
