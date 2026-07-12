@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { categories, FIXED_EXAM_COUNT } from "@/lib/questions";
 import { provinces, provincePath } from "@/lib/provinces";
 import { getAllMonthlyExams } from "@/lib/monthlyExams";
+import { blogPosts } from "@/lib/blog";
 
 const SITE_URL = "https://ehliyetal.net";
 
@@ -21,6 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/rehber/ilk-yardim-sik-yapilan-hatalar",
     "/rehber/il",
     "/ara",
+    "/blog",
     "/iletisim",
     "/menu",
     "/aylik-sinavlar",
@@ -63,5 +65,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...categoryRoutes, ...fixedExamRoutes, ...provinceRoutes, ...monthlyExamRoutes];
+  const blogRoutes = blogPosts.map((post) => ({
+    url: `${SITE_URL}/blog/${post.slug}`,
+    lastModified: new Date(post.updated),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [...staticRoutes, ...categoryRoutes, ...fixedExamRoutes, ...provinceRoutes, ...monthlyExamRoutes, ...blogRoutes];
 }

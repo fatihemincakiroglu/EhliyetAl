@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Breadcrumb from "@/components/Breadcrumb";
@@ -44,6 +44,15 @@ export const metadata: Metadata = {
     statusBarStyle: "default",
     title: "EhliyetAl",
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f2efe6" },
+    { media: "(prefers-color-scheme: dark)", color: "#0e2340" },
+  ],
 };
 
 const themeInitScript = `

@@ -93,7 +93,7 @@ export default function TarihlerRehberi() {
           <AlertTriangle size={20} className="text-danger shrink-0 mt-0.5" />
           <p className="text-sm text-ink leading-relaxed">
             Burada sabit bir tarih listesi paylaşmıyoruz çünkü sınav takvimi
-            ile göre, kontenjana göre ve zamanla değişir. Kesin tarih için tek
+            ile ilçeye, kontenjana ve döneme göre değişir. Kesin tarih için tek
             güvenilir kaynak, kayıtlı olduğun sürücü kursu ve e-Devlet&apos;tir.
           </p>
         </div>
