@@ -468,6 +468,468 @@ const category: Category = {
           "Araç ağırlığı arttıkça motorun harcaması gereken enerji de arttığından yakıt tüketimi ve buna bağlı emisyon miktarı yükselir; gereksiz yüklerden kaçınmak hem ekonomik hem çevresel açıdan faydalıdır.",
         difficulty: "kolay",
       },
+      {
+        id: "cevre-34",
+        text: "Alkol en çok beyin hücrelerini etkiler ve merkezi sinir sisteminde olumsuz etki yapar. Buna göre aşağıdakilerden hangisi bu durumun sonuçlarındandır?",
+        options: [
+          "Karar verme ve kendini kontrol yeteneğinin azalması",
+          "Yollarda tehdit unsuru oluşumunun azalması",
+          "Kaza yapma riskinin azalması",
+          "Sürüş yeteneğinin artması",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Alkol, karar verme ve kendini kontrol etme yeteneğini azaltarak kaza riskini artırır.",
+        difficulty: "orta",
+      },
+      {
+        id: "cevre-35",
+        text: "Aşağıdakilerden hangisi atıkların çevreye verdiği zararlardan biri değildir?",
+        options: [
+          "Kötü koku yayması",
+          "Çirkin görünüm arz etmesi",
+          "Hastalık taşıyan zararlıların üremesine sebep olması",
+          "Toplanıp işlenerek tekrar kullanılabilir hâle getirilmesi",
+        ],
+        correctIndex: 3,
+        explanation:
+          "Atıkların geri dönüştürülüp tekrar kullanılması bir zarar değil, çevreye faydalı bir uygulamadır.",
+        difficulty: "kolay",
+      },
+      {
+        id: "cevre-36",
+        text: "Sürücü, trafikteki bir kural ihlalinde kendisinin ya da sevdiklerinin canını tehlikeye attığının farkında olmalıdır. Bu farkındalığı kazanmak için ne yapılmalıdır?",
+        options: [
+          "Her kuralın altında yatan güvenlik gerekçelerinin sorgulanıp öğrenilmesi",
+          "İhlalin sonucunda sadece maddi ceza olduğunun düşünülmesi",
+          "Karşılıklı saygının öncelikle başkalarından beklenmesi",
+          "Kızgın ve yarışmacı motivasyonla araç kullanılması",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Kuralların güvenlik gerekçelerini sorgulayıp öğrenmek, sürücüde gerçek bir farkındalık ve içselleştirme sağlar.",
+        difficulty: "orta",
+      },
+      {
+        id: "cevre-37",
+        text: "Sürücünün trafikte hangi davranışı diğer sürücülerin dikkatinin dağılmasına ya da paniğe kapılmalarına sebep olabilir?",
+        options: [
+          "Davranışlarının sonuçlarını düşünerek hareket etmesi",
+          "Sürekli şerit değiştirerek (slalom) araç kullanması",
+          "Trafik kurallarının bilincinde olması",
+          "Davranışlarının sorumluluğunu üstlenmesi",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Sürekli şerit değiştirmek (slalom) diğer sürücülerin dikkatini dağıtır ve panik yaratır.",
+        difficulty: "orta",
+      },
+      {
+        id: "cevre-38",
+        text: "Ters yönden gelen sürücüye 'Bu sokak tek yönlü, herhalde girişteki levhayı görmediniz, lütfen dikkatli olun.' diyen bir sürücü hangi değere uygun davranmıştır?",
+        options: [
+          "İnatlaşmaya",
+          "Aşırı tepki göstermeye",
+          "Kaba ve saldırgan davranmaya",
+          "Trafik kültüründe birbirini uyarmaya",
+        ],
+        correctIndex: 3,
+        explanation:
+          "Nazik ve yapıcı biçimde uyarı yapmak, trafik kültüründe birbirini uyarma değerine uygun davranıştır.",
+        difficulty: "orta",
+      },
+      {
+        id: "cevre-39",
+        text: "Geçilmekte olan araç sürücüsünün yavaşlayıp geçen araca kolaylık sağlaması durumu trafikte hangi değerle ifade edilir?",
+        options: [
+          "Bencillik",
+          "İnatlaşmak",
+          "Diğergamlık",
+          "Sorumsuzluk",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Başkasına kolaylık sağlamak, kendinden çok başkasını düşünmek diğergamlık değeridir.",
+        difficulty: "orta",
+      },
+      {
+        id: "cevre-40",
+        text: "Trafikte öfke duygusuna kapılan sürücülerde aşağıdakilerden hangisinin görülme olasılığı diğerlerine göre daha fazladır?",
+        options: [
+          "Dikkatin dağılması",
+          "Kural ihlallerinin azalması",
+          "Direksiyon hâkimiyetinin artması",
+          "Kazaya karışma olasılığının azalması",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Öfke, dikkati dağıtır ve kaza riskini artırır; diğer seçenekler öfkenin olumlu olmayan gerçeğiyle çelişir.",
+        difficulty: "orta",
+      },
+      {
+        id: "cevre-41",
+        text: "Aşağıdakilerden hangisi çevre kirliliğini önleyici tedbirlerden biri değildir?",
+        options: [
+          "Kısa mesafeli yerlere yürüyerek gidilmesi",
+          "İniş eğimli yollarda motorun durdurulması",
+          "Trafiğin yoğun olmadığı yolların seçilmesi",
+          "Mümkün olduğunca toplu taşıma kullanılması",
+        ],
+        correctIndex: 1,
+        explanation:
+          "İniş eğimli yolda motoru durdurmak fren ve direksiyon desteğini kaybettirir; güvenlik açısından yanlıştır ve çevre tedbiri değildir.",
+        difficulty: "orta",
+      },
+      {
+        id: "cevre-42",
+        text: "Aşağıdakilerden hangisi trafikte çevreyi korumaya yönelik davranıştır?",
+        options: [
+          "Sigara izmaritlerinin araç dışına atılması",
+          "Motor yağı, asit vb. maddelerin toprağa dökülmesi",
+          "Dökülecek, tozacak şekilde yük taşınması",
+          "Zorunluluk dışında korna çalmaktan uzak durulması",
+        ],
+        correctIndex: 3,
+        explanation:
+          "Gereksiz korna çalmaktan kaçınmak gürültü kirliliğini azaltır ve çevreyi korur.",
+        difficulty: "kolay",
+      },
+      {
+        id: "cevre-43",
+        text: "Trafik adabı; trafik içinde sorumluluk, yardımlaşma, tahammül, saygı, fedakârlık, sabır gibi değerlere sahip olabilme yetisidir. Bu tanıma göre boş bırakılan kavram hangisidir?",
+        options: [
+          "Beden dili",
+          "Konuşma üslubu",
+          "Trafik adabı",
+          "Trafikte hak ihlali",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Tanımı yapılan kavram trafik adabıdır.",
+        difficulty: "kolay",
+      },
+      {
+        id: "cevre-44",
+        text: "Aşağıdakilerden hangisi sorumluluk duygusuna sahip bir sürücünün özelliğidir?",
+        options: [
+          "Trafik kurallarını önemsemeden araç kullanması",
+          "Davranışlarının sonuçlarını düşünerek hareket etmesi",
+          "Sevdiklerinin hayatını tehlikeye atmaktan çekinmemesi",
+          "Kendi yetkisindeki olayı başkalarının üstlenmesini beklemesi",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Sorumluluk sahibi sürücü, davranışlarının olası sonuçlarını düşünerek hareket eder.",
+        difficulty: "kolay",
+      },
+      {
+        id: "cevre-45",
+        text: "Aracını park ettikten sonra durduğu yerin diğer yol kullanıcıları için görme veya manevra engeli oluşturup oluşturmadığını kontrol eden sürücü hangi değere uygun davranmıştır?",
+        options: [
+          "Empati",
+          "Tahammül",
+          "Beden dili",
+          "Konuşma üslubu",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Kendini diğer yol kullanıcılarının yerine koyarak park yerini kontrol etmek empati değeridir.",
+        difficulty: "orta",
+      },
+      {
+        id: "cevre-46",
+        text: "Aşağıdakilerden hangisi öfkenin vücutta ortaya çıkardığı fizyolojik tepkilerden biri değildir?",
+        options: [
+          "Yüzün kızarması",
+          "Kaşların çatılması",
+          "Yumrukların sıkılması",
+          "Kontrollü davranılması",
+        ],
+        correctIndex: 3,
+        explanation:
+          "Kontrollü davranmak öfkenin fizyolojik bir tepkisi değil, öfke yönetiminin bir sonucudur.",
+        difficulty: "orta",
+      },
+      {
+        id: "cevre-47",
+        text: "'- - - -; trafik içinde sorumluluk, yardımlaşma, tahammül, saygı, fedakârlık, sabır gibi değerlere sahip olabilme yetisidir.' Boş bırakılan yere hangisi yazılmalıdır?",
+        options: [
+          "Beden dili",
+          "Konuşma üslubu",
+          "Trafik adabı",
+          "Trafikte hak ihlali",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Bu değerlere sahip olabilme yetisi trafik adabı olarak tanımlanır.",
+        difficulty: "kolay",
+      },
+      {
+        id: "cevre-48",
+        text: "Trafik içinde hatalı davranış sergileyen bir sürücüye nezaket ve saygı çerçevesinde uyarı yapılması neyi azaltır?",
+        options: [
+          "Trafikteki araç sayısını",
+          "Sürücünün ve diğerlerinin kaza yapma riskini",
+          "Yayaların yaya geçidi kullanma oranını",
+          "Diğer sürücülerin kurallara uyma yüzdesini",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Hatalı sürücüyü nazikçe uyarmak, hem o sürücünün hem diğerlerinin kaza yapma riskini azaltır.",
+        difficulty: "orta",
+      },
+      {
+        id: "cevre-49",
+        text: "Aracını kaldırıma park eden sürücü yayaların araç yoluna çıkmasına neden olur. Oysa - - - - düzeyi yüksek bir sürücü kendini yayanın yerine koyar ve kaldırıma park etmez. Boşluğa hangisi gelmelidir?",
+        options: [
+          "öfke",
+          "empati",
+          "bencillik",
+          "sorumsuzluk",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Kendini yayanın yerine koyabilme empati düzeyinin yüksekliğini gösterir.",
+        difficulty: "orta",
+      },
+      {
+        id: "cevre-50",
+        text: "Aşağıdakilerden hangisi trafik ortamında sürücülerin en fazla ihtiyaç duyacağı değerlerdendir?",
+        options: [
+          "Öfke",
+          "Hoşgörü",
+          "İnatlaşma",
+          "Aşırı tepki",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Güvenli ve huzurlu trafik ortamı için en çok ihtiyaç duyulan değer hoşgörüdür.",
+        difficulty: "kolay",
+      },
+      {
+        id: "cevre-51",
+        text: "'Hiçbir toplum 24 saat trafik zabıtası tarafından denetlenemez. Toplum yararına kesintisiz denetim - - - - ile mümkündür.' Boşluğa hangisi gelmelidir?",
+        options: [
+          "trafik adabı",
+          "trafik cezası",
+          "trafik terörü",
+          "trafik müfettişi",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Kesintisiz iç denetim, bireylerin trafik adabını içselleştirmesiyle mümkün olur.",
+        difficulty: "orta",
+      },
+      {
+        id: "cevre-52",
+        text: "Karlı havada zincir takmaya çalışan bir sürücünün sorununa daha deneyimli başka bir sürücünün çözüm bulması hangi temel değere sahip olunduğunu gösterir?",
+        options: [
+          "Trafik kültüründe birbirini uyarma",
+          "Kendini eleştirme",
+          "Yardımlaşma",
+          "İnatlaşma",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Zorda kalan bir sürücüye yardım etmek yardımlaşma değerini gösterir.",
+        difficulty: "kolay",
+      },
+      {
+        id: "cevre-53",
+        text: "Öfke yönetiminin amaçlarından biri aşağıdakilerden hangisidir?",
+        options: [
+          "Öfkeyi bastırmak ya da yok etmek",
+          "Kızgınlığa yol açan olayları değiştirmek",
+          "İçsel ve dışsal tepkilerde kontrolsüz davranmak",
+          "Öfkenin yol açtığı duygusal ve fizyolojik tepkileri azaltmak",
+        ],
+        correctIndex: 3,
+        explanation:
+          "Öfke yönetiminin amacı öfkeyi yok etmek değil, yol açtığı duygusal ve fizyolojik tepkileri azaltıp kontrol edebilmektir.",
+        difficulty: "orta",
+      },
+      {
+        id: "cevre-54",
+        text: "Kendinden çok başkalarını düşünen, başkalarının iyiliği için fedakârlık yapan, özgeci davranış aşağıdakilerden hangisiyle tanımlanır?",
+        options: [
+          "Bencillik",
+          "Saldırganlık",
+          "Diğergamlık",
+          "Sorumsuzluk",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Kendinden çok başkasını düşünen, özgeci davranış diğergamlık olarak tanımlanır.",
+        difficulty: "orta",
+      },
+      {
+        id: "cevre-55",
+        text: "Bir olay ya da durumda, karşımızdaki kişi hakkında yargıda bulunmadan önce kendimizi onun yerine koyarak durumu onun gibi yaşamamıza ne denir?",
+        options: [
+          "Öfke",
+          "Empati",
+          "Bastırma",
+          "Engellenme",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Kendini karşıdakinin yerine koyup durumu onun gibi hissetmeye empati denir.",
+        difficulty: "kolay",
+      },
+      {
+        id: "cevre-56",
+        text: "Kırmızı ışıkta beklerken ışık sarıya döner dönmez önündeki araca korna çalan, yeşili 1 saniye bile bekleyemeyen sürücü hangi temel değere sahip değildir?",
+        options: [
+          "Öfke",
+          "İnatlaşma",
+          "Sabır",
+          "Aşırı tepki",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Bu davranış sürücünün sabır değerine sahip olmadığını gösterir.",
+        difficulty: "orta",
+      },
+      {
+        id: "cevre-57",
+        text: "Aşağıdakilerden hangisi trafikte bireye yapılan hak ihlallerindendir?",
+        options: [
+          "Aşırı hız yapmaktan kaçınılması",
+          "Geçiş önceliğine sahip araçlara yol verilmesi",
+          "Trafikte sürücülerin tek başına olmadığının düşünülmesi",
+          "Engeli olmadığı hâlde engelliler için ayrılmış yere park edilmesi",
+        ],
+        correctIndex: 3,
+        explanation:
+          "Engelli olmadığı hâlde engelli park yerine park etmek, bireyin hakkının ihlalidir.",
+        difficulty: "kolay",
+      },
+      {
+        id: "cevre-58",
+        text: "Trafik kazası geçiren kişiler için 'canlarına zarar gelmese bile psikolojik olarak zarar görürler' ve 'bu bozuk psikoloji ailelerine ve topluma olumsuz yansır' ifadeleri için ne söylenebilir?",
+        options: [
+          "I. doğru, II. yanlış",
+          "I. yanlış, II. doğru",
+          "Her ikisi de doğru",
+          "Her ikisi de yanlış",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Kaza kişide psikolojik hasar bırakır ve bu durum aileye/topluma da olumsuz yansır; her iki ifade de doğrudur.",
+        difficulty: "orta",
+      },
+      {
+        id: "cevre-59",
+        text: "Aşağıdakilerden hangisi trafik kazalarının topluma verdiği zararlardan biri değildir?",
+        options: [
+          "Üretim ve refah kayıplarının yaşanması",
+          "Kara yollarının zamanından önce yıpranması",
+          "Uzun vadede kalkınmaya olumlu etki yapması",
+          "Açılan davalarla yargıda iş yükünün artması",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Kazaların kalkınmaya olumlu etkisi olmaz; aksine ekonomik ve toplumsal kayıplara yol açar.",
+        difficulty: "orta",
+      },
+      {
+        id: "cevre-60",
+        text: "Trafik adabı için 'denetim ve ceza korkusuyla yazılı kurallara uymak' ve 'yazılı olmayan, karşılıklı anlayış ve empati gerektiren davranışları alışkanlık hâline getirmek' ifadeleri için ne söylenebilir?",
+        options: [
+          "I. doğru, II. yanlış",
+          "I. yanlış, II. doğru",
+          "Her ikisi de doğru",
+          "Her ikisi de yanlış",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Trafik adabı ceza korkusuyla değil, karşılıklı anlayış ve empatiye dayalı davranışların alışkanlığa dönüşmesidir; bu nedenle I yanlış, II doğrudur.",
+        difficulty: "orta",
+      },
+      {
+        id: "cevre-61",
+        text: "Ailesiyle yolculuk yapan bir sürücü hız limitlerini aşarak ailesinin hayatını tehlikeye attığında trafikte hangi temel değeri yerine getirmemiş olur?",
+        options: [
+          "Hırçınlık",
+          "Sorumluluk",
+          "Bencillik",
+          "Hoşnutsuzluk",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Sevdiklerinin canını riske atmak, sürücünün sorumluluk değerini yerine getirmediğini gösterir.",
+        difficulty: "orta",
+      },
+      {
+        id: "cevre-62",
+        text: "Yoğun trafikte bir dizi hâlinde giden sürücülerin önüne geçip trafiği daha da sıkıştırarak yoluna devam etmeyen sürücü hangi özelliğe sahiptir?",
+        options: [
+          "Bencil",
+          "Sorumsuz",
+          "Görgü seviyesi düşük",
+          "Empati düzeyi yüksek",
+        ],
+        correctIndex: 3,
+        explanation:
+          "Başkalarını düşünüp trafiği sıkıştırmaktan kaçınmak, empati düzeyi yüksek bir sürücünün davranışıdır.",
+        difficulty: "orta",
+      },
+      {
+        id: "cevre-63",
+        text: "Seyir hâlindeki sürücünün yaptığı bir hatadan dolayı eliyle veya yüz ifadesiyle diğer sürücülerden özür dilemesi hangisinin kullanıldığına örnektir?",
+        options: [
+          "Beden dilinin",
+          "Bencilliğin",
+          "İnatlaşmanın",
+          "Tahammülsüzlüğün",
+        ],
+        correctIndex: 0,
+        explanation:
+          "El ve yüz ifadesiyle özür dilemek beden dilinin olumlu kullanımına örnektir.",
+        difficulty: "orta",
+      },
+      {
+        id: "cevre-64",
+        text: "Trafik psikologlarına göre insan nasıl yaşarsa öyle araç kullanır. Buna göre stresle olumlu baş etme konusunda sorun yaşayan sürücülerin genel olarak hangi değere sahip olmadığı söylenir?",
+        options: [
+          "Sabır",
+          "Öfke",
+          "Bencillik",
+          "İnatlaşma",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Stresle baş edemeyen sürücüler genellikle sabır değerinden yoksundur.",
+        difficulty: "orta",
+      },
+      {
+        id: "cevre-65",
+        text: "Aracı arıza yaptığı için yolda kalan ve trafiği aksatan bir sürücüye yoldan geçen başka bir sürücünün durup çözüm bulması hangi temel değere örnektir?",
+        options: [
+          "Yardımlaşmaya",
+          "Öfke duygusuna",
+          "Bencil davranmaya",
+          "Aşırı tepki göstermeye",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Yolda kalan sürücüye durup yardım etmek yardımlaşma değerine örnektir.",
+        difficulty: "kolay",
+      },
+      {
+        id: "cevre-66",
+        text: "Öndeki araç yol kenarına park etmeye çalışırken arkadan gelen aracın onu beklemesi trafikte hangi değere sahip olunduğunu gösterir?",
+        options: [
+          "Öfke",
+          "Sabır",
+          "İnatlaşma",
+          "Aşırı tepki",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Park etmeye çalışan aracı beklemek sabır değerini gösterir.",
+        difficulty: "kolay",
+      },
     ],
   };
 

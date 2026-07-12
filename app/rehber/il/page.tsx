@@ -32,7 +32,7 @@ export default function ProvinceHubPage() {
         </div>
         <p className="text-ink-soft text-sm sm:text-base leading-relaxed mb-10">
           Ehliyet sınavı süreci Türkiye genelinde aynı adımları izler, ama
-          başvuru ve iletişim noktaları ile göre değişir. İlini seç, o ile
+          başvuru ve iletişim noktaları ilden ile göre değişir. İlini seç, o ile
           özel kısa rehberi ve ilgili çalışma testlerini gör.
         </p>
 
