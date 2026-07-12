@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
+import Breadcrumb from "@/components/Breadcrumb";
 import BottomNav from "@/components/BottomNav";
 import Footer from "@/components/Footer";
 import PwaRegister from "@/components/PwaRegister";
@@ -67,6 +68,7 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased">
         <Header />
+        <Breadcrumb />
         {children}
         <Footer />
         <BottomNav />
