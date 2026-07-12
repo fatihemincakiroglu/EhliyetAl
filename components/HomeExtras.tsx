@@ -31,7 +31,7 @@ export function QuickLinks() {
   }, []);
 
   return (
-    <div className="flex flex-col sm:flex-row gap-3 mb-10">
+    <div className="flex flex-col sm:flex-row gap-3 mb-4">
       <Link
         href="/sinav"
         className="flex-1 flex items-center justify-center gap-2 rounded-full border border-line bg-surface px-5 py-3 text-sm font-display tracking-wide uppercase text-ink hover:border-gold-soft hover:bg-gold-wash transition-colors"

@@ -20,6 +20,7 @@ import {
   Target,
 } from "lucide-react";
 import { DurSign, YayaGecidiSign, GirisYokSign } from "@/components/TrafficSigns";
+import { faqItems, faqSchema } from "@/lib/faq";
 
 function SectionIcon({
   icon: Icon,
@@ -33,45 +34,6 @@ function SectionIcon({
   );
 }
 
-const faqItems = [
-  {
-    q: "Ehliyet sınavında kaç soru sorulur ve geçme puanı kaçtır?",
-    a: "Sürücü adayları sınavı; İlk Yardım, Trafik ve Çevre Bilgisi, Motor ve Araç Tekniği Bilgisi olmak üzere üç dersten oluşur. Her ders kendi içinde 100 puan üzerinden değerlendirilir ve başarılı sayılmak için her dersten ayrı ayrı en az 70 puan almak gerekir.",
-  },
-  {
-    q: "Ehliyet sınavı süresi ne kadardır?",
-    a: "Sınav süresi sertifika türüne göre değişmekle birlikte genellikle 130 dakika civarındadır. EhliyetAl'daki sınav simülasyonu ise pratik yapman için 50 soru ve 60 dakikalık kısaltılmış bir formatta sunulur.",
-  },
-  {
-    q: "Yanlış cevaplar doğru cevabı götürür mü?",
-    a: "Hayır. Ehliyet sınavında yanlış cevaplar dikkate alınmaz, sadece doğru cevaplarınız üzerinden puanlama yapılır. Bu yüzden boş bırakmaktansa mantıklı bir tahminde bulunmak her zaman daha avantajlıdır.",
-  },
-  {
-    q: "2026 ehliyet sınavı sorularında değişiklik var mı?",
-    a: "Sınav konuları yıllar içinde büyük ölçüde benzer kalır; trafik kuralları, ilk yardım ve motor bilgisi temel çerçeveyi oluşturur. Güncel mevzuat değişikliklerini takip etmek için resmi kaynakları kontrol etmeni öneririz.",
-  },
-  {
-    q: "Ehliyet sınavına nasıl çalışılmalı?",
-    a: "Konuları ezberlemek yerine mantığını anlayarak çalışmak, düzenli aralıklarla mini testler çözmek ve yanlış yaptığın soruları tekrar etmek en etkili yöntemdir. EhliyetAl'daki 'Tekrar Çöz' modu tam olarak bunun için tasarlandı.",
-  },
-  {
-    q: "EhliyetAl'daki sorular gerçek sınavda çıkan sorularla birebir aynı mı?",
-    a: "Hayır. EhliyetAl'daki sorular, gerçek sınavla aynı konuları ve zorluk seviyesini kapsayan, sitemize özel hazırlanmış özgün alıştırma sorularıdır. Gerçek sınavda karşılaşacağın sorular farklı olacaktır; amacımız seni konulara aşina hâle getirmektir.",
-  },
-];
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqItems.map((item) => ({
-    "@type": "Question",
-    name: item.q,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: item.a,
-    },
-  })),
-};
 
 const websiteSchema = {
   "@context": "https://schema.org",
@@ -503,6 +465,12 @@ export default function SeoContent() {
           </details>
         ))}
       </div>
+      <Link
+        href="/sss"
+        className="inline-flex items-center gap-2 text-sm font-display uppercase tracking-wide text-gold hover:text-gold-soft transition-colors"
+      >
+        Tüm sıkça sorulan sorular →
+      </Link>
     </section>
   );
 }

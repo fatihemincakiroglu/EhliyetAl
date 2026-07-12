@@ -1,12 +1,19 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, Gauge, Wrench, HeartPulse, Leaf, Signpost, MapPin } from "lucide-react";
+import {
+  ArrowRight,
+  Gauge,
+  Wrench,
+  HeartPulse,
+  Leaf,
+  Signpost,
+  Play,
+  MapPin,
+} from "lucide-react";
 import { categories } from "@/lib/questions";
-import { provinces, provincePath } from "@/lib/provinces";
 import { CategoryBadge, QuickLinks } from "@/components/HomeExtras";
 import DailyQuestion from "@/components/DailyQuestion";
-import StudyReminder from "@/components/StudyReminder";
-import GlobalCounter from "@/components/GlobalCounter";
+import HomeStatusBar from "@/components/HomeStatusBar";
 import SeoContent from "@/components/SeoContent";
 
 export const metadata: Metadata = {
@@ -18,15 +25,16 @@ export const metadata: Metadata = {
   },
 };
 
-const icons: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+const icons: Record<
+  string,
+  React.ComponentType<{ size?: number; className?: string }>
+> = {
   trafik: Gauge,
   motor: Wrench,
   ilkyardim: HeartPulse,
   cevre: Leaf,
   isaretler: Signpost,
 };
-
-const popularProvinceSlugs = ["istanbul", "ankara", "izmir", "bursa", "antalya", "gaziantep"];
 
 export default function Home() {
   const totalQuestions = categories.reduce(
@@ -37,6 +45,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-paper">
       <main className="max-w-3xl mx-auto px-5 sm:px-6 py-12 sm:py-20">
+        {/* Kimlik + başlık */}
         <div className="flex items-center gap-2.5 mb-5">
           <span className="font-display font-semibold text-xs sm:text-sm text-white bg-navy rounded px-3 py-1.5 inline-flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-gold" />
@@ -50,21 +59,38 @@ export default function Home() {
           Ehliyet Sınavı Soruları (2026)
         </h1>
         <div className="h-1.5 w-24 hazard-stripe mb-5" />
-        <p className="text-ink-soft text-base sm:text-lg max-w-lg mb-4 leading-relaxed">
+        <p className="text-ink-soft text-base sm:text-lg max-w-lg mb-6 leading-relaxed">
           Gerçek sınav formatında {totalQuestions} soruyla trafik, motor,
           ilkyardım ve çevre konularını çalış. Her sorudan hemen sonra doğru
           cevabın açıklamasını gör.
         </p>
 
-        <div className="mb-8 flex flex-wrap items-center gap-4">
-          <StudyReminder />
-          <GlobalCounter />
+        {/* 1) Birincil eylem: tek net CTA */}
+        <Link
+          href="/sinav"
+          className="group flex items-center justify-center gap-2.5 rounded-2xl gold-gradient text-white px-6 py-4 sm:py-5 font-display text-lg tracking-wide hover:bg-gold-soft transition-colors"
+        >
+          <Play size={20} className="shrink-0" />
+          Deneme Sınavı Başlat
+          <ArrowRight
+            size={18}
+            className="shrink-0 transition-transform group-hover:translate-x-1"
+          />
+        </Link>
+        <p className="mt-2.5 mb-10 text-center font-data text-xs text-ink-soft/80">
+          50 soru · 60 dakika · geçme notu 70
+        </p>
+
+        {/* 2) İkincil: konuya göre çalış (asıl içerik yukarıda) */}
+        <div className="flex items-baseline justify-between mb-3">
+          <h2 className="font-display text-base text-ink">Konuya Göre Çalış</h2>
+          <Link
+            href="/sinav"
+            className="font-data text-xs text-ink-soft hover:text-gold transition-colors"
+          >
+            veya karışık dene →
+          </Link>
         </div>
-
-        <QuickLinks />
-
-        <DailyQuestion />
-
         <div className="flex flex-col gap-3">
           {categories.map((category, i) => {
             const Icon = icons[category.slug] ?? Gauge;
@@ -101,38 +127,24 @@ export default function Home() {
           })}
         </div>
 
-        <div className="mt-10 sm:mt-12 rounded-2xl border border-line bg-surface p-5 sm:p-6">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="inline-flex items-center justify-center rounded-lg bg-gold-wash text-gold p-1.5">
-              <MapPin size={16} />
-            </span>
-            <h2 className="font-display text-base text-ink">İline Özel Hazırlık Rehberi</h2>
-          </div>
-          <p className="text-sm text-ink-soft leading-relaxed mb-4">
-            Sürücü kursu ve başvuru süreci ilden ile küçük farklılıklar
-            gösterebilir. İlini seç, kısa rehberi ve önerilen çalışma
-            testlerini gör.
-          </p>
-          <div className="flex flex-wrap gap-2 mb-4">
-            {provinces
-              .filter((p) => popularProvinceSlugs.includes(p.slug))
-              .map((p) => (
-                <Link
-                  key={p.slug}
-                  href={provincePath(p)}
-                  className="text-sm rounded-full border border-line bg-paper px-4 py-2 text-ink hover:border-gold-soft hover:bg-gold-wash transition-colors"
-                >
-                  {p.name}
-                </Link>
-              ))}
-          </div>
-          <Link
-            href="/rehber/il"
-            className="inline-flex items-center gap-1.5 text-sm font-display uppercase tracking-wide text-gold hover:text-gold-soft transition-colors"
-          >
-            Tüm illeri gör <ArrowRight size={14} />
-          </Link>
+        {/* 3+4) İkincil özellikler: kompakt satır + açılır günün sorusu */}
+        <div className="mt-10">
+          <QuickLinks />
+          <HomeStatusBar />
+          <DailyQuestion />
         </div>
+
+        {/* İl rehberi: tek satırlık bağlantı (blok değil) */}
+        <Link
+          href="/rehber/il"
+          className="mt-4 flex items-center gap-2.5 rounded-xl border border-line bg-surface px-4 py-3 text-sm text-ink hover:border-gold-soft hover:bg-gold-wash transition-colors"
+        >
+          <span className="inline-flex items-center justify-center rounded-lg bg-gold-wash text-gold p-1.5 shrink-0">
+            <MapPin size={16} />
+          </span>
+          <span className="flex-1">İline özel hazırlık rehberi</span>
+          <ArrowRight size={15} className="shrink-0 text-ink-soft" />
+        </Link>
 
         <p className="mt-8 sm:mt-10 text-xs text-ink-soft/70 font-data">
           100 üzerinden 70 puan sınavı geçmek için gereken puandır.
