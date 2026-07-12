@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 const feeCategories = [
   {
     title: "Sürücü kursu ücreti",
-    text: "Kayıt olunan kursun teorik ve direksiyon eğitimi için belirlediği ücrettir. Kurstan kursa, ile göre ve ehliyet sınıfına (B, A2, vb.) göre değişiklik gösterebilir.",
+    text: "Kayıt olunan kursun teorik ve direksiyon eğitimi için belirlediği ücrettir. Kurstan kursa, ilden ile ve ehliyet sınıfına (B, A2, vb.) göre değişiklik gösterebilir.",
   },
   {
     title: "Sınav ücreti",
@@ -33,7 +33,7 @@ const feeCategories = [
 const faqCommon = [
   {
     q: "Ehliyet ücretleri illere göre farklı mı?",
-    a: "Resmi sınav ve harç ücretleri Türkiye genelinde standarttır. Değişen kısım genellikle sürücü kursunun kendi eğitim ücretidir; bu da kurstan kursa ve bazen ile göre farklılık gösterebilir.",
+    a: "Resmi sınav ve harç ücretleri Türkiye genelinde standarttır. Değişen kısım genellikle sürücü kursunun kendi eğitim ücretidir; bu da kurstan kursa ve bazen ilden ile farklılık gösterebilir.",
   },
   {
     q: "Kurs ücretini taksitle ödeyebilir miyim?",

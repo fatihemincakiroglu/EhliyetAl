@@ -463,6 +463,566 @@ const category: Category = {
           "Düşük lastik hava basıncı yuvarlanma direncini artırır, bu da motorun daha fazla efor harcamasına ve yakıt tüketiminin artmasına neden olur.",
         difficulty: "orta",
       },
+      {
+        id: "motor-34",
+        text: "Aşağıdakilerden hangisi araçlarda gücün kaynağıdır?",
+        options: [
+          "Şaft",
+          "Motor",
+          "Tekerlek",
+          "Vites kutusu",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Araçta gücü üreten kaynak motordur; diğer organlar bu gücü aktarır veya kullanır.",
+        difficulty: "kolay",
+      },
+      {
+        id: "motor-35",
+        text: "Aşağıdakilerden hangisi buji ile ateşlemeli motorların yakıtıdır?",
+        options: [
+          "Benzin",
+          "Motorin",
+          "Antifriz",
+          "Gaz yağı",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Buji ile ateşlemeli (benzinli) motorların yakıtı benzindir.",
+        difficulty: "kolay",
+      },
+      {
+        id: "motor-36",
+        text: "Yakıt içerisinde toz, su veya pislik varsa motor nasıl çalışır?",
+        options: [
+          "Yüksek devirde",
+          "Zengin karışımla",
+          "Yüksek performansla",
+          "Düzensiz, tekleyerek",
+        ],
+        correctIndex: 3,
+        explanation:
+          "Kirli veya sulu yakıt yanmayı bozar; motor düzensiz çalışır ve tekler.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-37",
+        text: "Kışın motor soğutma suyunun donmasını önlemek için soğutma suyuna aşağıdakilerden hangisi karıştırılmalıdır?",
+        options: [
+          "Asit",
+          "Antifriz",
+          "Saf su",
+          "Motor yağı",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Soğutma suyuna antifriz karıştırılarak donma ve ayrıca korozyon önlenir.",
+        difficulty: "kolay",
+      },
+      {
+        id: "motor-38",
+        text: "Aşağıdakilerden hangisi elektrik devresindeki sigortanın görevidir?",
+        options: [
+          "Aküyü şarj etmek",
+          "Bujilere giden akımı yükseltmek",
+          "Kısa devre olduğunda sistemi korumak",
+          "Endüksiyon bobinine giden akımı yükseltmek",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Sigorta, aşırı akım/kısa devre durumunda eriyerek elektrik devresini ve donanımı korur.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-39",
+        text: "Seyir hâlindeyken araçtan sürekli yakıt kokusu gelmesi durumunda ne yapılmalıdır?",
+        options: [
+          "Açık camlar kapatılır",
+          "Önemsenmez, yola devam edilir",
+          "Lastiklerin hava basıncı kontrol edilir",
+          "Trafik kurallarına uyarak durulur ve kontak kapatılır",
+        ],
+        correctIndex: 3,
+        explanation:
+          "Yakıt kokusu yangın riskidir; güvenli şekilde durulmalı ve kontak kapatılmalıdır.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-40",
+        text: "Araçlarda yakıt tasarrufu sağlamak için aşağıdakilerden hangisi yapılmalıdır?",
+        options: [
+          "Termostat çıkartılmalı",
+          "Eskimiş bujiler değiştirilmeli",
+          "Lastiklerin hava basıncı indirilmeli",
+          "Motor yüksek devirde çalıştırılmalı",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Eskimiş bujilerin değiştirilmesi verimli yanma sağlar ve yakıt tasarrufu getirir.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-41",
+        text: "Aşağıdakilerden hangisi aracı istenilen yöne sevk eder?",
+        options: [
+          "Marş sistemi",
+          "Yağlama sistemi",
+          "Direksiyon sistemi",
+          "Aydınlatma sistemi",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Aracı istenilen yöne yönlendiren sistem direksiyon sistemidir.",
+        difficulty: "kolay",
+      },
+      {
+        id: "motor-42",
+        text: "İçten yanmalı motorlarda aşağıdaki yakıtlardan hangileri kullanılır?",
+        options: [
+          "Yalnız LPG",
+          "Yalnız benzin",
+          "Benzin ve motorin",
+          "LPG, benzin ve motorin",
+        ],
+        correctIndex: 3,
+        explanation:
+          "İçten yanmalı motorlarda LPG, benzin ve motorin yakıt olarak kullanılabilir.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-43",
+        text: "Motorlu araçlarda motorun yağ seviyesini kontrol etmeye yarayan, özel işaretleri bulunan parçaya ne ad verilir?",
+        options: [
+          "Yağdanlık",
+          "Yağ çubuğu",
+          "Yağ filtresi",
+          "Yağ pompası",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Motor yağ seviyesi, üzerinde asgari-azami işaretleri bulunan yağ çubuğu ile kontrol edilir.",
+        difficulty: "kolay",
+      },
+      {
+        id: "motor-44",
+        text: "Aracın elektrik devresinde akım yüksek olduğunda eriyerek güvenliği sağlayan parça hangisidir?",
+        options: [
+          "Akü",
+          "Platin",
+          "Sigorta",
+          "Alternatör",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Akım aşırı yükseldiğinde eriyerek devreyi koruyan parça sigortadır.",
+        difficulty: "kolay",
+      },
+      {
+        id: "motor-45",
+        text: "Kriko ile aracı kaldırırken tekerleklere takoz konulmasının nedeni aşağıdakilerden hangisidir?",
+        options: [
+          "Aracın motorunu çalıştırabilmek",
+          "Aracın hareket etmesini engellemek",
+          "Yakıtın buharlaşmasını engellemek",
+          "Motorun sarsıntısız çalışmasını sağlamak",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Takoz, kriko ile kaldırma sırasında aracın kaymasını/hareket etmesini engelleyerek güvenliği sağlar.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-46",
+        text: "Motor hareketinin vites kutusuna iletilmesini sağlayan sistem aşağıdakilerden hangisidir?",
+        options: [
+          "Marş",
+          "Şarj",
+          "Ateşleme",
+          "Kavrama (debriyaj)",
+        ],
+        correctIndex: 3,
+        explanation:
+          "Motordan gelen hareketi vites kutusuna ileten/kesen sistem kavrama (debriyaj) sistemidir.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-47",
+        text: "'Emme zamanında silindire alınan temiz hava sıkıştırılır, kızgın havanın üstüne yakıt püskürtülür ve yanma başlar.' Bu çalışma prensibi hangi motora aittir?",
+        options: [
+          "Benzinli",
+          "Dizel",
+          "Elektrikli",
+          "Buharlı",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Havanın sıkıştırılıp üzerine yakıt püskürtülerek tutuşması dizel motorun çalışma prensibidir.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-48",
+        text: "Dizel motor kullanan bir araca yanlışlıkla benzin konulması durumunda aşağıdakilerden hangisi uygundur?",
+        options: [
+          "Aracın düşük hızda sürülmesi",
+          "Yakıt deposunun boşaltılması",
+          "Aracın yüksek devirde kullanılması",
+          "Lastik basınçlarının düşürülmesi",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Dizel motora benzin konulursa motor çalıştırılmadan depo boşaltılmalıdır; aksi hâlde motor zarar görür.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-49",
+        text: "Aracın çok uzun süre kullanılmadan bekletilmesi sonucunda aşağıdakilerden hangileri meydana gelebilir?",
+        options: [
+          "Yalnız motor yağının özelliğini kaybetmesi",
+          "Akü şarjının azalması ve fren balatalarının azalması",
+          "Akü şarjının azalması ve motor yağının özelliğini kaybetmesi",
+          "Akü şarjı azalması, fren balatası azalması ve motor yağının bozulması",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Uzun süre bekleyen araçta akü boşalır ve motor yağı özelliğini kaybeder; fren balatası ise kullanımla aşınır, beklemekle azalmaz.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-50",
+        text: "Aşağıdakilerden hangisi frenleme mesafesinin artmasına neden olur?",
+        options: [
+          "Yakıt seviyesinin düşmesi",
+          "Balata yüzeyinin kuru olması",
+          "Lastik diş derinliklerinin azalması",
+          "Motor yağı değişiminin geciktirilmesi",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Lastik diş derinliği azaldıkça yol tutuşu düşer ve frenleme mesafesi artar.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-51",
+        text: "Motor hareketinin diferansiyele iletilmesini sağlayan güç aktarma organı aşağıdakilerden hangisidir?",
+        options: [
+          "Şaft",
+          "Diferansiyel",
+          "Aks",
+          "Vites kutusu",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Vites kutusundan aldığı hareketi diferansiyele ileten güç aktarma organı şafttır.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-52",
+        text: "Marş yapıldığında gösterge ışıkları yanıyor ancak marş motoru dönmüyorsa problem aşağıdakilerden hangisi olabilir?",
+        options: [
+          "Yakıt bitmiştir",
+          "Batarya (akü) zayıflamıştır",
+          "Lastik basınçları düşüktür",
+          "Motor yağ seviyesi azalmıştır",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Işıklar yanıyor ama marş motoru dönmüyorsa akü, marş motorunu çevirecek gücü sağlayamıyordur (akü zayıf).",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-53",
+        text: "Marşa basıldığında motor dönüyor ancak çalışmıyorsa ilk olarak aşağıdakilerden hangisi kontrol edilmelidir?",
+        options: [
+          "Bujiler",
+          "Akü suyu",
+          "Motor yağ seviyesi",
+          "Depodaki yakıt seviyesi",
+        ],
+        correctIndex: 3,
+        explanation:
+          "Motor dönüp çalışmıyorsa ilk olarak yakıtın bitip bitmediği (depo seviyesi) kontrol edilir.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-54",
+        text: "Periyodik bakımda aşağıdakilerden hangisinin değiştirilmemesi araç motorunun çalışmasını olumsuz etkiler?",
+        options: [
+          "Polen filtresinin",
+          "Yağ filtresinin",
+          "Araç lastiklerinin",
+          "Cam sileceklerinin",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Yağ filtresi değişmezse yağ kirlenir ve motorun çalışmasını olumsuz etkiler; diğerleri motor çalışmasını doğrudan etkilemez.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-55",
+        text: "Araçta yanmış bir sigortayı daha yüksek amperli bir sigortayla değiştirmek ya da telle sarmak neye neden olabilir?",
+        options: [
+          "Bujinin daha iyi ateşlemesine",
+          "Farların daha canlı yanmasına",
+          "Akünün daha çabuk bitmesine",
+          "Elektrik tesisatının yanmasına",
+        ],
+        correctIndex: 3,
+        explanation:
+          "Yüksek amperli sigorta veya tel, aşırı akımda devreyi kesmez; bu durum elektrik tesisatının yanmasına yol açar.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-56",
+        text: "Radyatördeki su miktarının azalması aşağıdakilerden hangisine neden olur?",
+        options: [
+          "Motorun hararet yapmasına",
+          "Motor devrinin yükselmesine",
+          "Klimanın düzensiz çalışmasına",
+          "Akünün kısa zamanda bitmesine",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Soğutma suyu azalırsa motor yeterince soğutulamaz ve hararet (aşırı ısınma) yapar.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-57",
+        text: "Aşağıdakilerden hangisi diferansiyelin görevlerinden biri değildir?",
+        options: [
+          "Yakıt tasarrufu sağlamak",
+          "Tekerleklere güç ve tork dağıtmak",
+          "Şafttan gelen torku artırarak akslara iletmek",
+          "Virajda dış tekerleğin iç tekerlekten fazla dönmesini sağlamak",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Diferansiyel güç/tork dağıtır ve virajda tekerleklerin farklı hızda dönmesini sağlar; yakıt tasarrufu görevi değildir.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-58",
+        text: "Benzinli bir motorda buji hangi zamanın sonunda ateşleme yapar?",
+        options: [
+          "İş",
+          "Egzoz",
+          "Emme",
+          "Sıkıştırma",
+        ],
+        correctIndex: 3,
+        explanation:
+          "Benzinli motorda buji, sıkıştırma zamanının sonunda ateşleme yaparak iş zamanını başlatır.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-59",
+        text: "Yağ eksilten bir araçta periyodik yağ değişimi yerine sürekli eksik yağı tamamlayarak devam etmek neye neden olur?",
+        options: [
+          "Yağ ömrünün artmasına",
+          "Yakıt tüketiminin azalmasına",
+          "Bakım masrafının azalmasına",
+          "Yağın çamurlaşarak motora zarar vermesine",
+        ],
+        correctIndex: 3,
+        explanation:
+          "Eski yağ üzerine sürekli ekleme yapmak yağın çamurlaşmasına ve motorun zarar görmesine yol açar.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-60",
+        text: "Hararet yapmış bir motorda radyatör suyu çok sıcak değilse aşağıdakilerden hangisinin arızalı olduğu düşünülür?",
+        options: [
+          "Fan müşirinin",
+          "Termostatın",
+          "Fan sigortasının",
+          "Klima kompresörünün",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Motor ısınmış ama radyatör suyu soğuksa, suyun dolaşımını açan termostat açılmıyordur (arızalıdır).",
+        difficulty: "zor",
+      },
+      {
+        id: "motor-61",
+        text: "Lastik değişiminden sonra balans ayarı yapılmaması aşağıdakilerden hangisine neden olur?",
+        options: [
+          "Aracın daha fazla yakıt tüketmesine",
+          "Frenleme performansının artmasına",
+          "Lastik basıncının kendiliğinden azalmasına",
+          "Belirli bir hızdan sonra direksiyonun titremesine",
+        ],
+        correctIndex: 3,
+        explanation:
+          "Balans ayarı yapılmazsa tekerlek dengesizliği belli bir hızdan sonra direksiyonda titreme yapar.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-62",
+        text: "Aşağıdakilerden hangileri antifrizin görevlerindendir?",
+        options: [
+          "Yalnız soğutma suyunun donmasını engellemek",
+          "Soğutma suyunun donmasını ve motorun verimli çalışmasını engellemek",
+          "Motorun verimli çalışmasını ve korozyonu önlemek",
+          "Donmayı önlemek, verimli çalışmayı sağlamak ve pas/korozyonu önlemek",
+        ],
+        correctIndex: 3,
+        explanation:
+          "Antifriz donmayı önler, motorun uygun sıcaklıkta verimli çalışmasına yardımcı olur ve pas/korozyonu engeller.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-63",
+        text: "Soğutma suyunun çıkış veya girişine yerleştirilen ve soğutma suyu sıcaklığını belirli seviyede tutan parça hangisidir?",
+        options: [
+          "Buji",
+          "Enjektör",
+          "Su pompası",
+          "Termostat",
+        ],
+        correctIndex: 3,
+        explanation:
+          "Soğutma suyu sıcaklığını ayarlayan parça termostattır.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-64",
+        text: "Araç motorunun çalışması için ilk hareketi veren sistem aşağıdakilerden hangisidir?",
+        options: [
+          "Marş sistemi",
+          "Yağlama sistemi",
+          "Yakıt sistemi",
+          "Ateşleme sistemi",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Motora ilk dönme hareketini veren sistem marş sistemidir.",
+        difficulty: "kolay",
+      },
+      {
+        id: "motor-65",
+        text: "Motor yağının zamanında değiştirilmemesi aşağıdakilerden hangisine neden olur?",
+        options: [
+          "Motorun verimli çalışmasına",
+          "Aracın daha yavaş gitmesine",
+          "Akünün daha çabuk bitmesine",
+          "Motordaki aşıntıların artmasına",
+        ],
+        correctIndex: 3,
+        explanation:
+          "Zamanında değişmeyen yağ yağlama özelliğini kaybeder ve motordaki aşınma (aşıntı) artar.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-66",
+        text: "Taşıtlardaki süspansiyon sisteminin görevi aşağıdakilerden hangisidir?",
+        options: [
+          "Yakıt tüketimini azaltmak",
+          "Aracın dönüşlerini sağlamak",
+          "Akünün şarj olmasını sağlamak",
+          "Titreşimleri, salınımları ve ani şokları sönümlemek",
+        ],
+        correctIndex: 3,
+        explanation:
+          "Süspansiyon sistemi yoldan gelen titreşim, salınım ve şokları sönümleyerek sürüş konforu ve güvenliği sağlar.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-67",
+        text: "Çalışan parçalarda sürtünmeye bağlı olarak meydana gelen aşınmayı azaltan madde hangisidir?",
+        options: [
+          "Antifriz",
+          "Motor yağı",
+          "Hidrolik yağı",
+          "Akü elektroliti",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Motor yağı, hareketli parçalar arasında yağ filmi oluşturarak sürtünme ve aşınmayı azaltır.",
+        difficulty: "kolay",
+      },
+      {
+        id: "motor-68",
+        text: "Motordan gelen sıcak suyu ince petekler aracılığıyla soğutan parçaya ne denir?",
+        options: [
+          "Amortisör",
+          "Radyatör",
+          "Alternatör",
+          "Distribütör",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Motordan gelen sıcak soğutma suyunu peteklerinde soğutan parça radyatördür.",
+        difficulty: "kolay",
+      },
+      {
+        id: "motor-69",
+        text: "Süspansiyon sisteminde bulunan ve yay salınım süresini kısaltan parça aşağıdakilerden hangisidir?",
+        options: [
+          "Şaft",
+          "Volan",
+          "Kavrama",
+          "Amortisör",
+        ],
+        correctIndex: 3,
+        explanation:
+          "Yayların salınımını sönümleyip süresini kısaltan parça amortisördür.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-70",
+        text: "Araç gösterge panelinde 'ABS' uyarı ışığının yanması hangi sistemde arıza olduğunu belirtir?",
+        options: [
+          "Fren",
+          "Yakıt",
+          "Yağlama",
+          "Soğutma",
+        ],
+        correctIndex: 0,
+        explanation:
+          "ABS uyarı ışığı, kilitlenmeyi önleyici fren sisteminde arıza olduğunu gösterir.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-71",
+        text: "Motoru çalıştırırken marş durumunda marş motoru dönmüyorsa sorun aşağıdakilerden hangisinden kaynaklanmış olabilir?",
+        options: [
+          "Akünün boşalmasından",
+          "Akünün tam şarjlı olmasından",
+          "Hava filtresinin kirlenmesinden",
+          "Akü kutup başlarının sıkı olmasından",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Marş motoru dönmüyorsa muhtemel neden akünün boşalmış (zayıf) olmasıdır.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-72",
+        text: "Fren pedalına basıldığında fren lambaları yanmıyorsa sebebi aşağıdakilerden hangisidir?",
+        options: [
+          "Flaşör arızalıdır",
+          "Distribütör arızalıdır",
+          "Fren müşiri arızalıdır",
+          "Geri vites müşiri arızalıdır",
+        ],
+        correctIndex: 2,
+        explanation:
+          "Fren lambalarını fren müşiri (anahtarı) çalıştırır; lambalar yanmıyorsa fren müşiri arızalıdır.",
+        difficulty: "orta",
+      },
+      {
+        id: "motor-73",
+        text: "Yaz aylarında kış lastiklerinin kullanılması aşağıdakilerden hangisine neden olur?",
+        options: [
+          "Aracın maksimum hızının artmasına",
+          "Lastiklerin daha çabuk aşınmasına",
+          "Fren sisteminin arızalanmasına",
+          "Yakıt tüketiminin azalmasına",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Yumuşak yapılı kış lastikleri sıcak havada daha çabuk aşınır.",
+        difficulty: "orta",
+      },
     ],
   };
 
