@@ -85,17 +85,25 @@ export default function QuizRunner({
   }, [timeLimitSeconds, secondsLeft, finished, paused]);
 
   const scorePercent = useMemo(() => {
-    if (answeredCount === 0) return 0;
+    if (questions.length === 0) return 0;
     const correctCount = answers.filter((a) => a?.correct).length;
-    return Math.round((correctCount / answeredCount) * 100);
-  }, [answers, answeredCount]);
+    // Puan, yanıtlanan değil TOPLAM soru sayısı üzerinden hesaplanır;
+    // boş bırakılan sorular gerçek sınavdaki gibi yanlış sayılır.
+    return Math.round((correctCount / questions.length) * 100);
+  }, [answers, questions.length]);
 
   useEffect(() => {
     if (finished && !saved && answeredCount > 0) {
+      // Sınav (exam) ve tekrar (review) modunda başarı, gerçek sınavdaki
+      // gibi TOPLAM soru üzerinden ölçülür; boşlar yanlış sayılır.
+      // Serbest kategori pratiğinde ise yalnızca çözülen sorulardaki
+      // isabet oranı anlamlı olduğu için yanıtlanan sayı kaydedilir.
+      const totalForStats =
+        mode === "category" ? answeredCount : questions.length;
       addAttempt({
         mode,
         categorySlug,
-        total: answeredCount,
+        total: totalForStats,
         correct: answers.filter((a) => a?.correct).length,
         wrongQuestionIds: answers
           .map((a, i) => (a && !a.correct ? questions[i].id : null))
