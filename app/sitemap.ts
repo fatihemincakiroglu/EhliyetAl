@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { categories, FIXED_EXAM_COUNT } from "@/lib/questions";
 import { provinces, provincePath } from "@/lib/provinces";
+import { getAllMonthlyExams } from "@/lib/monthlyExams";
 
 const SITE_URL = "https://ehliyetal.net";
 
@@ -22,6 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/ara",
     "/iletisim",
     "/menu",
+    "/aylik-sinavlar",
   ].map((path) => ({
     url: `${SITE_URL}${path}`,
     lastModified: new Date(),
@@ -50,5 +52,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...categoryRoutes, ...fixedExamRoutes, ...provinceRoutes];
+  const monthlyExamRoutes = getAllMonthlyExams().map((exam) => ({
+    url: `${SITE_URL}${exam.href}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
+  return [...staticRoutes, ...categoryRoutes, ...fixedExamRoutes, ...provinceRoutes, ...monthlyExamRoutes];
 }
