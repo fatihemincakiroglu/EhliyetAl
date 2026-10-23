@@ -1,9 +1,9 @@
 import { Home, ListChecks, BarChart3, Search, BookOpen, GraduationCap, Mail, CalendarDays, Gamepad2, Newspaper, HelpCircle } from "lucide-react";
 
 export const navItems = [
-  { href: "/", label: "Ana Sayfa", icon: Home },
-  { href: "/sinav", label: "Sınav Simülasyonu", icon: ListChecks },
-  { href: "/istatistik", label: "İstatistikler", icon: BarChart3 },
+  { href: "/", label: "Ana Sayfa", short: "Ana Sayfa", icon: Home },
+  { href: "/sinav", label: "Deneme Sınavı", short: "Sınav", icon: ListChecks },
+  { href: "/istatistik", label: "İstatistikler", short: "İstatistik", icon: BarChart3 },
 ];
 
 export const moreItems = [

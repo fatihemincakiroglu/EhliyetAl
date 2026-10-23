@@ -11,7 +11,7 @@ import GlobalCounter from "@/components/GlobalCounter";
  */
 export default function HomeStatusBar() {
   return (
-    <div className="mb-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs">
+    <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs">
       <StudyReminder />
       <GlobalCounter />
     </div>

@@ -11,18 +11,6 @@ type QuestionCardProps = {
   onSelect: (index: number) => void;
 };
 
-const difficultyLabel: Record<Question["difficulty"], string> = {
-  kolay: "Kolay",
-  orta: "Orta",
-  zor: "Zor",
-};
-
-const difficultyClass: Record<Question["difficulty"], string> = {
-  kolay: "bg-success-wash text-success",
-  orta: "bg-gold-wash text-gold",
-  zor: "bg-danger-wash text-danger",
-};
-
 export default function QuestionCard({
   question,
   selectedIndex,
@@ -42,6 +30,7 @@ export default function QuestionCard({
   useEffect(() => {
     function handleKeydown(e: KeyboardEvent) {
       if (answered) return;
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
       const key = e.key.toLowerCase();
       const letterMap: Record<string, number> = { a: 0, b: 1, c: 2, d: 3 };
       const numberMap: Record<string, number> = { "1": 0, "2": 1, "3": 2, "4": 3 };
@@ -73,66 +62,39 @@ export default function QuestionCard({
   }
 
   return (
-    <div className="premium-card bg-surface border border-line rounded-2xl p-5 sm:p-8">
-      <div className="flex items-center justify-between gap-3 mb-4">
-        <span
-          className={`font-data text-[10px] uppercase tracking-wider px-2 py-1 rounded-full ${difficultyClass[question.difficulty]}`}
-        >
-          {difficultyLabel[question.difficulty]}
-        </span>
-        <div className="flex items-center gap-3">
-          <a
-            href={`mailto:iletisim@ehliyetal.net?subject=${encodeURIComponent(
-              `Soru hatası bildirimi (${question.id})`
-            )}&body=${encodeURIComponent(
-              `Soru: ${question.text}\n\nBu soruda gördüğüm hata/öneri:\n`
-            )}`}
-            className="hidden sm:flex items-center gap-1.5 text-xs text-ink-soft hover:text-danger transition-colors"
-          >
-            <Flag size={13} />
-            <span>Hata bildir</span>
-          </a>
-          <button
-            type="button"
-            onClick={toggleSpeak}
-            aria-label={speaking ? "Okumayı durdur" : "Soruyu sesli oku"}
-            className="flex items-center gap-1.5 text-xs text-ink-soft hover:text-gold transition-colors"
-          >
-            {speaking ? <VolumeX size={15} /> : <Volume2 size={15} />}
-            <span className="hidden sm:inline">{speaking ? "Durdur" : "Dinle"}</span>
-          </button>
-        </div>
+    <div>
+      <div className={`flex gap-4 mb-5 ${SignComponent ? "flex-col sm:flex-row sm:items-center" : ""}`}>
+        {SignComponent && (
+          <div className="self-center sm:self-auto shrink-0 rounded-2xl bg-surface border-2 border-line p-2.5">
+            <SignComponent size={84} />
+          </div>
+        )}
+        <h2 className="font-display font-black text-[21px] sm:text-2xl leading-snug text-ink">
+          {question.text}
+        </h2>
       </div>
 
-      {SignComponent && (
-        <div className="flex justify-center mb-5">
-          <SignComponent size={96} />
-        </div>
-      )}
-
-      <h2 className="font-display text-xl sm:text-2xl leading-snug text-ink mb-6">
-        {question.text}
-      </h2>
-
-      <div className="flex flex-col gap-2.5 sm:gap-3">
+      <div className="flex flex-col gap-3">
         {question.options.map((option, index) => {
           const isCorrect = index === question.correctIndex;
           const isSelected = index === selectedIndex;
           const letter = String.fromCharCode(65 + index);
 
-          let stateClasses =
-            "border-line bg-surface hover:border-gold-soft hover:bg-gold-wash";
-          let badgeClasses = "bg-surface-alt text-ink-soft";
+          let state = "border-line bg-surface text-ink hover:border-primary-soft hover:bg-primary-wash";
+          let shadow = "var(--color-line)";
+          let badge = "border-2 border-line text-ink-soft group-hover:border-primary-soft group-hover:text-primary";
 
           if (answered) {
             if (isCorrect) {
-              stateClasses = "border-success bg-success-wash";
-              badgeClasses = "bg-success text-white";
-            } else if (isSelected && !isCorrect) {
-              stateClasses = "border-danger bg-danger-wash";
-              badgeClasses = "bg-danger text-white";
+              state = "border-success bg-success-wash text-success-ink animate-pop";
+              shadow = "var(--color-success)";
+              badge = "bg-success text-white";
+            } else if (isSelected) {
+              state = "border-danger bg-danger-wash text-danger-ink animate-pop";
+              shadow = "var(--color-danger)";
+              badge = "bg-danger text-white";
             } else {
-              stateClasses = "border-line bg-surface opacity-50";
+              state = "border-line bg-surface text-ink-soft opacity-60";
             }
           }
 
@@ -142,44 +104,51 @@ export default function QuestionCard({
               type="button"
               disabled={answered}
               onClick={() => onSelect(index)}
-              className={`group flex items-center justify-between gap-3 text-left rounded-xl border px-4 py-3.5 sm:py-4 font-body text-sm sm:text-base transition-colors ${stateClasses} disabled:cursor-default`}
+              style={{ boxShadow: `0 3px 0 0 ${shadow}` }}
+              className={`group flex items-center gap-3 text-left rounded-2xl border-2 px-3.5 py-3 sm:px-4 sm:py-3.5 text-[15px] sm:text-base font-bold transition-[background-color,border-color,transform,box-shadow] duration-100 active:translate-y-[3px] active:!shadow-none disabled:active:translate-y-0 cursor-pointer disabled:cursor-default ${state}`}
             >
-              <span className="flex items-center gap-3 min-w-0">
-                <span
-                  className={`flex items-center justify-center w-7 h-7 rounded-full font-data text-xs font-semibold shrink-0 transition-colors ${badgeClasses}`}
-                >
-                  {letter}
-                </span>
-                <span className="text-ink">{option}</span>
+              <span
+                className={`flex items-center justify-center w-8 h-8 rounded-[10px] font-black text-sm shrink-0 transition-colors ${badge}`}
+              >
+                {answered && isCorrect ? (
+                  <Check size={17} strokeWidth={3.2} />
+                ) : answered && isSelected ? (
+                  <X size={17} strokeWidth={3.2} />
+                ) : (
+                  letter
+                )}
               </span>
-              {answered && isCorrect && (
-                <Check size={18} className="shrink-0 text-success" />
-              )}
-              {answered && isSelected && !isCorrect && (
-                <X size={18} className="shrink-0 text-danger" />
-              )}
+              <span className="flex-1">{option}</span>
             </button>
           );
         })}
       </div>
 
-      <p className="mt-3 text-[11px] text-ink-soft/70 font-data hidden sm:block">
-        Klavye kısayolu: A/B/C/D veya 1/2/3/4 tuşlarıyla cevapla
-      </p>
-
-      {answered && (
-        <div className="mt-6 pt-5 border-t border-line" aria-live="polite">
-          <p className="font-data text-[11px] uppercase tracking-wider text-gold mb-1.5">
-            Açıklama
-          </p>
-          <p className="text-sm text-ink-soft leading-relaxed">
-            <span className="sr-only">
-              {selectedIndex === question.correctIndex ? "Doğru cevap. " : "Yanlış cevap. "}
-            </span>
-            {question.explanation}
-          </p>
-        </div>
-      )}
+      <div className="mt-4 flex items-center justify-between gap-3 text-[13px] font-bold text-ink-soft">
+        <span className="hidden sm:inline">Kısayol: A–D veya 1–4 ile cevapla{answered ? ", Enter ile devam et" : ""}</span>
+        <span className="flex items-center gap-4 ml-auto">
+          <button
+            type="button"
+            onClick={toggleSpeak}
+            aria-label={speaking ? "Okumayı durdur" : "Soruyu sesli oku"}
+            className="flex items-center gap-1.5 hover:text-primary transition-colors cursor-pointer"
+          >
+            {speaking ? <VolumeX size={16} strokeWidth={2.4} /> : <Volume2 size={16} strokeWidth={2.4} />}
+            {speaking ? "Durdur" : "Dinle"}
+          </button>
+          <a
+            href={`mailto:iletisim@ehliyetal.net?subject=${encodeURIComponent(
+              `Soru hatası bildirimi (${question.id})`
+            )}&body=${encodeURIComponent(
+              `Soru: ${question.text}\n\nBu soruda gördüğüm hata/öneri:\n`
+            )}`}
+            className="flex items-center gap-1.5 hover:text-danger transition-colors"
+          >
+            <Flag size={15} strokeWidth={2.4} />
+            Hata bildir
+          </a>
+        </span>
+      </div>
     </div>
   );
 }

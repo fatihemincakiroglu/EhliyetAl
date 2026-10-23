@@ -149,10 +149,10 @@ export default function Breadcrumb() {
       )}
       <nav
         aria-label="Sayfa yolu"
-        className="bg-paper border-b border-line"
+        className="app-breadcrumb bg-paper"
       >
-        <div className="max-w-3xl mx-auto px-5 sm:px-6 py-2.5">
-          <ol className="flex flex-wrap items-center gap-1 text-xs text-ink-soft">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-4 pb-1">
+          <ol className="flex flex-wrap items-center gap-1 text-[13px] font-bold text-ink-soft">
             <li className="flex items-center gap-1">
               <Link
                 href="/"
@@ -166,11 +166,11 @@ export default function Breadcrumb() {
               const isLast = i === crumbs.length - 1;
               return (
                 <li key={c.href} className="flex items-center gap-1">
-                  <ChevronRight size={12} className="text-line shrink-0" />
+                  <ChevronRight size={13} strokeWidth={2.5} className="text-ink-soft/50 shrink-0" />
                   {isLast ? (
                     <span
                       aria-current="page"
-                      className="font-medium text-ink truncate max-w-[60vw] sm:max-w-none"
+                      className="font-extrabold text-ink truncate max-w-[60vw] sm:max-w-none"
                     >
                       {c.label}
                     </span>

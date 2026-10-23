@@ -20,7 +20,7 @@ export default function ThemeToggle() {
   }
 
   if (!mounted) {
-    return <div className="w-9 h-9" />;
+    return <div className="w-10 h-10" />;
   }
 
   return (
@@ -28,9 +28,9 @@ export default function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={theme === "light" ? "Karanlık temaya geç" : "Açık temaya geç"}
-      className="w-9 h-9 flex items-center justify-center rounded border border-white/20 bg-white/5 text-white/75 hover:text-gold hover:border-gold-soft transition-colors"
+      className="w-10 h-10 flex items-center justify-center rounded-full bg-surface border-2 border-line text-ink hover:border-primary-soft hover:text-primary transition-colors cursor-pointer"
     >
-      {theme === "light" ? <Moon size={16} /> : <Sun size={16} />}
+      {theme === "light" ? <Moon size={17} strokeWidth={2.2} /> : <Sun size={17} strokeWidth={2.2} />}
     </button>
   );
 }

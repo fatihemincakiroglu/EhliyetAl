@@ -75,7 +75,7 @@ export default function StudyReminder() {
           ? "Bildirim izni tarayıcı ayarlarından engellenmiş"
           : undefined
       }
-      className="flex items-center gap-1.5 text-xs text-ink-soft hover:text-gold transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+      className="flex items-center gap-1.5 text-[13px] font-bold text-ink-soft hover:text-primary cursor-pointer transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
     >
       {enabled ? <Bell size={14} className="text-gold" /> : <BellOff size={14} />}
       {enabled ? "Hatırlatıcı açık" : "Çalışma hatırlatıcısı kur"}

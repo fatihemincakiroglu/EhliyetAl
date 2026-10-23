@@ -2,41 +2,52 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { MoreHorizontal } from "lucide-react";
+import { LayoutGrid } from "lucide-react";
 import { navItems } from "@/components/navItems";
 
 export default function BottomNav() {
   const pathname = usePathname();
-  const moreActive = pathname === "/menu";
+
+  const items = [
+    ...navItems.map((item) => ({
+      href: item.href,
+      label: item.short,
+      icon: item.icon,
+      active:
+        item.href === "/"
+          ? pathname === "/"
+          : pathname === item.href || pathname.startsWith(item.href + "/"),
+    })),
+    { href: "/menu", label: "Keşfet", icon: LayoutGrid, active: pathname === "/menu" },
+  ];
 
   return (
-    <nav className="sm:hidden fixed bottom-0 inset-x-0 z-30 bg-navy flex items-stretch">
-      <div className="absolute top-0 inset-x-0 h-[2px] hazard-stripe" />
-      {navItems.map((item) => {
-        const active = pathname === item.href;
+    <nav
+      aria-label="Alt menü"
+      className="app-bottom-nav md:hidden fixed bottom-0 inset-x-0 z-30 bg-surface border-t-2 border-line flex items-stretch pb-[env(safe-area-inset-bottom)]"
+    >
+      {items.map((item) => {
         const Icon = item.icon;
         return (
           <Link
             key={item.href}
             href={item.href}
-            className={`flex-1 flex flex-col items-center justify-center gap-1 py-2.5 text-[11px] font-body transition-colors ${
-              active ? "text-gold" : "text-white/60"
+            aria-current={item.active ? "page" : undefined}
+            className={`flex-1 flex flex-col items-center justify-center gap-1 pt-2.5 pb-2 text-[11px] transition-colors ${
+              item.active ? "text-primary font-extrabold" : "text-ink-soft font-bold"
             }`}
           >
-            <Icon size={20} strokeWidth={active ? 2.5 : 2} />
-            <span>{item.label.replace("Simülasyonu", "").trim()}</span>
+            <span
+              className={`flex items-center justify-center w-12 h-7 rounded-full transition-colors ${
+                item.active ? "bg-primary-wash" : ""
+              }`}
+            >
+              <Icon size={21} strokeWidth={item.active ? 2.6 : 2.2} />
+            </span>
+            <span className="whitespace-nowrap">{item.label}</span>
           </Link>
         );
       })}
-      <Link
-        href="/menu"
-        className={`flex-1 flex flex-col items-center justify-center gap-1 py-2.5 text-[11px] font-body transition-colors ${
-          moreActive ? "text-gold" : "text-white/60"
-        }`}
-      >
-        <MoreHorizontal size={20} strokeWidth={moreActive ? 2.5 : 2} />
-        <span>Daha Fazla</span>
-      </Link>
     </nav>
   );
 }

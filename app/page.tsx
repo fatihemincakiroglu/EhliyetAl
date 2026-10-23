@@ -1,17 +1,9 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import {
-  ArrowRight,
-  Gauge,
-  Wrench,
-  HeartPulse,
-  Leaf,
-  Signpost,
-  Play,
-  MapPin,
-} from "lucide-react";
+import { Play, MapPin, Gamepad2, CalendarDays, ChevronRight } from "lucide-react";
 import { categories } from "@/lib/questions";
-import { CategoryBadge, QuickLinks } from "@/components/HomeExtras";
+import { getCategoryTheme } from "@/components/categoryTheme";
+import { ReadinessCard, ReviewBanner, CategoryProgress } from "@/components/HomeProgress";
 import DailyQuestion from "@/components/DailyQuestion";
 import HomeStatusBar from "@/components/HomeStatusBar";
 import SeoContent from "@/components/SeoContent";
@@ -25,130 +17,165 @@ export const metadata: Metadata = {
   },
 };
 
-const icons: Record<
-  string,
-  React.ComponentType<{ size?: number; className?: string }>
-> = {
-  trafik: Gauge,
-  motor: Wrench,
-  ilkyardim: HeartPulse,
-  cevre: Leaf,
-  isaretler: Signpost,
-};
+const extraLinks = [
+  {
+    href: "/pratik-oyunlar",
+    label: "Pratik Oyunlar",
+    hint: "İşaret tanıma, geçiş hakkı",
+    icon: Gamepad2,
+    color: "var(--color-cat-motor)",
+    wash: "var(--color-cat-motor-wash)",
+  },
+  {
+    href: "/aylik-sinavlar",
+    label: "Aylık Sınavlar",
+    hint: "Ay ay derlenmiş denemeler",
+    icon: CalendarDays,
+    color: "var(--color-cat-trafik)",
+    wash: "var(--color-cat-trafik-wash)",
+  },
+  {
+    href: "/rehber/il",
+    label: "İl Rehberi",
+    hint: "İline özel hazırlık",
+    icon: MapPin,
+    color: "var(--color-cat-cevre)",
+    wash: "var(--color-cat-cevre-wash)",
+  },
+];
 
 export default function Home() {
-  const totalQuestions = categories.reduce(
-    (sum, c) => sum + c.questions.length,
-    0
-  );
+  const totalQuestions = categories.reduce((sum, c) => sum + c.questions.length, 0);
 
   return (
-    <div className="min-h-screen bg-paper">
-      <main className="max-w-3xl mx-auto px-5 sm:px-6 py-12 sm:py-20">
-        {/* Kimlik + başlık */}
-        <div className="flex items-center gap-2.5 mb-5">
-          <span className="font-display font-semibold text-xs sm:text-sm text-white bg-navy rounded px-3 py-1.5 inline-flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-gold" />
-            EhliyetAl
-          </span>
-          <div className="font-data text-[11px] sm:text-xs uppercase tracking-[0.15em] text-ink-soft">
-            Sınav Hazırlık
+    <div className="bg-paper">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 pt-4 pb-10 sm:pt-8">
+        <header className="mb-5 sm:mb-7">
+          <h1 className="font-display font-black text-[26px] sm:text-4xl leading-tight text-ink">
+            Ehliyet Sınavı Soruları (2026)
+          </h1>
+          <p className="mt-1.5 text-ink-soft font-semibold text-[15px] sm:text-base max-w-xl">
+            {totalQuestions} soruyla trafik, motor, ilk yardım ve çevre konularını çalış;
+            her sorudan sonra açıklamayı hemen gör.
+          </p>
+        </header>
+
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:grid-rows-[auto_1fr] lg:items-start">
+          {/* Sol: durum + birincil eylem */}
+          <div className="flex flex-col gap-4">
+            <ReadinessCard totalQuestions={totalQuestions} />
+
+            <Link
+              href="/sinav"
+              className="btn-primary group rounded-3xl px-5 py-5 flex items-center justify-between gap-4"
+            >
+              <span className="flex flex-col gap-0.5">
+                <span className="font-display font-black text-[21px] leading-tight">
+                  Deneme Sınavı Başlat
+                </span>
+                <span className="text-[13px] font-bold text-white/90">
+                  50 soru · 60 dakika · baraj 70
+                </span>
+              </span>
+              <span className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center shrink-0 transition-transform group-hover:scale-105">
+                <Play size={22} fill="currentColor" strokeWidth={0} className="ml-0.5" />
+              </span>
+            </Link>
+
+            <ReviewBanner />
+
+            <div className="hidden lg:block">
+              <DailyQuestion />
+            </div>
+          </div>
+
+          {/* Sağ: konular */}
+          <section aria-labelledby="konular" className="lg:row-span-2">
+            <div className="flex items-baseline justify-between mb-3">
+              <h2 id="konular" className="font-display font-black text-lg text-ink">
+                Konuya göre çalış
+              </h2>
+              <span className="text-[13px] font-bold text-ink-soft">{totalQuestions} soru</span>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              {categories.map((category, i) => {
+                const theme = getCategoryTheme(category.slug);
+                const Icon = theme.icon;
+                const isLastOdd = i === categories.length - 1 && categories.length % 2 === 1;
+                return (
+                  <Link
+                    key={category.slug}
+                    href={`/quiz/${category.slug}`}
+                    className={`card bg-surface border-2 border-line rounded-[20px] p-4 flex flex-col gap-2.5 ${
+                      isLastOdd ? "col-span-2" : ""
+                    }`}
+                  >
+                    <span className="flex items-center gap-3">
+                      <span
+                        className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+                        style={{ background: theme.wash, color: theme.color }}
+                      >
+                        <Icon size={21} strokeWidth={2.3} />
+                      </span>
+                      {isLastOdd && (
+                        <span className="font-display font-extrabold text-[15px] leading-tight text-ink">
+                          {category.name}
+                        </span>
+                      )}
+                    </span>
+                    {!isLastOdd && (
+                      <span className="font-display font-extrabold text-[15px] leading-tight text-ink min-h-[2.5em]">
+                        {category.name}
+                      </span>
+                    )}
+                    <CategoryProgress
+                      slug={category.slug}
+                      total={category.questions.length}
+                      color={theme.color}
+                    />
+                  </Link>
+                );
+              })}
+            </div>
+
+          </section>
+
+          {/* Ek bağlantılar: mobilde konuların altında, masaüstünde sol sütunda */}
+          <div className="flex flex-col gap-2.5 lg:col-start-1">
+            {extraLinks.map((item) => {
+              const Icon = item.icon;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="card bg-surface border-2 border-line rounded-2xl px-4 py-3 flex items-center gap-3"
+                >
+                  <span
+                    className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
+                    style={{ background: item.wash, color: item.color }}
+                  >
+                    <Icon size={18} strokeWidth={2.3} />
+                  </span>
+                  <span className="flex-1 min-w-0">
+                    <span className="block font-extrabold text-[15px] text-ink">{item.label}</span>
+                    <span className="block text-[13px] font-semibold text-ink-soft truncate">
+                      {item.hint}
+                    </span>
+                  </span>
+                  <ChevronRight size={20} strokeWidth={2.5} className="text-ink-soft shrink-0" />
+                </Link>
+              );
+            })}
           </div>
         </div>
-        <h1 className="font-display text-3xl sm:text-5xl font-bold text-ink leading-[1.1] mb-4">
-          Ehliyet Sınavı Soruları (2026)
-        </h1>
-        <div className="h-1.5 w-24 hazard-stripe mb-5" />
-        <p className="text-ink-soft text-base sm:text-lg max-w-lg mb-6 leading-relaxed">
-          Gerçek sınav formatında {totalQuestions} soruyla trafik, motor,
-          ilkyardım ve çevre konularını çalış. Her sorudan hemen sonra doğru
-          cevabın açıklamasını gör.
-        </p>
 
-        {/* 1) Birincil eylem: tek net CTA */}
-        <Link
-          href="/sinav"
-          className="group flex items-center justify-center gap-2.5 rounded-2xl gold-gradient text-white px-6 py-4 sm:py-5 font-display text-lg tracking-wide hover:bg-gold-soft transition-colors"
-        >
-          <Play size={20} className="shrink-0" />
-          Deneme Sınavı Başlat
-          <ArrowRight
-            size={18}
-            className="shrink-0 transition-transform group-hover:translate-x-1"
-          />
-        </Link>
-        <p className="mt-2.5 mb-10 text-center font-data text-xs text-ink-soft/80">
-          50 soru · 60 dakika · geçme notu 70
-        </p>
-
-        {/* 2) İkincil: konuya göre çalış (asıl içerik yukarıda) */}
-        <div className="flex items-baseline justify-between mb-3">
-          <h2 className="font-display text-base text-ink">Konuya Göre Çalış</h2>
-          <Link
-            href="/sinav"
-            className="font-data text-xs text-ink-soft hover:text-gold transition-colors"
-          >
-            veya karışık dene →
-          </Link>
-        </div>
-        <div className="flex flex-col gap-3">
-          {categories.map((category, i) => {
-            const Icon = icons[category.slug] ?? Gauge;
-            return (
-              <Link
-                key={category.slug}
-                href={`/quiz/${category.slug}`}
-                className="premium-card group flex items-center gap-3 sm:gap-4 rounded-2xl border border-line bg-surface px-4 py-4 sm:px-6 sm:py-5 transition-colors hover:border-gold-soft hover:bg-gold-wash"
-              >
-                <span className="font-data text-xs text-ink-soft w-5 sm:w-6 shrink-0 hidden sm:block">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="rounded-lg bg-gold-wash p-2.5 text-gold shrink-0">
-                  <Icon size={20} />
-                </span>
-                <span className="flex-1 min-w-0">
-                  <span className="block font-display text-base sm:text-lg text-ink truncate">
-                    {category.name}
-                  </span>
-                  <span className="block text-xs sm:text-sm text-ink-soft truncate">
-                    {category.description}
-                  </span>
-                </span>
-                <CategoryBadge slug={category.slug} />
-                <span className="font-data text-xs text-ink-soft shrink-0 hidden sm:block">
-                  {category.questions.length} soru
-                </span>
-                <ArrowRight
-                  size={18}
-                  className="shrink-0 text-ink-soft transition-transform group-hover:translate-x-1 group-hover:text-gold"
-                />
-              </Link>
-            );
-          })}
-        </div>
-
-        {/* 3+4) İkincil özellikler: kompakt satır + açılır günün sorusu */}
-        <div className="mt-10">
-          <QuickLinks />
-          <HomeStatusBar />
+        <div className="mt-6 lg:hidden">
           <DailyQuestion />
         </div>
 
-        {/* İl rehberi: tek satırlık bağlantı (blok değil) */}
-        <Link
-          href="/rehber/il"
-          className="mt-4 flex items-center gap-2.5 rounded-xl border border-line bg-surface px-4 py-3 text-sm text-ink hover:border-gold-soft hover:bg-gold-wash transition-colors"
-        >
-          <span className="inline-flex items-center justify-center rounded-lg bg-gold-wash text-gold p-1.5 shrink-0">
-            <MapPin size={16} />
-          </span>
-          <span className="flex-1">İline özel hazırlık rehberi</span>
-          <ArrowRight size={15} className="shrink-0 text-ink-soft" />
-        </Link>
-
-        <p className="mt-8 sm:mt-10 text-xs text-ink-soft/70 font-data">
-          100 üzerinden 70 puan sınavı geçmek için gereken puandır.
-        </p>
+        <div className="mt-6">
+          <HomeStatusBar />
+        </div>
       </main>
 
       <SeoContent />

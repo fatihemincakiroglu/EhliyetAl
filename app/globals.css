@@ -1,204 +1,133 @@
 @import "tailwindcss";
 
-/* Self-hosted fontlar (Google Fonts CDN'ine bağımlılığı kaldırır).
-   latin: temel Latin karakterler. latin-ext: ş/Ş, ğ/Ğ, İ gibi Türkçe'ye
-   özgü karakterleri kapsar; ikisi birlikte tam Türkçe metin desteği sağlar. */
+/* Self-hosted Nunito (değişken font, 200–1000). latin + latin-ext birlikte
+   ş/Ş, ğ/Ğ, İ/ı dahil tam Türkçe karakter desteği sağlar. */
 @font-face {
-  font-family: "Zilla Slab";
+  font-family: "Nunito";
   font-style: normal;
-  font-weight: 500;
+  font-weight: 200 1000;
   font-display: swap;
-  src: url("/fonts/zillaslab/zilla-slab-latin-500-normal.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122;
+  src: url("/fonts/nunito/nunito-latin-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: "Zilla Slab";
+  font-family: "Nunito";
   font-style: normal;
-  font-weight: 500;
+  font-weight: 200 1000;
   font-display: swap;
-  src: url("/fonts/zillaslab/zilla-slab-latin-ext-500-normal.woff2") format("woff2");
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+20A0-20AB;
-}
-@font-face {
-  font-family: "Zilla Slab";
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url("/fonts/zillaslab/zilla-slab-latin-600-normal.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122;
-}
-@font-face {
-  font-family: "Zilla Slab";
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url("/fonts/zillaslab/zilla-slab-latin-ext-600-normal.woff2") format("woff2");
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+20A0-20AB;
-}
-@font-face {
-  font-family: "Zilla Slab";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url("/fonts/zillaslab/zilla-slab-latin-700-normal.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122;
-}
-@font-face {
-  font-family: "Zilla Slab";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url("/fonts/zillaslab/zilla-slab-latin-ext-700-normal.woff2") format("woff2");
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+20A0-20AB;
-}
-
-@font-face {
-  font-family: "Work Sans";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/fonts/worksans/work-sans-latin-400-normal.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122;
-}
-@font-face {
-  font-family: "Work Sans";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/fonts/worksans/work-sans-latin-ext-400-normal.woff2") format("woff2");
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+20A0-20AB;
-}
-@font-face {
-  font-family: "Work Sans";
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("/fonts/worksans/work-sans-latin-500-normal.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122;
-}
-@font-face {
-  font-family: "Work Sans";
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("/fonts/worksans/work-sans-latin-ext-500-normal.woff2") format("woff2");
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+20A0-20AB;
-}
-@font-face {
-  font-family: "Work Sans";
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url("/fonts/worksans/work-sans-latin-600-normal.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122;
-}
-@font-face {
-  font-family: "Work Sans";
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url("/fonts/worksans/work-sans-latin-ext-600-normal.woff2") format("woff2");
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+20A0-20AB;
-}
-
-@font-face {
-  font-family: "IBM Plex Mono";
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("/fonts/plexmono/ibm-plex-mono-latin-500-normal.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122;
-}
-@font-face {
-  font-family: "IBM Plex Mono";
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("/fonts/plexmono/ibm-plex-mono-latin-ext-500-normal.woff2") format("woff2");
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+20A0-20AB;
-}
-@font-face {
-  font-family: "IBM Plex Mono";
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url("/fonts/plexmono/ibm-plex-mono-latin-600-normal.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122;
-}
-@font-face {
-  font-family: "IBM Plex Mono";
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url("/fonts/plexmono/ibm-plex-mono-latin-ext-600-normal.woff2") format("woff2");
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+20A0-20AB;
+  src: url("/fonts/nunito/nunito-latin-ext-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
 /* ============================================================
-   RENK SİSTEMİ — "Resmi Sınav Karnesi" kimliği
-   Lacivert: resmiyet ve güven. Turuncu: trafik levhası / dikkat /
-   uyarı üçgeni rengi — sürücü adayının her gün gördüğü renk.
-   Paper tonu saf beyaz değil, hafif kağıt/krem — resmi belge hissi.
+   RENK SİSTEMİ — "Canlı" kimlik
+   Mavi: ana eylem rengi (buton, ilerleme, seçili durum).
+   Turuncu: seri / tekrar / dikkat. Yeşil ve kırmızı: doğru / yanlış.
+   Kategori renkleri: her konunun kendi tonu (ikon + ilerleme çubuğu).
+
+   Not: "gold" ailesi geriye dönük uyumluluk için korunuyor; artık
+   ana mavi rengi taşıyor. Yeni kodda "primary" adını kullan.
    ============================================================ */
 :root {
-  --font-display: "Zilla Slab", Georgia, serif;
-  --font-body: "Work Sans", sans-serif;
-  --font-data: "IBM Plex Mono", monospace;
+  --font-display: "Nunito", ui-rounded, system-ui, sans-serif;
+  --font-body: "Nunito", ui-rounded, system-ui, sans-serif;
+  --font-data: "Nunito", ui-rounded, system-ui, sans-serif;
 
-  --color-paper: #f2efe6;
-  --color-surface: #fffdf8;
-  --color-surface-alt: #e9e4d6;
-  --color-ink: #101c30;
-  --color-ink-soft: #55627a;
-  --color-line: #d9d3bf;
+  --color-paper: #f6f8fc;
+  --color-surface: #ffffff;
+  --color-surface-alt: #eef1f7;
+  --color-ink: #17213a;
+  --color-ink-soft: #5a6681;
+  --color-line: #e3e8f2;
 
-  /* "gold" adı korunuyor (kod tabanında yaygın kullanımı var) ama
-     artık trafik-levhası turuncusunu taşıyor. */
-  --color-gold: #d9660b;
-  --color-gold-soft: #ef8324;
-  --color-gold-deep: #a84e08;
-  --color-gold-wash: rgba(217, 102, 11, 0.1);
+  --color-primary: #2f5bea;
+  --color-primary-soft: #4a73f0;
+  --color-primary-deep: #1c3fb8;
+  --color-primary-wash: #e8eeff;
 
-  --color-navy: #0e2340;
-  --color-navy-soft: #1c3a63;
-  --color-navy-wash: rgba(14, 35, 64, 0.06);
+  --color-gold: var(--color-primary);
+  --color-gold-soft: var(--color-primary-soft);
+  --color-gold-deep: var(--color-primary-deep);
+  --color-gold-wash: var(--color-primary-wash);
 
-  --color-success: #1f7a4d;
-  --color-success-wash: rgba(31, 122, 77, 0.1);
-  --color-danger: #b13022;
-  --color-danger-wash: rgba(177, 48, 34, 0.1);
-  --color-tangerine: #d9660b;
-  --color-tangerine-wash: rgba(217, 102, 11, 0.12);
-  --color-sun: #e0a020;
-  --color-sun-wash: rgba(224, 160, 32, 0.16);
-  --shadow-color: 14, 20, 32;
+  --color-navy: #17213a;
+  --color-navy-soft: #26324f;
+  --color-navy-wash: rgba(23, 33, 58, 0.06);
+
+  --color-success: #14915a;
+  --color-success-deep: #0b6b40;
+  --color-success-ink: #0b4f31;
+  --color-success-wash: #e3f7ee;
+  --color-danger: #d92d4b;
+  --color-danger-deep: #a81e37;
+  --color-danger-ink: #7d1529;
+  --color-danger-wash: #ffe9ec;
+  --color-on-success: #ffffff;
+  --color-on-danger: #ffffff;
+  --color-tangerine: #ff7a00;
+  --color-tangerine-ink: #9a3d00;
+  --color-tangerine-wash: #fff1e6;
+  --color-sun: #e0a400;
+  --color-sun-wash: #fff6d9;
+
+  --color-cat-trafik: #2f5bea;
+  --color-cat-trafik-wash: #e8eeff;
+  --color-cat-motor: #6c47d9;
+  --color-cat-motor-wash: #eee9ff;
+  --color-cat-ilkyardim: #d92d4b;
+  --color-cat-ilkyardim-wash: #ffe9ec;
+  --color-cat-cevre: #14915a;
+  --color-cat-cevre-wash: #e3f7ee;
+  --color-cat-isaretler: #e06a00;
+  --color-cat-isaretler-wash: #fff1e6;
+
+  --shadow-color: 23, 33, 58;
 }
 
 [data-theme="dark"] {
-  --color-paper: #0a1220;
-  --color-surface: #101b2d;
-  --color-surface-alt: #172542;
-  --color-ink: #eef1f6;
-  --color-ink-soft: #8e9bb5;
-  --color-line: #263250;
+  --color-paper: #0d1322;
+  --color-surface: #161e33;
+  --color-surface-alt: #1f2942;
+  --color-ink: #eef2fa;
+  --color-ink-soft: #9aa6c0;
+  --color-line: #26314e;
 
-  --color-gold: #f0812e;
-  --color-gold-soft: #f5984f;
-  --color-gold-deep: #c4680f;
-  --color-gold-wash: rgba(240, 129, 46, 0.15);
+  --color-primary: #4d74ff;
+  --color-primary-soft: #6a8bff;
+  --color-primary-deep: #2f4fc9;
+  --color-primary-wash: rgba(77, 116, 255, 0.16);
 
-  --color-navy: #142845;
-  --color-navy-soft: #1f3d68;
-  --color-navy-wash: rgba(31, 61, 104, 0.3);
+  --color-navy: #0a0f1c;
+  --color-navy-soft: #161e33;
+  --color-navy-wash: rgba(255, 255, 255, 0.05);
 
-  --color-success: #47b581;
-  --color-success-wash: rgba(71, 181, 129, 0.16);
-  --color-danger: #e2695a;
-  --color-danger-wash: rgba(226, 105, 90, 0.16);
-  --color-tangerine: #f0812e;
-  --color-tangerine-wash: rgba(240, 129, 46, 0.18);
-  --color-sun: #e8b13f;
-  --color-sun-wash: rgba(232, 177, 63, 0.18);
+  --color-success: #2fc285;
+  --color-success-deep: #1c8f5e;
+  --color-success-ink: #b7f0d6;
+  --color-success-wash: rgba(47, 194, 133, 0.15);
+  --color-danger: #ff6b81;
+  --color-danger-deep: #c43a52;
+  --color-danger-ink: #ffd0d8;
+  --color-danger-wash: rgba(255, 107, 129, 0.15);
+  --color-on-success: #06281a;
+  --color-on-danger: #2e0610;
+  --color-tangerine: #ff9636;
+  --color-tangerine-ink: #ffc58f;
+  --color-tangerine-wash: rgba(255, 150, 54, 0.14);
+  --color-sun: #ffc93d;
+  --color-sun-wash: rgba(255, 201, 61, 0.14);
+
+  --color-cat-trafik: #6a8bff;
+  --color-cat-trafik-wash: rgba(106, 139, 255, 0.16);
+  --color-cat-motor: #a58bff;
+  --color-cat-motor-wash: rgba(165, 139, 255, 0.16);
+  --color-cat-ilkyardim: #ff6b81;
+  --color-cat-ilkyardim-wash: rgba(255, 107, 129, 0.15);
+  --color-cat-cevre: #2fc285;
+  --color-cat-cevre-wash: rgba(47, 194, 133, 0.15);
+  --color-cat-isaretler: #ff9636;
+  --color-cat-isaretler-wash: rgba(255, 150, 54, 0.14);
+
   --shadow-color: 0, 0, 0;
 }
 
@@ -209,6 +138,10 @@
   --color-ink: var(--color-ink);
   --color-ink-soft: var(--color-ink-soft);
   --color-line: var(--color-line);
+  --color-primary: var(--color-primary);
+  --color-primary-soft: var(--color-primary-soft);
+  --color-primary-deep: var(--color-primary-deep);
+  --color-primary-wash: var(--color-primary-wash);
   --color-gold: var(--color-gold);
   --color-gold-soft: var(--color-gold-soft);
   --color-gold-deep: var(--color-gold-deep);
@@ -217,10 +150,15 @@
   --color-navy-soft: var(--color-navy-soft);
   --color-navy-wash: var(--color-navy-wash);
   --color-success: var(--color-success);
+  --color-success-deep: var(--color-success-deep);
+  --color-success-ink: var(--color-success-ink);
   --color-success-wash: var(--color-success-wash);
   --color-danger: var(--color-danger);
+  --color-danger-deep: var(--color-danger-deep);
+  --color-danger-ink: var(--color-danger-ink);
   --color-danger-wash: var(--color-danger-wash);
   --color-tangerine: var(--color-tangerine);
+  --color-tangerine-ink: var(--color-tangerine-ink);
   --color-tangerine-wash: var(--color-tangerine-wash);
   --color-sun: var(--color-sun);
   --color-sun-wash: var(--color-sun-wash);
@@ -228,117 +166,170 @@
   --font-body: var(--font-body);
   --font-data: var(--font-data);
 
-  /* Daha köşeli, "resmi belge" hissi için küçültülmüş yarıçaplar */
-  --radius-lg: 0.375rem;
-  --radius-xl: 0.5rem;
-  --radius-2xl: 0.75rem;
+  /* Yumuşak, "dost canlısı" köşeler */
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+  --radius-3xl: 1.75rem;
 }
 
 body {
   background: var(--color-paper);
   color: var(--color-ink);
+  font-weight: 500;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* Ana CTA — trafik levhası turuncusu, düz ve kesin (gradyansız) */
+/* Tipografi rolleri: aile tek (Nunito), roller ağırlıkla ayrışır.
+   components katmanında olduğu için font-semibold vb. yardımcı sınıflar
+   gerektiğinde bunları ezebilir. */
+@layer components {
+  .font-display {
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+  .font-data {
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* ------------------------------------------------------------
+   BUTONLAR — "tok" 3B his: alt gölge + basınca içeri çökme
+   ------------------------------------------------------------ */
+.btn-primary,
 .gold-gradient {
-  background: var(--color-gold);
-  box-shadow: 0 1px 2px rgba(var(--shadow-color), 0.1), 0 3px 0 0 var(--color-gold-deep);
-  transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 800;
+  box-shadow: 0 4px 0 0 var(--color-primary-deep);
+  transition: background-color 0.15s ease, box-shadow 0.1s ease, transform 0.1s ease;
 }
-
+.btn-primary:hover,
 .gold-gradient:hover {
-  background: var(--color-gold-soft);
+  background: var(--color-primary-soft);
 }
-
+.btn-primary:active,
 .gold-gradient:active {
-  transform: translateY(2px);
-  box-shadow: 0 1px 0 0 var(--color-gold-deep);
+  transform: translateY(4px);
+  box-shadow: 0 0 0 0 var(--color-primary-deep);
 }
 
-/* Sınav karnesi / resmi belge kartı: ince üst şerit + köşeli hatlar */
-.premium-card {
-  position: relative;
-  box-shadow: 0 1px 2px rgba(var(--shadow-color), 0.04);
-  transition: box-shadow 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+.btn-success {
+  background: var(--color-success);
+  color: var(--color-on-success);
+  font-weight: 800;
+  box-shadow: 0 4px 0 0 var(--color-success-deep);
+  transition: filter 0.15s ease, box-shadow 0.1s ease, transform 0.1s ease;
 }
+.btn-success:hover { filter: brightness(1.06); }
+.btn-success:active { transform: translateY(4px); box-shadow: 0 0 0 0 var(--color-success-deep); }
 
-.premium-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0.9rem;
-  right: 0.9rem;
-  height: 2px;
-  background: repeating-linear-gradient(
-    90deg,
-    var(--color-gold) 0,
-    var(--color-gold) 6px,
-    transparent 6px,
-    transparent 12px
-  );
-  opacity: 0;
-  transition: opacity 0.15s ease;
+.btn-danger {
+  background: var(--color-danger);
+  color: var(--color-on-danger);
+  font-weight: 800;
+  box-shadow: 0 4px 0 0 var(--color-danger-deep);
+  transition: filter 0.15s ease, box-shadow 0.1s ease, transform 0.1s ease;
 }
-
-.premium-card:hover {
-  box-shadow: 0 4px 14px rgba(var(--shadow-color), 0.08);
-}
-
-.premium-card:hover::before {
-  opacity: 1;
-}
-
-.sticker-card {
-  box-shadow: 0 1px 2px rgba(var(--shadow-color), 0.04), 0 4px 16px rgba(var(--shadow-color), 0.06);
-}
+.btn-danger:hover { filter: brightness(1.06); }
+.btn-danger:active { transform: translateY(4px); box-shadow: 0 0 0 0 var(--color-danger-deep); }
 
 .btn-hard,
-.btn-hard-outline {
-  transition: background-color 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease, transform 0.1s ease;
+.btn-hard-outline,
+.btn-soft {
+  font-weight: 800;
+  transition: background-color 0.12s ease, box-shadow 0.1s ease, border-color 0.12s ease, transform 0.1s ease;
 }
-
 .btn-hard {
-  box-shadow: 0 1px 2px rgba(var(--shadow-color), 0.06);
+  box-shadow: 0 4px 0 0 rgba(var(--shadow-color), 0.18);
 }
-
-.btn-hard:hover {
-  box-shadow: 0 2px 8px rgba(var(--shadow-color), 0.1);
+.btn-hard-outline,
+.btn-soft {
+  background: var(--color-surface);
+  border: 2px solid var(--color-line);
+  box-shadow: 0 3px 0 0 var(--color-line);
 }
-
 .btn-hard:active,
-.btn-hard-outline:active {
-  transform: scale(0.98);
+.btn-hard-outline:active,
+.btn-soft:active {
+  transform: translateY(3px);
+  box-shadow: 0 0 0 0 var(--color-line);
 }
-
 .btn-hard:disabled,
-.btn-hard-outline:disabled {
+.btn-hard-outline:disabled,
+.btn-soft:disabled,
+.btn-primary:disabled,
+.gold-gradient:disabled {
   box-shadow: none;
   transform: none;
 }
 
-/* İmza motifi: trafik uyarı şeridi — sadece belirli vurgu noktalarında
-   kullanılır (bkz. Header, hero). Aşırı kullanımdan kaçınılır. */
-.hazard-stripe {
-  background: repeating-linear-gradient(
-    135deg,
-    var(--color-gold) 0,
-    var(--color-gold) 10px,
-    var(--color-navy) 10px,
-    var(--color-navy) 20px
-  );
+/* ------------------------------------------------------------
+   KARTLAR — beyaz yüzey + alt kenar gölgesi (kabartma)
+   ------------------------------------------------------------ */
+.premium-card,
+.card {
+  box-shadow: 0 3px 0 0 var(--color-line);
+  transition: box-shadow 0.15s ease, border-color 0.15s ease, transform 0.12s ease;
+}
+a.premium-card:hover,
+a.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 0 var(--color-line);
+}
+a.premium-card:active,
+a.card:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 0 var(--color-line);
 }
 
-/* Resmi mühür/rozet halkası — kesikli daire */
-.seal-ring {
-  border: 2px dashed var(--color-gold-soft);
+.sticker-card {
+  box-shadow: 0 3px 0 0 var(--color-line), 0 8px 24px rgba(var(--shadow-color), 0.06);
+}
+
+/* Eski imza motifi — artık ana renkte ince bir vurgu çizgisi */
+.hazard-stripe {
+  background: var(--color-primary);
   border-radius: 9999px;
 }
 
-@media (max-width: 639px) {
+.seal-ring {
+  border: 2px dashed var(--color-primary-soft);
+  border-radius: 9999px;
+}
+
+/* Cevap sonrası alttan açılan geri bildirim paneli */
+@keyframes sheet-up {
+  from { transform: translateY(24px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.animate-sheet-up {
+  animation: sheet-up 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+.animate-pop {
+  animation: pop 0.25s ease-out;
+}
+
+@media (max-width: 767px) {
   body {
-    padding-bottom: 4.25rem;
+    padding-bottom: 4.75rem;
   }
+}
+
+/* Odak modu: soru çözerken alt menü ve footer gizlenir (QuizRunner açar) */
+body[data-quiz-active] .app-bottom-nav,
+body[data-quiz-active] .app-footer {
+  display: none;
+}
+body[data-quiz-active] {
+  padding-bottom: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
