@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { BookOpen } from "lucide-react";
+import { BookOpen, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Trafik Terimleri Sözlüğü | EhliyetAl",
@@ -152,51 +152,47 @@ export default function SozlukPage() {
   };
 
   return (
-    <div className="min-h-screen bg-paper">
+    <div className="bg-paper">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
-      <main className="max-w-2xl mx-auto px-5 sm:px-6 py-8 sm:py-14">
-        <div className="flex items-center gap-3 mb-4">
-          <span className="inline-flex items-center justify-center rounded-lg bg-gold-wash text-gold p-2">
-            <BookOpen size={18} />
+      <main className="max-w-3xl mx-auto px-4 sm:px-6 pt-4 sm:pt-8 pb-10">
+        <div className="flex items-center gap-4 mb-3">
+          <span className="w-14 h-14 rounded-2xl bg-primary-wash text-primary flex items-center justify-center shrink-0">
+            <BookOpen size={28} strokeWidth={2.4} />
           </span>
-          <h1 className="font-display text-3xl text-ink">
+          <h1 className="font-display font-black text-[28px] sm:text-4xl leading-tight text-ink">
             Trafik Terimleri Sözlüğü
           </h1>
         </div>
-        <p className="text-ink-soft text-sm sm:text-base leading-relaxed mb-10">
+        <p className="text-ink-soft font-semibold leading-relaxed mb-7">
           Ehliyet sınavına çalışırken sık karşılaşacağın trafik, motor ve ilk
           yardım terimlerinin kısa açıklamaları. Bir terimi anlamadan
           ezberlemek yerine, ne anlama geldiğini öğrenerek çalışman soruları
           çok daha kolay çözmeni sağlar.
         </p>
 
-        <div className="flex flex-col gap-3">
+        <dl className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {terms.map((t) => (
-            <div
-              key={t.term}
-              className="bg-surface border border-line rounded-xl p-4"
-            >
-              <p className="font-display text-base text-gold mb-1">{t.term}</p>
-              <p className="text-sm text-ink-soft leading-relaxed">
-                {t.definition}
-              </p>
+            <div key={t.term} className="card bg-surface border-2 border-line rounded-2xl p-4">
+              <dt className="font-display font-black text-[17px] text-primary mb-1">{t.term}</dt>
+              <dd className="text-[15px] font-semibold text-ink-soft leading-relaxed">{t.definition}</dd>
             </div>
           ))}
-        </div>
+        </dl>
 
-        <div className="mt-10 flex flex-col sm:flex-row gap-3">
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3">
           <Link
             href="/quiz/trafik"
-            className="flex-1 text-center rounded-full border border-line px-5 py-3 text-sm font-display uppercase tracking-wide text-ink hover:bg-gold-wash hover:border-gold-soft transition-colors"
+            className="btn-primary rounded-2xl min-h-12 flex items-center justify-center gap-2 px-5 text-[15px]"
           >
             Trafik sorularını çöz
+            <ArrowRight size={18} strokeWidth={2.6} />
           </Link>
           <Link
             href="/rehber"
-            className="flex-1 text-center rounded-full border border-line px-5 py-3 text-sm font-display uppercase tracking-wide text-ink hover:bg-gold-wash hover:border-gold-soft transition-colors"
+            className="btn-soft rounded-2xl min-h-12 flex items-center justify-center gap-2 px-5 text-[15px] text-ink"
           >
             Hazırlık rehberine git
           </Link>

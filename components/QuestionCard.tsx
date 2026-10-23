@@ -9,23 +9,30 @@ type QuestionCardProps = {
   question: Question;
   selectedIndex: number | null;
   onSelect: (index: number) => void;
+  /** instant: cevap anında değerlendirilir; end: seçim nötr gösterilir, değiştirilebilir */
+  reveal?: "instant" | "end";
 };
 
 export default function QuestionCard({
   question,
   selectedIndex,
   onSelect,
+  reveal = "instant",
 }: QuestionCardProps) {
-  const answered = selectedIndex !== null;
+  const showResult = reveal === "instant" && selectedIndex !== null;
+  // Gerçek sınav modunda cevap değiştirilebilir; anlık modda ilk seçim kilitlenir
+  const answered = showResult;
   const [speaking, setSpeaking] = useState(false);
   const SignComponent = question.visualId ? signRegistry[question.visualId] : undefined;
 
+  // Bileşen soru başına yeniden oluşturulur (key); ayrılırken okumayı durdur
   useEffect(() => {
-    setSpeaking(false);
-    if (typeof window !== "undefined" && "speechSynthesis" in window) {
-      window.speechSynthesis.cancel();
-    }
-  }, [question.id]);
+    return () => {
+      if (typeof window !== "undefined" && "speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, []);
 
   useEffect(() => {
     function handleKeydown(e: KeyboardEvent) {
@@ -84,7 +91,11 @@ export default function QuestionCard({
           let shadow = "var(--color-line)";
           let badge = "border-2 border-line text-ink-soft group-hover:border-primary-soft group-hover:text-primary";
 
-          if (answered) {
+          if (!showResult && isSelected) {
+            state = "border-primary bg-primary-wash text-ink";
+            shadow = "var(--color-primary)";
+            badge = "bg-primary text-white";
+          } else if (answered) {
             if (isCorrect) {
               state = "border-success bg-success-wash text-success-ink animate-pop";
               shadow = "var(--color-success)";
@@ -125,7 +136,9 @@ export default function QuestionCard({
       </div>
 
       <div className="mt-4 flex items-center justify-between gap-3 text-[13px] font-bold text-ink-soft">
-        <span className="hidden sm:inline">Kısayol: A–D veya 1–4 ile cevapla{answered ? ", Enter ile devam et" : ""}</span>
+        <span className="hidden sm:inline">
+          Kısayol: A–D veya 1–4 ile cevapla{selectedIndex !== null ? ", Enter ile devam et" : ""}
+        </span>
         <span className="flex items-center gap-4 ml-auto">
           <button
             type="button"

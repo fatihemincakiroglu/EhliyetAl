@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Play, MapPin, Gamepad2, CalendarDays, ChevronRight } from "lucide-react";
 import { categories } from "@/lib/questions";
 import { getCategoryTheme } from "@/components/categoryTheme";
-import { ReadinessCard, ReviewBanner, CategoryProgress } from "@/components/HomeProgress";
+import { StatusCard, ActionRows, CategoryProgress } from "@/components/HomeProgress";
 import DailyQuestion from "@/components/DailyQuestion";
 import HomeStatusBar from "@/components/HomeStatusBar";
 import SeoContent from "@/components/SeoContent";
@@ -63,7 +63,7 @@ export default function Home() {
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:grid-rows-[auto_1fr] lg:items-start">
           {/* Sol: durum + birincil eylem */}
           <div className="flex flex-col gap-4">
-            <ReadinessCard totalQuestions={totalQuestions} />
+            <StatusCard totalQuestions={totalQuestions} />
 
             <Link
               href="/sinav"
@@ -82,7 +82,7 @@ export default function Home() {
               </span>
             </Link>
 
-            <ReviewBanner />
+            <ActionRows />
 
             <div className="hidden lg:block">
               <DailyQuestion />

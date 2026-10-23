@@ -16,38 +16,38 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="min-h-screen bg-paper flex items-center justify-center">
-      <main className="max-w-md mx-auto px-6 py-14 text-center">
-        <div className="inline-flex items-center justify-center rounded-full bg-danger-wash text-danger p-4 mb-6">
-          <AlertTriangle size={32} />
-        </div>
-        <p className="font-data text-xs uppercase tracking-wider text-danger mb-2">
-          Beklenmedik Hata
-        </p>
-        <h1 className="font-display text-3xl text-ink mb-3">
-          Bir şeyler ters gitti
-        </h1>
-        <p className="text-ink-soft text-sm leading-relaxed mb-8">
-          Sayfa yüklenirken bir hata oluştu. Tekrar deneyebilir veya ana
-          sayfaya dönebilirsin.
-        </p>
+    <div className="bg-paper flex items-center justify-center min-h-[70vh]">
+      <main className="max-w-md w-full mx-auto px-4 sm:px-6 py-10">
+        <div className="card bg-surface border-2 border-line rounded-3xl p-6 sm:p-8 text-center">
+          <span className="mx-auto mb-5 w-16 h-16 rounded-2xl bg-danger-wash text-danger flex items-center justify-center">
+            <AlertTriangle size={32} strokeWidth={2.3} />
+          </span>
+          <p className="text-[13px] font-extrabold text-danger-ink mb-1">Beklenmedik Hata</p>
+          <h1 className="font-display font-black text-[28px] sm:text-3xl leading-tight text-ink mb-2">
+            Bir şeyler ters gitti
+          </h1>
+          <p className="text-ink-soft font-semibold leading-relaxed mb-6">
+            Sayfa yüklenirken bir hata oluştu. Tekrar deneyebilir veya ana
+            sayfaya dönebilirsin.
+          </p>
 
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <button
-            type="button"
-            onClick={reset}
-            className="flex items-center justify-center gap-2 font-display text-sm tracking-wide uppercase rounded-full gold-gradient text-white px-6 py-3 hover:bg-gold-soft transition-colors"
-          >
-            <RotateCcw size={16} />
-            Tekrar Dene
-          </button>
-          <Link
-            href="/"
-            className="flex items-center justify-center gap-2 font-display text-sm tracking-wide uppercase btn-hard-outline rounded-xl border border-line text-ink bg-surface px-6 py-3 hover:bg-gold-wash hover:border-gold-soft transition-colors"
-          >
-            <Home size={16} />
-            Ana Sayfaya Dön
-          </Link>
+          <div className="flex flex-col gap-3">
+            <button
+              type="button"
+              onClick={reset}
+              className="btn-primary rounded-2xl h-[52px] flex items-center justify-center gap-2 text-[15px] tracking-wide cursor-pointer"
+            >
+              <RotateCcw size={18} strokeWidth={2.6} />
+              TEKRAR DENE
+            </button>
+            <Link
+              href="/"
+              className="btn-soft rounded-2xl h-12 flex items-center justify-center gap-2 text-ink text-[15px]"
+            >
+              <Home size={17} strokeWidth={2.6} />
+              Ana Sayfaya Dön
+            </Link>
+          </div>
         </div>
       </main>
     </div>

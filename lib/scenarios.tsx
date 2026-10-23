@@ -21,7 +21,6 @@ const ROAD_LINE = "#f4c430";
 const GRASS = "#e8ede4";
 const CAR_A = "#c1272d"; // kırmızı — genelde "sen"
 const CAR_B = "#1a5fb4"; // mavi — karşı araç
-const CAR_C = "#2e7d32"; // yeşil — üçüncü araç
 
 function IntersectionBase({ children }: { children?: React.ReactNode }) {
   return (

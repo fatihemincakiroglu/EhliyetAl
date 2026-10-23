@@ -22,8 +22,8 @@ export default function GlobalCounter() {
   if (!enabled || count === null || count === 0) return null;
 
   return (
-    <div className="flex items-center gap-2 text-[13px] font-bold text-ink-soft">
-      <Users size={14} className="text-gold" />
+    <div className="inline-flex items-center gap-2 min-h-11 rounded-full bg-surface-alt px-4 text-[13px] font-extrabold text-ink-soft">
+      <Users size={15} strokeWidth={2.6} className="text-primary" />
       Bugün topluluk {count.toLocaleString("tr-TR")} soru çözdü
     </div>
   );

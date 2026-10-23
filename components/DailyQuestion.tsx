@@ -1,9 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Sparkles, Check, X, ChevronDown } from "lucide-react";
-import { categories, getAllQuestions, type Question } from "@/lib/questions";
+import { categories, getAllQuestions } from "@/lib/questions";
+import { useStoreVersion } from "@/lib/clientStore";
+import { recordOutcome } from "@/lib/spacedRepetition";
+import { recordAnswers } from "@/lib/progress";
 
 const categorySlugByQuestionId = new Map<string, string>();
 for (const c of categories) {
@@ -21,15 +24,25 @@ function getTodayIndex(total: number) {
 }
 
 export default function DailyQuestion() {
-  const [question, setQuestion] = useState<Question | null>(null);
+  // Günün sorusu tarihe bağlı: sunucu ile tarayıcının tarihi farklı olabileceği
+  // için yalnızca istemcide seçilir (v > 0).
+  const v = useStoreVersion();
+  const hydrated = v > 0;
+  const question = useMemo(() => {
+    if (!hydrated) return null;
+    const all = getAllQuestions();
+    return all[getTodayIndex(all.length)];
+  }, [hydrated]);
   const [selected, setSelected] = useState<number | null>(null);
   const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    const all = getAllQuestions();
-    const index = getTodayIndex(all.length);
-    setQuestion(all[index]);
-  }, []);
+  function handleSelect(i: number) {
+    if (!question || selected !== null) return;
+    setSelected(i);
+    const correct = i === question.correctIndex;
+    recordOutcome(question.id, correct);
+    recordAnswers([{ correct }]);
+  }
 
   if (!question) return null;
 
@@ -79,7 +92,7 @@ export default function DailyQuestion() {
                   key={i}
                   type="button"
                   disabled={answered}
-                  onClick={() => setSelected(i)}
+                  onClick={() => handleSelect(i)}
                   className={`flex items-center justify-between gap-2 text-left rounded-2xl border-2 px-4 py-3 text-[15px] font-bold transition-colors cursor-pointer disabled:cursor-default ${cls}`}
                 >
                   <span className="text-ink">{option}</span>

@@ -29,48 +29,47 @@ export default function IletisimClient() {
   }
 
   return (
-    <div className="min-h-screen bg-paper">
-      <main className="max-w-xl mx-auto px-5 sm:px-6 py-8 sm:py-14">
-        <div className="flex items-center gap-3 mb-4">
-          <span className="inline-flex items-center justify-center rounded-lg bg-gold-wash text-gold p-2">
-            <Mail size={18} />
+    <div className="bg-paper">
+      <main className="max-w-3xl mx-auto px-4 sm:px-6 pt-4 sm:pt-8 pb-10">
+        <div className="flex items-center gap-4 mb-3">
+          <span className="w-14 h-14 rounded-2xl bg-primary-wash text-primary flex items-center justify-center shrink-0">
+            <Mail size={28} strokeWidth={2.4} />
           </span>
-          <h1 className="font-display text-3xl text-ink">İletişim</h1>
+          <h1 className="font-display font-black text-[28px] sm:text-4xl leading-tight text-ink">İletişim</h1>
         </div>
-        <p className="text-ink-soft text-sm sm:text-base leading-relaxed mb-8">
+        <p className="text-ink-soft font-semibold leading-relaxed mb-6">
           Bir soruda hata bulduysan, bir önerin varsa veya teknik bir sorun
-          yaşıyorsan aşağıdaki formu doldur. Gönder'e bastığında e-posta
+          yaşıyorsan aşağıdaki formu doldur. Gönder&apos;e bastığında e-posta
           uygulaman, hazır doldurulmuş bir mesajla açılacak.
         </p>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-          <div>
-            <label className="block text-xs font-data uppercase tracking-wide text-ink-soft mb-2">
-              Konu
-            </label>
+        <form
+          onSubmit={handleSubmit}
+          className="card bg-surface border-2 border-line rounded-3xl p-5 sm:p-7 flex flex-col gap-5"
+        >
+          <fieldset>
+            <legend className="block text-[13px] font-extrabold text-ink mb-2.5">Konu</legend>
             <div className="flex flex-wrap gap-2">
               {topics.map((t) => (
                 <button
                   key={t.value}
                   type="button"
                   onClick={() => setTopic(t.value)}
-                  className={`px-4 py-2 rounded-full text-sm border transition-colors ${
+                  aria-pressed={topic === t.value}
+                  className={`px-4 min-h-11 rounded-full text-sm font-extrabold border-2 cursor-pointer transition-colors ${
                     topic === t.value
-                      ? "gold-gradient text-white border-gold"
-                      : "border-line text-ink-soft hover:border-gold-soft hover:text-ink"
+                      ? "bg-primary border-primary text-white"
+                      : "bg-surface border-line text-ink-soft hover:border-primary-soft hover:text-ink"
                   }`}
                 >
                   {t.label}
                 </button>
               ))}
             </div>
-          </div>
+          </fieldset>
 
           <div>
-            <label
-              htmlFor="name"
-              className="block text-xs font-data uppercase tracking-wide text-ink-soft mb-2"
-            >
+            <label htmlFor="name" className="block text-[13px] font-extrabold text-ink mb-2">
               Adın (isteğe bağlı)
             </label>
             <input
@@ -78,16 +77,13 @@ export default function IletisimClient() {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full rounded-xl border border-line bg-surface px-4 py-3 text-sm text-ink focus:outline-none focus:border-gold-soft"
+              className="w-full h-12 rounded-2xl border-2 border-line bg-surface px-4 font-bold text-ink placeholder:text-ink-soft/70 placeholder:font-semibold outline-none focus:border-primary transition-colors"
               placeholder="Adın"
             />
           </div>
 
           <div>
-            <label
-              htmlFor="message"
-              className="block text-xs font-data uppercase tracking-wide text-ink-soft mb-2"
-            >
+            <label htmlFor="message" className="block text-[13px] font-extrabold text-ink mb-2">
               Mesajın
             </label>
             <textarea
@@ -96,23 +92,23 @@ export default function IletisimClient() {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               rows={6}
-              className="w-full rounded-xl border border-line bg-surface px-4 py-3 text-sm text-ink focus:outline-none focus:border-gold-soft resize-none"
+              className="w-full rounded-2xl border-2 border-line bg-surface px-4 py-3 font-bold text-ink placeholder:text-ink-soft/70 placeholder:font-semibold outline-none focus:border-primary transition-colors resize-none"
               placeholder="Hangi soruda, ne gibi bir hata olduğunu ya da önerini yazabilirsin..."
             />
           </div>
 
           <button
             type="submit"
-            className="self-start flex items-center gap-2 font-display text-sm tracking-wide uppercase rounded-full gold-gradient text-white px-6 py-3 hover:bg-gold-soft transition-colors"
+            className="btn-primary rounded-2xl h-14 flex items-center justify-center gap-2 text-[16px] tracking-wide cursor-pointer"
           >
-            <Send size={16} />
-            Gönder
+            <Send size={18} strokeWidth={2.6} />
+            GÖNDER
           </button>
         </form>
 
-        <p className="text-xs text-ink-soft/70 mt-8">
+        <p className="text-sm font-semibold text-ink-soft mt-6">
           Doğrudan e-posta göndermek istersen:{" "}
-          <a href={`mailto:${CONTACT_EMAIL}`} className="text-gold hover:underline">
+          <a href={`mailto:${CONTACT_EMAIL}`} className="font-extrabold text-primary hover:underline underline-offset-2">
             {CONTACT_EMAIL}
           </a>
         </p>

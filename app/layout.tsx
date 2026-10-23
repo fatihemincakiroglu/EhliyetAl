@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/Breadcrumb";
 import BottomNav from "@/components/BottomNav";
 import Footer from "@/components/Footer";
 import PwaRegister from "@/components/PwaRegister";
+import Celebrations from "@/components/Celebrations";
 
 const SITE_URL = "https://ehliyetal.net";
 
@@ -82,6 +83,7 @@ export default function RootLayout({
         <Footer />
         <BottomNav />
         <PwaRegister />
+        <Celebrations />
       </body>
     </html>
   );

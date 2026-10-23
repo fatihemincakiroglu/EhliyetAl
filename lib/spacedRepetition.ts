@@ -1,3 +1,5 @@
+import { notifyStoreChange } from "@/lib/clientStore";
+
 export type ReviewEntry = {
   questionId: string;
   intervalIndex: number;
@@ -25,7 +27,12 @@ function getAll(): Record<string, ReviewEntry> {
 
 function saveAll(entries: Record<string, ReviewEntry>) {
   if (!isBrowser()) return;
-  window.localStorage.setItem(SPACED_KEY, JSON.stringify(entries));
+  try {
+    window.localStorage.setItem(SPACED_KEY, JSON.stringify(entries));
+  } catch {
+    // depolama dolu / kapalı
+  }
+  notifyStoreChange();
 }
 
 function addDays(date: Date, days: number) {

@@ -9,7 +9,20 @@ Türkiye ehliyet sınavına hazırlık için soru-cevap (quiz) uygulaması. Next
 - İl bazlı ehliyet sınavına hazırlık rehber sayfaları
 - Cevap sonrası anlık açıklama
 - Yol temalı ilerleme çubuğu
-- Sonuç ekranında puan ve yanlış cevap özeti (%70 geçme barajı)
+- Sonuç ekranında puan, konu bazlı analiz ve tüm cevapların incelemesi (%70 geçme barajı)
+- Gerçek sınav modu (cevaplar sonda açıklanır) ve öğrenme modu (anında geri bildirim)
+- Oyunlaştırma: XP ve seviyeler, günlük hedef, günlük seri + haftada bir seri kurtarıcı, rozetler, kutlama animasyonları
+- Yanlışlarım kutusu, aralıklı tekrar ve zayıf konuya göre 10 soruluk hızlı tur
+- Paylaşılabilir sonuç görseli (story boyutu) ve PDF
+- İlerlemeyi dosya olarak yedekleme / geri yükleme (veriler yalnızca tarayıcıda, localStorage)
+
+## Kod yapısı (öne çıkanlar)
+
+- `app/globals.css`: renk/tipografi tokenları, açık-koyu tema, ortak buton ve kart sınıfları
+- `lib/progress.ts`: XP, seviye, günlük hedef, seri, kategori ilerlemesi, zayıf konu önerisi
+- `lib/clientStore.ts`: localStorage verisini React'e bağlayan `useStoreVersion()` kancası
+- `lib/celebrate.ts` + `components/Celebrations.tsx`: kutlama olayları (toast + konfeti)
+- `components/QuizRunner.tsx`, `QuestionCard.tsx`, `QuizResult.tsx`: soru çözme akışı
 
 ## Geliştirme
 

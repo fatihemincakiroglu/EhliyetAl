@@ -1,4 +1,4 @@
-import { Home, ListChecks, BarChart3, Search, BookOpen, GraduationCap, Mail, CalendarDays, Gamepad2, Newspaper, HelpCircle } from "lucide-react";
+import { Home, ListChecks, BarChart3, Search, BookOpen, GraduationCap, Mail, CalendarDays, Gamepad2, Newspaper, HelpCircle, XCircle, RefreshCcw } from "lucide-react";
 
 export const navItems = [
   { href: "/", label: "Ana Sayfa", short: "Ana Sayfa", icon: Home },
@@ -7,6 +7,8 @@ export const navItems = [
 ];
 
 export const moreItems = [
+  { href: "/yanlislarim", label: "Yanlışlarım", icon: XCircle },
+  { href: "/tekrar", label: "Aralıklı Tekrar", icon: RefreshCcw },
   { href: "/pratik-oyunlar", label: "Pratik Oyunlar", icon: Gamepad2 },
   { href: "/aylik-sinavlar", label: "Aylık Sınavlar", icon: CalendarDays },
   { href: "/ara", label: "Soru Ara", icon: Search },

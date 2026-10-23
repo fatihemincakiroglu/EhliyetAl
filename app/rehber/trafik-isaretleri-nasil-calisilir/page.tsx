@@ -56,63 +56,63 @@ export default function IsaretlerNasilCalisilirRehberi() {
   };
 
   return (
-    <div className="min-h-screen bg-paper">
+    <div className="bg-paper">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <main className="max-w-2xl mx-auto px-5 sm:px-6 py-8 sm:py-14">
+      <main className="max-w-3xl mx-auto px-4 sm:px-6 pt-4 pb-10 sm:pt-8">
         <Link
           href="/rehber"
-          className="flex items-center gap-1.5 text-sm text-ink-soft hover:text-ink transition-colors mb-8"
+          className="inline-flex items-center gap-1.5 text-sm font-bold text-ink-soft hover:text-ink transition-colors mb-6 min-h-11"
         >
           <ArrowLeft size={16} />
           Rehbere dön
         </Link>
 
         <div className="flex items-center gap-3 mb-4">
-          <span className="inline-flex items-center justify-center rounded-lg bg-gold-wash text-gold p-2">
+          <span className="w-12 h-12 rounded-2xl bg-primary-wash text-primary flex items-center justify-center shrink-0">
             <Signpost size={18} />
           </span>
-          <h1 className="font-display text-2xl sm:text-3xl text-ink">
+          <h1 className="font-display font-black text-[28px] sm:text-4xl leading-tight text-ink">
             Trafik İşaretleri Sınav Sorularına Nasıl Çalışılır?
           </h1>
         </div>
 
-        <p className="text-ink-soft text-sm sm:text-base leading-relaxed mb-8">
+        <p className="text-ink font-medium text-[16px] sm:text-[17px] leading-[1.75] mb-8">
           Trafik işaretleri konusu ehliyet sınavında en çok soru gelen ve en
           çok karıştırılan konulardan biridir. Levhaları ezberlemek yerine
           gruplarına göre mantığını kavramak, sınavda hiç görmediğin bir
           işaretle karşılaştığında bile doğru tahmin yapmanı sağlar.
         </p>
 
-        <h2 className="font-display text-lg text-ink mb-4">
+        <h2 className="font-display font-black text-xl text-ink mb-4">
           İşaret Gruplarını Şekline Göre Ayır
         </h2>
         <div className="flex flex-col gap-3 mb-10">
           {groups.map((group) => (
-            <div key={group.title} className="bg-surface border border-line rounded-xl p-4">
-              <p className="font-display text-base text-ink mb-1">{group.title}</p>
-              <p className="text-xs text-gold font-data uppercase tracking-wide mb-2">
+            <div key={group.title} className="bg-surface border-2 border-line rounded-2xl p-4 sm:p-5">
+              <p className="font-display font-extrabold text-[16px] text-ink mb-1">{group.title}</p>
+              <p className="text-[13px] font-extrabold text-primary mb-2">
                 {group.color}
               </p>
-              <p className="text-sm text-ink-soft leading-relaxed">{group.text}</p>
+              <p className="text-[15px] font-medium text-ink-soft leading-relaxed">{group.text}</p>
             </div>
           ))}
         </div>
 
-        <h2 className="font-display text-lg text-ink mb-4">
+        <h2 className="font-display font-black text-xl text-ink mb-4">
           Sınavda En Çok Yapılan Hatalar
         </h2>
-        <ul className="text-sm text-ink-soft space-y-2 mb-10 list-disc list-inside">
+        <ul className="text-[16px] font-medium text-ink leading-[1.7] space-y-2 mb-10 list-disc pl-5 marker:text-primary">
           {mistakes.map((m) => (
             <li key={m}>{m}</li>
           ))}
         </ul>
 
-        <div className="bg-gold-wash border border-gold-soft/40 rounded-2xl p-5 mb-10 flex gap-3">
-          <CheckCircle2 size={20} className="text-gold shrink-0 mt-0.5" />
-          <p className="text-sm text-ink leading-relaxed">
+        <div className="bg-primary-wash rounded-2xl p-4 sm:p-5 mb-10 flex gap-3">
+          <CheckCircle2 size={20} className="text-primary shrink-0 mt-0.5" />
+          <p className="text-[15px] font-semibold text-ink leading-relaxed">
             Çalışma yöntemi olarak önce şekli ve rengi kategorilendirmeyi
             öğren, sonra o kategori içindeki detayları ekle. Rastgele
             ezberlemek yerine bu sıralamayla ilerlemek kalıcılığı artırır.
@@ -121,7 +121,7 @@ export default function IsaretlerNasilCalisilirRehberi() {
 
         <Link
           href="/quiz/isaretler"
-          className="inline-flex items-center gap-2 text-sm font-display uppercase tracking-wide text-gold hover:text-gold-soft transition-colors"
+          className="btn-soft inline-flex items-center gap-2 rounded-2xl px-5 h-12 text-[15px] text-ink"
         >
           Trafik İşaretleri sorularını çözmeye başla →
         </Link>

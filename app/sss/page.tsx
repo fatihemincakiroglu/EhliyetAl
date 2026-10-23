@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { HelpCircle, ArrowRight } from "lucide-react";
+import { HelpCircle, ArrowRight, ChevronDown } from "lucide-react";
 import { faqItems, faqSchema } from "@/lib/faq";
 
 const SITE_URL = "https://ehliyetal.net";
@@ -26,7 +26,7 @@ const breadcrumbSchema = {
 
 export default function SssPage() {
   return (
-    <div className="min-h-screen bg-paper">
+    <div className="bg-paper">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
@@ -36,65 +36,72 @@ export default function SssPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
-      <main className="max-w-2xl mx-auto px-5 sm:px-6 py-8 sm:py-14">
-        <div className="flex items-center gap-3 mb-4">
-          <span className="inline-flex items-center justify-center rounded-lg bg-gold-wash text-gold p-2">
-            <HelpCircle size={18} />
+      <main className="max-w-3xl mx-auto px-4 sm:px-6 pt-4 sm:pt-8 pb-10">
+        <div className="flex items-center gap-4 mb-3">
+          <span className="w-14 h-14 rounded-2xl bg-primary-wash text-primary flex items-center justify-center shrink-0">
+            <HelpCircle size={28} strokeWidth={2.4} />
           </span>
-          <h1 className="font-display text-3xl text-ink">
+          <h1 className="font-display font-black text-[28px] sm:text-4xl leading-tight text-ink">
             Sıkça Sorulan Sorular
           </h1>
         </div>
-        <p className="text-ink-soft text-sm sm:text-base leading-relaxed mb-10">
+        <p className="text-ink-soft font-semibold leading-relaxed mb-7">
           Ehliyet sınavı ve süreciyle ilgili en çok merak edilen soruları
           derledik. Sınav puanından sağlık raporuna, sınav hakkından belge
           işlemlerine kadar aklına takılanların cevabı burada.
         </p>
 
-        <div className="flex flex-col gap-3 mb-10">
+        <div className="flex flex-col gap-2.5 mb-8">
           {faqItems.map((item) => (
             <details
               key={item.q}
-              className="group bg-surface border border-line rounded-xl p-4 open:border-gold-soft"
+              className="group card rounded-2xl border-2 border-line bg-surface open:border-primary-soft"
             >
-              <summary className="cursor-pointer font-display text-base text-ink list-none flex items-center justify-between gap-3">
+              <summary className="flex items-center justify-between gap-3 p-4 min-h-14 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-extrabold text-[15px] sm:text-base text-ink leading-snug">
                 {item.q}
-                <span className="text-gold shrink-0 transition-transform group-open:rotate-45 font-display text-xl">
-                  +
-                </span>
+                <ChevronDown
+                  size={20}
+                  strokeWidth={2.6}
+                  className="text-ink-soft shrink-0 transition-transform group-open:rotate-180"
+                />
               </summary>
-              <p className="text-sm text-ink-soft leading-relaxed mt-3">
+              <p className="px-4 pb-4 -mt-1 text-[15px] font-semibold text-ink-soft leading-relaxed">
                 {item.a}
               </p>
             </details>
           ))}
         </div>
 
-        <div className="rounded-2xl gold-gradient text-white p-6 text-center">
-          <p className="font-display text-lg mb-3">
+        <div
+          className="rounded-3xl bg-primary text-white p-6 text-center"
+          style={{ boxShadow: "0 4px 0 0 var(--color-primary-deep)" }}
+        >
+          <p className="font-display font-black text-xl mb-4">
             Hazırlığa başlamaya ne dersin?
           </p>
           <Link
             href="/sinav"
-            className="inline-flex items-center gap-2 rounded-xl bg-white/15 hover:bg-white/25 px-5 py-2.5 font-display text-sm transition-colors"
+            className="inline-flex items-center gap-2 min-h-12 rounded-2xl bg-white text-primary px-6 font-extrabold text-[15px] hover:bg-white/90 transition-colors"
           >
             Deneme sınavı çöz
-            <ArrowRight size={16} />
+            <ArrowRight size={18} strokeWidth={2.6} />
           </Link>
         </div>
 
-        <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
           <Link
             href="/rehber"
-            className="text-sm font-display uppercase tracking-wide text-gold hover:text-gold-soft transition-colors"
+            className="card flex items-center justify-between gap-3 rounded-2xl border-2 border-line bg-surface px-4 min-h-14 font-extrabold text-ink hover:text-primary"
           >
-            Hazırlık Rehberi →
+            Hazırlık Rehberi
+            <ArrowRight size={18} strokeWidth={2.6} className="text-ink-soft" />
           </Link>
           <Link
             href="/blog"
-            className="text-sm font-display uppercase tracking-wide text-gold hover:text-gold-soft transition-colors"
+            className="card flex items-center justify-between gap-3 rounded-2xl border-2 border-line bg-surface px-4 min-h-14 font-extrabold text-ink hover:text-primary"
           >
-            Blog yazıları →
+            Blog yazıları
+            <ArrowRight size={18} strokeWidth={2.6} className="text-ink-soft" />
           </Link>
         </div>
       </main>

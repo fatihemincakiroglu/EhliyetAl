@@ -1,84 +1,92 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { Bell, BellOff } from "lucide-react";
+import { notifyStoreChange, useStoreVersion } from "@/lib/clientStore";
 
 const REMINDER_KEY = "ehliyetal:reminder:v1";
 const LAST_SHOWN_KEY = "ehliyetal:reminder-last-shown:v1";
 
-function isBrowser() {
-  return typeof window !== "undefined";
+function readReminder(): boolean {
+  try {
+    return window.localStorage.getItem(REMINDER_KEY) === "true";
+  } catch {
+    return false;
+  }
+}
+
+function writeReminder(value: boolean) {
+  try {
+    window.localStorage.setItem(REMINDER_KEY, value ? "true" : "false");
+  } catch {
+    // depolama kapalı
+  }
+  notifyStoreChange();
 }
 
 export default function StudyReminder() {
-  const [enabled, setEnabled] = useState(false);
-  const [permission, setPermission] = useState<NotificationPermission | "unsupported">(
-    "default"
-  );
-  const [mounted, setMounted] = useState(false);
+  const v = useStoreVersion();
 
+  const state = useMemo(() => {
+    if (v === 0) return null;
+    if (!("Notification" in window)) return { permission: "unsupported" as const, enabled: false };
+    return { permission: Notification.permission, enabled: readReminder() };
+  }, [v]);
+
+  // Günde bir kez hatırlatma göster (izin ve tercih açıksa)
   useEffect(() => {
-    setMounted(true);
-    if (!isBrowser() || !("Notification" in window)) {
-      setPermission("unsupported");
-      return;
-    }
-    setPermission(Notification.permission);
-    setEnabled(window.localStorage.getItem(REMINDER_KEY) === "true");
-
-    if (
-      Notification.permission === "granted" &&
-      window.localStorage.getItem(REMINDER_KEY) === "true"
-    ) {
+    if (!("Notification" in window)) return;
+    if (Notification.permission !== "granted" || !readReminder()) return;
+    try {
       const today = new Date().toDateString();
-      const lastShown = window.localStorage.getItem(LAST_SHOWN_KEY);
-      if (lastShown !== today) {
+      if (window.localStorage.getItem(LAST_SHOWN_KEY) !== today) {
         new Notification("EhliyetAl", {
           body: "Bugün birkaç soru çözmeye ne dersin? 🚗",
           icon: "/icon.png",
         });
         window.localStorage.setItem(LAST_SHOWN_KEY, today);
       }
+    } catch {
+      // bildirim gösterilemedi
     }
   }, []);
 
   async function handleToggle() {
-    if (!isBrowser() || !("Notification" in window)) return;
+    if (!("Notification" in window)) return;
 
-    if (enabled) {
-      setEnabled(false);
-      window.localStorage.setItem(REMINDER_KEY, "false");
+    if (state?.enabled) {
+      writeReminder(false);
       return;
     }
 
     const result = await Notification.requestPermission();
-    setPermission(result);
     if (result === "granted") {
-      setEnabled(true);
-      window.localStorage.setItem(REMINDER_KEY, "true");
+      writeReminder(true);
       new Notification("EhliyetAl", {
         body: "Hatırlatıcı açıldı! Siteyi her ziyaret ettiğinde günlük bir hatırlatma göreceksin.",
         icon: "/icon.png",
       });
+    } else {
+      notifyStoreChange();
     }
   }
 
-  if (!mounted || permission === "unsupported") return null;
+  if (!state || state.permission === "unsupported") return null;
 
   return (
     <button
       type="button"
       onClick={handleToggle}
-      disabled={permission === "denied"}
-      title={
-        permission === "denied"
-          ? "Bildirim izni tarayıcı ayarlarından engellenmiş"
-          : undefined
-      }
-      className="flex items-center gap-1.5 text-[13px] font-bold text-ink-soft hover:text-primary cursor-pointer transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+      disabled={state.permission === "denied"}
+      title={state.permission === "denied" ? "Bildirim izni tarayıcı ayarlarından engellenmiş" : undefined}
+      className={`inline-flex items-center gap-2 min-h-11 rounded-full border-2 px-4 text-[13px] font-extrabold cursor-pointer transition-colors disabled:opacity-40 disabled:cursor-not-allowed ${
+        state.enabled
+          ? "border-primary bg-primary-wash text-primary"
+          : "border-line bg-surface text-ink-soft hover:text-primary hover:border-primary-soft"
+      }`}
     >
-      {enabled ? <Bell size={14} className="text-gold" /> : <BellOff size={14} />}
-      {enabled ? "Hatırlatıcı açık" : "Çalışma hatırlatıcısı kur"}
+      {state.enabled ? <Bell size={15} strokeWidth={2.6} /> : <BellOff size={15} strokeWidth={2.6} />}
+      {state.enabled ? "Hatırlatıcı açık" : "Çalışma hatırlatıcısı kur"}
     </button>
   );
 }

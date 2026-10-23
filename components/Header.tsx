@@ -14,10 +14,12 @@ export default function Header() {
   const [moreOpen, setMoreOpen] = useState(false);
   const moreRef = useRef<HTMLDivElement>(null);
 
-  // Rota değişince menüyü kapat (bir öğeye tıklanınca)
-  useEffect(() => {
+  // Rota değişince menüyü kapat (render sırasında önceki yolla karşılaştırarak)
+  const [lastPath, setLastPath] = useState(pathname);
+  if (lastPath !== pathname) {
+    setLastPath(pathname);
     setMoreOpen(false);
-  }, [pathname]);
+  }
 
   // Dışarı tıklayınca ve Esc'e basınca kapat
   useEffect(() => {

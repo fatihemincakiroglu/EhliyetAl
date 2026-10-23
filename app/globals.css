@@ -308,6 +308,14 @@ a.card:active {
   animation: sheet-up 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
+@keyframes toast-in {
+  from { transform: translateY(-12px) scale(0.96); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+.animate-toast-in {
+  animation: toast-in 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
 @keyframes pop {
   0% { transform: scale(1); }
   40% { transform: scale(1.03); }

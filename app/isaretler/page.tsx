@@ -209,60 +209,58 @@ export default function IsaretlerPage() {
   };
 
   return (
-    <div className="min-h-screen bg-paper">
+    <div className="bg-paper">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
-      <main className="max-w-2xl mx-auto px-5 sm:px-6 py-8 sm:py-14">
-        <div className="flex items-center gap-3 mb-4">
-          <span className="inline-flex items-center justify-center rounded-lg bg-gold-wash text-gold p-2">
-            <Signpost size={18} />
+      <main className="max-w-3xl mx-auto px-4 sm:px-6 pt-4 sm:pt-8 pb-10">
+        <div className="flex items-center gap-4 mb-3">
+          <span className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0" style={{ background: "var(--color-cat-isaretler-wash)", color: "var(--color-cat-isaretler)" }}>
+            <Signpost size={28} strokeWidth={2.4} />
           </span>
-          <h1 className="font-display text-3xl text-ink">
+          <h1 className="font-display font-black text-[28px] sm:text-4xl leading-tight text-ink">
             Trafik İşaretleri Rehberi
           </h1>
         </div>
-        <p className="text-ink-soft text-sm sm:text-base leading-relaxed mb-4">
-          Karayolları Genel Müdürlüğü'nün resmi standardına göre trafik
+        <p className="text-ink-soft font-semibold leading-relaxed mb-3">
+          Karayolları Genel Müdürlüğü&apos;nün resmi standardına göre trafik
           işaretleri dört ana grupta toplanır: tehlike uyarı, trafik tanzim,
           bilgi ve park/durma işaretleri. Aşağıda en sık karşılaşılan ve
           sınavda çıkan işaretlerin anlamlarını, kendi çizdiğimiz basit
           gösterimlerle bulabilirsin.
         </p>
-        <p className="text-xs text-ink-soft/70 leading-relaxed mb-10">
+        <p className="text-[13px] font-semibold text-ink-soft leading-relaxed mb-8 rounded-2xl bg-surface-alt px-4 py-3">
           Not: Buradaki işaret çizimleri, resmi levhaların şekil ve renk
           standardını temel alan orijinal, sadeleştirilmiş gösterimlerdir;
           resmi kurumların yayımladığı afiş veya belgelerin kopyası değildir.
         </p>
 
         {groups.map((group) => (
-          <div key={group.title} className="mb-12">
-            <h2 className="font-display text-xl text-ink mb-2">
+          <section key={group.title} className="mb-10">
+            <h2 className="font-display font-black text-xl sm:text-2xl text-ink mb-1.5">
               {group.title}
             </h2>
-            <p className="text-sm text-ink-soft leading-relaxed mb-5">
+            <p className="text-[15px] font-semibold text-ink-soft leading-relaxed mb-4">
               {group.intro}
             </p>
-            <div className="flex flex-col gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {group.signs.map((sign) => {
                 const SignIcon = Signs.signRegistry[sign.visualId];
                 return (
                   <div
                     key={sign.code}
-                    className="flex items-center gap-4 bg-surface border border-line rounded-xl p-4"
+                    className="card flex items-start gap-4 bg-surface border-2 border-line rounded-2xl p-4"
                   >
-                    <div className="shrink-0">
+                    <div className="shrink-0 rounded-xl bg-surface-alt p-2">
                       <SignIcon size={56} />
                     </div>
                     <div className="min-w-0">
-                      <p className="font-data text-[10px] uppercase tracking-wide text-gold">
-                        {sign.code}
-                      </p>
-                      <p className="font-display text-base text-ink mb-1">
+                      <p className="text-xs font-extrabold text-primary">{sign.code}</p>
+                      <p className="font-display font-black text-base text-ink leading-tight mb-1">
                         {sign.name}
                       </p>
-                      <p className="text-sm text-ink-soft leading-relaxed">
+                      <p className="text-sm font-semibold text-ink-soft leading-relaxed">
                         {sign.meaning}
                       </p>
                     </div>
@@ -270,15 +268,15 @@ export default function IsaretlerPage() {
                 );
               })}
             </div>
-          </div>
+          </section>
         ))}
 
         <Link
           href="/quiz/isaretler"
-          className="inline-flex items-center gap-2 font-display text-sm tracking-wide uppercase rounded-full gold-gradient text-white px-6 py-3 hover:bg-gold-soft transition-colors"
+          className="btn-primary rounded-2xl min-h-14 w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 text-[16px] tracking-wide"
         >
-          İşaret sorularını çöz
-          <ArrowRight size={16} />
+          İŞARET SORULARINI ÇÖZ
+          <ArrowRight size={18} strokeWidth={2.6} />
         </Link>
       </main>
     </div>

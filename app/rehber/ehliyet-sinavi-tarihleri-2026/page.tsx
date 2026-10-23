@@ -55,7 +55,7 @@ export default function TarihlerRehberi() {
   };
 
   return (
-    <div className="min-h-screen bg-paper">
+    <div className="bg-paper">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
@@ -64,44 +64,44 @@ export default function TarihlerRehberi() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <main className="max-w-2xl mx-auto px-5 sm:px-6 py-8 sm:py-14">
+      <main className="max-w-3xl mx-auto px-4 sm:px-6 pt-4 pb-10 sm:pt-8">
         <Link
           href="/rehber"
-          className="flex items-center gap-1.5 text-sm text-ink-soft hover:text-ink transition-colors mb-8"
+          className="inline-flex items-center gap-1.5 text-sm font-bold text-ink-soft hover:text-ink transition-colors mb-6 min-h-11"
         >
           <ArrowLeft size={16} />
           Rehbere dön
         </Link>
 
         <div className="flex items-center gap-3 mb-4">
-          <span className="inline-flex items-center justify-center rounded-lg bg-gold-wash text-gold p-2">
+          <span className="w-12 h-12 rounded-2xl bg-primary-wash text-primary flex items-center justify-center shrink-0">
             <CalendarDays size={18} />
           </span>
-          <h1 className="font-display text-2xl sm:text-3xl text-ink">
+          <h1 className="font-display font-black text-[28px] sm:text-4xl leading-tight text-ink">
             2026 Ehliyet Sınavı Ne Zaman?
           </h1>
         </div>
 
-        <p className="text-ink-soft text-sm sm:text-base leading-relaxed mb-8">
+        <p className="text-ink font-medium text-[16px] sm:text-[17px] leading-[1.75] mb-8">
           Ehliyet sınavlarının kesin ve tek bir tarihi yoktur — sınavlar yıl
           içinde birden fazla dönemde, il/ilçe millî eğitim müdürlüklerinin
           planlamasına göre yapılır. Bu sayfada tarih sürecinin nasıl
           işlediğini ve doğru bilgiye nereden ulaşacağını anlatıyoruz.
         </p>
 
-        <div className="bg-danger-wash border border-danger/30 rounded-2xl p-5 mb-8 flex gap-3">
+        <div className="bg-danger-wash rounded-2xl p-4 sm:p-5 mb-8 flex gap-3">
           <AlertTriangle size={20} className="text-danger shrink-0 mt-0.5" />
-          <p className="text-sm text-ink leading-relaxed">
+          <p className="text-[15px] font-semibold text-ink leading-relaxed">
             Burada sabit bir tarih listesi paylaşmıyoruz çünkü sınav takvimi
             ile ilçeye, kontenjana ve döneme göre değişir. Kesin tarih için tek
             güvenilir kaynak, kayıtlı olduğun sürücü kursu ve e-Devlet&apos;tir.
           </p>
         </div>
 
-        <h2 className="font-display text-lg text-ink mb-3">
+        <h2 className="font-display font-black text-xl text-ink mb-3">
           Sınav Tarihi Süreci Nasıl İşler?
         </h2>
-        <ul className="text-sm text-ink-soft space-y-2 mb-10 list-disc list-inside">
+        <ul className="text-[16px] font-medium text-ink leading-[1.7] space-y-2 mb-10 list-disc pl-5 marker:text-primary">
           <li>
             Teorik eğitimini tamamlayan adaylar kursun belirlediği dönemde
             sınav başvurusuna yönlendirilir.
@@ -115,7 +115,7 @@ export default function TarihlerRehberi() {
             açıklanır; süreç detayları için{" "}
             <Link
               href="/rehber/ehliyet-sinavi-sonuc-sorgulama"
-              className="text-gold hover:underline"
+              className="font-bold text-primary underline-offset-2 hover:underline"
             >
               sonuç sorgulama rehberine
             </Link>{" "}
@@ -127,10 +127,10 @@ export default function TarihlerRehberi() {
           </li>
         </ul>
 
-        <h2 className="font-display text-lg text-ink mb-3">
+        <h2 className="font-display font-black text-xl text-ink mb-3">
           Güncel Tarihi Nereden Öğrenebilirsin?
         </h2>
-        <ul className="text-sm text-ink-soft space-y-2 mb-8 list-disc list-inside">
+        <ul className="text-[16px] font-medium text-ink leading-[1.7] space-y-2 mb-8 list-disc pl-5 marker:text-primary">
           <li>Kayıtlı olduğun sürücü kursunun bilgilendirmeleri</li>
           <li>e-Devlet üzerindeki ilgili başvuru ve sınav hizmeti ekranı</li>
           <li>İl/ilçe millî eğitim müdürlüğünün resmî duyuruları</li>
@@ -140,33 +140,33 @@ export default function TarihlerRehberi() {
           href="https://www.turkiye.gov.tr/"
           target="_blank"
           rel="noopener noreferrer nofollow"
-          className="inline-flex items-center gap-2 text-sm font-display uppercase tracking-wide text-gold hover:text-gold-soft transition-colors mb-10"
+          className="btn-soft inline-flex items-center gap-2 rounded-2xl px-5 h-12 text-[15px] text-ink mb-10"
         >
           e-Devlet&apos;i ziyaret et <ExternalLink size={14} />
         </a>
 
-        <h2 className="font-display text-lg text-ink mb-4">Sıkça Sorulan Sorular</h2>
+        <h2 className="font-display font-black text-xl text-ink mb-4">Sıkça Sorulan Sorular</h2>
         <div className="flex flex-col gap-3 mb-10">
           {faqItems.map((item) => (
             <details
               key={item.q}
-              className="group bg-surface border border-line rounded-xl p-4 open:border-gold-soft"
+              className="group bg-surface border-2 border-line rounded-2xl open:border-primary-soft"
             >
-              <summary className="cursor-pointer font-display text-sm text-ink list-none flex items-center justify-between gap-3">
+              <summary className="cursor-pointer font-display font-extrabold text-[16px] text-ink list-none flex items-center justify-between gap-3 p-4 min-h-14 [&::-webkit-details-marker]:hidden">
                 {item.q}
-                <span className="text-gold shrink-0 transition-transform group-open:rotate-45 font-display text-xl">
+                <span className="w-8 h-8 rounded-lg bg-surface-alt text-primary flex items-center justify-center shrink-0 transition-transform group-open:rotate-45 font-display font-black text-xl leading-none">
                   +
                 </span>
               </summary>
-              <p className="text-sm text-ink-soft leading-relaxed mt-3">{item.a}</p>
+              <p className="text-[15px] font-medium text-ink-soft leading-relaxed px-4 pb-4 -mt-1">{item.a}</p>
             </details>
           ))}
         </div>
 
-        <p className="text-sm text-ink-soft leading-relaxed">
+        <p className="text-[15px] font-medium text-ink-soft leading-relaxed">
           Sınav tarihini beklerken zamanını en verimli şekilde kullanmak
           istersen,{" "}
-          <Link href="/sinav" className="text-gold hover:underline">
+          <Link href="/sinav" className="font-bold text-primary underline-offset-2 hover:underline">
             deneme sınavı çöz
           </Link>{" "}
           ve hazırlığını ölç.

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { moreItems } from "@/components/navItems";
 
 export const metadata: Metadata = {
@@ -10,29 +10,24 @@ export const metadata: Metadata = {
 
 export default function MenuPage() {
   return (
-    <div className="min-h-screen bg-paper">
-      <main className="max-w-2xl mx-auto px-5 sm:px-6 py-8 sm:py-14">
-        <h1 className="font-display text-3xl text-ink mb-8">Daha Fazla</h1>
+    <div className="bg-paper">
+      <main className="max-w-2xl mx-auto px-4 sm:px-6 pt-4 sm:pt-8 pb-10">
+        <h1 className="font-display font-black text-[28px] sm:text-4xl leading-tight text-ink mb-5">Keşfet</h1>
 
-        <div className="flex flex-col gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
           {moreItems.map((item) => {
             const Icon = item.icon;
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className="premium-card group flex items-center gap-4 rounded-2xl border border-line bg-surface px-5 py-4 hover:border-gold-soft hover:bg-gold-wash transition-colors"
+                className="card bg-surface border-2 border-line rounded-2xl px-4 py-3 flex items-center gap-3 min-h-[60px]"
               >
-                <span className="rounded-lg bg-gold-wash p-2.5 text-gold shrink-0">
-                  <Icon size={20} />
+                <span className="w-10 h-10 rounded-xl bg-primary-wash text-primary flex items-center justify-center shrink-0">
+                  <Icon size={20} strokeWidth={2.4} />
                 </span>
-                <span className="flex-1 font-display text-base text-ink">
-                  {item.label}
-                </span>
-                <ArrowRight
-                  size={18}
-                  className="shrink-0 text-ink-soft transition-transform group-hover:translate-x-1 group-hover:text-gold"
-                />
+                <span className="flex-1 font-extrabold text-[15px] text-ink">{item.label}</span>
+                <ChevronRight size={20} strokeWidth={2.5} className="shrink-0 text-ink-soft" />
               </Link>
             );
           })}

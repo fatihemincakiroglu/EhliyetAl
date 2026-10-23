@@ -165,64 +165,81 @@ export default function RightOfWayClient() {
   const s = schemas[i];
 
   return (
-    <div className="min-h-screen bg-paper">
-      <main className="max-w-2xl mx-auto px-5 sm:px-6 py-6 sm:py-10">
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-gold-wash px-3 py-1 text-xs font-medium text-gold mb-3">
-          <Play size={13} /> Animasyonlu Şema
+    <div className="bg-paper">
+      <main className="max-w-2xl mx-auto px-4 sm:px-6 pt-4 sm:pt-8 pb-10">
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-primary-wash px-3 py-1 text-[13px] font-extrabold text-primary mb-3">
+          <Play size={14} strokeWidth={2.6} /> Animasyonlu Şema
         </span>
-        <h1 className="font-display text-2xl sm:text-3xl text-ink mb-2">
+        <h1 className="font-display font-black text-[28px] sm:text-4xl leading-tight text-ink mb-2">
           Geçiş Hakkı Kuralları
         </h1>
-        <p className="text-ink-soft text-sm mb-6">
+        <p className="text-ink-soft font-semibold leading-relaxed mb-5">
           Sınavda en çok yanılınan öncelik kurallarını hareketli şemalarla
           öğren. Öncelikli aracın etrafında halka döner.
         </p>
 
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-sm font-display text-ink">
-            {i + 1} / {schemas.length}
-          </span>
-          <div className="flex gap-2">
-            <button
-              onClick={() => setI((v) => Math.max(0, v - 1))}
-              disabled={i === 0}
-              className="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-line bg-surface text-ink disabled:opacity-40 hover:bg-gold-wash transition"
-              aria-label="Önceki"
-            >
-              <ChevronLeft size={18} />
-            </button>
-            <button
-              onClick={() => setI((v) => Math.min(schemas.length - 1, v + 1))}
-              disabled={i === schemas.length - 1}
-              className="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-line bg-surface text-ink disabled:opacity-40 hover:bg-gold-wash transition"
-              aria-label="Sonraki"
-            >
-              <ChevronRight size={18} />
-            </button>
+        <div className="flex items-center gap-3 mb-4">
+          <div className="flex-1 h-4 rounded-full bg-surface-alt overflow-hidden">
+            <div
+              className="h-full rounded-full bg-primary transition-[width] duration-300"
+              style={{ width: `${((i + 1) / schemas.length) * 100}%` }}
+            />
           </div>
+          <span className="font-display font-black text-[15px] text-ink tabular-nums">
+            {i + 1}/{schemas.length}
+          </span>
         </div>
 
-        <div className="rounded-2xl border border-line bg-surface p-4 mb-5 max-w-sm mx-auto">
+        <div className="card rounded-3xl border-2 border-line bg-surface p-4 mb-5 max-w-sm mx-auto overflow-hidden">
           {s.scene}
         </div>
 
-        <h2 className="font-display text-lg text-ink mb-2">{s.title}</h2>
-        <div className="rounded-xl border border-gold-soft bg-gold-wash p-4 mb-4">
-          <p className="text-sm font-medium text-ink">{s.rule}</p>
+        <h2 className="font-display font-black text-xl leading-snug text-ink mb-3">{s.title}</h2>
+        <div className="rounded-2xl bg-primary-wash p-4 mb-3">
+          <p className="text-[15px] font-extrabold text-ink">{s.rule}</p>
         </div>
-        <p className="text-sm text-ink-soft leading-relaxed mb-8">{s.detail}</p>
+        <p className="text-[15px] font-semibold text-ink-soft leading-relaxed mb-6">{s.detail}</p>
+
+        <div className="flex items-center gap-3 mb-5">
+          <button
+            type="button"
+            onClick={() => setI((v) => Math.max(0, v - 1))}
+            disabled={i === 0}
+            className="btn-soft rounded-2xl h-[52px] px-4 sm:px-5 flex items-center justify-center gap-2 text-ink text-[15px] cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+            aria-label="Önceki"
+          >
+            <ChevronLeft size={20} strokeWidth={2.8} />
+            <span className="hidden sm:inline">Önceki</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => setI((v) => Math.min(schemas.length - 1, v + 1))}
+            disabled={i === schemas.length - 1}
+            className="btn-primary flex-1 rounded-2xl h-[52px] flex items-center justify-center gap-2 text-[16px] tracking-wide cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+            aria-label="Sonraki"
+          >
+            SONRAKİ ŞEMA
+            <ChevronRight size={20} strokeWidth={2.8} />
+          </button>
+        </div>
 
         {/* Alt gezinme noktaları */}
-        <div className="flex items-center justify-center gap-2">
+        <div className="flex items-center justify-center gap-1">
           {schemas.map((_, idx) => (
             <button
               key={idx}
+              type="button"
               onClick={() => setI(idx)}
-              className={`h-2 rounded-full transition-all ${
-                idx === i ? "w-6 bg-gold" : "w-2 bg-line"
-              }`}
+              className="p-2 cursor-pointer"
               aria-label={`Şema ${idx + 1}`}
-            />
+              aria-current={idx === i ? "step" : undefined}
+            >
+              <span
+                className={`block h-2.5 rounded-full transition-all ${
+                  idx === i ? "w-7 bg-primary" : "w-2.5 bg-line"
+                }`}
+              />
+            </button>
           ))}
         </div>
       </main>

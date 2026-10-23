@@ -110,7 +110,7 @@ export default async function ProvincePage({
   };
 
   return (
-    <div className="min-h-screen bg-paper">
+    <div className="bg-paper">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
@@ -119,25 +119,25 @@ export default async function ProvincePage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <main className="max-w-2xl mx-auto px-5 sm:px-6 py-8 sm:py-14">
+      <main className="max-w-3xl mx-auto px-4 sm:px-6 pt-4 pb-10 sm:pt-8">
         <Link
           href="/rehber/il"
-          className="flex items-center gap-1.5 text-sm text-ink-soft hover:text-ink transition-colors mb-8"
+          className="inline-flex items-center gap-1.5 text-sm font-bold text-ink-soft hover:text-ink transition-colors mb-6 min-h-11"
         >
           <ArrowLeft size={16} />
           Tüm illere dön
         </Link>
 
         <div className="flex items-center gap-3 mb-4">
-          <span className="inline-flex items-center justify-center rounded-lg bg-gold-wash text-gold p-2">
+          <span className="w-12 h-12 rounded-2xl bg-primary-wash text-primary flex items-center justify-center shrink-0">
             <MapPin size={18} />
           </span>
-          <h1 className="font-display text-2xl sm:text-3xl text-ink">
+          <h1 className="font-display font-black text-[28px] sm:text-4xl leading-tight text-ink">
             {province.name} Ehliyet Sınavına Hazırlık Rehberi
           </h1>
         </div>
 
-        <p className="text-ink-soft text-sm sm:text-base leading-relaxed mb-5">
+        <p className="text-ink font-medium text-[16px] sm:text-[17px] leading-[1.75] mb-5">
           {province.name} ilinde ehliyet almak isteyen sürücü adayları da
           Türkiye genelindeki standart süreci takip eder: sürücü kursuna
           kayıt, teorik eğitim, teorik sınav ve ardından direksiyon eğitimiyle
@@ -147,27 +147,27 @@ export default async function ProvincePage({
         </p>
 
         <div className="grid grid-cols-3 gap-2.5 mb-8">
-          <div className="rounded-xl border border-line bg-surface px-3 py-3 text-center">
-            <IdCard size={16} className="text-gold mx-auto mb-1.5" />
-            <span className="block text-[11px] text-ink-soft uppercase tracking-wide">Plaka</span>
-            <span className="block font-display text-sm text-ink">{province.plate}</span>
+          <div className="rounded-2xl bg-surface-alt px-3 py-3 text-center">
+            <IdCard size={16} className="text-primary mx-auto mb-1.5" />
+            <span className="block text-xs font-bold text-ink-soft">Plaka</span>
+            <span className="block font-display font-black text-[15px] text-ink">{province.plate}</span>
           </div>
-          <div className="rounded-xl border border-line bg-surface px-3 py-3 text-center">
-            <Compass size={16} className="text-gold mx-auto mb-1.5" />
-            <span className="block text-[11px] text-ink-soft uppercase tracking-wide">Bölge</span>
-            <span className="block font-display text-sm text-ink">{province.region}</span>
+          <div className="rounded-2xl bg-surface-alt px-3 py-3 text-center">
+            <Compass size={16} className="text-primary mx-auto mb-1.5" />
+            <span className="block text-xs font-bold text-ink-soft">Bölge</span>
+            <span className="block font-display font-black text-[15px] text-ink">{province.region}</span>
           </div>
-          <div className="rounded-xl border border-line bg-surface px-3 py-3 text-center">
-            <ClipboardList size={16} className="text-gold mx-auto mb-1.5" />
-            <span className="block text-[11px] text-ink-soft uppercase tracking-wide">Sınav Dersi</span>
-            <span className="block font-display text-sm text-ink">3 Ders</span>
+          <div className="rounded-2xl bg-surface-alt px-3 py-3 text-center">
+            <ClipboardList size={16} className="text-primary mx-auto mb-1.5" />
+            <span className="block text-xs font-bold text-ink-soft">Sınav Dersi</span>
+            <span className="block font-display font-black text-[15px] text-ink">3 Ders</span>
           </div>
         </div>
 
-        <h2 className="font-display text-lg text-ink mb-3">
+        <h2 className="font-display font-black text-xl text-ink mb-3">
           {province.name} İlinde Süreç Nasıl İşler?
         </h2>
-        <ul className="text-sm text-ink-soft space-y-2 mb-8 list-disc list-inside">
+        <ul className="text-[16px] font-medium text-ink leading-[1.7] space-y-2 mb-8 list-disc pl-5 marker:text-primary">
           <li>
             Kayıt, {province.name} il/ilçe millî eğitim müdürlüğüne bağlı
             izinli bir sürücü kursu üzerinden yapılır.
@@ -187,14 +187,14 @@ export default async function ProvincePage({
         </ul>
 
         <div className="flex items-center gap-3 mb-3">
-          <span className="inline-flex items-center justify-center rounded-lg bg-gold-wash text-gold p-2">
+          <span className="w-12 h-12 rounded-2xl bg-primary-wash text-primary flex items-center justify-center shrink-0">
             <Car size={16} />
           </span>
-          <h2 className="font-display text-lg text-ink">
+          <h2 className="font-display font-black text-xl text-ink">
             {province.name}&apos;de Sürücü Kursu Seçerken Nelere Dikkat Edilir?
           </h2>
         </div>
-        <ul className="text-sm text-ink-soft space-y-2 mb-8 list-disc list-inside">
+        <ul className="text-[16px] font-medium text-ink leading-[1.7] space-y-2 mb-8 list-disc pl-5 marker:text-primary">
           <li>
             Kursun Millî Eğitim Bakanlığı&apos;na bağlı resmî bir sürücü
             kursu belgesine sahip olduğunu teyit et.
@@ -215,10 +215,10 @@ export default async function ProvincePage({
         </ul>
 
         <div className="flex items-center gap-3 mb-3">
-          <span className="inline-flex items-center justify-center rounded-lg bg-gold-wash text-gold p-2">
+          <span className="w-12 h-12 rounded-2xl bg-primary-wash text-primary flex items-center justify-center shrink-0">
             <Search size={16} />
           </span>
-          <h2 className="font-display text-lg text-ink">
+          <h2 className="font-display font-black text-xl text-ink">
             Teorik Sınav Sonucu Nasıl Öğrenilir?
           </h2>
         </div>
@@ -230,9 +230,9 @@ export default async function ProvincePage({
           kalman en sağlıklısı.
         </p>
 
-        <div className="bg-gold-wash border border-gold-soft/40 rounded-2xl p-5 mb-8 flex gap-3">
-          <CheckCircle2 size={20} className="text-gold shrink-0 mt-0.5" />
-          <p className="text-sm text-ink leading-relaxed">
+        <div className="bg-success-wash rounded-2xl p-4 sm:p-5 mb-8 flex gap-3">
+          <CheckCircle2 size={20} className="text-primary shrink-0 mt-0.5" />
+          <p className="text-[15px] font-semibold text-ink leading-relaxed">
             {province.name} ilindeki güncel başvuru tarihleri, belge listesi
             ve ücret kalemleri için kayıtlı olduğun sürücü kursunu veya
             e-Devlet üzerinden il/ilçe millî eğitim müdürlüğünü teyit et —
@@ -240,7 +240,7 @@ export default async function ProvincePage({
           </p>
         </div>
 
-        <h2 className="font-display text-lg text-ink mb-3">
+        <h2 className="font-display font-black text-xl text-ink mb-3">
           Teorik Sınava Konu Bazında Çalış
         </h2>
         <div className="flex flex-col gap-2.5 mb-8">
@@ -248,19 +248,19 @@ export default async function ProvincePage({
             <Link
               key={category.slug}
               href={`/quiz/${category.slug}`}
-              className="group flex items-center justify-between gap-3 rounded-xl border border-line bg-surface px-4 py-3.5 hover:border-gold-soft hover:bg-gold-wash transition-colors"
+              className="card group flex items-center justify-between gap-3 rounded-2xl border-2 border-line bg-surface px-4 py-3.5"
             >
               <span className="min-w-0">
-                <span className="block font-display text-sm text-ink">
+                <span className="block font-display font-black text-[15px] text-ink">
                   {category.name}
                 </span>
-                <span className="block text-xs text-ink-soft">
+                <span className="block text-[13px] font-semibold text-ink-soft">
                   {category.questions.length} soru
                 </span>
               </span>
               <ArrowRight
                 size={16}
-                className="shrink-0 text-ink-soft transition-transform group-hover:translate-x-1 group-hover:text-gold"
+                className="shrink-0 text-ink-soft transition-transform group-hover:translate-x-1 group-hover:text-primary"
               />
             </Link>
           ))}
@@ -269,62 +269,62 @@ export default async function ProvincePage({
         <div className="flex flex-col sm:flex-row gap-3 mb-10">
           <Link
             href="/sinav"
-            className="font-display text-sm tracking-wide uppercase rounded-full gold-gradient text-white px-6 py-3 text-center hover:bg-gold-soft transition-colors"
+            className="btn-primary rounded-2xl px-6 h-12 inline-flex items-center justify-center text-[15px] tracking-wide"
           >
             Deneme Sınavı Çöz
           </Link>
           <Link
             href="/rehber/ehliyet-sinavi-basvurusu-nasil-yapilir"
-            className="font-display text-sm tracking-wide uppercase btn-hard-outline rounded-xl border border-line text-ink bg-surface px-6 py-3 text-center hover:bg-gold-wash hover:border-gold-soft transition-colors"
+            className="btn-soft rounded-2xl px-6 h-12 inline-flex items-center justify-center text-[15px] text-ink"
           >
             Başvuru Rehberini Oku
           </Link>
         </div>
 
-        <div className="flex flex-wrap gap-4 mb-10">
+        <div className="flex flex-wrap gap-3 mb-10">
           <Link
             href="/rehber/ehliyet-sinavi-ucretleri-2026"
-            className="inline-flex items-center gap-2 text-sm font-display uppercase tracking-wide text-gold hover:text-gold-soft transition-colors"
+            className="btn-soft inline-flex items-center gap-2 rounded-2xl px-5 h-12 text-[15px] text-ink"
           >
             Ehliyet Ücretleri Rehberi →
           </Link>
           <Link
             href="/sozluk"
-            className="inline-flex items-center gap-2 text-sm font-display uppercase tracking-wide text-gold hover:text-gold-soft transition-colors"
+            className="btn-soft inline-flex items-center gap-2 rounded-2xl px-5 h-12 text-[15px] text-ink"
           >
             Trafik Terimleri Sözlüğü →
           </Link>
           <Link
             href="/isaretler"
-            className="inline-flex items-center gap-2 text-sm font-display uppercase tracking-wide text-gold hover:text-gold-soft transition-colors"
+            className="btn-soft inline-flex items-center gap-2 rounded-2xl px-5 h-12 text-[15px] text-ink"
           >
             Trafik İşaretleri →
           </Link>
         </div>
 
-        <h2 className="font-display text-lg text-ink mb-4">
+        <h2 className="font-display font-black text-xl text-ink mb-4">
           {province.name} İline Özel Sıkça Sorulan Sorular
         </h2>
         <div className="flex flex-col gap-3 mb-10">
           {faqItems.map((item) => (
             <details
               key={item.q}
-              className="group bg-surface border border-line rounded-xl p-4 open:border-gold-soft"
+              className="group bg-surface border-2 border-line rounded-2xl open:border-primary-soft"
             >
-              <summary className="cursor-pointer font-display text-sm text-ink list-none flex items-center justify-between gap-3">
+              <summary className="cursor-pointer font-display font-extrabold text-[16px] text-ink list-none flex items-center justify-between gap-3 p-4 min-h-14 [&::-webkit-details-marker]:hidden">
                 {item.q}
-                <span className="text-gold shrink-0 transition-transform group-open:rotate-45 font-display text-xl">
+                <span className="w-8 h-8 rounded-lg bg-surface-alt text-primary flex items-center justify-center shrink-0 transition-transform group-open:rotate-45 font-display font-black text-xl leading-none">
                   +
                 </span>
               </summary>
-              <p className="text-sm text-ink-soft leading-relaxed mt-3">{item.a}</p>
+              <p className="text-[15px] font-medium text-ink-soft leading-relaxed px-4 pb-4 -mt-1">{item.a}</p>
             </details>
           ))}
         </div>
 
         {related.length > 0 && (
           <>
-            <h2 className="font-display text-lg text-ink mb-3">
+            <h2 className="font-display font-black text-xl text-ink mb-3">
               {province.region} Bölgesi&apos;nden Diğer İller
             </h2>
             <div className="flex flex-wrap gap-2 mb-10">
@@ -332,7 +332,7 @@ export default async function ProvincePage({
                 <Link
                   key={r.slug}
                   href={provincePath(r)}
-                  className="text-sm rounded-full border border-line bg-surface px-4 py-2 text-ink hover:border-gold-soft hover:bg-gold-wash transition-colors"
+                  className="text-sm font-bold rounded-full border-2 border-line bg-surface px-4 min-h-11 inline-flex items-center text-ink hover:border-primary-soft hover:text-primary transition-colors"
                 >
                   {r.name}
                 </Link>
@@ -341,7 +341,7 @@ export default async function ProvincePage({
           </>
         )}
 
-        <p className="text-xs text-ink-soft/70 leading-relaxed">
+        <p className="text-[13px] font-medium text-ink-soft leading-relaxed">
           Bu sayfadaki bilgiler genel bir yönlendirmedir; {province.name}{" "}
           ilindeki resmi süreç, ücret ve tarih bilgileri için il/ilçe millî
           eğitim müdürlüğünün veya e-Devlet&apos;in güncel duyurularını esas al.

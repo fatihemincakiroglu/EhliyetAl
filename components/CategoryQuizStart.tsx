@@ -1,10 +1,13 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, ListChecks, FileDown } from "lucide-react";
-import type { Category, Difficulty } from "@/lib/questions";
+import { ArrowLeft, FileDown, Play, Sparkles } from "lucide-react";
+import type { Category, Difficulty, Question } from "@/lib/questions";
 import QuizRunner from "@/components/QuizRunner";
+import { getCategoryTheme } from "@/components/categoryTheme";
+import { pickQuickRound } from "@/lib/progress";
 
 const difficultyOptions: { value: Difficulty | "hepsi"; label: string }[] = [
   { value: "hepsi", label: "Hepsi" },
@@ -13,9 +16,24 @@ const difficultyOptions: { value: Difficulty | "hepsi"; label: string }[] = [
   { value: "zor", label: "Zor" },
 ];
 
-export default function CategoryQuizStart({ category }: { category: Category }) {
+const QUICK_COUNT = 10;
+
+/** ?tur=hizli parametresini okuyan sarmalayıcı (Suspense içinde kullanılır). */
+export function CategoryQuizStartWithParams({ category }: { category: Category }) {
+  const params = useSearchParams();
+  return <CategoryQuizStart category={category} quick={params.get("tur") === "hizli"} />;
+}
+
+export default function CategoryQuizStart({ category, quick = false }: { category: Category; quick?: boolean }) {
   const [difficulty, setDifficulty] = useState<Difficulty | "hepsi">("hepsi");
-  const [started, setStarted] = useState(false);
+  // Hızlı tur linkiyle gelindiyse doğrudan başla
+  const [round, setRound] = useState<{ questions: Question[]; title: string } | null>(() =>
+    quick && typeof window !== "undefined"
+      ? { questions: pickQuickRound(category.questions, QUICK_COUNT), title: `${category.shortName} · Hızlı tur` }
+      : null
+  );
+  const theme = getCategoryTheme(category.slug);
+  const Icon = theme.icon;
 
   const filteredQuestions = useMemo(() => {
     if (difficulty === "hepsi") return category.questions;
@@ -71,11 +89,12 @@ export default function CategoryQuizStart({ category }: { category: Category }) 
     doc.save(`ehliyetal-${category.slug}-calisma-foyu.pdf`);
   }
 
-  if (started) {
+  if (round) {
     return (
       <QuizRunner
-        questions={filteredQuestions}
-        title={category.name}
+        key={round.title + round.questions.length}
+        questions={round.questions}
+        title={round.title}
         subtitle={category.shortName}
         mode="category"
         categorySlug={category.slug}
@@ -85,38 +104,40 @@ export default function CategoryQuizStart({ category }: { category: Category }) 
   }
 
   return (
-    <div className="min-h-screen bg-paper">
-      <main className="max-w-2xl mx-auto px-5 sm:px-6 py-8 sm:py-14">
+    <div className="bg-paper">
+      <main className="max-w-2xl mx-auto px-4 sm:px-6 pt-4 pb-8 sm:pt-8">
         <Link
           href="/"
-          className="flex items-center gap-1.5 text-sm text-ink-soft hover:text-ink transition-colors mb-8"
+          className="inline-flex items-center gap-1.5 text-sm font-bold text-ink-soft hover:text-ink transition-colors mb-5"
         >
-          <ArrowLeft size={16} />
-          Ana sayfaya dön
+          <ArrowLeft size={16} strokeWidth={2.6} />
+          Ana sayfa
         </Link>
 
-        <div className="bg-surface border border-line rounded-2xl p-6 sm:p-8">
-          <p className="font-data text-xs uppercase tracking-wider text-gold mb-2">
-            {category.shortName}
-          </p>
-          <h1 className="font-display text-2xl sm:text-3xl text-ink mb-3">
-            {category.name}
-          </h1>
-          <p className="text-ink-soft text-sm sm:text-base leading-relaxed mb-6">
-            {category.description}. İstersen zorluk seviyesine göre filtreleyip
-            sadece belirli soruları çalışabilirsin.
-          </p>
+        <section className="card bg-surface border-2 border-line rounded-3xl p-5 sm:p-7">
+          <div className="flex items-center gap-4 mb-4">
+            <span
+              className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0"
+              style={{ background: theme.wash, color: theme.color }}
+            >
+              <Icon size={28} strokeWidth={2.3} />
+            </span>
+            <div className="min-w-0">
+              <p className="text-[13px] font-extrabold" style={{ color: theme.color }}>
+                {category.questions.length} soru
+              </p>
+              <h1 className="font-display font-black text-2xl sm:text-3xl leading-tight text-ink">{category.name}</h1>
+            </div>
+          </div>
+          <p className="text-ink-soft font-semibold leading-relaxed mb-6">{category.description}.</p>
 
-          <p className="font-data text-[11px] uppercase tracking-wider text-ink-soft mb-3">
-            Zorluk Seviyesi
-          </p>
-          <div className="flex flex-wrap gap-2 mb-6">
+          <p className="text-[13px] font-extrabold text-ink mb-2.5">Zorluk seviyesi</p>
+          <div className="flex flex-wrap gap-2 mb-6" role="group" aria-label="Zorluk seviyesi">
             {difficultyOptions.map((opt) => {
               const count =
                 opt.value === "hepsi"
                   ? category.questions.length
-                  : category.questions.filter((q) => q.difficulty === opt.value)
-                      .length;
+                  : category.questions.filter((q) => q.difficulty === opt.value).length;
               const active = difficulty === opt.value;
               return (
                 <button
@@ -124,50 +145,58 @@ export default function CategoryQuizStart({ category }: { category: Category }) 
                   type="button"
                   onClick={() => setDifficulty(opt.value)}
                   disabled={count === 0}
-                  className={`px-4 py-2 rounded-full text-sm font-body border transition-colors disabled:opacity-30 disabled:cursor-not-allowed ${
+                  aria-pressed={active}
+                  className={`px-4 py-2 rounded-full text-sm font-extrabold border-2 transition-colors cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed ${
                     active
-                      ? "gold-gradient text-white border-gold"
-                      : "border-line text-ink-soft hover:border-gold-soft hover:text-ink"
+                      ? "bg-primary border-primary text-white"
+                      : "bg-surface border-line text-ink-soft hover:border-primary-soft hover:text-ink"
                   }`}
                 >
-                  {opt.label} ({count})
+                  {opt.label} <span className="opacity-75">({count})</span>
                 </button>
               );
             })}
           </div>
 
-          <div className="flex items-center gap-3 rounded-xl border border-line bg-paper p-4 mb-6">
-            <ListChecks size={20} className="text-gold shrink-0" />
-            <div>
-              <p className="font-display text-lg text-ink">
-                {filteredQuestions.length} soru
-              </p>
-              <p className="text-[11px] text-ink-soft font-data uppercase">
-                Bu turda çözeceksin
-              </p>
+          <div className="flex flex-col gap-3">
+            <button
+              type="button"
+              onClick={() => setRound({ questions: filteredQuestions, title: category.name })}
+              disabled={filteredQuestions.length === 0}
+              className="btn-primary rounded-2xl h-14 flex items-center justify-center gap-2 text-[16px] tracking-wide cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              <Play size={18} fill="currentColor" strokeWidth={0} />
+              {filteredQuestions.length} SORUYU ÇÖZ
+            </button>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <button
+                type="button"
+                onClick={() =>
+                  setRound({
+                    questions: pickQuickRound(category.questions, QUICK_COUNT),
+                    title: `${category.shortName} · Hızlı tur`,
+                  })
+                }
+                className="btn-soft rounded-2xl h-12 flex items-center justify-center gap-2 text-ink text-[15px] cursor-pointer"
+              >
+                <Sparkles size={17} strokeWidth={2.6} className="text-primary" />
+                Hızlı tur ({QUICK_COUNT} soru)
+              </button>
+              <button
+                type="button"
+                onClick={handleDownloadSheet}
+                disabled={filteredQuestions.length === 0}
+                className="btn-soft rounded-2xl h-12 flex items-center justify-center gap-2 text-ink text-[15px] cursor-pointer disabled:opacity-40"
+              >
+                <FileDown size={17} strokeWidth={2.6} />
+                Çalışma föyü (PDF)
+              </button>
             </div>
+            <p className="text-xs font-semibold text-ink-soft text-center">
+              Hızlı tur önce yanlış yaptığın, sonra hiç çözmediğin soruları getirir.
+            </p>
           </div>
-
-          <div className="flex flex-col sm:flex-row gap-3">
-            <button
-              type="button"
-              onClick={() => setStarted(true)}
-              disabled={filteredQuestions.length === 0}
-              className="font-display text-sm tracking-wide uppercase rounded-full gold-gradient text-white px-8 py-3.5 hover:bg-gold-soft transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-            >
-              Çözmeye Başla
-            </button>
-            <button
-              type="button"
-              onClick={handleDownloadSheet}
-              disabled={filteredQuestions.length === 0}
-              className="flex items-center justify-center gap-2 font-display text-sm tracking-wide uppercase btn-hard-outline rounded-xl border border-line text-ink bg-surface px-6 py-3.5 hover:bg-gold-wash hover:border-gold-soft transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-            >
-              <FileDown size={16} />
-              Yazdırılabilir Föy İndir
-            </button>
-          </div>
-        </div>
+        </section>
       </main>
     </div>
   );

@@ -58,15 +58,15 @@ export default function BlogPage() {
   const groups = getPostsByCategory();
 
   return (
-    <div className="min-h-screen bg-paper">
-      <main className="max-w-2xl mx-auto px-5 sm:px-6 py-8 sm:py-14">
-        <div className="flex items-center gap-3 mb-4">
-          <span className="inline-flex items-center justify-center rounded-lg bg-gold-wash text-gold p-2">
-            <Newspaper size={18} />
+    <div className="bg-paper">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 pt-4 pb-10 sm:pt-8">
+        <div className="flex items-center gap-3 mb-2">
+          <span className="w-12 h-12 rounded-2xl bg-primary-wash text-primary flex items-center justify-center shrink-0">
+            <Newspaper size={24} strokeWidth={2.3} />
           </span>
-          <h1 className="font-display text-3xl text-ink">Blog</h1>
+          <h1 className="font-display font-black text-[28px] sm:text-4xl text-ink">Blog</h1>
         </div>
-        <p className="text-ink-soft text-sm sm:text-base leading-relaxed mb-10">
+        <p className="text-ink-soft font-semibold text-[15px] sm:text-base leading-relaxed max-w-2xl mb-8">
           Sınav hazırlığından direksiyon taktiklerine, ilk yardımdan yeni
           sürücü tavsiyelerine kadar ehliyet yolculuğunun her aşaması için
           rehber yazılar.
@@ -75,36 +75,37 @@ export default function BlogPage() {
         <div className="flex flex-col gap-10">
           {groups.map((group) => (
             <section key={group.category}>
-              <h2 className="font-data text-xs uppercase tracking-[0.15em] text-gold mb-3">
+              <h2 className="font-display font-black text-lg text-ink mb-3">
                 {group.category}
               </h2>
-              <div className="flex flex-col gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {group.posts.map((post) => {
                   const Icon = icons[post.icon] ?? Newspaper;
                   return (
                     <Link
                       key={post.slug}
                       href={`/blog/${post.slug}`}
-                      className="group flex items-start gap-4 rounded-2xl border border-line bg-surface px-5 py-4 hover:border-gold-soft hover:bg-gold-wash transition-colors"
+                      className="card group flex items-start gap-4 rounded-3xl border-2 border-line bg-surface p-4 sm:p-5"
                     >
-                      <span className="rounded-lg bg-gold-wash p-2.5 text-gold shrink-0">
-                        <Icon size={20} />
+                      <span className="w-11 h-11 rounded-xl bg-primary-wash text-primary flex items-center justify-center shrink-0">
+                        <Icon size={21} strokeWidth={2.3} />
                       </span>
                       <span className="flex-1 min-w-0">
-                        <span className="block font-display text-base text-ink">
+                        <span className="block font-display font-extrabold text-[16px] leading-snug text-ink">
                           {post.title}
                         </span>
-                        <span className="block text-sm text-ink-soft mt-0.5">
+                        <span className="block text-sm font-semibold text-ink-soft mt-1 leading-relaxed line-clamp-2">
                           {post.intro}
                         </span>
-                        <span className="mt-2 flex items-center gap-1.5 font-data text-[11px] text-ink-soft/80">
-                          <Clock size={12} />
+                        <span className="mt-2 inline-flex items-center gap-1.5 text-xs font-bold text-ink-soft">
+                          <Clock size={13} strokeWidth={2.4} />
                           {post.readingMinutes} dk okuma
                         </span>
                       </span>
                       <ArrowRight
                         size={18}
-                        className="shrink-0 mt-1 text-ink-soft transition-transform group-hover:translate-x-1 group-hover:text-gold"
+                        strokeWidth={2.5}
+                        className="shrink-0 mt-1 text-ink-soft transition-transform group-hover:translate-x-1 group-hover:text-primary"
                       />
                     </Link>
                   );
@@ -116,9 +117,10 @@ export default function BlogPage() {
 
         <Link
           href="/rehber"
-          className="mt-10 inline-flex items-center gap-2 text-sm font-display uppercase tracking-wide text-gold hover:text-gold-soft transition-colors"
+          className="mt-10 btn-soft inline-flex items-center gap-2 rounded-2xl px-5 h-12 text-[15px] text-ink"
         >
-          Hazırlık Rehberine de bak →
+          Hazırlık Rehberine de bak
+          <ArrowRight size={17} strokeWidth={2.6} />
         </Link>
       </main>
     </div>

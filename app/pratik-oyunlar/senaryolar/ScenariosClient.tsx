@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { CheckCircle2, XCircle, Lightbulb, RotateCcw, Trophy } from "lucide-react";
 import { scenarios } from "@/lib/scenarios";
+import { recordAnswers } from "@/lib/progress";
 
 export default function ScenariosClient() {
   const [current, setCurrent] = useState(0);
@@ -20,6 +21,7 @@ export default function ScenariosClient() {
     if (answered) return;
     setSelected(i);
     if (i === scenario.correctIndex) setCorrectCount((c) => c + 1);
+    recordAnswers([{ correct: i === scenario.correctIndex }]);
   };
 
   const handleNext = () => {
@@ -41,29 +43,30 @@ export default function ScenariosClient() {
   if (finished) {
     const acc = Math.round((correctCount / scenarios.length) * 100);
     return (
-      <div className="min-h-screen bg-paper">
-        <main className="max-w-2xl mx-auto px-5 sm:px-6 py-8 sm:py-14">
-          <div className="premium-card rounded-2xl border border-line bg-surface p-6 sm:p-8 text-center">
-            <span className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gold-wash text-gold mb-4">
-              <Trophy size={28} />
+      <div className="bg-paper">
+        <main className="max-w-2xl mx-auto px-4 sm:px-6 pt-4 sm:pt-8 pb-10">
+          <div className="card bg-surface border-2 border-line rounded-3xl p-6 sm:p-8 text-center">
+            <span className="mx-auto flex items-center justify-center w-16 h-16 rounded-2xl bg-sun-wash text-sun mb-4 animate-pop">
+              <Trophy size={32} strokeWidth={2.3} />
             </span>
-            <h1 className="font-display text-2xl sm:text-3xl text-ink mb-2">
+            <h1 className="font-display font-black text-[28px] sm:text-3xl text-ink mb-1">
               Senaryolar Tamamlandı!
             </h1>
-            <p className="text-ink-soft text-sm mb-6">
+            <p className="text-ink-soft font-semibold mb-6">
               {scenarios.length} senaryonun {correctCount} tanesini doğru
               yanıtladın. (%{acc})
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <div className="flex flex-col gap-3">
               <button
+                type="button"
                 onClick={restart}
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-gold px-6 py-3 font-display text-white hover:brightness-95 transition"
+                className="btn-primary rounded-2xl h-[52px] flex items-center justify-center gap-2 text-[16px] tracking-wide cursor-pointer"
               >
-                <RotateCcw size={18} /> Baştan Başla
+                <RotateCcw size={18} strokeWidth={2.8} /> BAŞTAN BAŞLA
               </button>
               <Link
                 href="/pratik-oyunlar"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-line bg-surface px-6 py-3 font-display text-ink hover:bg-gold-wash transition"
+                className="btn-soft rounded-2xl h-12 flex items-center justify-center gap-2 text-ink text-[15px]"
               >
                 Diğer Oyunlar
               </Link>
@@ -75,93 +78,90 @@ export default function ScenariosClient() {
   }
 
   return (
-    <div className="min-h-screen bg-paper">
-      <main className="max-w-2xl mx-auto px-5 sm:px-6 py-6 sm:py-10">
-        <div className="flex items-center justify-between mb-3">
-          <span className="text-sm font-display text-ink">
-            Senaryo {current + 1} / {scenarios.length}
+    <div className="bg-paper">
+      <main className="max-w-2xl mx-auto px-4 sm:px-6 pt-4 sm:pt-8 pb-10">
+        <div className="flex items-center gap-3 mb-3">
+          <div className="flex-1 h-4 rounded-full bg-surface-alt overflow-hidden">
+            <div
+              className="h-full rounded-full bg-success transition-[width] duration-300"
+              style={{ width: `${(current / scenarios.length) * 100}%` }}
+            />
+          </div>
+          <span className="font-display font-black text-[15px] text-ink tabular-nums">
+            {current + 1}/{scenarios.length}
           </span>
-          <span className="text-xs text-ink-soft">{scenario.rule}</span>
         </div>
+        <span className="inline-block text-xs font-extrabold text-ink-soft bg-surface border-2 border-line rounded-full px-2.5 py-1 mb-4">
+          Senaryo {current + 1} · {scenario.rule}
+        </span>
 
-        <div className="h-1.5 w-full rounded-full bg-line/50 mb-6 overflow-hidden">
-          <div
-            className="h-full bg-gold transition-all duration-300"
-            style={{ width: `${(current / scenarios.length) * 100}%` }}
-          />
-        </div>
-
-        <h1 className="font-display text-xl sm:text-2xl text-ink mb-4">
+        <h1 className="font-display font-black text-[21px] sm:text-2xl leading-snug text-ink mb-4">
           {scenario.title}
         </h1>
 
         {/* Sahne */}
-        <div className="rounded-2xl border border-line bg-surface p-4 mb-5 max-w-sm mx-auto">
+        <div className="card rounded-3xl border-2 border-line bg-surface p-4 mb-5 max-w-sm mx-auto">
           <Scene />
         </div>
 
-        <p className="text-ink text-sm sm:text-base leading-relaxed mb-5">
-          {scenario.question}
-        </p>
+        <p className="text-ink font-bold text-[15px] sm:text-base leading-relaxed mb-5">{scenario.question}</p>
 
         {/* Şıklar */}
-        <div className="flex flex-col gap-2.5 mb-5">
+        <div className="flex flex-col gap-3 mb-5">
           {scenario.options.map((opt, i) => {
             const isChosen = selected === i;
             const isRight = i === scenario.correctIndex;
-            let cls = "border-line bg-surface hover:bg-gold-wash text-ink";
+            let cls = "border-line bg-surface text-ink hover:border-primary-soft hover:bg-primary-wash";
+            let shadow = "var(--color-line)";
             if (answered) {
-              if (isRight) cls = "border-success bg-success-wash text-ink";
-              else if (isChosen) cls = "border-danger bg-danger-wash text-ink";
-              else cls = "border-line bg-surface text-ink-soft opacity-60";
+              if (isRight) {
+                cls = "border-success bg-success-wash text-success-ink animate-pop";
+                shadow = "var(--color-success)";
+              } else if (isChosen) {
+                cls = "border-danger bg-danger-wash text-danger-ink animate-pop";
+                shadow = "var(--color-danger)";
+              } else cls = "border-line bg-surface text-ink-soft opacity-60";
             }
             return (
               <button
                 key={i}
+                type="button"
                 onClick={() => handleSelect(i)}
                 disabled={answered}
-                className={`premium-card rounded-xl border px-4 py-3.5 text-left text-sm font-medium transition-colors flex items-center gap-3 ${cls}`}
+                style={{ boxShadow: `0 3px 0 0 ${shadow}` }}
+                className={`rounded-2xl border-2 px-4 py-3.5 min-h-[52px] text-left text-[15px] font-bold transition-colors flex items-center gap-3 cursor-pointer disabled:cursor-default ${cls}`}
               >
                 <span className="flex-1">{opt}</span>
-                {answered && isRight && (
-                  <CheckCircle2 size={18} className="text-success shrink-0" />
-                )}
-                {answered && isChosen && !isRight && (
-                  <XCircle size={18} className="text-danger shrink-0" />
-                )}
+                {answered && isRight && <CheckCircle2 size={20} strokeWidth={2.6} className="text-success shrink-0" />}
+                {answered && isChosen && !isRight && <XCircle size={20} strokeWidth={2.6} className="text-danger shrink-0" />}
               </button>
             );
           })}
         </div>
 
-        {/* Açıklama */}
+        {/* Açıklama + devam */}
         {answered && (
           <div
-            className={`rounded-xl border p-4 mb-5 ${
-              isCorrect
-                ? "border-success bg-success-wash"
-                : "border-gold-soft bg-gold-wash"
-            }`}
+            aria-live="polite"
+            className={`rounded-3xl p-4 sm:p-5 animate-sheet-up ${isCorrect ? "bg-success-wash" : "bg-danger-wash"}`}
           >
             <div className="flex items-center gap-2 mb-1.5">
-              <Lightbulb size={16} className="text-gold" />
-              <span className="font-display text-sm text-ink">
+              <Lightbulb size={18} strokeWidth={2.6} className={isCorrect ? "text-success" : "text-danger"} />
+              <span className={`font-display font-black text-lg ${isCorrect ? "text-success-ink" : "text-danger-ink"}`}>
                 {isCorrect ? "Doğru!" : "Doğru cevap"}
               </span>
             </div>
-            <p className="text-sm text-ink-soft leading-relaxed">
+            <p className={`text-[15px] font-semibold leading-relaxed mb-4 ${isCorrect ? "text-success-ink" : "text-danger-ink"}`}>
               {scenario.explanation}
             </p>
+            <button
+              type="button"
+              onClick={handleNext}
+              className={`w-full rounded-2xl h-[52px] text-[16px] tracking-wide cursor-pointer ${isCorrect ? "btn-success" : "btn-danger"}`}
+            >
+              {current + 1 >= scenarios.length ? "SONUÇLARI GÖR" : "SONRAKİ SENARYO"}
+            </button>
           </div>
-        )}
-
-        {answered && (
-          <button
-            onClick={handleNext}
-            className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gold px-6 py-3 font-display text-white hover:brightness-95 transition"
-          >
-            {current + 1 >= scenarios.length ? "Sonuçları Gör" : "Sonraki Senaryo"}
-          </button>
         )}
       </main>
     </div>

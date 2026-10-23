@@ -1,3 +1,5 @@
+import { notifyStoreChange } from "@/lib/clientStore";
+
 export type AttemptMode = "category" | "exam" | "review";
 
 export type Attempt = {
@@ -38,13 +40,19 @@ export function addAttempt(attempt: Omit<Attempt, "id" | "date">) {
     date: new Date().toISOString(),
   };
   const updated = [newAttempt, ...history].slice(0, 200);
-  window.localStorage.setItem(HISTORY_KEY, JSON.stringify(updated));
+  try {
+    window.localStorage.setItem(HISTORY_KEY, JSON.stringify(updated));
+  } catch {
+    // depolama dolu / kapalı
+  }
+  notifyStoreChange();
   return newAttempt;
 }
 
 export function clearHistory() {
   if (!isBrowser()) return;
   window.localStorage.removeItem(HISTORY_KEY);
+  notifyStoreChange();
 }
 
 export function getWrongQuestionIds(): string[] {
@@ -136,7 +144,12 @@ export function getWeakCategories(categorySlugs: string[], limit = 2): CategoryS
 
 export function getTheme(): "light" | "dark" {
   if (!isBrowser()) return "light";
-  const stored = window.localStorage.getItem(THEME_KEY);
+  let stored: string | null = null;
+  try {
+    stored = window.localStorage.getItem(THEME_KEY);
+  } catch {
+    // erişilemiyor
+  }
   if (stored === "dark" || stored === "light") return stored;
   if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
     return "dark";
@@ -146,6 +159,11 @@ export function getTheme(): "light" | "dark" {
 
 export function setTheme(theme: "light" | "dark") {
   if (!isBrowser()) return;
-  window.localStorage.setItem(THEME_KEY, theme);
+  try {
+    window.localStorage.setItem(THEME_KEY, theme);
+  } catch {
+    // erişilemiyor: tema yalnızca bu oturum için değişir
+  }
   document.documentElement.setAttribute("data-theme", theme);
+  notifyStoreChange();
 }

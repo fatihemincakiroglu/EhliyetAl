@@ -77,7 +77,7 @@ export default function BasvuruRehberi() {
   };
 
   return (
-    <div className="min-h-screen bg-paper">
+    <div className="bg-paper">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
@@ -86,37 +86,37 @@ export default function BasvuruRehberi() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <main className="max-w-2xl mx-auto px-5 sm:px-6 py-8 sm:py-14">
+      <main className="max-w-3xl mx-auto px-4 sm:px-6 pt-4 pb-10 sm:pt-8">
         <Link
           href="/rehber"
-          className="flex items-center gap-1.5 text-sm text-ink-soft hover:text-ink transition-colors mb-8"
+          className="inline-flex items-center gap-1.5 text-sm font-bold text-ink-soft hover:text-ink transition-colors mb-6 min-h-11"
         >
           <ArrowLeft size={16} />
           Rehbere dön
         </Link>
 
-        <h1 className="font-display text-3xl text-ink mb-4">
+        <h1 className="font-display font-black text-[28px] sm:text-4xl leading-tight text-ink mb-4">
           Ehliyet Sınavı Başvurusu Nasıl Yapılır?
         </h1>
-        <p className="text-ink-soft text-sm sm:text-base leading-relaxed mb-8">
+        <p className="text-ink font-medium text-[16px] sm:text-[17px] leading-[1.75] mb-8">
           Ehliyet almak, teorik bilgiyi öğrenmenin yanında birkaç idari
           adımdan geçmeyi de gerektirir. İşte genel süreç:
         </p>
 
-        <ol className="flex flex-col gap-4 mb-10">
+        <ol className="flex flex-col gap-3 mb-10">
           {steps.map((step, i) => (
             <li
               key={step.title}
-              className="flex gap-4 bg-surface border border-line rounded-xl p-4"
+              className="flex gap-4 bg-surface border-2 border-line rounded-2xl p-4 sm:p-5"
             >
-              <span className="font-display text-xl text-gold shrink-0 w-8">
+              <span className="w-9 h-9 rounded-xl bg-primary text-white font-display font-black text-base flex items-center justify-center shrink-0">
                 {i + 1}
               </span>
               <div>
-                <p className="font-display text-base text-ink mb-1">
+                <p className="font-display font-extrabold text-[16px] text-ink mb-1">
                   {step.title}
                 </p>
-                <p className="text-sm text-ink-soft leading-relaxed">
+                <p className="text-[15px] font-medium text-ink-soft leading-relaxed">
                   {step.text}
                 </p>
               </div>
@@ -124,9 +124,9 @@ export default function BasvuruRehberi() {
           ))}
         </ol>
 
-        <div className="bg-gold-wash border border-gold-soft/40 rounded-2xl p-5 mb-10 flex gap-3">
-          <CheckCircle2 size={20} className="text-gold shrink-0 mt-0.5" />
-          <p className="text-sm text-ink leading-relaxed">
+        <div className="bg-primary-wash rounded-2xl p-4 sm:p-5 mb-10 flex gap-3">
+          <CheckCircle2 size={20} className="text-primary shrink-0 mt-0.5" />
+          <p className="text-[15px] font-semibold text-ink leading-relaxed">
             Başvuru tarihleri, gerekli belgeler ve kurs seçimiyle ilgili en
             güncel ve kesin bilgiyi il/ilçe millî eğitim müdürlüğünden veya
             e-Devlet üzerinden teyit etmeni öneririz; süreçler zaman zaman
@@ -136,25 +136,25 @@ export default function BasvuruRehberi() {
 
         <Link
           href="/quiz/trafik"
-          className="inline-flex items-center gap-2 text-sm font-display uppercase tracking-wide text-gold hover:text-gold-soft transition-colors mb-10"
+          className="btn-soft inline-flex items-center gap-2 rounded-2xl px-5 h-12 text-[15px] text-ink mb-10"
         >
           Teorik sınav sorularını çözmeye başla →
         </Link>
 
-        <h2 className="font-display text-lg text-ink mb-4">Sıkça Sorulan Sorular</h2>
+        <h2 className="font-display font-black text-xl text-ink mb-4">Sıkça Sorulan Sorular</h2>
         <div className="flex flex-col gap-3">
           {faqItems.map((item) => (
             <details
               key={item.q}
-              className="group bg-surface border border-line rounded-xl p-4 open:border-gold-soft"
+              className="group bg-surface border-2 border-line rounded-2xl open:border-primary-soft"
             >
-              <summary className="cursor-pointer font-display text-sm text-ink list-none flex items-center justify-between gap-3">
+              <summary className="cursor-pointer font-display font-extrabold text-[16px] text-ink list-none flex items-center justify-between gap-3 p-4 min-h-14 [&::-webkit-details-marker]:hidden">
                 {item.q}
-                <span className="text-gold shrink-0 transition-transform group-open:rotate-45 font-display text-xl">
+                <span className="w-8 h-8 rounded-lg bg-surface-alt text-primary flex items-center justify-center shrink-0 transition-transform group-open:rotate-45 font-display font-black text-xl leading-none">
                   +
                 </span>
               </summary>
-              <p className="text-sm text-ink-soft leading-relaxed mt-3">{item.a}</p>
+              <p className="text-[15px] font-medium text-ink-soft leading-relaxed px-4 pb-4 -mt-1">{item.a}</p>
             </details>
           ))}
         </div>

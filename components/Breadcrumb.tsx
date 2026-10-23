@@ -23,6 +23,9 @@ const LABELS: Record<string, string> = {
   iletisim: "İletişim",
   isaretler: "Trafik İşaretleri",
   quiz: "Konu Testleri",
+  yanlislarim: "Yanlışlarım",
+  blog: "Blog",
+  sss: "Sıkça Sorulan Sorular",
   tekrar: "Tekrar",
   menu: "Daha Fazla",
   il: "İllere Göre",
@@ -55,6 +58,21 @@ const MONTH_SLUGS = [
 
 // Breadcrumb'un hiç gösterilmeyeceği yollar
 const HIDDEN_PATHS = new Set(["/", "/menu"]);
+
+// Sitedeki geçerli üst seviye bölümler. Bunların dışındaki bir yol (404
+// sayfası) için breadcrumb çizilmez: 404 sayfası sunucuda farklı bir yolla
+// önceden üretildiği için aksi halde hidrasyon uyuşmazlığı oluşur.
+const KNOWN_ROOTS = new Set([
+  "sinav", "aylik-sinavlar", "pratik-oyunlar", "istatistik", "ara", "sozluk", "rehber",
+  "iletisim", "isaretler", "quiz", "tekrar", "yanlislarim", "blog", "sss",
+]);
+
+// Kendi sayfası olmayan ara bölümler: kırıntıda bağlantı yerine düz metin
+function hasOwnPage(segments: string[], index: number): boolean {
+  if (segments[0] === "quiz" && index === 0) return false;
+  if (segments[0] === "aylik-sinavlar" && index === 1) return false;
+  return true;
+}
 
 // Bu sayfalar kendi (daha spesifik isimli) JSON-LD BreadcrumbList schema'sını
 // içerdiği için, çift schema olmasın diye burada JSON-LD üretmeyiz; sadece
@@ -109,12 +127,12 @@ export default function Breadcrumb() {
   if (!pathname || HIDDEN_PATHS.has(pathname)) return null;
 
   const segments = pathname.split("/").filter(Boolean);
-  if (segments.length === 0) return null;
+  if (segments.length === 0 || !KNOWN_ROOTS.has(segments[0])) return null;
 
   // Kırıntıları oluştur
   const crumbs = segments.map((seg, i) => {
     const href = "/" + segments.slice(0, i + 1).join("/");
-    return { label: humanize(decodeURIComponent(seg)), href };
+    return { label: humanize(decodeURIComponent(seg)), href, linkable: hasOwnPage(segments, i) };
   });
 
   // JSON-LD schema (Ana Sayfa + tüm kırıntılar). Kendi schema'sı olan
@@ -156,7 +174,7 @@ export default function Breadcrumb() {
             <li className="flex items-center gap-1">
               <Link
                 href="/"
-                className="flex items-center gap-1 hover:text-gold transition-colors"
+                className="flex items-center gap-1 hover:text-primary transition-colors"
               >
                 <Home size={13} />
                 <span className="sr-only sm:not-sr-only">Ana Sayfa</span>
@@ -167,17 +185,17 @@ export default function Breadcrumb() {
               return (
                 <li key={c.href} className="flex items-center gap-1">
                   <ChevronRight size={13} strokeWidth={2.5} className="text-ink-soft/50 shrink-0" />
-                  {isLast ? (
+                  {isLast || !c.linkable ? (
                     <span
-                      aria-current="page"
-                      className="font-extrabold text-ink truncate max-w-[60vw] sm:max-w-none"
+                      aria-current={isLast ? "page" : undefined}
+                      className={`truncate ${isLast ? "font-extrabold text-ink max-w-[60vw]" : "max-w-[40vw]"} sm:max-w-none`}
                     >
                       {c.label}
                     </span>
                   ) : (
                     <Link
                       href={c.href}
-                      className="hover:text-gold transition-colors truncate max-w-[40vw] sm:max-w-none"
+                      className="hover:text-primary transition-colors truncate max-w-[40vw] sm:max-w-none"
                     >
                       {c.label}
                     </Link>

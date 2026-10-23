@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Shuffle, FileCheck2 } from "lucide-react";
+import { ChevronRight, Shuffle, FileCheck2, CalendarDays } from "lucide-react";
 import { FIXED_EXAM_COUNT } from "@/lib/questions";
 
 export const metadata: Metadata = {
@@ -16,12 +16,12 @@ export default function SinavHubPage() {
   const exams = Array.from({ length: FIXED_EXAM_COUNT }, (_, i) => i + 1);
 
   return (
-    <div className="min-h-screen bg-paper">
-      <main className="max-w-2xl mx-auto px-5 sm:px-6 py-8 sm:py-14">
-        <h1 className="font-display text-3xl text-ink mb-2">
+    <div className="bg-paper">
+      <main className="max-w-3xl mx-auto px-4 sm:px-6 pt-4 sm:pt-8 pb-10">
+        <h1 className="font-display font-black text-[28px] sm:text-4xl leading-tight text-ink mb-2">
           Ehliyet Deneme Sınavı
         </h1>
-        <p className="text-ink-soft text-sm sm:text-base leading-relaxed mb-10">
+        <p className="text-ink-soft font-semibold leading-relaxed mb-6">
           Her deneme sınavı 50 soru, 60 dakika ve %70 geçme barajıyla gerçek
           sınav formatındadır. Numaralı denemeler sabit sorulardan oluşur —
           sonuçlarını karşılaştırabilirsin. Sınırsız pratikte ise her seferinde
@@ -30,48 +30,63 @@ export default function SinavHubPage() {
 
         <Link
           href="/sinav/pratik"
-          className="premium-card group flex items-center gap-4 rounded-2xl border border-line bg-surface px-5 py-5 mb-8 hover:bg-gold-wash transition-colors"
+          className="btn-primary group rounded-3xl px-5 py-5 flex items-center gap-4 mb-3"
         >
-          <span className="rounded-lg bg-gold-wash p-2.5 text-gold shrink-0">
-            <Shuffle size={22} />
+          <span className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center shrink-0">
+            <Shuffle size={24} strokeWidth={2.4} />
           </span>
           <span className="flex-1 min-w-0">
-            <span className="block font-display text-lg text-ink">
-              Sınırsız Pratik
-            </span>
-            <span className="block text-sm text-ink-soft">
+            <span className="block font-display font-black text-xl leading-tight">Sınırsız Pratik</span>
+            <span className="block text-[13px] font-bold text-white/90">
               Her seferinde yeniden karıştırılmış 50 soru
             </span>
           </span>
-          <ArrowRight
-            size={18}
-            className="shrink-0 text-ink-soft transition-transform group-hover:translate-x-1 group-hover:text-gold"
-          />
+          <ChevronRight size={22} strokeWidth={2.6} className="shrink-0 transition-transform group-hover:translate-x-1" />
         </Link>
 
-        <h2 className="font-display text-lg text-ink mb-3">
-          Sabit Deneme Sınavları
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <Link
+          href="/aylik-sinavlar"
+          className="card bg-surface border-2 border-line rounded-2xl px-4 py-3 flex items-center gap-3 mb-8"
+        >
+          <span
+            className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+            style={{ background: "var(--color-cat-trafik-wash)", color: "var(--color-cat-trafik)" }}
+          >
+            <CalendarDays size={20} strokeWidth={2.4} />
+          </span>
+          <span className="flex-1 min-w-0">
+            <span className="block font-extrabold text-[15px] text-ink">Aylık Sınavlar</span>
+            <span className="block text-[13px] font-semibold text-ink-soft">Ay ay derlenmiş denemeler</span>
+          </span>
+          <ChevronRight size={20} strokeWidth={2.5} className="text-ink-soft shrink-0" />
+        </Link>
+
+        <div className="flex items-baseline justify-between mb-3">
+          <h2 className="font-display font-black text-lg text-ink">Sabit Deneme Sınavları</h2>
+          <span className="text-[13px] font-bold text-ink-soft">{FIXED_EXAM_COUNT} sınav</span>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           {exams.map((no) => (
             <Link
               key={no}
               href={`/sinav/${no}`}
-              className="premium-card group flex items-center gap-3 rounded-2xl border border-line bg-surface px-5 py-4 hover:bg-gold-wash transition-colors"
+              className="card bg-surface border-2 border-line rounded-[20px] p-4 flex flex-col gap-2.5"
             >
-              <span className="rounded-lg bg-sun-wash p-2.5 text-ink shrink-0">
-                <FileCheck2 size={20} />
+              <span className="flex items-center justify-between">
+                <span
+                  className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+                  style={{ background: "var(--color-sun-wash)", color: "var(--color-tangerine-ink)" }}
+                >
+                  <FileCheck2 size={20} strokeWidth={2.4} />
+                </span>
+                <span className="font-display font-black text-2xl text-ink-soft/40 tabular-nums">{no}</span>
               </span>
-              <span className="flex-1 min-w-0">
-                <span className="block font-display text-base text-ink">
+              <span>
+                <span className="block font-display font-extrabold text-[15px] leading-tight text-ink">
                   Deneme Sınavı {no}
                 </span>
-                <span className="block text-xs text-ink-soft">50 soru · 60 dakika</span>
+                <span className="block text-xs font-bold text-ink-soft mt-0.5">50 soru · 60 dakika</span>
               </span>
-              <ArrowRight
-                size={16}
-                className="shrink-0 text-ink-soft transition-transform group-hover:translate-x-1 group-hover:text-gold"
-              />
             </Link>
           ))}
         </div>

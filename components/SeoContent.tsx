@@ -18,22 +18,12 @@ import {
   Leaf,
   Timer,
   Target,
+  ChevronDown,
+  ArrowRight,
+  type LucideIcon,
 } from "lucide-react";
 import { DurSign, YayaGecidiSign, GirisYokSign } from "@/components/TrafficSigns";
 import { faqItems, faqSchema } from "@/lib/faq";
-
-function SectionIcon({
-  icon: Icon,
-}: {
-  icon: React.ComponentType<{ size?: number; className?: string }>;
-}) {
-  return (
-    <span className="inline-flex items-center justify-center rounded-lg bg-gold-wash text-gold p-2 shrink-0">
-      <Icon size={18} />
-    </span>
-  );
-}
-
 
 const websiteSchema = {
   "@context": "https://schema.org",
@@ -73,9 +63,131 @@ const breadcrumbSchema = {
   ],
 };
 
+/* ---------------- Yapı taşları ---------------- */
+
+type Tone = { color: string; wash: string };
+const TONES: Record<string, Tone> = {
+  trafik: { color: "var(--color-cat-trafik)", wash: "var(--color-cat-trafik-wash)" },
+  ilkyardim: { color: "var(--color-cat-ilkyardim)", wash: "var(--color-cat-ilkyardim-wash)" },
+  motor: { color: "var(--color-cat-motor)", wash: "var(--color-cat-motor-wash)" },
+  cevre: { color: "var(--color-cat-cevre)", wash: "var(--color-cat-cevre-wash)" },
+  primary: { color: "var(--color-primary)", wash: "var(--color-primary-wash)" },
+  sun: { color: "var(--color-tangerine)", wash: "var(--color-tangerine-wash)" },
+};
+
+function Section({
+  icon: Icon,
+  tone,
+  title,
+  intro,
+  children,
+  cta,
+}: {
+  icon: LucideIcon;
+  tone: Tone;
+  title: string;
+  intro?: React.ReactNode;
+  children: React.ReactNode;
+  cta?: { href: string; label: string };
+}) {
+  return (
+    <section className="card bg-surface border-2 border-line rounded-3xl p-5 sm:p-7">
+      <div className="flex items-center gap-3 mb-3">
+        <span
+          className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
+          style={{ background: tone.wash, color: tone.color }}
+        >
+          <Icon size={22} strokeWidth={2.3} />
+        </span>
+        <h2 className="font-display font-black text-xl sm:text-2xl leading-tight text-ink">{title}</h2>
+      </div>
+      {intro && <p className="text-ink-soft font-semibold leading-relaxed mb-5">{intro}</p>}
+      {children}
+      {cta && (
+        <Link
+          href={cta.href}
+          className="mt-5 inline-flex items-center gap-2 min-h-11 rounded-2xl px-4 font-extrabold text-[15px] transition hover:brightness-[0.97]"
+          style={{ background: tone.wash, color: tone.color }}
+        >
+          {cta.label}
+          <ArrowRight size={17} strokeWidth={2.6} />
+        </Link>
+      )}
+    </section>
+  );
+}
+
+function Sub({
+  icon: Icon,
+  title,
+  children,
+  className = "",
+}: {
+  icon: LucideIcon;
+  title: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <div className={`rounded-2xl bg-paper p-4 ${className}`}>
+      <div className="flex items-center gap-2 mb-2.5">
+        <Icon size={17} strokeWidth={2.4} className="text-ink-soft shrink-0" />
+        <h3 className="font-display font-extrabold text-[17px] leading-tight text-ink">{title}</h3>
+      </div>
+      {children}
+    </div>
+  );
+}
+
+function Bullets({ items }: { items: React.ReactNode[] }) {
+  return (
+    <ul className="text-[15px] font-semibold text-ink-soft space-y-1.5">
+      {items.map((item, i) => (
+        <li key={i} className="flex gap-2">
+          <span className="mt-[9px] w-1.5 h-1.5 rounded-full bg-ink-soft/50 shrink-0" aria-hidden="true" />
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function Table({ head, rows }: { head: string[]; rows: string[][] }) {
+  return (
+    <div className="overflow-x-auto rounded-2xl border-2 border-line bg-surface">
+      <table className="w-full text-[15px] border-collapse">
+        <thead>
+          <tr className="text-left bg-surface-alt">
+            {head.map((h) => (
+              <th key={h} className="py-2.5 px-4 font-extrabold text-ink-soft text-[13px] whitespace-nowrap">
+                {h}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody className="text-ink font-bold">
+          {rows.map((r, i) => (
+            <tr key={i} className="border-t-2 border-line">
+              {r.map((c, j) => (
+                <td key={j} className={`py-2.5 px-4 ${j > 0 ? "whitespace-nowrap tabular-nums" : ""}`}>
+                  {c}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+const inlineLink = "font-extrabold text-primary hover:underline underline-offset-2";
+
+/* ---------------- İçerik ---------------- */
+
 export default function SeoContent() {
   return (
-    <section className="max-w-3xl mx-auto px-5 sm:px-6 pb-20">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-4 pb-16 flex flex-col gap-5">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
@@ -89,388 +201,290 @@ export default function SeoContent() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
-      <div className="flex items-center gap-3 mb-4 mt-4">
-        <SectionIcon icon={Signpost} />
-        <h2 className="font-display text-2xl text-ink">
-          Trafik ve Çevre Bilgisi Soruları
-        </h2>
-      </div>
-      <p className="text-ink-soft text-sm sm:text-base leading-relaxed mb-6">
-        Ehliyet sınavının en kapsamlı bölümü trafik ve çevre bilgisidir.
-        İşaretlerin anlamlarından hız sınırlarına, şerit kurallarından ceza
-        puanlarına kadar geniş bir konu yelpazesini kapsar.
-      </p>
-
-      <div className="flex items-center gap-2 mb-3">
-        <Gauge size={16} className="text-gold" />
-        <h3 className="font-display text-lg text-ink">Trafik İşaretleri Soruları</h3>
-      </div>
-      <div className="flex flex-wrap gap-6 items-center mb-4 bg-surface border border-line rounded-2xl p-5">
-        <DurSign size={64} />
-        <YayaGecidiSign size={64} />
-        <GirisYokSign size={64} />
-        <ul className="flex-1 min-w-[200px] text-sm text-ink-soft space-y-2">
-          <li className="flex gap-2"><CheckCircle2 size={16} className="text-gold shrink-0 mt-0.5" /> Tehlike uyarı işaretleri (üçgen, sarı/kırmızı kenarlı)</li>
-          <li className="flex gap-2"><CheckCircle2 size={16} className="text-gold shrink-0 mt-0.5" /> Trafik tanzim işaretleri (dur, yol ver, girişi olmayan yol)</li>
-          <li className="flex gap-2"><CheckCircle2 size={16} className="text-gold shrink-0 mt-0.5" /> Bilgi işaretleri (otopark, hastane, durak)</li>
-          <li className="flex gap-2"><CheckCircle2 size={16} className="text-gold shrink-0 mt-0.5" /> Yatay işaretlemeler (şerit çizgileri, yaya geçidi)</li>
-        </ul>
-      </div>
-
-      <div className="flex items-center gap-2 mb-3">
-        <AlertTriangle size={16} className="text-gold" />
-        <h3 className="font-display text-lg text-ink">Trafik Kuralları ve Cezalar</h3>
-      </div>
-      <ul className="text-sm text-ink-soft space-y-2 mb-6 list-disc list-inside">
-        <li>Kırmızı ışık ve dur işareti ihlallerinin sonuçları</li>
-        <li>Ceza puanı sistemi ve sürücü belgesinin geri alınması</li>
-        <li>Alkollü veya uyuşturucu etkisinde araç kullanmanın yaptırımları</li>
-        <li>Emniyet kemeri ve çocuk koltuğu zorunlulukları</li>
-      </ul>
-
-      <div className="flex items-center gap-2 mb-3">
-        <Timer size={16} className="text-gold" />
-        <h3 className="font-display text-lg text-ink">Hız Sınırları ve Takip Mesafesi</h3>
-      </div>
-      <div className="overflow-x-auto mb-6">
-        <table className="w-full text-sm border-collapse">
-          <thead>
-            <tr className="text-left text-ink-soft border-b border-line">
-              <th className="py-2 pr-4 font-body font-medium">Yol Türü</th>
-              <th className="py-2 font-body font-medium">Otomobil Azami Hız</th>
-            </tr>
-          </thead>
-          <tbody className="text-ink">
-            <tr className="border-b border-line">
-              <td className="py-2 pr-4">Yerleşim yeri içi</td>
-              <td className="py-2">50 km/sa</td>
-            </tr>
-            <tr className="border-b border-line">
-              <td className="py-2 pr-4">Yerleşim yeri dışı (bölünmüş olmayan)</td>
-              <td className="py-2">90 km/sa</td>
-            </tr>
-            <tr className="border-b border-line">
-              <td className="py-2 pr-4">Bölünmüş kara yolu</td>
-              <td className="py-2">110 km/sa</td>
-            </tr>
-            <tr>
-              <td className="py-2 pr-4">Otoyol</td>
-              <td className="py-2">120 km/sa</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div className="flex items-center gap-2 mb-3">
-        <Signpost size={16} className="text-gold" />
-        <h3 className="font-display text-lg text-ink">Şerit ve Geçiş Kuralları</h3>
-      </div>
-      <ul className="text-sm text-ink-soft space-y-2 mb-6 list-disc list-inside">
-        <li>Şerit değiştirmeden önce sinyal verme zorunluluğu</li>
-        <li>Sollama (geçme) yapılabilecek ve yapılamayacak durumlar</li>
-        <li>Kavşaklarda ve dönel kavşaklarda geçiş önceliği</li>
-      </ul>
-      <Link
-        href="/quiz/trafik"
-        className="inline-flex items-center gap-2 text-sm font-display uppercase tracking-wide text-gold hover:text-gold-soft transition-colors mb-12"
+      <Section
+        icon={Signpost}
+        tone={TONES.trafik}
+        title="Trafik ve Çevre Bilgisi Soruları"
+        intro="Ehliyet sınavının en kapsamlı bölümü trafik ve çevre bilgisidir. İşaretlerin anlamlarından hız sınırlarına, şerit kurallarından ceza puanlarına kadar geniş bir konu yelpazesini kapsar."
+        cta={{ href: "/quiz/trafik", label: "Trafik ve Çevre sorularını çöz" }}
       >
-        Trafik ve Çevre sorularını çöz →
-      </Link>
+        <div className="grid gap-3 lg:grid-cols-2">
+          <Sub icon={Gauge} title="Trafik İşaretleri Soruları" className="lg:col-span-2">
+            <div className="flex flex-wrap gap-5 items-center">
+              <div className="flex gap-4 shrink-0">
+                <DurSign size={64} />
+                <YayaGecidiSign size={64} />
+                <GirisYokSign size={64} />
+              </div>
+              <ul className="flex-1 min-w-[220px] text-[15px] font-semibold text-ink-soft space-y-2">
+                <li className="flex gap-2"><CheckCircle2 size={17} strokeWidth={2.4} className="text-success shrink-0 mt-0.5" /> Tehlike uyarı işaretleri (üçgen, sarı/kırmızı kenarlı)</li>
+                <li className="flex gap-2"><CheckCircle2 size={17} strokeWidth={2.4} className="text-success shrink-0 mt-0.5" /> Trafik tanzim işaretleri (dur, yol ver, girişi olmayan yol)</li>
+                <li className="flex gap-2"><CheckCircle2 size={17} strokeWidth={2.4} className="text-success shrink-0 mt-0.5" /> Bilgi işaretleri (otopark, hastane, durak)</li>
+                <li className="flex gap-2"><CheckCircle2 size={17} strokeWidth={2.4} className="text-success shrink-0 mt-0.5" /> Yatay işaretlemeler (şerit çizgileri, yaya geçidi)</li>
+              </ul>
+            </div>
+          </Sub>
+          <Sub icon={AlertTriangle} title="Trafik Kuralları ve Cezalar">
+            <Bullets
+              items={[
+                "Kırmızı ışık ve dur işareti ihlallerinin sonuçları",
+                "Ceza puanı sistemi ve sürücü belgesinin geri alınması",
+                "Alkollü veya uyuşturucu etkisinde araç kullanmanın yaptırımları",
+                "Emniyet kemeri ve çocuk koltuğu zorunlulukları",
+              ]}
+            />
+          </Sub>
+          <Sub icon={Signpost} title="Şerit ve Geçiş Kuralları">
+            <Bullets
+              items={[
+                "Şerit değiştirmeden önce sinyal verme zorunluluğu",
+                "Sollama (geçme) yapılabilecek ve yapılamayacak durumlar",
+                "Kavşaklarda ve dönel kavşaklarda geçiş önceliği",
+              ]}
+            />
+          </Sub>
+          <Sub icon={Timer} title="Hız Sınırları ve Takip Mesafesi" className="lg:col-span-2">
+            <Table
+              head={["Yol Türü", "Otomobil Azami Hız"]}
+              rows={[
+                ["Yerleşim yeri içi", "50 km/sa"],
+                ["Yerleşim yeri dışı (bölünmüş olmayan)", "90 km/sa"],
+                ["Bölünmüş kara yolu", "110 km/sa"],
+                ["Otoyol", "120 km/sa"],
+              ]}
+            />
+          </Sub>
+        </div>
+      </Section>
 
-      <div className="flex items-center gap-3 mb-4">
-        <SectionIcon icon={HeartPulse} />
-        <h2 className="font-display text-2xl text-ink">İlk Yardım Soruları</h2>
-      </div>
-      <p className="text-ink-soft text-sm sm:text-base leading-relaxed mb-6">
-        İlk yardım bilgisi, bir trafik kazası anında hayat kurtarabilecek en
-        kritik bölümlerden biridir. Temel yaşam desteğinden yara müdahalesine
-        kadar birçok konuyu kapsar.
-      </p>
-
-      <div className="flex items-center gap-2 mb-3">
-        <Siren size={16} className="text-gold" />
-        <h3 className="font-display text-lg text-ink">Temel Yaşam Desteği</h3>
-      </div>
-      <ul className="text-sm text-ink-soft space-y-2 mb-6 list-disc list-inside">
-        <li>Bilinç ve solunum kontrolü nasıl yapılır</li>
-        <li>Kalp masajı ve suni solunum oranları</li>
-        <li>Koma pozisyonu ve ne zaman uygulanır</li>
-      </ul>
-
-      <div className="flex items-center gap-2 mb-3">
-        <Bandage size={16} className="text-gold" />
-        <h3 className="font-display text-lg text-ink">Kanama ve Yara Müdahalesi</h3>
-      </div>
-      <ul className="text-sm text-ink-soft space-y-2 mb-6 list-disc list-inside">
-        <li>Atardamar, toplardamar ve kılcal damar kanamalarının farkları</li>
-        <li>Kanama durdurma teknikleri ve basınç uygulama</li>
-        <li>Açık yaralarda yapılması ve yapılmaması gerekenler</li>
-      </ul>
-
-      <div className="flex items-center gap-2 mb-3">
-        <Bone size={16} className="text-gold" />
-        <h3 className="font-display text-lg text-ink">Kırık, Çıkık, Burkulma</h3>
-      </div>
-      <ul className="text-sm text-ink-soft space-y-2 mb-6 list-disc list-inside">
-        <li>Şüpheli bölgeyi sabitleme ve hareket ettirmeme kuralı</li>
-        <li>Açık ve kapalı kırıkların ayırt edilmesi</li>
-        <li>Burkulmalarda soğuk uygulama ve tespit yöntemleri</li>
-      </ul>
-
-      <div className="flex items-center gap-2 mb-3">
-        <AlertTriangle size={16} className="text-gold" />
-        <h3 className="font-display text-lg text-ink">Trafik Kazalarında İlk Yardım</h3>
-      </div>
-      <ul className="text-sm text-ink-soft space-y-2 mb-6 list-disc list-inside">
-        <li>Olay yeri güvenliğinin sağlanması</li>
-        <li>112&apos;yi arama ve doğru bilgi verme</li>
-        <li>Kazazedeyi araçtan çıkarma gereken/gerekmeyen durumlar</li>
-      </ul>
-      <Link
-        href="/quiz/ilkyardim"
-        className="inline-flex items-center gap-2 text-sm font-display uppercase tracking-wide text-gold hover:text-gold-soft transition-colors mb-12"
+      <Section
+        icon={HeartPulse}
+        tone={TONES.ilkyardim}
+        title="İlk Yardım Soruları"
+        intro="İlk yardım bilgisi, bir trafik kazası anında hayat kurtarabilecek en kritik bölümlerden biridir. Temel yaşam desteğinden yara müdahalesine kadar birçok konuyu kapsar."
+        cta={{ href: "/quiz/ilkyardim", label: "İlk Yardım sorularını çöz" }}
       >
-        İlk Yardım sorularını çöz →
-      </Link>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <Sub icon={Siren} title="Temel Yaşam Desteği">
+            <Bullets
+              items={[
+                "Bilinç ve solunum kontrolü nasıl yapılır",
+                "Kalp masajı ve suni solunum oranları",
+                "Koma pozisyonu ve ne zaman uygulanır",
+              ]}
+            />
+          </Sub>
+          <Sub icon={Bandage} title="Kanama ve Yara Müdahalesi">
+            <Bullets
+              items={[
+                "Atardamar, toplardamar ve kılcal damar kanamalarının farkları",
+                "Kanama durdurma teknikleri ve basınç uygulama",
+                "Açık yaralarda yapılması ve yapılmaması gerekenler",
+              ]}
+            />
+          </Sub>
+          <Sub icon={Bone} title="Kırık, Çıkık, Burkulma">
+            <Bullets
+              items={[
+                "Şüpheli bölgeyi sabitleme ve hareket ettirmeme kuralı",
+                "Açık ve kapalı kırıkların ayırt edilmesi",
+                "Burkulmalarda soğuk uygulama ve tespit yöntemleri",
+              ]}
+            />
+          </Sub>
+          <Sub icon={AlertTriangle} title="Trafik Kazalarında İlk Yardım">
+            <Bullets
+              items={[
+                "Olay yeri güvenliğinin sağlanması",
+                "112'yi arama ve doğru bilgi verme",
+                "Kazazedeyi araçtan çıkarma gereken/gerekmeyen durumlar",
+              ]}
+            />
+          </Sub>
+        </div>
+      </Section>
 
-      <div className="flex items-center gap-3 mb-4">
-        <SectionIcon icon={Wrench} />
-        <h2 className="font-display text-2xl text-ink">Motor ve Araç Tekniği Soruları</h2>
-      </div>
-      <p className="text-ink-soft text-sm sm:text-base leading-relaxed mb-6">
-        Aracın nasıl çalıştığını, temel bakım kurallarını ve arıza belirtilerini
-        anlamak hem sınav hem de güvenli sürüş için önemlidir.
-      </p>
-
-      <div className="flex items-center gap-2 mb-3">
-        <Fuel size={16} className="text-gold" />
-        <h3 className="font-display text-lg text-ink">Motor Sistemleri</h3>
-      </div>
-      <ul className="text-sm text-ink-soft space-y-2 mb-6 list-disc list-inside">
-        <li>Yağlama, soğutma ve yakıt sistemlerinin görevleri</li>
-        <li>Triger kayışı, şanzıman ve debriyaj gibi temel parçalar</li>
-      </ul>
-
-      <div className="flex items-center gap-2 mb-3">
-        <CircleDot size={16} className="text-gold" />
-        <h3 className="font-display text-lg text-ink">Fren ve Süspansiyon Sistemi</h3>
-      </div>
-      <ul className="text-sm text-ink-soft space-y-2 mb-6 list-disc list-inside">
-        <li>Fren hidroliği ve ABS sisteminin işlevi</li>
-        <li>Süspansiyonun yol tutuşuna etkisi</li>
-      </ul>
-
-      <div className="flex items-center gap-2 mb-3">
-        <Battery size={16} className="text-gold" />
-        <h3 className="font-display text-lg text-ink">Akü, Elektrik ve Aydınlatma</h3>
-      </div>
-      <ul className="text-sm text-ink-soft space-y-2 mb-6 list-disc list-inside">
-        <li>Akü bakımı ve sülfatlaşma belirtileri</li>
-        <li>Sigorta sisteminin görevi</li>
-        <li>Far ayarı ve doğru ışık kullanımı</li>
-      </ul>
-
-      <div className="flex items-center gap-2 mb-3">
-        <CircleDot size={16} className="text-gold" />
-        <h3 className="font-display text-lg text-ink">Lastik ve Tekerlek Bilgisi</h3>
-      </div>
-      <ul className="text-sm text-ink-soft space-y-2 mb-6 list-disc list-inside">
-        <li>Asgari diş derinliği ve lastik değişim zamanı</li>
-        <li>Hava basıncının yol tutuşuna etkisi</li>
-      </ul>
-      <Link
-        href="/quiz/motor"
-        className="inline-flex items-center gap-2 text-sm font-display uppercase tracking-wide text-gold hover:text-gold-soft transition-colors mb-12"
+      <Section
+        icon={Wrench}
+        tone={TONES.motor}
+        title="Motor ve Araç Tekniği Soruları"
+        intro="Aracın nasıl çalıştığını, temel bakım kurallarını ve arıza belirtilerini anlamak hem sınav hem de güvenli sürüş için önemlidir."
+        cta={{ href: "/quiz/motor", label: "Motor ve Araç Tekniği sorularını çöz" }}
       >
-        Motor ve Araç Tekniği sorularını çöz →
-      </Link>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <Sub icon={Fuel} title="Motor Sistemleri">
+            <Bullets
+              items={[
+                "Yağlama, soğutma ve yakıt sistemlerinin görevleri",
+                "Triger kayışı, şanzıman ve debriyaj gibi temel parçalar",
+              ]}
+            />
+          </Sub>
+          <Sub icon={CircleDot} title="Fren ve Süspansiyon Sistemi">
+            <Bullets items={["Fren hidroliği ve ABS sisteminin işlevi", "Süspansiyonun yol tutuşuna etkisi"]} />
+          </Sub>
+          <Sub icon={Battery} title="Akü, Elektrik ve Aydınlatma">
+            <Bullets
+              items={[
+                "Akü bakımı ve sülfatlaşma belirtileri",
+                "Sigorta sisteminin görevi",
+                "Far ayarı ve doğru ışık kullanımı",
+              ]}
+            />
+          </Sub>
+          <Sub icon={CircleDot} title="Lastik ve Tekerlek Bilgisi">
+            <Bullets
+              items={["Asgari diş derinliği ve lastik değişim zamanı", "Hava basıncının yol tutuşuna etkisi"]}
+            />
+          </Sub>
+        </div>
+      </Section>
 
-      <div className="flex items-center gap-3 mb-4">
-        <SectionIcon icon={Users} />
-        <h2 className="font-display text-2xl text-ink">Trafik Adabı Soruları</h2>
-      </div>
-      <p className="text-ink-soft text-sm sm:text-base leading-relaxed mb-6">
-        Trafik adabı, kuralların ötesinde bir sorumluluk ve saygı bilincidir.
-        Sınavda da güvenli sürüş kültürünün bir parçası olarak sorulur.
-      </p>
-
-      <div className="flex items-center gap-2 mb-3">
-        <Users size={16} className="text-gold" />
-        <h3 className="font-display text-lg text-ink">Sürücü Davranışları</h3>
-      </div>
-      <ul className="text-sm text-ink-soft space-y-2 mb-6 list-disc list-inside">
-        <li>Sorumluluk duygusu ve davranışların sonuçlarını düşünme</li>
-        <li>Öfke kontrolü ve agresif sürüşten kaçınma</li>
-      </ul>
-
-      <div className="flex items-center gap-2 mb-3">
-        <Users size={16} className="text-gold" />
-        <h3 className="font-display text-lg text-ink">Yaya ve Diğer Sürücülere Saygı</h3>
-      </div>
-      <ul className="text-sm text-ink-soft space-y-2 mb-6 list-disc list-inside">
-        <li>Yaya geçitlerinde öncelik verme</li>
-        <li>Sinyal verme ve şerit nezaketi</li>
-      </ul>
-
-      <div className="flex items-center gap-2 mb-3">
-        <Leaf size={16} className="text-gold" />
-        <h3 className="font-display text-lg text-ink">Çevre Bilinci ve Sürdürülebilirlik</h3>
-      </div>
-      <ul className="text-sm text-ink-soft space-y-2 mb-6 list-disc list-inside">
-        <li>Egzoz emisyonları ve hava kirliliği</li>
-        <li>Atık motor yağı gibi zararlı maddelerin bertarafı</li>
-        <li>Toplu taşıma ve elektrikli araçların çevresel etkisi</li>
-      </ul>
-      <Link
-        href="/quiz/cevre"
-        className="inline-flex items-center gap-2 text-sm font-display uppercase tracking-wide text-gold hover:text-gold-soft transition-colors mb-12"
+      <Section
+        icon={Users}
+        tone={TONES.cevre}
+        title="Trafik Adabı Soruları"
+        intro="Trafik adabı, kuralların ötesinde bir sorumluluk ve saygı bilincidir. Sınavda da güvenli sürüş kültürünün bir parçası olarak sorulur."
+        cta={{ href: "/quiz/cevre", label: "Trafik Adabı ve Çevre sorularını çöz" }}
       >
-        Trafik Adabı ve Çevre sorularını çöz →
-      </Link>
+        <div className="grid gap-3 lg:grid-cols-3">
+          <Sub icon={Users} title="Sürücü Davranışları">
+            <Bullets
+              items={[
+                "Sorumluluk duygusu ve davranışların sonuçlarını düşünme",
+                "Öfke kontrolü ve agresif sürüşten kaçınma",
+              ]}
+            />
+          </Sub>
+          <Sub icon={Users} title="Yaya ve Diğer Sürücülere Saygı">
+            <Bullets items={["Yaya geçitlerinde öncelik verme", "Sinyal verme ve şerit nezaketi"]} />
+          </Sub>
+          <Sub icon={Leaf} title="Çevre Bilinci ve Sürdürülebilirlik">
+            <Bullets
+              items={[
+                "Egzoz emisyonları ve hava kirliliği",
+                "Atık motor yağı gibi zararlı maddelerin bertarafı",
+                "Toplu taşıma ve elektrikli araçların çevresel etkisi",
+              ]}
+            />
+          </Sub>
+        </div>
+      </Section>
 
-      <div className="flex items-center gap-3 mb-4">
-        <SectionIcon icon={ClipboardList} />
-        <h2 className="font-display text-2xl text-ink">Deneme Sınavları</h2>
-      </div>
-      <p className="text-ink-soft text-sm sm:text-base leading-relaxed mb-6">
-        Konuları tek tek çalıştıktan sonra kendini gerçek sınav koşullarında
-        test etmek, hazır olup olmadığını anlamanın en iyi yoludur.
-      </p>
+      <Section
+        icon={ClipboardList}
+        tone={TONES.primary}
+        title="Deneme Sınavları"
+        intro="Konuları tek tek çalıştıktan sonra kendini gerçek sınav koşullarında test etmek, hazır olup olmadığını anlamanın en iyi yoludur."
+      >
+        <div className="grid gap-3 lg:grid-cols-3">
+          <Sub icon={Target} title="2026 Ehliyet Deneme Sınavı">
+            <p className="text-[15px] font-semibold text-ink-soft leading-relaxed">
+              EhliyetAl&apos;ın sınav simülasyonu; trafik, motor, ilk yardım ve çevre
+              konularından karışık 50 soru ve 60 dakikalık süreyle gerçek sınav
+              temposunu deneyimletir. %70 ve üzeri puan alman geçme sınırıdır.
+            </p>
+          </Sub>
+          <Sub icon={ClipboardList} title="Konulara Göre Mini Testler">
+            <Bullets
+              items={[
+                <><Link href="/quiz/trafik" className={inlineLink}>Trafik ve Çevre Bilgisi</Link> mini testi</>,
+                <><Link href="/quiz/ilkyardim" className={inlineLink}>İlk Yardım</Link> mini testi</>,
+                <><Link href="/quiz/motor" className={inlineLink}>Motor ve Araç Bilgisi</Link> mini testi</>,
+                <><Link href="/quiz/cevre" className={inlineLink}>Trafik Adabı ve Çevre Bilinci</Link> mini testi</>,
+              ]}
+            />
+          </Sub>
+          <Sub icon={BookOpen} title="Çıkmış Sorular">
+            <p className="text-[15px] font-semibold text-ink-soft leading-relaxed">
+              EhliyetAl&apos;daki tüm sorular, gerçek sınavlarla aynı konuları kapsayan
+              özgün alıştırma sorularıdır; resmi soru kitapçıklarının birebir
+              kopyası değildir. Gerçek çıkmış sınav kitapçıklarına ulaşmak istersen
+              Millî Eğitim Bakanlığı&apos;nın resmi kaynaklarını incelemeni öneririz.
+            </p>
+          </Sub>
+        </div>
+      </Section>
 
-      <div className="flex items-center gap-2 mb-3">
-        <Target size={16} className="text-gold" />
-        <h3 className="font-display text-lg text-ink">2026 Ehliyet Deneme Sınavı</h3>
-      </div>
-      <p className="text-sm text-ink-soft leading-relaxed mb-6">
-        EhliyetAl&apos;ın sınav simülasyonu; trafik, motor, ilk yardım ve çevre
-        konularından karışık 50 soru ve 60 dakikalık süreyle gerçek sınav
-        temposunu deneyimletir. %70 ve üzeri puan alman geçme sınırıdır.
-      </p>
-
-      <div className="flex items-center gap-2 mb-3">
-        <ClipboardList size={16} className="text-gold" />
-        <h3 className="font-display text-lg text-ink">Konulara Göre Mini Testler</h3>
-      </div>
-      <ul className="text-sm text-ink-soft space-y-2 mb-6 list-disc list-inside">
-        <li><Link href="/quiz/trafik" className="text-gold hover:underline">Trafik ve Çevre Bilgisi</Link> mini testi</li>
-        <li><Link href="/quiz/ilkyardim" className="text-gold hover:underline">İlk Yardım</Link> mini testi</li>
-        <li><Link href="/quiz/motor" className="text-gold hover:underline">Motor ve Araç Bilgisi</Link> mini testi</li>
-        <li><Link href="/quiz/cevre" className="text-gold hover:underline">Trafik Adabı ve Çevre Bilinci</Link> mini testi</li>
-      </ul>
-
-      <div className="flex items-center gap-2 mb-3">
-        <BookOpen size={16} className="text-gold" />
-        <h3 className="font-display text-lg text-ink">Çıkmış Sorular</h3>
-      </div>
-      <p className="text-sm text-ink-soft leading-relaxed mb-12">
-        EhliyetAl&apos;daki tüm sorular, gerçek sınavlarla aynı konuları kapsayan
-        özgün alıştırma sorularıdır; resmi soru kitapçıklarının birebir
-        kopyası değildir. Gerçek çıkmış sınav kitapçıklarına ulaşmak istersen
-        Millî Eğitim Bakanlığı&apos;nın resmi kaynaklarını incelemeni öneririz.
-      </p>
-
-      <div className="flex items-center gap-3 mb-4">
-        <SectionIcon icon={BookOpen} />
-        <h2 className="font-display text-2xl text-ink">Sınava Hazırlık Rehberi</h2>
-      </div>
-
-      <div className="flex items-center gap-2 mb-3">
-        <ClipboardList size={16} className="text-gold" />
-        <h3 className="font-display text-lg text-ink">Sınav Formatı ve Puanlama</h3>
-      </div>
-      <div className="overflow-x-auto mb-6">
-        <table className="w-full text-sm border-collapse">
-          <thead>
-            <tr className="text-left text-ink-soft border-b border-line">
-              <th className="py-2 pr-4 font-body font-medium">Ders</th>
-              <th className="py-2 pr-4 font-body font-medium">Soru Sayısı</th>
-              <th className="py-2 font-body font-medium">Geçme Puanı</th>
-            </tr>
-          </thead>
-          <tbody className="text-ink">
-            <tr className="border-b border-line">
-              <td className="py-2 pr-4">İlk Yardım Bilgisi</td>
-              <td className="py-2 pr-4">30 soru</td>
-              <td className="py-2">70 / 100</td>
-            </tr>
-            <tr className="border-b border-line">
-              <td className="py-2 pr-4">Trafik ve Çevre Bilgisi</td>
-              <td className="py-2 pr-4">40 soru</td>
-              <td className="py-2">70 / 100</td>
-            </tr>
-            <tr>
-              <td className="py-2 pr-4">Motor ve Araç Tekniği Bilgisi</td>
-              <td className="py-2 pr-4">30 soru</td>
-              <td className="py-2">70 / 100</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div className="flex items-center gap-2 mb-3">
-        <AlertTriangle size={16} className="text-gold" />
-        <h3 className="font-display text-lg text-ink">Sık Yapılan Hatalar</h3>
-      </div>
-      <ul className="text-sm text-ink-soft space-y-2 mb-6 list-disc list-inside">
-        <li>Soruyu hızlıca okuyup &quot;değildir&quot; gibi olumsuz ifadeleri atlamak</li>
-        <li>İşaretlerin renk ve şekil ayrımını (üçgen/daire, kırmızı/mavi) karıştırmak</li>
-        <li>İlk yardım pozisyonlarını mantığını anlamadan ezberlemek</li>
-        <li>Motor sorularında günlük hayat tecrübesiyle teorik bilgiyi karıştırmak</li>
-        <li>Çalışmayı sınavdan bir gece öncesine bırakmak</li>
-      </ul>
-
-      <div className="flex items-center gap-2 mb-3">
-        <Timer size={16} className="text-gold" />
-        <h3 className="font-display text-lg text-ink">Çalışma Programı Önerileri</h3>
-      </div>
-      <ul className="text-sm text-ink-soft space-y-2 mb-6 list-disc list-inside">
-        <li>1. hafta: Trafik ve Çevre Bilgisi konularına odaklan</li>
-        <li>2. hafta: İlk Yardım ve Motor bilgisi konularını çalış</li>
-        <li>3. hafta: Trafik adabı konularını tamamla, tüm kategorilerde tekrar yap</li>
-        <li>Sınavdan önceki hafta: Düzenli olarak sınav simülasyonu çöz ve yanlışlarını tekrar et</li>
-      </ul>
-
-      <div className="flex flex-wrap gap-4 mb-12">
-        <Link
-          href="/sozluk"
-          className="inline-flex items-center gap-2 text-sm font-display uppercase tracking-wide text-gold hover:text-gold-soft transition-colors"
-        >
-          Trafik Terimleri Sözlüğü →
-        </Link>
-        <Link
-          href="/rehber"
-          className="inline-flex items-center gap-2 text-sm font-display uppercase tracking-wide text-gold hover:text-gold-soft transition-colors"
-        >
-          Başvuru ve ücretler rehberi →
-        </Link>
-      </div>
-
-      <div className="flex items-center gap-3 mb-6">
-        <SectionIcon icon={CheckCircle2} />
-        <h2 className="font-display text-2xl text-ink">Sıkça Sorulan Sorular</h2>
-      </div>
-      <div className="flex flex-col gap-3 mb-4">
-        {faqItems.map((item) => (
-          <details
-            key={item.q}
-            className="group bg-surface border border-line rounded-xl p-4 open:border-gold-soft"
+      <Section icon={BookOpen} tone={TONES.sun} title="Sınava Hazırlık Rehberi">
+        <div className="grid gap-3 lg:grid-cols-2">
+          <Sub icon={ClipboardList} title="Sınav Formatı ve Puanlama" className="lg:col-span-2">
+            <Table
+              head={["Ders", "Soru Sayısı", "Geçme Puanı"]}
+              rows={[
+                ["İlk Yardım Bilgisi", "30 soru", "70 / 100"],
+                ["Trafik ve Çevre Bilgisi", "40 soru", "70 / 100"],
+                ["Motor ve Araç Tekniği Bilgisi", "30 soru", "70 / 100"],
+              ]}
+            />
+          </Sub>
+          <Sub icon={AlertTriangle} title="Sık Yapılan Hatalar">
+            <Bullets
+              items={[
+                "Soruyu hızlıca okuyup \"değildir\" gibi olumsuz ifadeleri atlamak",
+                "İşaretlerin renk ve şekil ayrımını (üçgen/daire, kırmızı/mavi) karıştırmak",
+                "İlk yardım pozisyonlarını mantığını anlamadan ezberlemek",
+                "Motor sorularında günlük hayat tecrübesiyle teorik bilgiyi karıştırmak",
+                "Çalışmayı sınavdan bir gece öncesine bırakmak",
+              ]}
+            />
+          </Sub>
+          <Sub icon={Timer} title="Çalışma Programı Önerileri">
+            <Bullets
+              items={[
+                "1. hafta: Trafik ve Çevre Bilgisi konularına odaklan",
+                "2. hafta: İlk Yardım ve Motor bilgisi konularını çalış",
+                "3. hafta: Trafik adabı konularını tamamla, tüm kategorilerde tekrar yap",
+                "Sınavdan önceki hafta: Düzenli olarak sınav simülasyonu çöz ve yanlışlarını tekrar et",
+              ]}
+            />
+          </Sub>
+        </div>
+        <div className="mt-5 flex flex-wrap gap-3">
+          <Link
+            href="/sozluk"
+            className="btn-soft rounded-2xl min-h-11 px-4 inline-flex items-center gap-2 text-[15px] text-ink"
           >
-            <summary className="cursor-pointer font-display text-base text-ink list-none flex items-center justify-between gap-3">
-              {item.q}
-              <span className="text-gold shrink-0 transition-transform group-open:rotate-45 font-display text-xl">
-                +
-              </span>
-            </summary>
-            <p className="text-sm text-ink-soft leading-relaxed mt-3">{item.a}</p>
-          </details>
-        ))}
-      </div>
-      <Link
-        href="/sss"
-        className="inline-flex items-center gap-2 text-sm font-display uppercase tracking-wide text-gold hover:text-gold-soft transition-colors"
-      >
-        Tüm sıkça sorulan sorular →
-      </Link>
-    </section>
+            Trafik Terimleri Sözlüğü
+            <ArrowRight size={17} strokeWidth={2.6} />
+          </Link>
+          <Link
+            href="/rehber"
+            className="btn-soft rounded-2xl min-h-11 px-4 inline-flex items-center gap-2 text-[15px] text-ink"
+          >
+            Başvuru ve ücretler rehberi
+            <ArrowRight size={17} strokeWidth={2.6} />
+          </Link>
+        </div>
+      </Section>
+
+      <Section icon={CheckCircle2} tone={TONES.primary} title="Sıkça Sorulan Sorular">
+        <div className="flex flex-col gap-2.5">
+          {faqItems.map((item) => (
+            <details
+              key={item.q}
+              className="group rounded-2xl border-2 border-line bg-surface open:bg-paper"
+            >
+              <summary className="flex items-center justify-between gap-3 p-4 min-h-14 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-extrabold text-[15px] sm:text-base text-ink leading-snug">
+                {item.q}
+                <ChevronDown
+                  size={20}
+                  strokeWidth={2.6}
+                  className="text-ink-soft shrink-0 transition-transform group-open:rotate-180"
+                />
+              </summary>
+              <p className="px-4 pb-4 -mt-1 text-[15px] font-semibold text-ink-soft leading-relaxed">{item.a}</p>
+            </details>
+          ))}
+        </div>
+        <Link
+          href="/sss"
+          className="mt-5 inline-flex items-center gap-2 min-h-11 font-extrabold text-[15px] text-primary hover:underline underline-offset-2"
+        >
+          Tüm sıkça sorulan sorular
+          <ArrowRight size={17} strokeWidth={2.6} />
+        </Link>
+      </Section>
+    </div>
   );
 }

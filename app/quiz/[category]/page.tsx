@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { categories, getCategory } from "@/lib/questions";
-import CategoryQuizStart from "@/components/CategoryQuizStart";
+import { Suspense } from "react";
+import CategoryQuizStart, { CategoryQuizStartWithParams } from "@/components/CategoryQuizStart";
 import CategoryQuestionList from "@/components/CategoryQuestionList";
 
 export function generateStaticParams() {
@@ -88,7 +89,9 @@ export default async function QuizPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <CategoryQuizStart category={category} />
+      <Suspense fallback={<CategoryQuizStart category={category} />}>
+        <CategoryQuizStartWithParams category={category} />
+      </Suspense>
       <CategoryQuestionList questions={category.questions} categoryName={category.name} />
     </>
   );

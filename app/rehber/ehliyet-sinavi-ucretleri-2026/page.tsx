@@ -57,33 +57,33 @@ export default function UcretlerRehberi() {
   };
 
   return (
-    <div className="min-h-screen bg-paper">
+    <div className="bg-paper">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <main className="max-w-2xl mx-auto px-5 sm:px-6 py-8 sm:py-14">
+      <main className="max-w-3xl mx-auto px-4 sm:px-6 pt-4 pb-10 sm:pt-8">
         <Link
           href="/rehber"
-          className="flex items-center gap-1.5 text-sm text-ink-soft hover:text-ink transition-colors mb-8"
+          className="inline-flex items-center gap-1.5 text-sm font-bold text-ink-soft hover:text-ink transition-colors mb-6 min-h-11"
         >
           <ArrowLeft size={16} />
           Rehbere dön
         </Link>
 
-        <h1 className="font-display text-3xl text-ink mb-4">
+        <h1 className="font-display font-black text-[28px] sm:text-4xl leading-tight text-ink mb-4">
           2026 Ehliyet Sınavı Ücretleri Hakkında Bilinmesi Gerekenler
         </h1>
-        <p className="text-ink-soft text-sm sm:text-base leading-relaxed mb-8">
+        <p className="text-ink font-medium text-[16px] sm:text-[17px] leading-[1.75] mb-8">
           Ehliyet alma sürecinin birden fazla ücret kalemi vardır ve bu
           tutarlar her yıl güncellenir. Kesin ve güncel rakam vermek yerine,
           hangi kalemlerle karşılaşacağını ve doğru tutarı nereden
           öğrenebileceğini anlatalım.
         </p>
 
-        <div className="bg-danger-wash border border-danger/30 rounded-2xl p-5 mb-8 flex gap-3">
+        <div className="bg-danger-wash rounded-2xl p-4 sm:p-5 mb-8 flex gap-3">
           <AlertTriangle size={20} className="text-danger shrink-0 mt-0.5" />
-          <p className="text-sm text-ink leading-relaxed">
+          <p className="text-[15px] font-semibold text-ink leading-relaxed">
             Ücretler zamanla değiştiği ve bölgeye/kursa göre farklılık
             gösterebildiği için burada sabit bir tutar paylaşmıyoruz. Güncel ve
             kesin rakamlar için e-Devlet üzerindeki ilgili hizmeti veya
@@ -91,29 +91,29 @@ export default function UcretlerRehberi() {
           </p>
         </div>
 
-        <h2 className="font-display text-xl text-ink mb-4">
+        <h2 className="font-display font-black text-[22px] sm:text-2xl leading-tight text-ink mb-4">
           Karşılaşabileceğin ücret kalemleri
         </h2>
         <div className="flex flex-col gap-3 mb-10">
           {feeCategories.map((fee) => (
             <div
               key={fee.title}
-              className="bg-surface border border-line rounded-xl p-4"
+              className="bg-surface border-2 border-line rounded-2xl p-4 sm:p-5"
             >
-              <p className="font-display text-base text-ink mb-1">
+              <p className="font-display font-extrabold text-[16px] text-ink mb-1">
                 {fee.title}
               </p>
-              <p className="text-sm text-ink-soft leading-relaxed">
+              <p className="text-[15px] font-medium text-ink-soft leading-relaxed">
                 {fee.text}
               </p>
             </div>
           ))}
         </div>
 
-        <h2 className="font-display text-xl text-ink mb-4">
+        <h2 className="font-display font-black text-[22px] sm:text-2xl leading-tight text-ink mb-4">
           Güncel tutarı nereden öğrenebilirsin?
         </h2>
-        <ul className="text-sm text-ink-soft space-y-2 mb-10 list-disc list-inside">
+        <ul className="text-[16px] font-medium text-ink leading-[1.7] space-y-2 mb-10 list-disc pl-5 marker:text-primary">
           <li>e-Devlet üzerindeki Millî Eğitim Bakanlığı sürücü kursu/sınav hizmetleri sayfası</li>
           <li>Kayıt olacağın sürücü kursunun güncel fiyat listesi</li>
           <li>İl/ilçe millî eğitim müdürlüğü duyuruları</li>
@@ -123,31 +123,31 @@ export default function UcretlerRehberi() {
           href="https://www.turkiye.gov.tr/"
           target="_blank"
           rel="noopener noreferrer nofollow"
-          className="inline-flex items-center gap-2 text-sm font-display uppercase tracking-wide text-gold hover:text-gold-soft transition-colors mb-10"
+          className="btn-soft inline-flex items-center gap-2 rounded-2xl px-5 h-12 text-[15px] text-ink mb-10"
         >
           e-Devlet&apos;i ziyaret et <ExternalLink size={14} />
         </a>
 
-        <p className="text-sm text-ink-soft leading-relaxed mb-10">
+        <p className="text-[16px] font-medium text-ink leading-[1.75] mb-10">
           Ücretleri öğrendikten sonra sıradaki adım, teorik sınava iyi
-          hazırlanmak. <Link href="/sinav" className="text-gold hover:underline">Sınav simülasyonunu</Link> deneyerek
+          hazırlanmak. <Link href="/sinav" className="font-bold text-primary underline-offset-2 hover:underline">Sınav simülasyonunu</Link> deneyerek
           ne kadar hazır olduğunu görebilirsin.
         </p>
 
-        <h2 className="font-display text-xl text-ink mb-4">Sıkça Sorulan Sorular</h2>
+        <h2 className="font-display font-black text-[22px] sm:text-2xl leading-tight text-ink mb-4">Sıkça Sorulan Sorular</h2>
         <div className="flex flex-col gap-3">
           {faqCommon.map((item) => (
             <details
               key={item.q}
-              className="group bg-surface border border-line rounded-xl p-4 open:border-gold-soft"
+              className="group bg-surface border-2 border-line rounded-2xl open:border-primary-soft"
             >
-              <summary className="cursor-pointer font-display text-sm text-ink list-none flex items-center justify-between gap-3">
+              <summary className="cursor-pointer font-display font-extrabold text-[16px] text-ink list-none flex items-center justify-between gap-3 p-4 min-h-14 [&::-webkit-details-marker]:hidden">
                 {item.q}
-                <span className="text-gold shrink-0 transition-transform group-open:rotate-45 font-display text-xl">
+                <span className="w-8 h-8 rounded-lg bg-surface-alt text-primary flex items-center justify-center shrink-0 transition-transform group-open:rotate-45 font-display font-black text-xl leading-none">
                   +
                 </span>
               </summary>
-              <p className="text-sm text-ink-soft leading-relaxed mt-3">{item.a}</p>
+              <p className="text-[15px] font-medium text-ink-soft leading-relaxed px-4 pb-4 -mt-1">{item.a}</p>
             </details>
           ))}
         </div>
