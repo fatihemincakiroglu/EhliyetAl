@@ -33,14 +33,13 @@ export default function Footer() {
       </div>
       <div className="max-w-5xl mx-auto px-4 sm:px-6 pb-8">
         <p className="text-xs font-semibold text-ink-soft">
-          © {new Date().getFullYear()} EhliyetAl —{" "}
           <a
-            href="https://fatihemincakiroglu.com/"
+            href="https://fatihemincakiroglu.com/geo-uzmani"
             target="_blank"
             rel="noopener noreferrer"
             className="underline-offset-2 hover:underline hover:text-primary"
           >
-            Fatih Emin Çakıroğlu
+            GEO Uzmanı
           </a>
         </p>
       </div>
